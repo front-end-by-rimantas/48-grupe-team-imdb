@@ -6,7 +6,6 @@
 # IMDb
 
 
-
 <br>
 
 ## 🌟 About
