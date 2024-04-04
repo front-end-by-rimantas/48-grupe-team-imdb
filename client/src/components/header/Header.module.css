@@ -1,0 +1,34 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    background-color: black;
+    border-bottom: 0.1rem solid #ccc;
+    box-shadow: 0 0.2rem 0.4rem #0003;
+    cursor: pointer;
+}
+
+.header nav {
+    display: flex;
+    gap: 1rem;
+}
+
+li {
+    list-style: none;
+    color: #fff;
+}
+
+.search {
+    height: 2rem;
+    width: 30rem;
+    background-color: #fff;
+    border-radius: 8px;
+    border: transparent; 
+    outline: none;
+}
+
+::placeholder {
+    padding-left: 1rem;
+}
