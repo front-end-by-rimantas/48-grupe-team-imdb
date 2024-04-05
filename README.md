@@ -5,6 +5,8 @@
 
 # IMDb
 
+**Movie page:**
+![Title page screenshot](/client/src/assets/images/readmeimg/imdbpage.png)
 
 <br>
 
@@ -16,7 +18,12 @@ This project is for educational porpuses only. Pull request are welcome, but pri
 
 Site published at:  https://github.com/front-end-by-rimantas/48-grupe-team-imdb
 
-Design: [IMDb]()
+Design: [IMDb](https://www.imdb.com/)
+
+## Technologies used 🛠️
+- [React](https://es.reactjs.org/) - Front-End JavaScript library
+- [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js.
+- [Vite](https://vitejs.dev/) - Frontend Tooling
 
 ## 🎯 Project features/goals
 
@@ -33,6 +40,7 @@ Design: [IMDb]()
 -   Creativity
 -   Work ethic
 -   Time management
+-   Responsive design 
 
 ## 🧰 Getting Started
 
