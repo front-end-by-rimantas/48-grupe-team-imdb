@@ -1,4 +1,146 @@
+.titleContainer {
+    display: flex;
+    align-items: center;
+}
+
+.line {
+    height: 50px; 
+    width: 5px; 
+    background-color: yellow;
+    margin-right: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
 .cardsSection {
-    min-height: 50vh;
-    background-color: #B3C8CF;
+    position: relative;
+    padding: 20px;
+    background-color: black;
+    overflow: hidden; 
+}
+
+.movieList {
+    display: flex;
+    flex-wrap: nowrap; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 100%;
+}
+
+
+.movieContainer {
+    display: flex;
+    align-items: center;
+    overflow-x: hidden; 
+}
+
+.movieCard {
+    flex-shrink: 0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    width: 200px;
+    gap: 10px;
+    margin: 0 20px; 
+    background-color: #1e1d1d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movieImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.movieInfo {
+    text-align: left;
+}
+
+.movieRating {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f1c40f;
+    display: flex;
+    align-items: center;
+}
+
+.movieRating span {
+    margin-right: 5px;
+    color: #f1c40f;
+}
+
+.movieName {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.trailerButton {
+    width: 100%; 
+    padding: 8px 0; 
+    background-color: #1e1d1d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.trailerButton:hover {
+    background-color: #303132;
+}
+
+.prevButton,
+.nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 60px;
+    background-color: transparent;
+    border: 1px solid rgb(153, 150, 150); 
+    border-radius: 8%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prevButton {
+    left: 10px; 
+}
+
+.nextButton {
+    right: 10px;
+}
+
+.prevButton:before,
+.nextButton:before {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0.3em 0.3em 0 0;
+    height: 0.8em;
+    width: 0.8em;
+    border-color: white;
+    transition: border-color 0.3s;
+}
+
+.prevButton:before {
+    transform: rotate(-135deg);
+}
+
+.nextButton:before {
+    transform: rotate(45deg);
+}
+
+.prevButton:hover:before,
+.nextButton:hover:before {
+    border-color: yellow;
 }
