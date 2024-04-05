@@ -15,9 +15,12 @@
     gap: 1rem;
 }
 
+.navLink,
 li {
     list-style: none;
     color: #fff;
+    text-decoration: none;
+    
 }
 
 .search {
@@ -32,3 +35,4 @@ li {
 ::placeholder {
     padding-left: 1rem;
 }
+
