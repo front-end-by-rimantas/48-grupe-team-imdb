@@ -7,7 +7,6 @@
     background-color: black;
     border-bottom: 0.1rem solid #ccc;
     box-shadow: 0 0.2rem 0.4rem #0003;
-    cursor: pointer;
 }
 
 .header nav {
@@ -22,17 +21,38 @@ li {
     text-decoration: none;
     
 }
+.formList {
+    display: flex;
+    flex-direction: column;
+}
+.searchForm {
+    display: flex;
+    flex-direction: row;
+}
 
 .search {
     height: 2rem;
     width: 30rem;
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 8px 0 0 8px;
     border: transparent; 
     outline: none;
+    padding: 0 1rem;
+
 }
 
-::placeholder {
-    padding-left: 1rem;
+.btnSearch {
+    line-height: 1rem;
+    border: none;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
 }
+.error {
+    color: red;
+    font-size: 1rem;
+
+}
+
+
 
