@@ -62,6 +62,27 @@ export function RegistrationForm() {
     }
 
     function isValidEmail() {
+        if (!email.trim()) {
+            return 'Enter a valid email address.'         
+        }
+        if (email.length < 6) {
+            return 'The email is too shorter.'
+        }
+        if (email.length > 30) {
+            return 'The email is too long.'
+        }
+        if (!email.includes('@')) {
+            return 'The email must contain @.'
+        }
+       
+        const atCount = email.split('@').length - 1;
+        if (atCount > 2) {
+            return "Email cannot contain more than two @ symbols."
+        }
+        if (email.indexOf('.') === -1) {
+            return "The email must contain a character dot." 
+        }
+        return true;
     }
 
     function isValidPassword() {
