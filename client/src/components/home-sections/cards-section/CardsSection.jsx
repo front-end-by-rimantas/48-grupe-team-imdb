@@ -10,11 +10,11 @@ export function CardsSection() {
     const movieListRef = useRef(null);
 
     const handlePrevClick = () => {
-        movieListRef.current.scrollLeft -= 250; // Adjust the scroll distance as needed
+        movieListRef.current.scrollLeft -= 250;
     };
 
     const handleNextClick = () => {
-        movieListRef.current.scrollLeft += 250; // Adjust the scroll distance as needed
+        movieListRef.current.scrollLeft += 250;
     };
 
     return (
@@ -23,7 +23,9 @@ export function CardsSection() {
             <div className={style.movieContainer} ref={movieListRef}>
                 <ul className={style.movieList}>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={avatar} alt="Avatar" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>Avatar</div>
@@ -31,7 +33,9 @@ export function CardsSection() {
                         </div>
                     </li>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={titanic} alt="Movie Title" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>titanic</div>
@@ -39,7 +43,9 @@ export function CardsSection() {
                         </div>
                     </li>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={crash} alt="Movie Title" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>crash</div>
@@ -47,7 +53,9 @@ export function CardsSection() {
                         </div>
                     </li>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={pulpfiction} alt="Movie Title" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>pulpfiction</div>
@@ -55,7 +63,9 @@ export function CardsSection() {
                         </div>
                     </li>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={se7en} alt="Movie Title" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>se7en</div>
@@ -63,7 +73,9 @@ export function CardsSection() {
                         </div>
                     </li>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={thetrumanshow} alt="Movie Title" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>thetrumanshow</div>
@@ -71,7 +83,9 @@ export function CardsSection() {
                         </div>
                     </li>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={thetrumanshow} alt="Movie Title" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>thetrumanshow</div>
@@ -79,7 +93,9 @@ export function CardsSection() {
                         </div>
                     </li>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={thetrumanshow} alt="Movie Title" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>thetrumanshow</div>
@@ -87,7 +103,9 @@ export function CardsSection() {
                         </div>
                     </li>
                     <li className={style.movieCard}>
+                        <a className={style.movieImage} href="#">
                         <img src={thetrumanshow} alt="Movie Title" className={style.movieImage} />
+                        </a>
                         <div className={style.movieInfo}>
                             <div className={style.movieRating}><span>&#9733;</span>8.5</div>
                             <div className={style.movieName}>thetrumanshow</div>

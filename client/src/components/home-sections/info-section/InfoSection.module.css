@@ -1,4 +1,123 @@
 .infoSection {
-    min-height: 50vh;
-    background-color: #F1EEDC;
+    padding: 20px;
+    background-color: black;
+    color: white;
+  }
+
+  .infoSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 5px;
+    height: 100%;
+    background-color: yellow;
+  }
+  
+  .infoSection h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .infoSection p {
+    font-size: 16px;
+    color: #ccc;
+  }
+
+  .topBar {
+    display: flex;
+    align-items: center;
+  }
+
+ .line {
+  height: 30px;
+  width: 5px;
+  background-color: yellow;
+  margin-right: 5px;
+}
+
+.arrowButton {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px; 
+  }
+
+  .arrowButton:hover {
+    color: yellow;
+  }
+  
+  .movieList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(3, 1fr); 
+    gap: 20px; 
+  }
+  
+  .movieList li {
+    margin-top: 10px;
+  }
+  
+  .rank {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    margin-right: 10px;
+  }
+  
+  .movieTitle {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .revenue {
+    font-size: 16px;
+    color: rgb(181, 181, 173);
+    width: 100%;
+  }
+
+  .movieNumber {
+    display: flex;
+    align-items: center;
+    /* position: relative;  */
+    margin-right: 10px;
+  }
+  
+  .movieNumber:after {
+    content: ''; 
+    position: absolute; 
+    top: 2px;
+    right: -5px;
+    height: 16px;
+    width: 2px;
+    background-color: yellow;
+  }
+  
+  .movieInfo {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.movieDetails {
+    margin-left: 10px; 
+}
+
+.verticalLine {
+    height: 22px;
+    width: 1.5px;
+    background-color: yellow;
+    color: yellow;
+    margin-left: 6px; 
+}
+
+.namePrice {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemUrl {
+    text-decoration: none;
 }
