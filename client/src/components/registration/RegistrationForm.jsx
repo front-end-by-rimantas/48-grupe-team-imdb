@@ -86,9 +86,24 @@ export function RegistrationForm() {
     }
 
     function isValidPassword() {
+        if (!password.trim()) {
+            return "Enter a valid password."         
+        }
+        if (password.length < 8) {
+            return "The passwords must be at least 8 characters."
+        }
+        if (password.length > 30) {
+            return "The passwords is too long."
+        }
+        
+        return true;
     }
 
     function isValidRepeatPassword() {
+        if (password !== repeatPassword) {
+            return 'The passwords do not match.';
+         }
+         return true;
     }
 
   
