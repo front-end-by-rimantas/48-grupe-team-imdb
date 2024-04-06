@@ -39,18 +39,21 @@ export function RegistrationForm() {
         setRepeatPassword(e.target.value);
     }
 
+    function CapsLock(username) {
+        return username === username.toUpperCase();
+    }
 
-    function isValidUsername() {
+    function isValidUsername(username) {
         if (!username.trim()) {
             return 'Username is required.'
         }
         if (username.length > 25) {
-            return 'The text is too long, please write shorter.';
+            return 'The text is too long, please write shorter!';
         }
         if(typeof username === 'number'){
             return 'Username cannot contain numbers.'
         }
-        if(username.toUpperCase()){
+        if(CapsLock(username)){
             return 'Username cannot contain uppercase letter.'
         }
         const symbol = [',', ':', '*', '&', '^', '%', '$', '#', '@', '!'];
