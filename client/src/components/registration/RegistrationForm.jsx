@@ -17,7 +17,7 @@ export function RegistrationForm() {
     const [passwordErr, setPasswordErr] = useState('');
     const [repeatPasswordErr, setRepeatPasswordErr] = useState('');
 
-    const [successfullyRegistered, setSuccessfullyRegistered] = useState('');
+    
 
     const navigate = useNavigate();
 
@@ -41,6 +41,24 @@ export function RegistrationForm() {
 
 
     function isValidUsername() {
+        if (!username.trim()) {
+            return 'Username is required.'
+        }
+        if (username.length > 25) {
+            return 'The text is too long, please write shorter.';
+        }
+        if(typeof username === 'number'){
+            return 'Username cannot contain numbers.'
+        }
+        if(username.toUpperCase()){
+            return 'Username cannot contain uppercase letter.'
+        }
+        const symbol = [',', ':', '*', '&', '^', '%', '$', '#', '@', '!'];
+        if (symbol.some(n => username.includes(n))) {
+            return 'Username cannot contain special characters , : * & ^ % $ # @ !';
+        }
+           
+        return true;
     }
 
     function isValidEmail() {
@@ -88,7 +106,6 @@ export function RegistrationForm() {
             setPasswordErr('');
         }
 
-      
         if (repeatPasswordErrorValue !== true) {
             isAllFormValid = false;
             setRepeatPasswordErr(repeatPasswordErrorValue);
@@ -96,12 +113,9 @@ export function RegistrationForm() {
             setRepeatPasswordErr('');
         }
 
-
         if (isAllFormValid) {
             
             navigate('/');
-        } else {
-            setSuccessfullyRegistered('');
         } 
     }
 
@@ -111,6 +125,7 @@ export function RegistrationForm() {
                 <img src="../src/assets/images/logo/imdb_logo.png" alt="Logo" />
             </div>
             {/* ERROR*/}
+            {emailErr || usernameErr || passwordErr || repeatPasswordErr ?
             <div className={style.error}>
                     <div>
                         <i className={style.red}><BiError size="2rem" /> </i>
@@ -126,11 +141,8 @@ export function RegistrationForm() {
                       
                         </ul>
                     </div>
-            </div> 
-            {/*SUCCESSFULL*/}
-            <div className={style.successfull}>
-                {successfullyRegistered}
-            </div>  
+            </div> : null } 
+           
 {/* 
             Important Message!
 You indicated you're a new customer, 
@@ -170,7 +182,7 @@ email address vintiukviktoria@gmail.com. */}
                   <button className={`${style.button} ${style.textButton}`}  type="submit">Create your IMDb account</button>
               </div>
               <div className={style.haveAccount}>
-                  <p>Already have an account?<span className={style.linkSignIn}><Link to={'/sign-in/login' + href}>Sign in</Link></span> </p>
+                  <p>Already have an account?<span className={style.linkSignIn}><Link to={'/sign-in/' + href}>Sign in</Link></span> </p>
               </div>
           </form>
       </div>
