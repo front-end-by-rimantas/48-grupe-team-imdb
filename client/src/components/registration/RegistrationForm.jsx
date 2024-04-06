@@ -3,6 +3,7 @@ import { TiInfoLarge } from 'react-icons/ti';
 import { BiError } from "react-icons/bi";
 import style from './RegistrationForm.module.css'
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function RegistrationForm() {
     const href = "/"
@@ -18,7 +19,7 @@ export function RegistrationForm() {
 
     const [successfullyRegistered, setSuccessfullyRegistered] = useState('');
 
-
+    const navigate = useNavigate();
 
 
 
@@ -51,8 +52,7 @@ export function RegistrationForm() {
     function isValidRepeatPassword() {
     }
 
-    function isValid() {
-    }
+  
 
     function handleFormSubmit(e) {
         e.preventDefault();
@@ -62,7 +62,7 @@ export function RegistrationForm() {
         const passwordErrorValue = isValidPassword(password);
         const repeatPasswordErrorValue = isValidRepeatPassword(repeatPassword);
 
-        const successfullyRegisteredValue= isValid()
+        
 
 
         let isAllFormValid = true;
@@ -97,9 +97,11 @@ export function RegistrationForm() {
         }
 
 
-        if (isAllFormValid === true) {
+        if (isAllFormValid) {
             
-            setSuccessfullyRegistered(successfullyRegisteredValue);
+            navigate('/');
+        } else {
+            setSuccessfullyRegistered('');
         } 
     }
 
