@@ -66,16 +66,16 @@ export function RegistrationForm() {
 
     function isValidEmail() {
         if (!email.trim()) {
-            return 'Enter a valid email address.'         
+            return 'Email is required.'         
         }
         if (email.length < 6) {
-            return 'The email is too shorter.'
+            return 'Email is too shorter.'
         }
         if (email.length > 30) {
-            return 'The email is too long.'
+            return 'Email is too long.'
         }
         if (!email.includes('@')) {
-            return 'The email must contain @.'
+            return 'Email must contain @.'
         }
        
         const atCount = email.split('@').length - 1;
@@ -90,7 +90,7 @@ export function RegistrationForm() {
 
     function isValidPassword() {
         if (!password.trim()) {
-            return "Enter a valid password."         
+            return "Password is required."         
         }
         if (password.length < 8) {
             return "The passwords must be at least 8 characters."
@@ -182,11 +182,7 @@ export function RegistrationForm() {
                     </div>
             </div> : null } 
            
-{/* 
-            Important Message!
-You indicated you're a new customer, 
-but an account already exists with the 
-email address vintiukviktoria@gmail.com. */}
+
     <div className={style.form}>
           
           <span className={style.tittle}>

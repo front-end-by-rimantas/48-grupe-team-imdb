@@ -80,14 +80,14 @@
 }
 .error{
     display: flex;
-    height: 4rem;
+    height: 8rem;
     padding: 1.5rem;
     flex-direction: row;
     align-items: center;
     border-radius: 0.5rem;
     border: 1px #ddd solid;
     background-color: #fff;
-    gap: 3rem;
+    gap: 2rem;
     border: 2px #c40000 solid;
 }
 .errorLi{
