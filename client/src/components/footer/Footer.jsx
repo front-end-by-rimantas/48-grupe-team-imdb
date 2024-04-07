@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   FaTiktok,
   FaInstagram,
@@ -48,15 +49,15 @@ export function Footer() {
             </div>
             <div className={style.presentationContainer}>
               <div className={style.presentationList}>
-                <a className={style.presentation}>
+                <Link className={style.presentation}>
                   Help
                   <FaExternalLinkAlt
                     size="0.9rem"
                     className="linkAlt"
                     style={{ marginLeft: "5px" }}
                   />
-                </a>
-                <a
+                </Link>
+                <Link
                   className={`${style.presentation} ${style.presentationListContact}`}
                 >
                   Contact
@@ -65,22 +66,22 @@ export function Footer() {
                     className="linkAlt"
                     style={{ marginLeft: "5px" }}
                   />
-                </a>
-                <a className={style.presentation}>
+                </Link>
+                <Link className={style.presentation}>
                   Condition of use
                   <FaExternalLinkAlt
                     size="0.9rem"
                     className="linkAlt"
                     style={{ marginLeft: "5px" }}
                   />
-                </a>
-                <a className={style.presentation}>
+                </Link>
+                <Link className={style.presentation}>
                   Privacy policy
                   <FaExternalLinkAlt
                     size="0.9rem"
                     style={{ marginLeft: "5px" }}
                   />
-                </a>
+                </Link>
               </div>
             </div>
           </section>
