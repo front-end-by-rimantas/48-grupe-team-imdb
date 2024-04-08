@@ -1,16 +1,20 @@
+import { Link } from 'react-router-dom';
 import style from './Header.module.css';
+import { LogoImdb } from '../logo/LogoImdb';
+
+
 
 export function Header() {
    return  (
     <header className={style.header}>
-            <img src={<></>} alt="Logo" />
+            <LogoImdb/>
             <form>
                 <input className={style.search}  type="text" placeholder='search'/>
             </form>
             <nav>
-                <li>Sign In</li>
-                <li>About</li>
-                <li>Top 10</li>
+                <Link className={style.navLink} to="/sign-in">Sign In</Link>
+                <Link className={style.navLink} to="/about">About</Link>
+                <Link className={style.navLink} to="/top-ten">Top 10</Link>
             </nav>
         </header>
     )
