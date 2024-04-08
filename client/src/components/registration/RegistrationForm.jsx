@@ -143,6 +143,7 @@ export function RegistrationForm() {
 
         if (isAllFormValid) {
             navigate('/');
+            console.log(username, email, password)
         } 
     }
 
@@ -164,7 +165,6 @@ export function RegistrationForm() {
                             {usernameErr.length === 0 ? null : <li className={style.errorLi}>{usernameErr}</li>}
                             {passwordErr.length === 0 ? null : <li className={style.errorLi}>{passwordErr}</li>}
                             {repeatPasswordErr.length === 0 ? null : <li className={style.errorLi}>{repeatPasswordErr}</li>}
-                      
                         </ul>
                     </div>
             </div> : null } 
