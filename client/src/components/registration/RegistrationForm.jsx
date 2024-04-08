@@ -70,22 +70,21 @@ export function RegistrationForm() {
         if (email.length > 30) {
             return 'Email is too long.';
         }
-        // if (!email.includes('@')) {
-        //     return 'Email must contain @.';
-        // }
-       
-        // const atCount = email.split('@').length - 1;
-        // if (atCount !== 1) {
-        //     return "Email cannot contain more than one @ symbols.";
-        // }
-        // if (email.indexOf('.') === -1) {
-        //     return "The email must contain a character dot."; 
-        // }
-        // return true;
+        const atCount = email.split('@').length - 1;
+        if (atCount === 0) {
+            return 'Email must contain @.';
+        }
+        if (atCount !== 1) {
+            return "Email cannot contain more than one @ symbols.";
+        }
+        if (email.indexOf('.') === -1) {
+            return "The email must contain a character dot."; 
+        }
+        return true;
     }
     
     const minPasswordLength = 8;
-    const maxPasswordLength = 30;
+  
     function isValidPassword() {
         if (!password.trim()) {
             return "Password is required.";         
@@ -93,9 +92,7 @@ export function RegistrationForm() {
         if (password.length < minPasswordLength) {
             return "The passwords must be at least 8 characters.";
         }
-        if (password.length > maxPasswordLength) {
-            return "The passwords is too long.";
-        }
+        
         return true;
     }
 
