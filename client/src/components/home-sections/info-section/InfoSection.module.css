@@ -1,5 +1,6 @@
+
 .infoSection {
-    padding: 0px 100px 50px 100px;
+    padding: 100px 100px 50px 100px;
     background-color: black;
     color: white;
   }
@@ -81,18 +82,8 @@
   .movieNumber {
     display: flex;
     align-items: center;
-    /* position: relative;  */
+    position: relative; 
     margin-right: 10px;
-  }
-  
-  .movieNumber:after {
-    content: ''; 
-    position: absolute; 
-    top: 2px;
-    right: -5px;
-    height: 16px;
-    width: 2px;
-    background-color: yellow;
   }
   
   .movieInfo {

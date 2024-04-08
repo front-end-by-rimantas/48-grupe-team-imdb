@@ -24,6 +24,3 @@ export function HeroSection() {
     )
 }
 
-{/* <Link to="/" className="d-inline-flex link-body-emphasis text-decoration-none">
-<img src={logo} alt="Logo" width="40" height="32" />
-</Link> */}
