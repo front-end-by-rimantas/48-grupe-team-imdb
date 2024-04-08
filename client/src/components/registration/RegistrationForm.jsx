@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { TiInfoLarge } from 'react-icons/ti';
 import { BiError } from "react-icons/bi";
-import style from './RegistrationForm.module.css'
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import style from './RegistrationForm.module.css';
+import logo from '../../assets/images/logo/imdb_logo.png';
 
 export function RegistrationForm() {
-    const href = "/"
+    
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,11 +17,7 @@ export function RegistrationForm() {
     const [passwordErr, setPasswordErr] = useState('');
     const [repeatPasswordErr, setRepeatPasswordErr] = useState('');
 
-    
-
     const navigate = useNavigate();
-
-
 
     function handleUsernameChange(e) {
         setUsername(e.target.value);
@@ -45,16 +41,16 @@ export function RegistrationForm() {
 
     function isValidUsername(username) {
         if (!username.trim()) {
-            return 'Username is required.'
+            return 'Username is required.';
         }
         if (username.length > 25) {
             return 'The text is too long, please write shorter!';
         }
         if(typeof username === 'number'){
-            return 'Username cannot contain numbers.'
+            return 'Username cannot contain numbers.';
         }
         if(CapsLock(username)){
-            return 'Username cannot contain uppercase letter.'
+            return 'Username cannot contain uppercase letter.';
         }
         const symbol = [',', ':', '*', '&', '^', '%', '$', '#', '@', '!'];
         if (symbol.some(n => username.includes(n))) {
@@ -66,39 +62,40 @@ export function RegistrationForm() {
 
     function isValidEmail() {
         if (!email.trim()) {
-            return 'Email is required.'         
+            return 'Email is required.';         
         }
         if (email.length < 6) {
-            return 'Email is too shorter.'
+            return 'Email is too shorter.';
         }
         if (email.length > 30) {
-            return 'Email is too long.'
+            return 'Email is too long.';
         }
-        if (!email.includes('@')) {
-            return 'Email must contain @.'
-        }
+        // if (!email.includes('@')) {
+        //     return 'Email must contain @.';
+        // }
        
-        const atCount = email.split('@').length - 1;
-        if (atCount > 2) {
-            return "Email cannot contain more than two @ symbols."
-        }
-        if (email.indexOf('.') === -1) {
-            return "The email must contain a character dot." 
-        }
-        return true;
+        // const atCount = email.split('@').length - 1;
+        // if (atCount !== 1) {
+        //     return "Email cannot contain more than one @ symbols.";
+        // }
+        // if (email.indexOf('.') === -1) {
+        //     return "The email must contain a character dot."; 
+        // }
+        // return true;
     }
-
+    
+    const minPasswordLength = 8;
+    const maxPasswordLength = 30;
     function isValidPassword() {
         if (!password.trim()) {
-            return "Password is required."         
+            return "Password is required.";         
         }
-        if (password.length < 8) {
-            return "The passwords must be at least 8 characters."
+        if (password.length < minPasswordLength) {
+            return "The passwords must be at least 8 characters.";
         }
-        if (password.length > 30) {
-            return "The passwords is too long."
+        if (password.length > maxPasswordLength) {
+            return "The passwords is too long.";
         }
-        
         return true;
     }
 
@@ -109,8 +106,6 @@ export function RegistrationForm() {
          return true;
     }
 
-  
-
     function handleFormSubmit(e) {
         e.preventDefault();
 
@@ -118,9 +113,6 @@ export function RegistrationForm() {
         const emailErrorValue = isValidEmail(email);
         const passwordErrorValue = isValidPassword(password);
         const repeatPasswordErrorValue = isValidRepeatPassword(repeatPassword);
-
-        
-
 
         let isAllFormValid = true;
 
@@ -153,7 +145,6 @@ export function RegistrationForm() {
         }
 
         if (isAllFormValid) {
-            
             navigate('/');
         } 
     }
@@ -161,7 +152,7 @@ export function RegistrationForm() {
     return (
         <div className={style.main}>
             <div className={style.logo}>
-                <img src="../src/assets/images/logo/imdb_logo.png" alt="Logo" />
+                <img src={logo} alt="Logo" />
             </div>
             {/* ERROR*/}
             {emailErr || usernameErr || passwordErr || repeatPasswordErr ?
@@ -170,9 +161,8 @@ export function RegistrationForm() {
                         <i className={style.red}><BiError size="2rem" /> </i>
                     </div>
                     <div>
-                        <h4 className={style.redTittle}>There was a problem</h4>
+                        <h4 className={style.redTitle}>There was a problem</h4>
                         <ul>
-                           
                             {emailErr.length === 0 ? null : <li className={style.errorLi}>{emailErr}</li>}
                             {usernameErr.length === 0 ? null : <li className={style.errorLi}>{usernameErr}</li>}
                             {passwordErr.length === 0 ? null : <li className={style.errorLi}>{passwordErr}</li>}
@@ -181,8 +171,6 @@ export function RegistrationForm() {
                         </ul>
                     </div>
             </div> : null } 
-           
-
     <div className={style.form}>
           
           <span className={style.tittle}>
@@ -192,12 +180,10 @@ export function RegistrationForm() {
               <div className={style.formRow}>
                   <label className={style.label} htmlFor="">Your name</label>
                   <input value={username} onChange={handleUsernameChange} className={style.input} type="text" placeholder="First and last name" />
-               
               </div>
               <div className={style.formRow}>
                   <label className={style.label} htmlFor="">Email</label>
-                  <input value={email} onChange={handleEmailChange} className={style.input} type="email" placeholder="" />
-                  
+                  <input value={email} onChange={handleEmailChange} className={style.input} type="email" placeholder="" />                  
               </div>
               <div className={style.formRow}>
                   <label className={style.label} htmlFor="">Password</label>
@@ -206,18 +192,16 @@ export function RegistrationForm() {
                       <i className={style.blue}><TiInfoLarge size="1.5rem" /> </i>
                       <p>Passwords must be at least 8 characters.</p>
                   </div>
-                
               </div>
               <div className={style.formRow}>
                   <label className={style.label} htmlFor="">Re-enter password</label>
                   <input value={repeatPassword} onChange={handleRepeatPasswordChange} className={style.input} type="password" placeholder=" " />
-              
               </div>
               <div className={style.formRow}>
                   <button className={`${style.button} ${style.textButton}`}  type="submit">Create your IMDb account</button>
               </div>
               <div className={style.haveAccount}>
-                  <p>Already have an account?<span className={style.linkSignIn}><Link to={'/sign-in/' + href}>Sign in</Link></span> </p>
+                  <p>Already have an account?<span className={style.linkSignIn}><Link to={'/sign-in/'}>Sign in</Link></span> </p>
               </div>
           </form>
       </div>
