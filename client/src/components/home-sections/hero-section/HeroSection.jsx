@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from 'react-router-dom';
 import style from './HeroSection.module.css'
 import posterUrl from '../../../assets/images/avatar.jpg'
 
@@ -6,13 +7,13 @@ export function HeroSection() {
     return (
         <section className={style.heroSection}>
              <div className={style.movieInfo}>
-                <a className={style.nameUrl} href="#">
-                <div className={style.movieName}>Avatar</div>
-                </a>
+                <Link to="/:id" className={style.nameUrl}>
+                    <div className={style.movieName}>Avatar</div>
+                </Link>
                 <div className={style.poster}>
-                <a className={style.nameUrl} href="#">
+                <Link to="/:id" className={style.nameUrl}>
                     <img src={posterUrl} alt="" />
-                </a>
+                </Link>
                 </div>
             </div>
             <div className={style.arrowButtons}>
@@ -22,3 +23,7 @@ export function HeroSection() {
         </section>
     )
 }
+
+{/* <Link to="/" className="d-inline-flex link-body-emphasis text-decoration-none">
+<img src={logo} alt="Logo" width="40" height="32" />
+</Link> */}

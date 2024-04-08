@@ -1,4 +1,5 @@
 import style from './InfoSection.module.css'
+import { Link } from 'react-router-dom';
 
 export function InfoSection() {
     return (
@@ -11,7 +12,7 @@ export function InfoSection() {
       <p>Weekend of March 29-31</p>
         <ol className={style.movieList}>
           <li>
-            <a className={style.itemUrl} href="#">
+            <Link to="/:id" className={style.itemUrl}>
             <div className={style.movieInfo}>
                 <div className={`${style.rank} ${style.movieNumber}`}>
                     <span>1</span>
@@ -22,10 +23,10 @@ export function InfoSection() {
                     <span className={style.revenue}>$80M</span>
                 </div>
             </div>
-            </a>
+            </Link>
           </li>
           <li>
-          <a className={style.itemUrl} href="#">
+          <Link to="/:id" className={style.itemUrl}>
             <div className={style.movieInfo}>
                 <div className={`${style.rank} ${style.movieNumber}`}>
                     <span>2</span>
@@ -36,10 +37,10 @@ export function InfoSection() {
                     <span className={style.revenue}>$580M</span>
                 </div>
             </div>
-            </a>
+            </Link>
           </li>
           <li>
-          <a className={style.itemUrl} href="#">
+          <Link to="/:id" className={style.itemUrl}>
             <div className={style.movieInfo}>
                 <div className={`${style.rank} ${style.movieNumber}`}>
                     <span>3</span>
@@ -50,10 +51,10 @@ export function InfoSection() {
                     <span className={style.revenue}>$800M</span>
                 </div>
             </div>
-            </a>
+            </Link>
           </li>
           <li>
-          <a className={style.itemUrl} href="#">
+          <Link to="/:id" className={style.itemUrl}>
             <div className={style.movieInfo}>
                 <div className={`${style.rank} ${style.movieNumber}`}>
                     <span>4</span>
@@ -64,10 +65,10 @@ export function InfoSection() {
                     <span className={style.revenue}>$500M</span>
                 </div>
             </div>
-            </a>
+            </Link>
           </li>
           <li>
-          <a className={style.itemUrl} href="#">
+          <Link to="/:id" className={style.itemUrl}>
             <div className={style.movieInfo}>
                 <div className={`${style.rank} ${style.movieNumber}`}>
                     <span>5</span>
@@ -78,10 +79,10 @@ export function InfoSection() {
                     <span className={style.revenue}>$0M</span>
                 </div>
             </div>
-            </a>
+            </Link>
           </li>
           <li>
-          <a className={style.itemUrl} href="#">
+          <Link to="/:id" className={style.itemUrl}>
             <div className={style.movieInfo}>
                 <div className={`${style.rank} ${style.movieNumber}`}>
                     <span>6</span>
@@ -92,10 +93,10 @@ export function InfoSection() {
                     <span className={style.revenue}>$5000M</span>
                 </div>
             </div>
-            </a>
+            </Link>
           </li>
           <li>
-          <a className={style.itemUrl} href="#">
+          <Link to="/:id" className={style.itemUrl}>
             <div className={style.movieInfo}>
                 <div className={`${style.rank} ${style.movieNumber}`}>
                     <span>7</span>
@@ -106,10 +107,10 @@ export function InfoSection() {
                     <span className={style.revenue}>$80M</span>
                 </div>
             </div>
-            </a>
+            </Link>
           </li>
           <li>
-          <a className={style.itemUrl} href="#">
+          <Link to="/:id" className={style.itemUrl}>
             <div className={style.movieInfo}>
                 <div className={`${style.rank} ${style.movieNumber}`}>
                     <span>8</span>
@@ -120,7 +121,7 @@ export function InfoSection() {
                     <span className={style.revenue}>$8M</span>
                 </div>
             </div>
-            </a>
+            </Link>
           </li>
         </ol>
     </section>
