@@ -6,7 +6,7 @@ import { PageSignIn } from "./pages/sign-in-page/PageSignIn";
 import { PageAbout } from "./pages/about-page/PageAbout";
 import { PageTopTen } from "./pages/top-ten-page/PageTopTen";
 import { PageRegistration } from "./pages/registration-page/PageRegistration";
-import { PageMovie } from "./pages/movie-page/PageMovie";
+import { MovieItemInner } from "./components/movie-list/MovieItemInner";
 import { PageMovieList } from "./pages/movie-page/PageMovieList";
 
 
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route Component={BasicLayout}>
           <Route index path="/" element={<PageHome/>}/>
-          <Route path="/:id" element={<PageMovie/>}/>
+          <Route path="/list/:id" element={<MovieItemInner/>}/>
           <Route path="/list" element={<PageMovieList/>}/>
           <Route path="/search" element={<></>}/>
           <Route path="/sign-in" element={<PageSignIn/>}/>

@@ -1,0 +1,56 @@
+.main{
+    padding: 50px 40px;
+    border-radius: 5px;
+}
+h3{
+    border-right: 3px yellow solid ;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    
+    border-bottom: 1px #ccc solid;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.title{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:200;
+    font-size: 20px;
+}
+.year{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:100;
+    font-size: 16px;
+}
+.item{
+   
+    
+}
+.imgItem{
+   width:160px;
+   height: 237px;
+}
+.containerItem{
+    display: flex;
+    flex-direction: row;
+    padding: 20px 20px;
+
+}
+.btnCategory{
+    display: flex;
+    justify-items: right;
+    flex-direction: row;
+    gap: 20px
+}
+.url{
+    width: 422px;
+    height: 237px;
+}
+ 
