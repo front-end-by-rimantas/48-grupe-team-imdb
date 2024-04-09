@@ -14,16 +14,10 @@ function handleSearchSectionChange (e){
     setSearchText(e.target.value)
 }
 
-function isNameLenghtOk (x){
-  if (x.length!==0){
-    return true 
-  }
-}
-
 function handleFormSubmit (e){
     e.preventDefault()
 
-    if(!isNameLenghtOk(searchText)){
+    if(!searchText.length){
        setWrongText('Enter at least one character')
     } else {setWrongText('')}
 
