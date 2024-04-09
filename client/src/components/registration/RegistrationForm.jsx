@@ -142,10 +142,26 @@ export function RegistrationForm() {
         }
 
         if (isAllFormValid) {
-            navigate('/');
-            console.log(username, email, password)
-        } 
-    }
+                    fetch('http://localhost:4840/api/register', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: username,
+                    email: email,
+                    password: password,
+                }),
+            })
+                .then(res => res.json())
+                .then(data => data.result)
+                .catch(e => console.error(e));
+                }
+        }
+
+    
+
 
     return (
         <div className={style.main}>
@@ -203,6 +219,6 @@ export function RegistrationForm() {
           </form>
       </div>
   </div>
-);                                                 
+    );                                                 
 }
     

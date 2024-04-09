@@ -1,25 +1,57 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState } from 'react';
 import style from './SignIn.module.css';
 import { Link } from 'react-router-dom';
 
 
 export function SignIn() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
+    function handleEmailChange(e) {
+        setEmail(e.target.value)
+    }
+
+    function handlePasswordChange(e) {
+        setPassword(e.target.value)
+    }
+
+    function handleFormSubmit(e) {
+        e.preventDefault();
+
+        fetch('http://localhost:4840/api/login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            })
+                .then(res => res.json())
+                .then(data => data.result)
+                .catch(e => console.error(e));
+            }
+
     return (
         <div className={style.container}>
                 <div className={style.leftColumn}>
-                    <form className={style.form}>
+                    <form onSubmit={handleFormSubmit} className={style.form}>
                         <h1>Sign in</h1>
                         <div className={style.formRow}>
                             <label className={style.label} htmlFor="">Email</label>
-                            <input className={style.input} type="email"/>
+                            <input value={email} onChange={handleEmailChange} className={style.input} type="email"/>
                         </div>
                         <div className={style.formRow}>
                             <label className={style.label} htmlFor="">Password</label>
-                            <input className={style.input} type="password"/>
+                            <input value={password} onChange={handlePasswordChange} className={style.input} type="password"/>
                         </div>
                         <div className={style.formBtn}>
                             <Link className={style.signInBtn} to="/sign-in/login">Sign In for more access</Link>
                         </div>
+                        <button>form</button>
                     </form>
                         <div className={style.or}>or</div>
                         <div>
