@@ -6,13 +6,13 @@ import { PageSignIn } from "./pages/sign-in-page/PageSignIn";
 import { PageAbout } from "./pages/about-page/PageAbout";
 import { PageTopTen } from "./pages/top-ten-page/PageTopTen";
 
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route Component={BasicLayout}>
           <Route index path="/" element={<PageHome/>}/>
+          <Route path="/search" element={<></>}/>
           <Route path="/sign-in" element={<PageSignIn/>}/>
           <Route path="/sign-in/login" element={<></>}/>
           <Route path="/sign-in/registration" element={<></>}/>
