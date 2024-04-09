@@ -2,15 +2,13 @@ import { Link } from 'react-router-dom';
 import style from './Header.module.css';
 import { LogoImdb } from '../logo/LogoImdb';
 import { useState } from 'react';
-
+import { IoIosSearch } from "react-icons/io"
 
 
 export function Header() {
 
 const [searchText, setSearchText] = useState('');
 const [wrongSearchText, setWrongText] = useState('');
-
-
 
 function handleSearchSectionChange (e){
     setSearchText(e.target.value)
@@ -26,7 +24,7 @@ function handleFormSubmit (e){
     e.preventDefault()
 
     if(!isNameLenghtOk(searchText)){
-       setWrongText('Įveskite bent vieną raidę')
+       setWrongText('Enter at least one character')
     } else {setWrongText('')}
 
     console.log({searchText});
@@ -39,15 +37,11 @@ function handleFormSubmit (e){
             <LogoImdb/>
             <div className={style.formList}> 
                <form className={style.searchForm}onSubmit={handleFormSubmit}>
-                  <input value={searchText} onChange={handleSearchSectionChange} className={style.search}  type="text" placeholder='Enter film name'/>
-                  {wrongSearchText!==0 ? <button className={style.btnSearch} type='submit'>Search</button>:
-                  <Link to="/search">
-                    <button>go</button>
-                   </Link>}
+                  <input value={searchText} onChange={handleSearchSectionChange} className={style.search}  type="text" placeholder='Search IMdb' />
+                  <button className={style.btnSearch} type='submit' onClick={handleFormSubmit} ><IoIosSearch /></button>
                </form>
-               {wrongSearchText.length === 0? null : <p className={style.error}>{wrongSearchText}</p>}
+               {wrongSearchText===''?  null : <p className={style.error}>{wrongSearchText}</p>}
             </div>
-            {/* <p className={style.error}>{searchText}</p> */}
             <nav>
                 <Link className={style.navLink} to="/sign-in">Sign In</Link>
                 <Link className={style.navLink} to="/about">About</Link>
