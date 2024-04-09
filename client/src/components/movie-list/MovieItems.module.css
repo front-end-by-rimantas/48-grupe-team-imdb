@@ -1,16 +1,23 @@
-.main{
-    padding: 50px 40px;
-    border-radius: 5px;
+.boss{
+    padding: 20px 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.main{  
 }
 h3{
     border-right: 3px yellow solid ;
+    border-radius: 5px;
 }
+h1{
+    font-size: 2rem;
+    line-height:2.125rem;
+    color:white;
 
+}
 .container {
     display: flex;
     flex-direction: column;
     padding: 5px 10px;
-    
     border-bottom: 1px #ccc solid;
 }
 .row{
@@ -20,28 +27,57 @@ h3{
     align-items: center;
 }
 .title{
-    font-family:Arial, Helvetica, sans-serif;
     font-weight:200;
     font-size: 20px;
 }
 .year{
-    font-family:Arial, Helvetica, sans-serif;
     font-weight:100;
     font-size: 16px;
 }
-.item{
-   
-    
-}
-.imgItem{
-   width:160px;
-   height: 237px;
-}
-.containerItem{
+.heroSection{
     display: flex;
     flex-direction: row;
-    padding: 20px 20px;
-
+    justify-content:space-between;
+}
+.rating{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    gap:2rem;
+}
+.rating p{
+    font-size: 15px;
+    color: white;
+    font-weight: bolder;
+}
+.underName{
+ display: flex;
+ gap: 10px;
+}
+.url{
+    width: 633px;
+    height: 355px;
+    margin-left: 4px;
+}
+.imgItem{
+   width: 240px;
+   height: 355px;
+}
+.containerInner{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: linear-gradient(90deg, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)), 
+                20%, rgba(var(--ipt-baseAlt-shade1-rgb, 31,31,31), 0.6), 
+                80%, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)));
+};
+.containerItem{
+    background-color: aqua;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    gap: 40px;
 }
 .btnCategory{
     display: flex;
@@ -49,8 +85,22 @@ h3{
     flex-direction: row;
     gap: 20px
 }
-.url{
-    width: 422px;
-    height: 237px;
+.btn{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 17px;
+    line-height: 20px;
+    background:transparent;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    border: 1.5px white solid;
 }
+p{
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+}
+
  

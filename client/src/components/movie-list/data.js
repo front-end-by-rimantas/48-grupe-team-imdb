@@ -10,7 +10,7 @@
         gross: "$58.5 million",
         url: "https://www.youtube.com/embed/PLl99DlL6b4",
         path: "../src/assets/images/theshawshankredemption.jpg",
-        description:"Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion. ",
+        description:"Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, \nredemption through basic compassion. ",
         href: "theshawshankredemption"
       },
       {
@@ -23,7 +23,7 @@
         gross: "$245 million",
         url: "https://www.youtube.com/embed/UaVTIH8mujA",
         path: "../src/assets/images/thegodfather.jpg",
-        description:"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son",
+        description:"The aging patriarch of an organized crime dynasty transfers control of his \nclandestine empire to his reluctant son",
         href: "thegodfather"
       },
       {
@@ -36,7 +36,7 @@
         gross: "$1.005 billion",
         url: "https://www.youtube.com/embed/EXeTwQWrcwY",
         path: "../src/assets/images/thedarkknight.jpg",
-        description:"When the menace known as the Joker wreaks havoc and chaos on the people of Gotham,\nBatman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+        description:`When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, \nBatman must accept one of the greatest psychological and physical tests of his ability to fight injustice.`,
         href: "thedarkknight"
       },
       {
@@ -49,7 +49,7 @@
         gross: "$322 million",
         url: "https://www.youtube.com/embed/gG22XNhtnoY",
         path: "../src/assets/images/schindlerslist.jpg",
-        description:"In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
+        description:"In German-occupied Poland during World War II, industrialist Oskar Schindler gradually \nbecomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
         href: "schindlerslist"
       },
       {
@@ -62,7 +62,7 @@
         gross: "$1.142 billion",
         url: "https://www.youtube.com/embed/r5X-hFf6Bwo",
         path: "../src/assets/images/thelordoftheringsthereturnoftheking.jpg",
-        description:"Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+        description:"Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam \nas they approach Mount Doom with the One Ring.",
         href: "thelordoftheringsthereturnoftheking"
       },
       {
@@ -75,7 +75,7 @@
         gross: "$213.9 million",
         url: "https://www.youtube.com/embed/tGpTpVyI_OQ",
         path: "../src/assets/images/pulpfiction.jpg",
-        description:"The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        description:"The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits \nintertwine in four tales of violence and redemption.",
         href: "pulpfiction"
       },
       {
@@ -88,7 +88,7 @@
         gross: "$101.2 million",
         url: "https://www.youtube.com/embed/qtRKdVHc-cE",
         path: "../src/assets/images/fightclub.jpg",
-        description:"An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
+        description:"An insomniac office worker and a devil-may-care soap maker form an underground \nfight club that evolves into much more.",
         href: "fightclub"
       },
       {
@@ -101,7 +101,7 @@
         gross: "$465.3 million",
         url: "https://www.youtube.com/embed/vKQi3bBA1y8",
         path: "../src/assets/images/thematrix.jpg",
-        description:" When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
+        description:" When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers \nthe shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
         href: "thematrix"
       },
       {
@@ -127,7 +127,7 @@
         gross: "$286.8 million",
         url: "https://www.youtube.com/embed/Ki4haFrqSrw",
         path: "../src/assets/images/thegreenmile.jpg",
-        description:"A tale set on death row, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the lead guard, Paul Edgecombe, recognizes John's gift, he tries to help stave off the condemned man's execution. ",
+        description:"A tale set on death row, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. \nWhen the lead guard, Paul Edgecombe, recognizes John's gift, he tries to help stave off the condemned man's execution. ",
         href:"thegreenmile"
       },
       {
@@ -140,7 +140,7 @@
         gross: "$460.5 million",
         url: "https://www.youtube.com/embed/P5ieIbInFpg",
         path: "../src/assets/images/gladiator.jpg",
-        description:"A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+        description:"A former Roman General sets out to exact vengeance against the corrupt emperor who murdered \nhis family and sent him into slavery.",
         href:"gladiator"
       },
       {
@@ -153,7 +153,7 @@
         gross: "$291.5 million",
         url: "https://www.youtube.com/embed/iQpb1LoeVUc",
         path: "../src/assets/images/thedeparted.jpg",
-        description:"An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
+        description:"An undercover cop and a mole in the police attempt to identify each other while infiltrating an \nIrish gang in South Boston.",
         href:"thedeparted"
       },
       {
@@ -166,7 +166,7 @@
         gross: "$102.6 million",
         url: "https://www.youtube.com/embed/9O1Iy9od7-A",
         path: "../src/assets/images/thegodfatherpartII.jpg",
-        description:"The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
+        description:"The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, \nexpands and tightens his grip on the family crime syndicate.",
         href:"thegodfatherpartII"
       },
       {
@@ -192,7 +192,7 @@
         gross: "$2.8 billion",
         url: "https://www.youtube.com/embed/d9MyW72ELq0",
         path: "../src/assets/images/avatar.jpg",
-        description:"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+        description:"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders \nand protecting the world he feels is his home.",
         href:"avatar"
       },
       {
@@ -205,7 +205,7 @@
         gross: "$1.049 billion",
         url: "https://www.youtube.com/embed/Rc_i5TKdmhs",
         path: "../src/assets/images/jurassicpark.jpg",
-        description:"A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
+        description:"A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked \nwith protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
         href:"jurassicpark"
       },
       {
@@ -218,7 +218,7 @@
         gross: "$1.518 billion",
         url: "https://www.youtube.com/embed/eOrNdBpGMv8",
         path: "./src/assets/images/theavengers.jpg",
-        description:"Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+        description:"Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop \nthe mischievous Loki and his alien army from enslaving humanity.",
         href:"theavengers"
       },
       {
@@ -231,7 +231,7 @@
         gross: "$829.9 million",
         url: "https://www.youtube.com/embed/YoHD9XEInc0",
         path: "../src/assets/images/inception.jpg",
-        description:"A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
+        description:"A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse \ntask of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
         href:"inception"
       },
       {
@@ -244,7 +244,7 @@
         gross: "$1.081 billion",
         url: "https://www.youtube.com/embed/GokKUqLcvD8",
         path: "../src/assets/images/thedarkknightrises.jpg",
-        description:"Eight years after the Joker's reign of chaos, Batman is coerced out of exile with the assistance of the mysterious Selina Kyle in order to defend Gotham City from the vicious guerrilla terrorist Bane.",
+        description:"Eight years after the Joker's reign of chaos, Batman is coerced out of exile with the assistance of \nthe mysterious Selina Kyle in order to defend Gotham City from the vicious guerrilla terrorist Bane.",
         href:"thedarkknightrises"
       },
       {
@@ -257,7 +257,7 @@
         gross: "$1.251 billion",
         url: "https://www.youtube.com/embed/9oQ628Seb9w",
         path: "../src/assets/images/findingnemo.jpg",
-        description:"After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home.",
+        description:"After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish \nsets out on a journey to bring him home.",
         href:"findingnemo"
       },
       {
@@ -270,7 +270,7 @@
         gross: "$678.2 million",
         url: "https://www.youtube.com/embed/bLvqoHBptjg",
         path: "../src/assets/images/forrestgump.jpg",
-        description:"The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
+        description:"The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama\n man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
         href:"forrestgump"
       },
       {
@@ -283,7 +283,7 @@
         gross: "$887.2 million",
         url: "https://www.youtube.com/embed/V75dMMIW2B4",
         path: "../src/assets/images/thelordoftheringsthefellowshipofthering.jpg",
-        description:"A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
+        description:"A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring \nand save Middle-earth from the Dark Lord Sauron.",
         href:"thelordoftheringsthefellowshipofthering"
       },
       {
@@ -309,7 +309,7 @@
         gross: "$677.5 million",
         url: "https://www.youtube.com/embed/zSWdZVtXT7E",
         path: "../src/assets/images/interstellar.jpg",
-        description:"When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
+        description:"When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, \nalong with a team of researchers, to find a new planet for humans.",
         href:"interstellar"
       },
       {
@@ -322,7 +322,7 @@
         gross: "$672.8 million",
         url: "https://www.youtube.com/embed/3-ZP95NF_Wk",
         path: "../src/assets/images/thesixthsense.jpg",
-        description:"Malcolm Crowe, a child psychologist, starts treating a young boy, Cole, who encounters dead people and convinces him to help them. In turn, Cole helps Malcolm reconcile with his estranged wife.",
+        description:"Malcolm Crowe, a child psychologist, starts treating a young boy, Cole, who encounters dead people and convinces him to help them.\nIn turn, Cole helps Malcolm reconcile with his estranged wife.",
         href:"thesixthsense"
       },
       {
@@ -335,7 +335,7 @@
         gross: "$321.5 million",
         url: "https://www.youtube.com/embed/KnrRy6kSFF0",
         path: "../src/assets/images/inglouriousbasterds.jpg",
-        description:"In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same.",
+        description:"In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers\n coincides with a theatre owner's vengeful plans for the same.",
         href: "inglouriousbasterds"
       },
       {
@@ -348,7 +348,7 @@
         gross: "$951.2 million",
         url: "https://www.youtube.com/embed/LbfMDwc4azU",
         path: "../src/assets/images/thelordoftheringsthetwotowers.jpg",
-        description:"While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
+        description:"While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes \na stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
         href: "thelordoftheringsthetwotowers"
       },
       {
@@ -361,7 +361,7 @@
         gross: "$120.1 million",
         url: "https://www.youtube.com/embed/BFwGqLa_oAo",
         path: "../src/assets/images/thepianist.jpg",
-        description:"During WWII, acclaimed Polish musician Wladyslaw faces various struggles as he loses contact with his family. As the situation worsens, he hides in the ruins of Warsaw in order to survive.",
+        description:"During WWII, acclaimed Polish musician Wladyslaw faces various struggles as he loses contact with his family.\n  As the situation worsens,he hides in the ruins of Warsaw in order to survive.",
         href: "thepianist"
       },
       {
@@ -413,7 +413,7 @@
         gross: "$23.7 million",
         url: "https://www.youtube.com/embed/lT8qgvgk1rU",
         path: "../src/assets/images/thewizardofoz.jpg",
-        description:"Young Dorothy Gale and her dog Toto are swept away by a tornado from their Kansas farm to the magical Land of Oz, and embark on a quest with three new friends to see the Wizard, who can return her to her home and fulfill the others' wishes.",
+        description:"Young Dorothy Gale and her dog Toto are swept away by a tornado from their Kansas farm to the magical Land of Oz,\n and embark on a quest with three new friends to see the Wizard, who can return her to her home and fulfill the others' wishes.",
         href: "thewizardofoz"
       },
       {
@@ -426,7 +426,7 @@
         gross: "$402.4 million",
         url: "https://www.youtube.com/embed/0X94oZgJis4",
         path: "../src/assets/images/gonewiththewind.jpg",
-        description:"A sheltered and manipulative Southern belle and a roguish profiteer face off in a turbulent romance as the society around them crumbles with the end of slavery and is rebuilt during the Civil War and Reconstruction periods.",
+        description:"A sheltered and manipulative Southern belle and a roguish profiteer face off in a turbulent romance \nas the society around them crumbles with the end \nof slavery and is rebuilt during the Civil War and Reconstruction periods.",
         href: "gonewiththewind"
       },
       {
@@ -478,7 +478,7 @@
         gross: "$775.4 million",
         url: "https://www.youtube.com/embed/vZ734NWnAHA",
         path: "../src/assets/images/starwarsepisodeIVanewhope.jpg",
-        description:"Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
+        description:"Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from \nthe Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
         href: "starwarsepisodeIVanewhope"
       },
       {
@@ -504,7 +504,7 @@
         gross: "$215.4 million",
         url: "https://www.youtube.com/embed/gt4-lTrkYuE",
         path: "../src/assets/images/braveheart.jpg",
-        description:"Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England.",
+        description:"Scottish warrior William Wallace leads his countrymen in a rebellion to free his \nhomeland from the tyranny of King Edward I of England.",
         href: "braveheart"
       },
       {
@@ -517,7 +517,7 @@
         gross: "$34.4 million",
         url: "https://www.youtube.com/embed/oiXdPolca5w",
         path: "../src/assets/images/theusualsuspects.jpg",
-        description:"The sole survivor of a pier shoot-out tells the story of how a notorious criminal influenced the events that began with five criminals meeting in a seemingly random police lineup.",
+        description:"The sole survivor of a pier shoot-out tells the story of how a notorious criminal influenced \nthe events that began with five criminals meeting in a seemingly random police lineup.",
         href: "theusualsuspects"
       },
       {
@@ -530,7 +530,7 @@
         gross: "$126.2 million",
         url: "https://www.youtube.com/embed/6sOXrY5yV4g",
         path: "../src/assets/images/laconfidential.jpg",
-        description:"As corruption grows in 1950s Los Angeles, three policemen - one strait-laced, one brutal, and one sleazy - investigate a series of murders with their own brand of justice.",
+        description:"As corruption grows in 1950s Los Angeles, three policemen - one strait-laced, one brutal, and one \nsleazy - investigate a series of murders with their own brand of justice.",
         href: "laconfidential"
       },
       {
@@ -543,7 +543,7 @@
         gross: "$24.6 million",
         url: "https://www.youtube.com/embed/XfQYHqsiN5g",
         path: "../src/assets/images/americanhistoryx.jpg",
-        description:"Living a life marked by violence, neo-Nazi Derek finally goes to prison after killing two black youths. Upon his release, Derek vows to change; he hopes to prevent his brother, Danny, who idolizes Derek, from following in his footsteps.",
+        description:"Living a life marked by violence, neo-Nazi Derek finally goes to prison after killing two black youths. Upon his release, \nDerek vows to change; he hopes to prevent his brother, Danny, who idolizes Derek, from following in his footsteps.",
         href: "americanhistoryx"
       },
       {
@@ -595,7 +595,7 @@
         gross: "$313.5 million",
         url: "https://www.youtube.com/embed/EajIlG_OCvw",
         path: "../src/assets/images/abeautifulmind.jpg",
-        description:"A mathematical genius, John Nash made an astonishing discovery early in his career and stood on the brink of international acclaim. But the handsome and arrogant Nash soon found himself on a harrowing journey of self-discovery.",
+        description:"A mathematical genius, John Nash made an astonishing discovery early in his career and stood on the brink of international acclaim. \nBut the handsome and arrogant Nash soon found himself on a harrowing journey of self-discovery.",
         href: "abeautifulmind"
       },
       {
@@ -608,7 +608,7 @@
         gross: "$352.1 million",
         url: "https://www.youtube.com/embed/gFr0_ywVdhY",
         path: "../src/assets/images/catchmeifyoucan.jpg",
-        description:"Barely 17 yet, Frank is a skilled forger who has passed as a doctor, lawyer and pilot. FBI agent Carl becomes obsessed with tracking down the con man, who only revels in the pursuit.",
+        description:"Barely 17 yet, Frank is a skilled forger who has passed as a doctor, lawyer and pilot. FBI agent Carl becomes obsessed with tracking down the con man,\n who only revels in the pursuit.",
         href: "catchmeifyoucan"
       },
       {
@@ -634,7 +634,7 @@
         gross: "$74.4 million",
         url: "https://www.youtube.com/embed/07-QBnEkgXU",
         path: "../src/assets/images/eternalsunshineofthespotlessmind.jpg",
-        description:"When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories forever.",
+        description:"When their relationship turns sour, a couple undergoes a medical procedure to have each other\nerased from their memories forever.",
         href: "eternalsunshineofthespotlessmind"
       },
       {
@@ -660,7 +660,7 @@
         gross: "$109.7 million",
         url: "https://www.youtube.com/embed/RLtaA9fFNXU",
         path: "../src/assets/images/theprestige.jpg",
-        description:"After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.",
+        description:"After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while \nsacrificing everything they have to outwit each other.",
         href: "theprestige"
       },
       {
@@ -673,7 +673,7 @@
         gross: "$171.6 million",
         url: "https://www.youtube.com/embed/38A__WT3-o0",
         path: "../src/assets/images/nocountryforoldmen.jpg",
-        description:"Violence and mayhem ensue after a hunter stumbles upon the aftermath of a drug deal gone wrong and over two million dollars in cash near the Rio Grande.",
+        description:"Violence and mayhem ensue after a hunter stumbles upon the aftermath of a drug deal gone wrong and over two million \ndollars in cash near the Rio Grande.",
         href: "nocountryforoldmen"
       }
     ]

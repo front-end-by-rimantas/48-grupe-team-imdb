@@ -4,6 +4,7 @@ import movies from './data.js';
 
 export function MovieList() {
     return (
+    <div className={style.boss}>
         <div className={style.main}>
             <div>
                 <h3>IMDb Charts</h3>
@@ -15,6 +16,7 @@ export function MovieList() {
                 </div>
             </div>
         </div>
+    </div>
     );
 
 }
