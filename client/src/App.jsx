@@ -8,6 +8,7 @@ import { PageTopTen } from "./pages/top-ten-page/PageTopTen";
 import { PageRegistration } from "./pages/registration-page/PageRegistration";
 import { MovieItemInner } from "./components/movie-list/MovieItemInner";
 import { PageMovieList } from "./pages/movie-page/PageMovieList";
+import { PageHelp } from "./pages/footer/PageHelp";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/sign-in/registration" element={<PageRegistration/>}/>
           <Route path="/about" element={<PageAbout/>}/>
           <Route path="/top-ten" element={<PageTopTen/>}/>
+          <Route path="/help" element={<PageHelp/>}/>
           <Route path="*" element={<PageNotFound/>}/>
         </Route>
       </Routes>

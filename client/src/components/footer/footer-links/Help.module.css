@@ -1,0 +1,30 @@
+.container {
+    background-image: url('http://localhost:4840/assets/images/helpimg.png');
+    height: 17rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.helpArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+}
+
+.whiteLogo {
+    height: 34px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 83px;
+}
+
+.text {
+    color: #fff;
+    font-size: 36px;
+}
