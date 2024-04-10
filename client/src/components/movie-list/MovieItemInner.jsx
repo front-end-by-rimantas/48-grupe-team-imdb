@@ -1,8 +1,9 @@
 /* eslint-disable no-empty-pattern */
-
 import style from './MovieItems.module.css';
 import movies from './data'
 import { useParams } from 'react-router-dom';
+import { GoStarFill } from "react-icons/go";
+import { CiStar } from "react-icons/ci";
 
 export function MovieItemInner({ }) {
         const { id } = useParams();
@@ -22,19 +23,23 @@ export function MovieItemInner({ }) {
                 <div className={style.rating}>
                     <div>
                         <p>IMDb RATING</p>
+                        <div className={style.yellow}>
+                            <i className={style.yellowStar}><GoStarFill size="1.5rem" /> </i>
+                            <p>{key.rating}/10</p>
+                        </div>
                     </div>
                     <div>
                         <p>YOUR RATING</p>
+                        <div className={style.blue}>
+                            <i className={style.blueStar}><CiStar  size="1.5rem" /> </i>
+                            <p className={style.blueRate}>Rate</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div className={style.containerItem}>
-                {/* <div> */}
-                    <img className={style.imgItem} src={key.path} alt="" />
-                {/* </div> */}
-                {/* <div> */}
-                    <iframe className={style.url} src={key.url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>  
-                {/* </div>   */}
+                <img className={style.imgItem} src={key.path} alt="" />
+                <iframe className={style.url} src={key.url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>  
             </div>
             <div className={style.btnCategory} >
                 {key.category.split(',').map((category, index) => (

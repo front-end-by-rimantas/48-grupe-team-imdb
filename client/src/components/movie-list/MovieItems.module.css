@@ -1,9 +1,8 @@
 .boss{
-    padding: 20px 50px;
+    padding: 1.5rem 5rem;
     font-family: Arial, Helvetica, sans-serif;
 }
-.main{  
-}
+
 h3{
     border-right: 3px yellow solid ;
     border-radius: 5px;
@@ -23,16 +22,16 @@ h1{
 .row{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 0.4rem;
     align-items: center;
 }
 .title{
     font-weight:200;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 .year{
     font-weight:100;
-    font-size: 16px;
+    font-size: 1rem;
 }
 .heroSection{
     display: flex;
@@ -47,22 +46,49 @@ h1{
     gap:2rem;
 }
 .rating p{
-    font-size: 15px;
-    color: white;
+    font-size: 1rem;
+    color: #ffffff;
     font-weight: bolder;
 }
+.yellowStar{
+    color: #ffff05;
+}
+.yellow, .blue{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    gap: 10px;
+}
+.blue>.blueRate{
+    color:  #5799ef;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+}
+.yellow:hover, .blue:hover{
+    background-color: #626261;
+    border-radius: 5px;
+    line-height: 1.5rem;
+    height: 1.8rem;
+
+}
+.blueStar{
+    color:  #5799ef;
+    font-weight: 900;
+}
 .underName{
- display: flex;
- gap: 10px;
+    display: flex;
+    gap: 0.8rem;
 }
 .url{
-    width: 633px;
-    height: 355px;
-    margin-left: 4px;
+    width: 40rem;
+    height: 22rem;
+    margin-left: 2.3rem;
 }
 .imgItem{
-   width: 240px;
-   height: 355px;
+   width: 15rem;
+   height: 22rem;
 }
 .containerInner{
     display: flex;
@@ -71,19 +97,19 @@ h1{
     background: linear-gradient(90deg, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)), 
                 20%, rgba(var(--ipt-baseAlt-shade1-rgb, 31,31,31), 0.6), 
                 80%, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)));
-};
+    };
 .containerItem{
     background-color: aqua;
     display: flex;
     justify-content:space-between;
     flex-direction: row;
-    gap: 40px;
+    gap: 2.5rem;
 }
 .btnCategory{
     display: flex;
     justify-items: right;
     flex-direction: row;
-    gap: 20px
+    gap: 1.3rem
 }
 .btn{
     padding: 5px;
