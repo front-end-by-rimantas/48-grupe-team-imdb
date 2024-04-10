@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-empty-pattern */
-import style from './MovieItems.module.css';
-import data from './data.json';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GoStarFill } from "react-icons/go";
@@ -9,13 +7,13 @@ import { CiStar } from "react-icons/ci";
 import style from './MovieItems.module.css';
 
 export function MovieItemInner() {
-    const { id } = useParams();
+    const { href } = useParams();
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:4840/movies/get/${id}`)
+        axios.get(`http://localhost:4840/movies/get/${href}`)
             .then(response => {
                 setMovie(response.data);
                 setLoading(false);
@@ -25,7 +23,7 @@ export function MovieItemInner() {
                 setError('Error fetching movie data. Please try again later.');
                 setLoading(false);
             });
-    }, [id]);
+    }, [href]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -39,10 +37,10 @@ export function MovieItemInner() {
         <div className={`${style.boss} ${style.containerInner}`}>
             <div className={style.heroSection}>
                 <div>
-                    <h1>{movie.Name}</h1>
+                    <h1>{movie?.name}</h1>
                     <ul className={style.underName}>
-                        <li>{movie.Year}</li>
-                        <li>{movie.Rating}</li>
+                        <li>{movie?.year}</li>
+                        <li>{movie?.rating}</li>
                     </ul>
                 </div>
                 <div className={style.rating}>
@@ -50,7 +48,7 @@ export function MovieItemInner() {
                         <p>IMDb RATING</p>
                         <div className={style.yellow}>
                             <i className={style.yellowStar}><GoStarFill size="1.5rem" /> </i>
-                            <p>{movie.Rating}/10</p>
+                            <p>{movie?.rating}/10</p>
                         </div>
                     </div>
                     <div>
@@ -63,18 +61,13 @@ export function MovieItemInner() {
                 </div>
             </div>
             <div className={style.containerItem}>
-                <img className={style.imgItem} src={movie.Path} alt="" />
-                <iframe className={style.url} src={movie.Url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
-            </div>
-            <div className={style.btnCategory} >
-                {movie.Category.split(',').map((category, index) => (
-                    <button className={style.btn} key={index}>{category.trim()}</button>
-                ))}
+                <img className={style.imgItem} src={movie?.path} alt="" />
+                <iframe className={style.url} src={movie?.url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
             </div>
             <div>
-                <p>{movie.description.split('\n').map((line, index) => (
+                {movie?.description?.split('\n').map((line, index) => (
                     <div key={index}>{line}</div>
-                ))}</p>
+                ))}
             </div>
         </div>
     );
