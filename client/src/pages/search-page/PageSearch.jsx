@@ -1,10 +1,10 @@
 
-import { SearchSection } from '../../components/search/SearchSection'
+import { SearchBar} from '../../components/search/SearchBar'
 
 export function PageSearch() {
     return (
         <>
-            <SearchSection />
+            <SearchBar/>
         </>
     )
 }
