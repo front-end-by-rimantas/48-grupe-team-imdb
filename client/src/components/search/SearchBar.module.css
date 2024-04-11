@@ -39,28 +39,41 @@
     display: flex;
     flex-direction: column;
     margin-top: 5px;
-    width: 40rem;
+    width: 41.76rem;
     height: 30rem;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #3d3d3d;
     overflow: hidden;
     overflow-y: auto;
     position: absolute;
-    top: 2rem
-
+    top: 1.55rem;
+    padding: 0.5rem;
   }
   .dataResult::-webkit-scrollbar {
     display: none;
   }
   
   .dataResult .dataItem {
-    width: 100%;
-    height: 50px;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    color: #8e3232;
+    gap: 0.7rem;
   }
-  
+  .imgItemSearch{
+    height: 5.6rem;
+    width: 3.6rem;
+    
+  }
+  .searchSection{
+    display: flex;
+    flex-direction: column;
+  }
+  .dataItem{
+    padding: 0.3rem;
+    border-bottom: 0.04rem #8a8a8a solid;
+  }
+  .dataItem:hover{
+    background-color: #6c6c6c;
+  }
   .dataItem p {
     margin-left: 10px;
   }
@@ -68,7 +81,12 @@
     text-decoration: none;
   }
   .nameLink{
-    color: #ff0000;
+    color: #f3f2f2;
+    font-size: 1.3rem;
+  }
+  .awardsLink{
+    color: #d6d6d3;
+    font-size: 1rem;
   }
    
   #clearBtn {

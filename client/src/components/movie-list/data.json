@@ -1,5 +1,4 @@
-{
-    "movies": [
+[
         {
     "name": "The Shawshank Redemption",
     "year": 1994,
@@ -664,4 +663,3 @@
     "href": "theprestige"
     }
   ]
-}

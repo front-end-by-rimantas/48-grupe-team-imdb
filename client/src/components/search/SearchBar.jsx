@@ -5,6 +5,7 @@ import { IoIosClose } from "react-icons/io";
 import movies from "./data.json";
 
 export function SearchBar() {
+  
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState([]); 
   const [wrongSearchText, setWrongText] = useState('');
@@ -62,8 +63,13 @@ export function SearchBar() {
         <div className={style.dataResult}>
           {filteredData.slice(0, 15).map((value, key) => {
             return (
-              <a className={style.dataItem} href={value.href} key={key}target="_blank">
-                <p className={style.nameLink}>{value.name} </p>
+
+              <a className={style.dataItem} href={value.href} key={key} target="_blank">
+                  <img className={style.imgItemSearch} src={value.path} alt="" />
+                  <div className={style.searchSection}>
+                    <span className={style.nameLink}>{value.name}</span> 
+                    <span className={style.awardsLink}>{value.awards}</span> 
+                  </div>
               </a>
             );
           })}

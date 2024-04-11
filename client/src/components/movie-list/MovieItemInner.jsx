@@ -6,9 +6,9 @@ import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 
 export function MovieItemInner({ }) {
-    const movies = data.movies;
+    
         const { id } = useParams();
-        for(const key of movies){
+        for(const key of data){
             if(key.href === id){
 
         return (

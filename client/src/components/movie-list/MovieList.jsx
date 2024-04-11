@@ -3,7 +3,7 @@ import style from './MovieItems.module.css';
 import data from './data.json';
 
 export function MovieList() {
-    const movies = data.movies;
+    
     return (
     <div className={style.boss}>
         <div className={style.main}>
@@ -13,7 +13,7 @@ export function MovieList() {
             </div>
             <div className={style.container}>
                 <div className={style.item}>
-                    {movies.map((movi, index) => <MovieItem key={index} data={movi} />)}
+                    {data.map((movi, index) => <MovieItem key={index} data={movi} />)}
                 </div>
             </div>
         </div>
