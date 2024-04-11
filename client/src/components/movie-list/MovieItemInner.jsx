@@ -1,11 +1,12 @@
 /* eslint-disable no-empty-pattern */
 import style from './MovieItems.module.css';
-import movies from './data'
+import data from './data.json';
 import { useParams } from 'react-router-dom';
 import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 
 export function MovieItemInner({ }) {
+    const movies = data.movies;
         const { id } = useParams();
         for(const key of movies){
             if(key.href === id){
