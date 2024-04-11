@@ -1,10 +1,12 @@
+import { SearchBar} from "../../components/search/SearchBar";
 
-import { SearchBar} from '../../components/search/SearchBar'
 
 export function PageSearch() {
-    return (
-        <>
-            <SearchBar/>
-        </>
-    )
+  return (
+    <>
+      <SearchBar />
+    </>
+  );
 }
+
+export default PageSearch;
