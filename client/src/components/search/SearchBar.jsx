@@ -81,8 +81,8 @@ export function SearchBar() {
         <div className={style.dataResult}>
           {filteredData.map((value, key) => {
             return (
-              <a className={style.dataItem} href={value.href} key={key} target="_blank">
-                {/* <a className={style.dataItem} href="/{value.href}" key={key} target="_blank"></a> */}
+              <a className={style.dataItem} href={`/${value.href}`} key={key} target="_blank">
+                {/* <a className={style.dataItem} href={value.href} key={key} target="_blank"></a> */}
                   <img className={style.imgItemSearch} src={value.path} alt="" />
                   <div className={style.searchSection}>
                     <span className={style.nameLink}>{value.name}</span> 
