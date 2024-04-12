@@ -11,23 +11,25 @@ export function SearchBar() {
   const [wrongSearchText, setWrongText] = useState('');
 
   // const fetchData = (result) => {
-  //   fetch("http://localhost:4840/api/movies")  ????? REIKIA PAKLAUSTI ??????
+  //   
+  // };
+  
+  // const handleChange = (event) => {
+   // setSearchText(event.target.value);
+  //  const searchWord = event.target.value.toLowerCase()
+  //  fetch("http://localhost:4840/api/movies")  ????? REIKIA PAKLAUSTI ??????
   //     .then((res) => res.json())
   //     .then((data) => {
   //       const results = data.filter((movies) => {
   //         return (
-  //         movies.name.toLowerCase().includes(result.toLowerCase())
-  //         );
+  //         movies.name.toLowerCase().includes(searchWord));
   //       });
-  //       setResults(results);
-  //     });
-  // };
-  // const handleChange = (event) => {
-  //   setSearchText(event);
-  //   fetchData(event);
+  //         setFilteredData(results);
+  //       });
+  //     .catch(e => console.error(e));
   // };
 
-  function handleFilter(event) {
+  function handleFilter(event) {                  //koly bude fetch prybraty
     const searchWord = event.target.value.toLowerCase();
     const newFilter = movies.filter((movie) =>
       movie.name.toLowerCase().includes(searchWord)
@@ -60,7 +62,7 @@ export function SearchBar() {
           type="text"
           className={style.search}
           value={searchText}
-          onChange={handleFilter}
+          onChange={handleFilter}  //zaminyty na {handleChange}
         />
         <div className={style.searchIcon}>
           <button
@@ -70,7 +72,8 @@ export function SearchBar() {
           {filteredData.length === 0 ? (
             <IoIosSearch />
           ) : (
-            <IoIosClose  id="clearBtn" onClick={clearInput} />
+            <IoIosClose  id="clearBtn" 
+            onClick={clearInput} />
           )}
         </button>
       </div>

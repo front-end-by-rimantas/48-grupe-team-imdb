@@ -6,9 +6,23 @@ import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 
 export function MovieItemInner({ }) {
-    
+
+
+ // const fetchData = () => {
+  //   fetch("http://localhost:4840/api/movies")  ????? REIKIA PAKLAUSTI ??????
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //      .then(data => {
+  //      setAnswer(JSON.stringify(movies));
+  //     });
+  //    .catch(e => console.error(e));
+  // };
+  // const handleChange = (event) => {
+  //           e.preventDefault();
+  //             fetchData(event);
+  // };
         const { id } = useParams();
-        for(const key of data){
+        for(const key of data){ //data pokialsti movies
             if(key.href === id){
 
         return (
