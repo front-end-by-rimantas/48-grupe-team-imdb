@@ -10,6 +10,23 @@ export function SearchBar() {
   const [filteredData, setFilteredData] = useState([]); 
   const [wrongSearchText, setWrongText] = useState('');
 
+  // const fetchData = (result) => {
+  //   fetch("http://localhost:4840/api/movies")  ????? REIKIA PAKLAUSTI ??????
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const results = data.filter((movies) => {
+  //         return (
+  //         movies.name.toLowerCase().includes(result.toLowerCase())
+  //         );
+  //       });
+  //       setResults(results);
+  //     });
+  // };
+  // const handleChange = (event) => {
+  //   setSearchText(event);
+  //   fetchData(event);
+  // };
+
   function handleFilter(event) {
     const searchWord = event.target.value.toLowerCase();
     const newFilter = movies.filter((movie) =>
@@ -35,7 +52,6 @@ export function SearchBar() {
     setSearchText("");
   };
 
-
   return (
     <div className={style.formList}>
       <div className={style.searchForm}>
@@ -50,8 +66,7 @@ export function SearchBar() {
           <button
             className={style.btnSearch}
             type="submit"
-            onClick={handleFormSubmit}
-          >
+            onClick={handleFormSubmit}>
           {filteredData.length === 0 ? (
             <IoIosSearch />
           ) : (
@@ -61,10 +76,10 @@ export function SearchBar() {
       </div>
       {filteredData.length != 0 && (
         <div className={style.dataResult}>
-          {filteredData.slice(0, 15).map((value, key) => {
+          {filteredData.map((value, key) => {
             return (
-
               <a className={style.dataItem} href={value.href} key={key} target="_blank">
+                {/* <a className={style.dataItem} href="/{value.href}" key={key} target="_blank"></a> */}
                   <img className={style.imgItemSearch} src={value.path} alt="" />
                   <div className={style.searchSection}>
                     <span className={style.nameLink}>{value.name}</span> 
