@@ -28,7 +28,6 @@ h1{
 .title{
     font-weight:200;
     font-size: 1.25rem;
-    text-decoration: none;
 }
 .year{
     font-weight:100;
@@ -100,6 +99,7 @@ h1{
                 80%, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)));
     };
 .containerItem{
+    background-color: aqua;
     display: flex;
     justify-content:space-between;
     flex-direction: row;

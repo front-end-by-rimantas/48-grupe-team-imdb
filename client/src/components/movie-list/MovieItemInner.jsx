@@ -1,4 +1,5 @@
 /* eslint-disable no-empty-pattern */
+/* eslint-disable no-empty-pattern */
 import style from './MovieItems.module.css';
 import data from './data.json';
 import { useParams } from 'react-router-dom';
@@ -6,23 +7,9 @@ import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 
 export function MovieItemInner({ }) {
-
-
- // const fetchData = () => {
-  //   fetch("http://localhost:4840/api/movies")  ????? REIKIA PAKLAUSTI ??????
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //      .then(data => {
-  //      setAnswer(JSON.stringify(movies));
-  //     });
-  //    .catch(e => console.error(e));
-  // };
-  // const handleChange = (event) => {
-  //           e.preventDefault();
-  //             fetchData(event);
-  // };
+    const movies = data.movies;
         const { id } = useParams();
-        for(const key of data){ //data pokialsti movies
+        for(const key of movies){
             if(key.href === id){
 
         return (
