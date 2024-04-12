@@ -1,8 +1,10 @@
+
 import style from './About.module.css';
 import { Link } from 'react-router-dom';
 import  randomImg  from '../../assets/images/titanic.jpg';
 import  randomImg1  from '../../assets/images/thepianist.jpg';
 import  randomImg2  from '../../assets/images/se7en.jpg';
+
 
 
 
@@ -28,3 +30,4 @@ export function About() {
     )
 }
     
+

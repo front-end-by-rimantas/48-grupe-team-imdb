@@ -13,10 +13,13 @@ const corsOptions = {
 const helmetOptions = {
   crossOriginResourcePolicy: false,
 };
+
 app.use(cors(corsOptions));
 app.use(helmet(helmetOptions));
+app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // aplikacija pasiima visus routus is 'module' 
 app.use(router);
 
