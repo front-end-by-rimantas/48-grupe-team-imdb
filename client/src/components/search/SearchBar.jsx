@@ -5,7 +5,7 @@ import { IoIosClose } from "react-icons/io";
 import movies from "./data.json";
 
 export function SearchBar() {
-  
+                          //SearchBar(setResults) 
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState([]); 
   const [wrongSearchText, setWrongText] = useState('');
