@@ -8,7 +8,6 @@ export function HeroSection() {
     const [currentMovieIndex, setCurrentMovieIndex] = useState(0);
 
     useEffect(() => {
-        // Fetch the list of movies from the backend
         axios.get('http://localhost:4840/movies/get')
             .then(response => {
                 setMovies(response.data.movies);
@@ -19,16 +18,13 @@ export function HeroSection() {
     }, []);
 
     const handleNextButtonClick = () => {
-        // Increment the current movie index
         setCurrentMovieIndex(prevIndex => (prevIndex + 1) % movies.length);
     };
 
     const handlePrevButtonClick = () => {
-        // Decrement the current movie index
         setCurrentMovieIndex(prevIndex => (prevIndex - 1 + movies.length) % movies.length);
     };
 
-    // Ensure movies array is not empty and currentMovieIndex is valid
     const currentMovie = movies.length > 0 ? movies[currentMovieIndex] : null;
 
     return (
