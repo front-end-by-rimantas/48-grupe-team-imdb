@@ -9,7 +9,7 @@
     "awards": "7 Oscars",
     "gross": "$58.5 million",
     "url": "https://www.youtube.com/embed/PLl99DlL6b4",
-    "path": "../src/assets/images/theshawshankredemption.jpg",
+    "path": "theshawshankredemption.jpg",
     "description": "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, \nredemption through basic compassion. ",
     "href": "theshawshankredemption"
 },
@@ -22,7 +22,7 @@
     "awards": "3 Oscars",
     "gross": "$245 million",
     "url": "https://www.youtube.com/embed/UaVTIH8mujA",
-    "path": "../src/assets/images/thegodfather.jpg",
+    "path": "thegodfather.jpg",
     "description": "The aging patriarch of an organized crime dynasty transfers control of his \nclandestine empire to his reluctant son",
     "href": "thegodfather"
 },
@@ -35,7 +35,7 @@
     "awards": "2 Oscars",
     "gross": "$1.005 billion",
     "url": "https://www.youtube.com/embed/EXeTwQWrcwY",
-    "path": "../src/assets/images/thedarkknight.jpg",
+    "path": "thedarkknight.jpg",
     "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, \nBatman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
     "href": "thedarkknight"
 },
@@ -48,7 +48,7 @@
     "awards": "7 Oscars",
     "gross": "$322 million",
     "url": "https://www.youtube.com/embed/gG22XNhtnoY",
-    "path": "../src/assets/images/schindlerslist.jpg",
+    "path": "schindlerslist.jpg",
     "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually \nbecomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
     "href": "schindlerslist"
 },
@@ -61,7 +61,7 @@
     "awards": "11 Oscars",
     "gross": "$1.142 billion",
     "url": "https://www.youtube.com/embed/r5X-hFf6Bwo",
-    "path": "../src/assets/images/thelordoftheringsthereturnoftheking.jpg",
+    "path": "thelordoftheringsthereturnoftheking.jpg",
     "description": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam \nas they approach Mount Doom with the One Ring.",
     "href": "thelordoftheringsthereturnoftheking"
 },
@@ -74,7 +74,7 @@
     "awards": "1 Oscar",
     "gross": "$213.9 million",
     "url": "https://www.youtube.com/embed/tGpTpVyI_OQ",
-    "path": "../src/assets/images/pulpfiction.jpg",
+    "path": "pulpfiction.jpg",
     "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits \nintertwine in four tales of violence and redemption.",
     "href": "pulpfiction"
 },
@@ -87,7 +87,7 @@
     "awards": "None",
     "gross": "$101.2 million",
     "url": "https://www.youtube.com/embed/qtRKdVHc-cE",
-    "path": "../src/assets/images/fightclub.jpg",
+    "path": "fightclub.jpg",
     "description": "An insomniac office worker and a devil-may-care soap maker form an underground \nfight club that evolves into much more.",
     "href": "fightclub"
 },
@@ -100,7 +100,7 @@
     "awards": "4 Oscars",
     "gross": "$465.3 million",
     "url": "https://www.youtube.com/embed/vKQi3bBA1y8",
-    "path": "../src/assets/images/thematrix.jpg",
+    "path": "thematrix.jpg",
     "description": " When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers \nthe shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
     "href": "thematrix"
 },
@@ -113,7 +113,7 @@
     "awards": "None",
     "gross": "$327.3 million",
     "url": "https://www.youtube.com/embed/znmZoVkCjpI",
-    "path": "../src/assets/images/se7en.jpg",
+    "path": "se7en.jpg",
     "description": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
     "href": "se7en"
 },
@@ -126,7 +126,7 @@
     "awards": "4 Oscars",
     "gross": "$286.8 million",
     "url": "https://www.youtube.com/embed/Ki4haFrqSrw",
-    "path": "../src/assets/images/thegreenmile.jpg",
+    "path": "thegreenmile.jpg",
     "description": "A tale set on death row, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. \nWhen the lead guard, Paul Edgecombe, recognizes John's gift, he tries to help stave off the condemned man's execution. ",
     "href": "thegreenmile"
 },
@@ -139,7 +139,7 @@
     "awards": "5 Oscars",
     "gross": "$460.5 million",
     "url": "https://www.youtube.com/embed/P5ieIbInFpg",
-    "path": "../src/assets/images/gladiator.jpg",
+    "path": "gladiator.jpg",
     "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered \nhis family and sent him into slavery.",
     "href": "gladiator"
 },
@@ -152,7 +152,7 @@
     "awards": "4 Oscars",
     "gross": "$291.5 million",
     "url": "https://www.youtube.com/embed/iQpb1LoeVUc",
-    "path": "../src/assets/images/thedeparted.jpg",
+    "path": "thedeparted.jpg",
     "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an \nIrish gang in South Boston.",
     "href": "thedeparted"
 },
@@ -165,7 +165,7 @@
     "awards": "6 Oscars",
     "gross": "$102.6 million",
     "url": "https://www.youtube.com/embed/9O1Iy9od7-A",
-    "path": "../src/assets/images/thegodfatherpartII.jpg",
+    "path": "thegodfatherpartII.jpg",
     "description": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, \nexpands and tightens his grip on the family crime syndicate.",
     "href": "thegodfatherpartII"
 },
@@ -178,7 +178,7 @@
     "awards": "11 Oscars",
     "gross": "$2.195 billion",
     "url": "https://www.youtube.com/embed/CHekzSiZjrY",
-    "path": "../src/assets/images/titanic.jpg",
+    "path": "titanic.jpg",
     "description": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
     "href": "titanic"
 },
@@ -191,7 +191,7 @@
     "awards": "3 Oscars",
     "gross": "$2.8 billion",
     "url": "https://www.youtube.com/embed/d9MyW72ELq0",
-    "path": "../src/assets/images/avatar.jpg",
+    "path": "avatar.jpg",
     "description": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders \nand protecting the world he feels is his home.",
     "href": "avatar"
 },
@@ -204,7 +204,7 @@
     "awards": "3 Oscars",
     "gross": "$1.049 billion",
     "url": "https://www.youtube.com/embed/Rc_i5TKdmhs",
-    "path": "../src/assets/images/jurassicpark.jpg",
+    "path": "jurassicpark.jpg",
     "description": "A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked \nwith protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
     "href": "jurassicpark"
 },
@@ -230,7 +230,7 @@
     "awards": "4 Oscars",
     "gross": "$829.9 million",
     "url": "https://www.youtube.com/embed/YoHD9XEInc0",
-    "path": "../src/assets/images/inception.jpg",
+    "path": "inception.jpg",
     "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse \ntask of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
     "href": "inception"
 },
@@ -243,7 +243,7 @@
     "awards": "1 Oscar",
     "gross": "$1.081 billion",
     "url": "https://www.youtube.com/embed/GokKUqLcvD8",
-    "path": "../src/assets/images/thedarkknightrises.jpg",
+    "path": "thedarkknightrises.jpg",
     "description": "Eight years after the Joker's reign of chaos, Batman is coerced out of exile with the assistance of \nthe mysterious Selina Kyle in order to defend Gotham City from the vicious guerrilla terrorist Bane.",
     "href": "thedarkknightrises"
 },
@@ -256,7 +256,7 @@
     "awards": "1 Oscar",
     "gross": "$1.251 billion",
     "url": "https://www.youtube.com/embed/9oQ628Seb9w",
-    "path": "../src/assets/images/findingnemo.jpg",
+    "path": "findingnemo.jpg",
     "description": "After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish \nsets out on a journey to bring him home.",
     "href": "findingnemo"
 },
@@ -269,7 +269,7 @@
     "awards": "6 Oscars",
     "gross": "$678.2 million",
     "url": "https://www.youtube.com/embed/bLvqoHBptjg",
-    "path": "../src/assets/images/forrestgump.jpg",
+    "path": "forrestgump.jpg",
     "description": "The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama\n man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
     "href": "forrestgump"
 },
@@ -282,7 +282,7 @@
     "awards": "4 Oscars",
     "gross": "$887.2 million",
     "url": "https://www.youtube.com/embed/V75dMMIW2B4",
-    "path": "../src/assets/images/thelordoftheringsthefellowshipofthering.jpg",
+    "path": "thelordoftheringsthefellowshipofthering.jpg",
     "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring \nand save Middle-earth from the Dark Lord Sauron.",
     "href": "thelordoftheringsthefellowshipofthering"
 },
@@ -295,7 +295,7 @@
     "awards": "2 Oscars",
     "gross": "$968.5 million",
     "url": "https://www.youtube.com/embed/GibiNy4d4gc",
-    "path": "../src/assets/images/thelionking.jpg",
+    "path": "thelionking.jpg",
     "description": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
     "href": "thelionking"
 },
@@ -308,7 +308,7 @@
     "awards": "1 Oscar",
     "gross": "$677.5 million",
     "url": "https://www.youtube.com/embed/zSWdZVtXT7E",
-    "path": "../src/assets/images/interstellar.jpg",
+    "path": "interstellar.jpg",
     "description": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, \nalong with a team of researchers, to find a new planet for humans.",
     "href": "interstellar"
 },
@@ -321,7 +321,7 @@
     "awards": "6 Oscars",
     "gross": "$672.8 million",
     "url": "https://www.youtube.com/embed/3-ZP95NF_Wk",
-    "path": "../src/assets/images/thesixthsense.jpg",
+    "path": "thesixthsense.jpg",
     "description": "Malcolm Crowe, a child psychologist, starts treating a young boy, Cole, who encounters dead people and convinces him to help them.\nIn turn, Cole helps Malcolm reconcile with his estranged wife.",
     "href": "thesixthsense"
 },
@@ -334,7 +334,7 @@
     "awards": "1 Oscar",
     "gross": "$321.5 million",
     "url": "https://www.youtube.com/embed/KnrRy6kSFF0",
-    "path": "../src/assets/images/inglouriousbasterds.jpg",
+    "path": "inglouriousbasterds.jpg",
     "description": "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers\n coincides with a theatre owner's vengeful plans for the same.",
     "href": "inglouriousbasterds"
 },
@@ -347,7 +347,7 @@
     "awards": "2 Oscars",
     "gross": "$951.2 million",
     "url": "https://www.youtube.com/embed/LbfMDwc4azU",
-    "path": "../src/assets/images/thelordoftheringsthetwotowers.jpg",
+    "path": "thelordoftheringsthetwotowers.jpg",
     "description": "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes \na stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
     "href": "thelordoftheringsthetwotowers"
 },
@@ -360,7 +360,7 @@
     "awards": "3 Oscars",
     "gross": "$120.1 million",
     "url": "https://www.youtube.com/embed/BFwGqLa_oAo",
-    "path": "../src/assets/images/thepianist.jpg",
+    "path": "thepianist.jpg",
     "description": "During WWII, acclaimed Polish musician Wladyslaw faces various struggles as he loses contact with his family.\n  As the situation worsens,he hides in the ruins of Warsaw in order to survive.",
     "href": "thepianist"
 },
@@ -373,7 +373,7 @@
     "awards": "7 Nominations",
     "gross": "$136.8 million",
     "url": "https://www.youtube.com/embed/UUkG37KSWf0",
-    "path": "../src/assets/images/thegodfatherpartIII.jpg",
+    "path": "thegodfatherpartIII.jpg",
     "description": "Follows Michael Corleone, now in his 60s, as he seeks to free his family from crime and find a suitable successor to his empire.",
     "href": "thegodfatherpartIII"
 },
@@ -386,7 +386,7 @@
     "awards": "1 Oscar",
     "gross": "$46.8 million",
     "url": "https://www.youtube.com/embed/2ilzidi_J8Q",
-    "path": "../src/assets/images/goodfellas.jpg",
+    "path": "goodfellas.jpg",
     "description": "The story of Henry Hill and his life in the mafia, covering his relationship with his wife Karen and his mob partners Jimmy Conway and Tommy DeVito.",
     "href": "goodfellas"
 },
@@ -399,7 +399,7 @@
     "awards": "3 Oscars",
     "gross": "$4.1 million",
     "url": "https://www.youtube.com/embed/MF7JH_54d8c",
-    "path": "../src/assets/images/casablanca.jpg",
+    "path": "casablanca.jpg",
     "description": "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco.",
     "href": "casablanca"
 },
@@ -412,7 +412,7 @@
     "awards": "2 Oscars",
     "gross": "$23.7 million",
     "url": "https://www.youtube.com/embed/lT8qgvgk1rU",
-    "path": "../src/assets/images/thewizardofoz.jpg",
+    "path": "thewizardofoz.jpg",
     "description": "Young Dorothy Gale and her dog Toto are swept away by a tornado from their Kansas farm to the magical Land of Oz,\n and embark on a quest with three new friends to see the Wizard, who can return her to her home and fulfill the others' wishes.",
     "href": "thewizardofoz"
 },
@@ -425,7 +425,7 @@
     "awards": "8 Oscars",
     "gross": "$402.4 million",
     "url": "https://www.youtube.com/embed/0X94oZgJis4",
-    "path": "../src/assets/images/gonewiththewind.jpg",
+    "path": "gonewiththewind.jpg",
     "description": "A sheltered and manipulative Southern belle and a roguish profiteer face off in a turbulent romance \nas the society around them crumbles with the end \nof slavery and is rebuilt during the Civil War and Reconstruction periods.",
     "href": "gonewiththewind"
 },
@@ -438,7 +438,7 @@
     "awards": "7 Oscars",
     "gross": "$70 million",
     "url": "https://www.youtube.com/embed/vOlRhGEhG7k",
-    "path": "../src/assets/images/lawrenceofarabia.jpg",
+    "path": "lawrenceofarabia.jpg",
     "description": "The story of T.E. Lawrence, the English officer who successfully united and led the diverse, often warring, Arab tribes during World War I in order to fight the Turks.",
     "href": "lawrenceofarabia"
 },
@@ -451,7 +451,7 @@
     "awards": "4 Oscars",
     "gross": "$389.9 million",
     "url": "https://www.youtube.com/embed/0xQSIdSRlAk",
-    "path": "../src/assets/images/raidersofthelostark.jpg",
+    "path": "raidersofthelostark.jpg",
     "description": "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers.",
     "href": "raidersofthelostark"
 },
@@ -464,7 +464,7 @@
     "awards": "1 Oscar",
     "gross": "$1.585 million",
     "url": "https://www.youtube.com/embed/8dxh3lwdOFw",
-    "path": "../src/assets/images/citizenkane.jpg",
+    "path": "citizenkane.jpg",
     "description": "Following the death of publishing tycoon Charles Foster Kane, reporters scramble to uncover the meaning of his final utterance: 'Rosebud.'",
     "href": "citizenkane"
 },
@@ -477,7 +477,7 @@
     "awards": "6 Oscars",
     "gross": "$775.4 million",
     "url": "https://www.youtube.com/embed/vZ734NWnAHA",
-    "path": "../src/assets/images/starwarsepisodeIVanewhope.jpg",
+    "path": "starwarsepisodeIVanewhope.jpg",
     "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from \nthe Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
     "href": "starwarsepisodeIVanewhope"
 },
@@ -490,7 +490,7 @@
     "awards": "5 Oscars",
     "gross": "$286.2 million",
     "url": "https://www.youtube.com/embed/drnBMAEA3AM",
-    "path": "../src/assets/images/thesoundofmusic.jpg",
+    "path": "thesoundofmusic.jpg",
     "description": "A young novice is sent by her convent in 1930s Austria to become a governess to the seven children of a widowed naval officer.",
     "href": "thesoundofmusic"
 },
@@ -503,7 +503,7 @@
     "awards": "5 Oscars",
     "gross": "$215.4 million",
     "url": "https://www.youtube.com/embed/gt4-lTrkYuE",
-    "path": "../src/assets/images/braveheart.jpg",
+    "path": "braveheart.jpg",
     "description": "Scottish warrior William Wallace leads his countrymen in a rebellion to free his \nhomeland from the tyranny of King Edward I of England.",
     "href": "braveheart"
 },
@@ -516,7 +516,7 @@
     "awards": "2 Oscars",
     "gross": "$34.4 million",
     "url": "https://www.youtube.com/embed/oiXdPolca5w",
-    "path": "../src/assets/images/theusualsuspects.jpg",
+    "path": "theusualsuspects.jpg",
     "description": "The sole survivor of a pier shoot-out tells the story of how a notorious criminal influenced \nthe events that began with five criminals meeting in a seemingly random police lineup.",
     "href": "theusualsuspects"
 },
@@ -529,7 +529,7 @@
     "awards": "2 Oscars",
     "gross": "$126.2 million",
     "url": "https://www.youtube.com/embed/6sOXrY5yV4g",
-    "path": "../src/assets/images/laconfidential.jpg",
+    "path": "laconfidential.jpg",
     "description": "As corruption grows in 1950s Los Angeles, three policemen - one strait-laced, one brutal, and one \nsleazy - investigate a series of murders with their own brand of justice.",
     "href": "laconfidential"
 },
@@ -542,7 +542,7 @@
     "awards": "None",
     "gross": "$24.6 million",
     "url": "https://www.youtube.com/embed/XfQYHqsiN5g",
-    "path": "../src/assets/images/americanhistoryx.jpg",
+    "path": "americanhistoryx.jpg",
     "description": "Living a life marked by violence, neo-Nazi Derek finally goes to prison after killing two black youths. Upon his release, \nDerek vows to change; he hopes to prevent his brother, Danny, who idolizes Derek, from following in his footsteps.",
     "href": "americanhistoryx"
 },
@@ -555,7 +555,7 @@
     "awards": "3 Oscars",
     "gross": "$264.1 million",
     "url": "https://www.youtube.com/embed/dlnmQbPGuls",
-    "path": "../src/assets/images/thetrumanshow.jpg",
+    "path": "thetrumanshow.jpg",
     "description": "An insurance salesman discovers his whole life is actually a reality TV show.",
     "href": "thetrumanshow"
 },
@@ -568,7 +568,7 @@
     "awards": "5 Oscars",
     "gross": "$356.3 million",
     "url": "https://www.youtube.com/embed/Ly7rq5EsTC8",
-    "path": "../src/assets/images/americanbeauty.jpg",
+    "path": "americanbeauty.jpg",
     "description": "A sexually frustrated suburban father has a mid-life crisis after becoming infatuated with his daughter's best friend.",
     "href": "americanbeauty"
 },
@@ -581,7 +581,7 @@
     "awards": "None",
     "gross": "$7.4 million",
     "url": "https://www.youtube.com/embed/QBwzN4v1vA0",
-    "path": "../src/assets/images/requiemforadream.jpg",
+    "path": "requiemforadream.jpg",
     "description": "The drug-induced utopias of four Coney Island people are shattered when their addictions run deep..",
     "href": "requiemforadream"
 },
@@ -594,7 +594,7 @@
     "awards": "4 Oscars",
     "gross": "$313.5 million",
     "url": "https://www.youtube.com/embed/EajIlG_OCvw",
-    "path": "../src/assets/images/abeautifulmind.jpg",
+    "path": "abeautifulmind.jpg",
     "description": "A mathematical genius, John Nash made an astonishing discovery early in his career and stood on the brink of international acclaim. \nBut the handsome and arrogant Nash soon found himself on a harrowing journey of self-discovery.",
     "href": "abeautifulmind"
 },
@@ -607,7 +607,7 @@
     "awards": "2 Oscars",
     "gross": "$352.1 million",
     "url": "https://www.youtube.com/embed/gFr0_ywVdhY",
-    "path": "../src/assets/images/catchmeifyoucan.jpg",
+    "path": "catchmeifyoucan.jpg",
     "description": "Barely 17 yet, Frank is a skilled forger who has passed as a doctor, lawyer and pilot. FBI agent Carl becomes obsessed with tracking down the con man,\n who only revels in the pursuit.",
     "href": "catchmeifyoucan"
 },
@@ -620,7 +620,7 @@
     "awards": "None",
     "gross": "$622.3 million",
     "url": "https://www.youtube.com/embed/4Aif1qEB_JU",
-    "path": "../src/assets/images/thepassionofthechrist.jpg",
+    "path": "thepassionofthechrist.jpg",
     "description": "Depicts the final twelve hours in the life of Jesus of Nazareth, on the day of his crucifixion in Jerusalem.",
     "href": "thepassionofthechrist"
 },
@@ -633,7 +633,7 @@
     "awards": "1 Oscar",
     "gross": "$74.4 million",
     "url": "https://www.youtube.com/embed/07-QBnEkgXU",
-    "path": "../src/assets/images/eternalsunshineofthespotlessmind.jpg",
+    "path": "eternalsunshineofthespotlessmind.jpg",
     "description": "When their relationship turns sour, a couple undergoes a medical procedure to have each other\nerased from their memories forever.",
     "href": "eternalsunshineofthespotlessmind"
 },
@@ -646,7 +646,7 @@
     "awards": "3 Oscars",
     "gross": "$98.4 million",
     "url": "https://www.youtube.com/embed/dgepOrbliX4",
-    "path": "../src/assets/images/crash.jpg",
+    "path": "crash.jpg",
     "description": "Los Angeles citizens with vastly separate lives collide in interweaving stories of race, loss and redemption.",
     "href": "crash"
 },
@@ -659,7 +659,7 @@
     "awards": "1 Oscar",
     "gross": "$109.7 million",
     "url": "https://www.youtube.com/embed/RLtaA9fFNXU",
-    "path": "../src/assets/images/theprestige.jpg",
+    "path": "theprestige.jpg",
     "description": "After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while \nsacrificing everything they have to outwit each other.",
     "href": "theprestige"
     }

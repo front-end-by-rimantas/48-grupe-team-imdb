@@ -61,7 +61,8 @@ export function MovieItemInner() {
                 </div>
             </div>
             <div className={style.containerItem}>
-                <img className={style.imgItem} src={movie?.path} alt="" />
+                <img className={style.imgItem} src={`http://localhost:4840/assets/images/${movie?.path}`} alt="" />
+
                 <iframe className={style.url} src={movie?.url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
             </div>
             <div>

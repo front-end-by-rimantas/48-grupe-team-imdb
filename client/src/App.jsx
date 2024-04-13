@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route Component={BasicLayout}>
           <Route index path="/" element={<PageHome/>}/>
-          <Route path="/list/:id" element={<MovieItemInner/>}/>
-          <Route path="/list" element={<PageMovieList/>}/>
+          <Route path="/movies/get/:href" element={<MovieItemInner/>}/>
+          <Route path="/movies/get" element={<PageMovieList/>}/>
           <Route path="/search" element={<></>}/>
           <Route path="/sign-in" element={<PageSignIn/>}/>
           <Route path="/sign-in/login" element={<></>}/>

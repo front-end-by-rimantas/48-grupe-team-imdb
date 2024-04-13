@@ -1,10 +1,12 @@
-import fs from "fs";
+import fs from 'fs';
+import path from 'path';
 
 export const getMovies = (req, res) => {
-  fs.readFile("../server/data/data.json", "utf8", (error, data) => {
+  const filePath = path.join(process.cwd(), 'data/data.json'); // Assuming data.json is in the root directory
+  fs.readFile(filePath, 'utf8', (error, data) => {
     if (error) {
       console.log(error);
-      res.status(500).json({ error: "Error reading config file" });
+      res.status(500).json({ error: "Error reading movie data" });
       return;
     }
     
@@ -15,7 +17,8 @@ export const getMovies = (req, res) => {
 
 export const getMovie = (req, res) => {
   const { href } = req.params;
-  fs.readFile("../server/data/data.json", "utf8", (error, data) => {
+  const filePath = path.join(process.cwd(), 'data/data.json'); // Assuming data.json is in the root directory
+  fs.readFile(filePath, 'utf8', (error, data) => {
     if (error) {
       console.log(error);
       res.status(500).json({ error: "Error reading config file" });
