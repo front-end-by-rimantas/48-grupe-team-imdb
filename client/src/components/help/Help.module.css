@@ -75,36 +75,6 @@
  
 }
 
-.cardContainer {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.card {
-  padding: 15px 10px;
-  width: 23%;
-}
-
-.cardList {
-  list-style: disc;
-  text-align: left;
-  color: #0F1111;
-  font-size: 14px;
-  line-height: 20px;
-  padding-bottom: 5px;
-}
-
-.cardList::marker {
-  unicode-bidi: isolate;
-  font-variant-numeric: tabular-nums;
-  text-transform: none;
-  text-indent: 0px;
-  text-align: start;
-  text-align-last: start;
-}
-
 .containerFour {
     display: flex;
     flex-direction: column;
@@ -134,8 +104,10 @@
 .endList {
     font-size: 16px;
     line-height: 24px; 
-    padding-left: 15px;
+    margin-left: 20px;
+    text-align: left;
     color: #0F1111;
+    list-style: disc;
 }
 
 .endList::marker {

@@ -5,8 +5,8 @@ import { MdStar } from "react-icons/md";
 import { AiFillTool } from "react-icons/ai";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { PiMedalFill } from "react-icons/pi";
-import style from "../Help.module.css";
 import { useEffect, useState } from "react";
+import style from "./helpCard.module.css";
 
 
 const icons = {
