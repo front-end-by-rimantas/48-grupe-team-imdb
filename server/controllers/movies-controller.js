@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const getMovies = (req, res) => {
-  const filePath = path.join(process.cwd(), 'data/data.json'); // Assuming data.json is in the root directory
+  const filePath = path.join(process.cwd(), 'data/data.json'); 
   fs.readFile(filePath, 'utf8', (error, data) => {
     if (error) {
       console.log(error);
@@ -17,7 +17,7 @@ export const getMovies = (req, res) => {
 
 export const getMovie = (req, res) => {
   const { href } = req.params;
-  const filePath = path.join(process.cwd(), 'data/data.json'); // Assuming data.json is in the root directory
+  const filePath = path.join(process.cwd(), 'data/data.json'); 
   fs.readFile(filePath, 'utf8', (error, data) => {
     if (error) {
       console.log(error);
