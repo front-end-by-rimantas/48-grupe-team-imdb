@@ -28,7 +28,8 @@ function handleFormSubmit (e){
 
    return  (
     <header className={style.header}>
-            <LogoImdb/>
+            <Link to="/"><LogoImdb/></Link>
+            
             <div className={style.formList}> 
                <form className={style.searchForm}onSubmit={handleFormSubmit}>
                   <input value={searchText} onChange={handleSearchSectionChange} className={style.search}  type="text" placeholder='Search IMdb' />

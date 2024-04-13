@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { TiInfoLarge } from 'react-icons/ti';
-import { BiError } from "react-icons/bi";
+import { charObj } from '../data/data';
+import { alphabetLtObj } from '../data/data';
 import style from './RegistrationForm.module.css';
 import logo from '../../assets/images/logo/imdb_logo.png';
 
 export function RegistrationForm() {
     
     const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
-    
     const [usernameErr, setUsernameErr] = useState('');
+
+    const [email, setEmail] = useState('');
     const [emailErr, setEmailErr] = useState('');
+
+    const [password, setPassword] = useState('');
     const [passwordErr, setPasswordErr] = useState('');
+
+    const [repeatPassword, setRepeatPassword] = useState('');
     const [repeatPasswordErr, setRepeatPasswordErr] = useState('');
+    
 
     const navigate = useNavigate();
 
@@ -35,72 +38,203 @@ export function RegistrationForm() {
         setRepeatPassword(e.target.value);
     }
 
-    function CapsLock(username) {
-        return username === username.toUpperCase();
-    }
+    function isValidUsername(text) {
 
-    function isValidUsername(username) {
-        if (!username.trim()) {
-            return 'Username is required.';
+        if (text.length < 1) {
+            return 'Too short';
         }
-        if (username.length > 25) {
-            return 'The text is too long, please write shorter!';
+
+        if (text.length > 20) {
+            return 'Too long';
         }
-        if(typeof username === 'number'){
-            return 'Username cannot contain numbers.';
+
+        const valid = true;
+        let invalidSymbols = '';
+
+        for (let i = 0; i < text.length; i++) {
+            //a-z
+            //ąčęėįšųūž
+            const letterLt = alphabetLtObj[text[i]];
+            const symbolAtCharCode = text.charCodeAt(i);
+
+            if (symbolAtCharCode >= charObj.alphabetBeginning && symbolAtCharCode <= charObj.alphabetEnd) {
+                valid;
+            } else if (symbolAtCharCode >= charObj.alphabetUpperCaseBeginning && symbolAtCharCode <= charObj.alphabetUpperCaseEnd) {
+                valid;
+            } else if (letterLt) {
+                valid;
+            } else invalidSymbols += text[i];
         }
-        if(CapsLock(username)){
-            return 'Username cannot contain uppercase letter.';
+
+        if (invalidSymbols.length > 0) {
+            return `This "${invalidSymbols}" symbol cannot be used`
         }
-        const symbol = [',', ':', '*', '&', '^', '%', '$', '#', '@', '!'];
-        if (symbol.some(n => username.includes(n))) {
-            return 'Username cannot contain special characters , : * & ^ % $ # @ !';
-        }
-           
+
         return true;
     }
 
-    function isValidEmail() {
-        if (!email.trim()) {
-            return 'Email is required.';         
+
+    function isValidEmail(text) {
+        const emailMinLength = 6;
+        const emailMaxLength = 50;
+
+
+        if (text.length < emailMinLength) {
+            return 'Too short';
         }
-        if (email.length < 6) {
-            return 'Email is too shorter.';
+
+        if (text.length > emailMaxLength) {
+            return 'Too long';
         }
-        if (email.length > 30) {
-            return 'Email is too long.';
-        }
-        const atCount = email.split('@').length - 1;
-        if (atCount === 0) {
-            return 'Email must contain @.';
-        }
-        if (atCount !== 1) {
-            return "Email cannot contain more than one @ symbols.";
-        }
-        if (email.indexOf('.') === -1) {
-            return "The email must contain a character dot."; 
-        }
-        return true;
-    }
-    
-    const minPasswordLength = 8;
-  
-    function isValidPassword() {
-        if (!password.trim()) {
-            return "Password is required.";         
-        }
-        if (password.length < minPasswordLength) {
-            return "The passwords must be at least 8 characters.";
-        }
+
+        const parts = text.split('@');
+
+        const recipientName = parts[0];
+        const domainNameParts = parts[1].split('.');
+        const domain = domainNameParts[domainNameParts.length -1];
+        const domainName = parts[1].slice(0, -(domain.length +1));
+     
+        const firstCharacter = recipientName[0];
+        const lastCharacter = recipientName[recipientName.length -1];
         
+        let recipientNameStr = '';
+        let invalidCharacters = '';
+
+        for (let i = 0; i < recipientName.length; i++) {
+            //a-z
+            //0-9
+            //!# $ % & '* + - /.=?_
+            const symbolAtCharCode = recipientName.charCodeAt(i);
+
+            if (symbolAtCharCode >= charObj.alphabetBeginning && symbolAtCharCode <= charObj.alphabetEnd) {
+                recipientNameStr += recipientName[i];
+            } else if (recipientName[i] >= '0' && recipientName[i] <= '9') {
+                recipientNameStr += recipientName[i];
+            } else if (symbolAtCharCode === charObj.equal || symbolAtCharCode === charObj.questionMark || symbolAtCharCode === charObj.underscore) {
+                if (firstCharacter !== recipientName[i] && recipientName[i] !== lastCharacter && recipientName[i] !== recipientName[i + 1]) {
+                    recipientNameStr += recipientName[i];
+                } else invalidCharacters += recipientName[i];
+            } else if (symbolAtCharCode >= charObj.alphabetUpperCaseBeginning && symbolAtCharCode <= charObj.alphabetUpperCaseEnd) {
+                recipientNameStr += recipientName[i];
+            } else if (symbolAtCharCode >= charObj.specialCharactersBeginning && symbolAtCharCode <= charObj.specialCharactersEnd && symbolAtCharCode !== charObj.quotationMark) {
+                if (firstCharacter !== recipientName[i] && recipientName[i] !== lastCharacter && recipientName[i] !== recipientName[i + 1]) {
+                    recipientNameStr += recipientName[i];
+                } else invalidCharacters += recipientName[i];
+            } else if (symbolAtCharCode >= charObj.specialCharactersBeginning2  && symbolAtCharCode <= charObj.specialCharactersEnd2 && symbolAtCharCode !== charObj.comma) {
+                if (firstCharacter !== recipientName[i] && recipientName[i] !== lastCharacter && recipientName[i] !== recipientName[i + 1]) {
+                    recipientNameStr += recipientName[i];
+                } else invalidCharacters += recipientName[i];
+            } else invalidCharacters += recipientName[i];
+
+        }
+
+        let domainNameStr = '';
+        let invalidDomainCharacters = '';
+        let isIpAddress = '';
+
+        for (let i = 0; i < domainName.length; i++) {
+            //a-z
+            //0-9
+            //-.
+            const symbolAtCharCode = domainName.charCodeAt(i);
+
+            if (symbolAtCharCode >= charObj.alphabetBeginning && symbolAtCharCode <= charObj.alphabetEnd) {
+                domainNameStr += domainName[i];
+            } else if (symbolAtCharCode >= charObj.alphabetUpperCaseBeginning && symbolAtCharCode <= charObj.alphabetUpperCaseEnd) {
+                domainNameStr += domainName[i];
+            } else if (domainName[i] >= '0' && domainName[i] <= '9') {
+                domainNameStr += domainName[i];
+                isIpAddress += domainName[i];
+            } else if (symbolAtCharCode === charObj.minus || symbolAtCharCode === charObj.dot) {
+                if (firstCharacter !== domainName[i] && domainName[i] !== lastCharacter && domainName[i] !== domainName[i + 1]) {
+                    domainNameStr += domainName[i];
+                    if (symbolAtCharCode === charObj.dot) {
+                        isIpAddress += domainName[i];
+                    }
+                } else invalidDomainCharacters += recipientName[i];
+            } else invalidDomainCharacters += domainName[i];        
+        }
+
+
+        if (recipientName.length !== recipientNameStr.length) {
+            return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`
+        }
+
+        if (domainName.length !== domainNameStr.length) {
+            return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place`
+        }
+
+        if (domain.length < 2) {
+            return `Domain too short: ${domain}`
+        }
+        if (domainName.length === isIpAddress.length) {
+            return `"${isIpAddress}" Invalid format`
+        }
+
         return true;
     }
 
-    function isValidRepeatPassword() {
-        if (password !== repeatPassword) {
-            return 'The passwords do not match.';
-         }
-         return true;
+    function isValidPassword(text) {
+        const passwordMinLength = 8;
+        const passwordMaxLength = 50;
+        const minimumLimit = 1;
+        const valid = true;
+
+        if (text.length < passwordMinLength) {
+            return 'Too short';
+        }
+
+        if (text.length > passwordMaxLength) {
+            return 'Too long';
+        }
+
+        let countLowerCaseLetters = 0;
+        let countUpperCaseLetters = 0;
+        let countNumbers = 0;
+
+        let invalidPasswordStr = '';
+
+        for (let i = 0; i < text.length; i++) {
+            //a-z
+            //0-9
+            //!# $ % & '* + - /.=?_
+            const symbolAtCharCode = text.charCodeAt(i);
+
+            if (symbolAtCharCode >= charObj.alphabetBeginning && symbolAtCharCode <= charObj.alphabetEnd) {
+                valid;
+                countLowerCaseLetters++
+            } else if (symbolAtCharCode >= charObj.alphabetUpperCaseBeginning && symbolAtCharCode <= charObj.alphabetUpperCaseEnd) {
+                valid;
+                countUpperCaseLetters++
+            } else if (symbolAtCharCode >= charObj.specialCharactersBeginning && symbolAtCharCode <= charObj.specialCharactersEnd && symbolAtCharCode !== charObj.quotationMark) {
+                valid;
+            } else if (symbolAtCharCode >= charObj.specialCharactersBeginning2  && symbolAtCharCode <= charObj.specialCharactersEnd2 && symbolAtCharCode !== charObj.comma) {
+                valid;
+            } else if (symbolAtCharCode === charObj.equal || symbolAtCharCode === charObj.questionMark || symbolAtCharCode === charObj.underscore) {
+                valid;
+            } else if (text[i] >= '0' && text[i] <= '9') {
+                valid;
+                countNumbers++
+            } else invalidPasswordStr += text[i];
+        }
+       
+        if (invalidPasswordStr.length > 0) {
+            return `This "${invalidPasswordStr}" symbol cannot be used`;
+        }
+
+        if (countLowerCaseLetters < minimumLimit) {
+            return 'There must be at least one lowercase letter';
+        }
+
+        if (countUpperCaseLetters < minimumLimit) {
+            return 'There must be at least one uppercase letter';
+        }
+
+        if (countNumbers < minimumLimit) {
+            return 'There must be at least one number';
+        }
+
+        return true;
     }
 
     function handleFormSubmit(e) {
@@ -108,9 +242,8 @@ export function RegistrationForm() {
 
         const usernameErrorValue = isValidUsername(username);
         const emailErrorValue = isValidEmail(email);
-        const passwordErrorValue = isValidPassword(password);
-        const repeatPasswordErrorValue = isValidRepeatPassword(repeatPassword);
-
+        const passwordErrorValue = isValidPassword(password)
+        
         let isAllFormValid = true;
 
         if (usernameErrorValue !== true) {
@@ -122,7 +255,7 @@ export function RegistrationForm() {
 
         if (emailErrorValue !== true) {
             isAllFormValid = false;
-            setEmailErr(emailErrorValue);
+           setEmailErr(emailErrorValue);
         } else {
             setEmailErr('');
         }
@@ -134,9 +267,9 @@ export function RegistrationForm() {
             setPasswordErr('');
         }
 
-        if (repeatPasswordErrorValue !== true) {
+        if (password !== repeatPassword) {
             isAllFormValid = false;
-            setRepeatPasswordErr(repeatPasswordErrorValue);
+            setRepeatPasswordErr('Passwords do not match')
         } else {
             setRepeatPasswordErr('');
         }
@@ -160,32 +293,13 @@ export function RegistrationForm() {
                 }
         }
 
-    
-
 
     return (
         <div className={style.main}>
             <div className={style.logo}>
                 <img src={logo} alt="Logo" />
-            </div>
-            {/* ERROR*/}
-            {emailErr || usernameErr || passwordErr || repeatPasswordErr ?
-            <div className={style.error}>
-                    <div>
-                        <i className={style.red}><BiError size="2rem" /> </i>
-                    </div>
-                    <div>
-                        <h4 className={style.redTitle}>There was a problem</h4>
-                        <ul>
-                            {emailErr.length === 0 ? null : <li className={style.errorLi}>{emailErr}</li>}
-                            {usernameErr.length === 0 ? null : <li className={style.errorLi}>{usernameErr}</li>}
-                            {passwordErr.length === 0 ? null : <li className={style.errorLi}>{passwordErr}</li>}
-                            {repeatPasswordErr.length === 0 ? null : <li className={style.errorLi}>{repeatPasswordErr}</li>}
-                        </ul>
-                    </div>
-            </div> : null } 
+            </div>  
     <div className={style.form}>
-          
           <span className={style.tittle}>
               <h1>Create account</h1>
           </span>
@@ -193,22 +307,22 @@ export function RegistrationForm() {
               <div className={style.formRow}>
                   <label className={style.label} htmlFor="">Your name</label>
                   <input value={username} onChange={handleUsernameChange} className={style.input} type="text" placeholder="First and last name" />
+                  {usernameErr.length === 0 ? null : <p className={style.error}>{usernameErr}</p>}
               </div>
               <div className={style.formRow}>
                   <label className={style.label} htmlFor="">Email</label>
-                  <input value={email} onChange={handleEmailChange} className={style.input} type="email" placeholder="" />                  
+                  <input value={email} onChange={handleEmailChange} className={style.input} type="email" placeholder="" />
+                  {emailErr.length === 0 ? null : <p className={style.error}>{emailErr}</p>}                
               </div>
               <div className={style.formRow}>
                   <label className={style.label} htmlFor="">Password</label>
                   <input value={password} onChange={handlePasswordChange} className={style.input} type="password" placeholder="at least 8 charachters" />
-                  <div className={style.minPassword}>
-                      <i className={style.blue}><TiInfoLarge size="1.5rem" /> </i>
-                      <p>Passwords must be at least 8 characters.</p>
-                  </div>
+                  {passwordErr.length === 0 ? null : <p className={style.error}>{passwordErr}</p>}
               </div>
               <div className={style.formRow}>
                   <label className={style.label} htmlFor="">Re-enter password</label>
                   <input value={repeatPassword} onChange={handleRepeatPasswordChange} className={style.input} type="password" placeholder=" " />
+                  {repeatPasswordErr.length === 0 ? null : <p className={style.error}>{repeatPasswordErr}</p>}
               </div>
               <div className={style.formRow}>
                   <button className={`${style.button} ${style.textButton}`}  type="submit">Create your IMDb account</button>
