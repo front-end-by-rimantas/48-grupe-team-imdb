@@ -42,7 +42,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
+  margin-bottom: 20px;
+  border-bottom: 1px solid #cbcbcb;
 }
 
 .box {
@@ -84,7 +85,6 @@
 .card {
   padding: 15px 10px;
   width: 23%;
-  border: 1px solid #cbcbcb;
 }
 
 .cardList {

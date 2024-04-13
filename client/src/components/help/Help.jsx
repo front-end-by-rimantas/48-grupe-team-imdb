@@ -1,25 +1,7 @@
-import { useEffect, useState } from "react";
 import style from "./Help.module.css";
-import { FaCircleInfo } from "react-icons/fa6";
+import { HelpCard } from "./card/helpCard";
 
 export function Help() {
-  const [info, setInfo] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:4840/help", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setInfo(data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
   return (
     <div>
       <section className={style.container}>
@@ -66,23 +48,7 @@ export function Help() {
         </div>
       </section>
       <section className={`${style.containerThree} ${style.containerSize}`}>
-        <div className={style.cardContainer}>
-          {info.map((data) => {
-            return (
-              <div key={data.category} className={style.card}>
-                <FaCircleInfo size="2rem" />
-                <p className={style.textThree}>{data.category}</p>
-                <ul className={style.list}>
-                  {data.items.map((value, index) => (
-                    <li className={style.cardList} key={index}>
-                      {value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
+        <HelpCard />
       </section>
       <section className={style.containerFour}>
         <div className={style.endText}>

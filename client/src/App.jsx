@@ -8,7 +8,7 @@ import { PageTopTen } from "./pages/top-ten-page/PageTopTen";
 import { PageRegistration } from "./pages/registration-page/PageRegistration";
 import { MovieItemInner } from "./components/movie-list/MovieItemInner";
 import { PageMovieList } from "./pages/movie-page/PageMovieList";
-import { PageHelp } from "./pages/footer/PageHelp";
+import { PageHelp } from "./pages/help/PageHelp";
 
 
 function App() {

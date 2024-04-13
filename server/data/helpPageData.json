@@ -1,6 +1,7 @@
 [
   {
     "category": "General Information",
+    "icon": "circleInfo",
     "items": [
       "What is IMDb?",
       "Why should I register on IMDb?",
@@ -14,6 +15,7 @@
   },
   {
     "category": "Track Movies & TV",
+    "icon": "film",
     "items": [
       "Lists FAQ",
       "Check-ins FAQ",
@@ -27,6 +29,7 @@
   },
   {
     "category": "Discover & Watch",
+    "icon": "eye",
     "items": [
       "How can I watch a movie or TV show?",
       "How can I watch IMDb original videos?",
@@ -40,6 +43,7 @@
   },
   {
     "category": "Featured Content",
+    "icon": "star",
     "items": [
       "Why doesn't a title with the average user vote of 9.4 appear in your top 250 Movies or TV list?",
       "Ratings FAQ",
@@ -49,6 +53,7 @@
   },
   {
     "category": "Common Issues",
+    "icon": "tool",
     "items": [
       "Why is IMDb displaying differently on my browser?",
       "IMDb login/registration issues",
@@ -62,6 +67,7 @@
   },
   {
     "category": "Special Events",
+    "icon": "calendar",
     "items": [
       "Where can I find awards coverage?",
       "Where do I find festival coverage?"
@@ -69,6 +75,7 @@
   },
   {
     "category": "Mobile Web & Apps",
+    "icon": "phone",
     "items": [
       "Android App FAQ",
       "iOS App FAQ",
@@ -80,6 +87,7 @@
   },
   {
     "category": "New Features & Updates",
+    "icon": "medal",
     "items": [
       "Interests",
       "Advanced Search Redesign",

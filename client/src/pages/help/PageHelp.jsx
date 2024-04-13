@@ -1,4 +1,4 @@
-import { Help } from '../../components/footer/footer-links/Help';
+import { Help } from '../../components/help/Help';
 
 export function PageHelp () {
     return (
