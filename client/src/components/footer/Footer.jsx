@@ -49,7 +49,7 @@ export function Footer() {
             </div>
             <div className={style.presentationContainer}>
               <div className={style.presentationList}>
-                <Link className={style.presentation}>
+                <Link to="/help" className={style.presentation}>
                   Help
                   <FaExternalLinkAlt
                     size="0.9rem"
