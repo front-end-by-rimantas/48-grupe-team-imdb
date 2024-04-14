@@ -217,7 +217,7 @@
     "awards": "1 Oscar",
     "gross": "$1.518 billion",
     "url": "https://www.youtube.com/embed/eOrNdBpGMv8",
-    "path": "./src/assets/images/theavengers.jpg",
+    "path": "theavengers.jpg",
     "description": "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop \nthe mischievous Loki and his alien army from enslaving humanity.",
     "href": "theavengers"
 },

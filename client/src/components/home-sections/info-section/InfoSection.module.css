@@ -50,8 +50,8 @@
   }
   
   .movieList {
-    column-count: 2; /* Display items in two columns */
-    column-gap: 20px; /* Add gap between columns */
+    column-count: 2; 
+    column-gap: 20px; 
 }
 
 .movieList li {
@@ -75,6 +75,7 @@
     font-size: 16px;
     color: rgb(181, 181, 173);
     width: 100%;
+    text-align: left;
   }
 
   .movieNumber {
