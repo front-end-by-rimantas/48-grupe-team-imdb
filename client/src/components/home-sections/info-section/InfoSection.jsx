@@ -18,7 +18,7 @@ export function InfoSection() {
                 });
             
                 const sortedMovies = formattedMovies.sort((a, b) => b.gross - a.gross);
-                const topMovies = sortedMovies.slice(0, 15);
+                const topMovies = sortedMovies.slice(0, 10);
                 setMovies(topMovies);
                 setLoading(false);
             })

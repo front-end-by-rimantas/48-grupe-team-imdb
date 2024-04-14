@@ -30,6 +30,11 @@ export function CardsSection() {
         movieListRef.current.scrollLeft += 250;
     };
 
+    const handleWatchTrailerClick = (url) => {
+        const trailerUrl = url + '?autoplay=1'; 
+        window.open(trailerUrl, '_blank'); 
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -51,7 +56,7 @@ export function CardsSection() {
                             <div className={style.movieInfo}>
                                 <div className={style.movieRating}><span>&#9733;</span>{movie.rating}</div>
                                 <div className={style.movieName}>{movie.name}</div>
-                                <button className={style.trailerButton}>Watch Trailer</button>
+                                <button className={style.trailerButton} onClick={() => handleWatchTrailerClick(movie.url)}>Watch Trailer</button>
                             </div>
                         </li>
                     ))}
@@ -61,4 +66,3 @@ export function CardsSection() {
         </section>
     );
 }
-

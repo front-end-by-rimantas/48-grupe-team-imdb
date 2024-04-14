@@ -50,14 +50,13 @@
   }
   
   .movieList {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;
-  }
-  
-  .movieList li {
+    column-count: 2; /* Display items in two columns */
+    column-gap: 20px; /* Add gap between columns */
+}
+
+.movieList li {
     margin-top: 10px;
-  }
+}
   
   .rank {
     font-weight: bold;
