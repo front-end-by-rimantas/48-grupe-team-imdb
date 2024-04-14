@@ -55,18 +55,18 @@ export function SearchBar() {
   };
 
   return (
-    <div className={style.formList}>
-      <div className={style.searchForm}>
+    <div className={style.serchPage}>
+      <div className={style.searchForma}>
         <input
           placeholder="Search IMdb."
           type="text"
-          className={style.search}
+          className={style.searchInput}
           value={searchText}
           onChange={handleFilter}  //zaminyty na {handleChange}
         />
-        <div className={style.searchIcon}>
+        <div className={style.searchIconele}>
           <button
-            className={style.btnSearch}
+            className={style.buttonSearch}
             type="submit"
             onClick={handleFormSubmit}>
           {filteredData.length === 0 ? (
@@ -78,10 +78,10 @@ export function SearchBar() {
         </button>
       </div>
       {filteredData.length != 0 && (
-        <div className={style.dataResult}>
+        <div className={style.searchResult}>
           {filteredData.map((value, key) => {
             return (
-              <a className={`${style.dataItem}${style.tag}`} href={`/${value.href}`} key={key} target="_blank">
+              <a className={style.searchItem} href={`/${value.href}`} key={key} target="_blank">
                 {/* <a className={style.dataItem} href={value.href} key={key} target="_blank"></a> */}
                   <img className={style.imgItemSearch} src={value.path} alt="" />
                   <div className={style.searchSection}>
