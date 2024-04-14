@@ -1,9 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
 import style from './SignIn.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { charObj } from '../data/data';
-
 
 export function SignIn() {
     const [email, setEmail] = useState('');
@@ -12,6 +11,8 @@ export function SignIn() {
     const [password, setPassword] = useState('');
     const [passwordErr, setPasswordErr] = useState('');
     
+    const navigate = useNavigate();
+
     function handleEmailChange(e) {
         setEmail(e.target.value);
     }
@@ -33,7 +34,20 @@ export function SignIn() {
             return 'Too long';
         }
 
-        const parts = text.split('@');
+        let countAtTheRate = 0;
+        let parts = null;
+
+        for (let i = 0; i < text.length; i++) {
+            if (text[i] === '@') {
+                countAtTheRate++
+            }
+        }
+
+        if (countAtTheRate === 1) {
+            parts = text.split('@');
+        } else {
+            return 'The part after the @ should not contain the @ character'
+        }
 
         const recipientName = parts[0];
         const domainNameParts = parts[1].split('.');
@@ -219,7 +233,11 @@ export function SignIn() {
                 }),
             })
                 .then(res => res.json())
-                .then(data => data.result)
+                .then(data => {
+                    if (data.loggedIn === true) {
+                        navigate('/');
+                    }
+                })
                 .catch(e => console.error(e));
             }
         }
@@ -240,7 +258,7 @@ export function SignIn() {
                             {passwordErr.length === 0 ? null : <p className={style.error}>{passwordErr}</p>}
                         </div>
                         <div className={style.formBtn}>
-                            <button className={style.signInBtn} to="/sign-in/login">Sign In for more access</button>
+                            <button className={style.signInBtn} >Sign In for more access</button>
                         </div>
                     </form>
                     <div className={style.or}>or</div>

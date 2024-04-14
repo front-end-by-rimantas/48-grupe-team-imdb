@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import router from './router/index.js';
 import helmet, { crossOriginResourcePolicy } from 'helmet';
+import { isValidEmail, isValidPassword, isValidUsername } from './validation/formsValidation.js';
 
 
 const PORT = 4840;
@@ -31,11 +32,18 @@ const users = [];
 
 app.post('/api/register', (req, res) => {
     const data = req.body;
-    console.log(data)
+    const {name, email, password} = data;
+
+    const nameR = isValidUsername(name);
+    const emailR = isValidEmail(email);
+    const passwordR = isValidPassword(password);
+
     let isUniqueUserEmail = true;
 
     for (const user of users) {
-        if (user.email === req.body.email) {
+        if (user.email === emailR && 
+            user.name === nameR && 
+            user.password === passwordR) {
             isUniqueUserEmail = false;
             break;
         }
@@ -46,23 +54,29 @@ app.post('/api/register', (req, res) => {
         console.log(users);
 
         return res.send(JSON.stringify({
-            message: 'User successfully registered'
+            message: 'User successfully registered',
+            register: true,
         }));
     }
 
     return res.send(JSON.stringify({
-        message: 'User already exists'
+        message: 'User already exists',
+        register: false,
     }));
 });
 
 app.post('/api/login', (req, res) => {
-    console.log('LOGIN:', req.body);
+    const data = req.body;
+    const {email, password} = data;
+
+    const emailL = isValidEmail(email);
+    const passwordL = isValidPassword(password);
 
     let userExists = false;
 
     for (const user of users) {
-        if (user.email === req.body.email &&
-            user.password === req.body.password) {
+        if (user.email === emailL &&
+            user.password === passwordL) {
             userExists = true;
             break;
         }
@@ -80,7 +94,6 @@ app.post('/api/login', (req, res) => {
         loggedIn: false,
     }));
 });
-
 
 
 app.get('*', (req, res) => {

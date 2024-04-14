@@ -77,8 +77,7 @@ export function RegistrationForm() {
     function isValidEmail(text) {
         const emailMinLength = 6;
         const emailMaxLength = 50;
-
-
+       
         if (text.length < emailMinLength) {
             return 'Too short';
         }
@@ -87,7 +86,20 @@ export function RegistrationForm() {
             return 'Too long';
         }
 
-        const parts = text.split('@');
+        let countAtTheRate = 0;
+        let parts = null;
+
+        for (let i = 0; i < text.length; i++) {
+            if (text[i] === '@') {
+                countAtTheRate++
+            }
+        }
+
+        if (countAtTheRate === 1) {
+            parts = text.split('@');
+        } else {
+            return 'The part after the @ should not contain the @ character'
+        }
 
         const recipientName = parts[0];
         const domainNameParts = parts[1].split('.');
@@ -288,7 +300,11 @@ export function RegistrationForm() {
                 }),
             })
                 .then(res => res.json())
-                .then(data => data.result)
+                .then(data => {
+                    if (data.register === true) {
+                        navigate('/');
+                    }
+                })
                 .catch(e => console.error(e));
                 }
         }
