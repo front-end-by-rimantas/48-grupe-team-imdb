@@ -8,7 +8,7 @@ const PORT = 4840
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:4840",
+  origin: "http://localhost:4839",
 };
 const helmetOptions = {
   crossOriginResourcePolicy: false,
