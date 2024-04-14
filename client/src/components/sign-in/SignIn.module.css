@@ -33,7 +33,7 @@
 }
 
 .signInBtn {
-    padding: 0.7rem 4.4rem;
+    padding: 0.8rem 4.4rem;
     text-decoration: none;
     font-weight: 700;
     background-color: #f3cd44;
@@ -48,6 +48,7 @@
 }
 
 .newAccountBtn {
+    padding: 0.7rem 4.4rem;
     background-color: #d3a91e;
 }
 

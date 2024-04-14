@@ -30,7 +30,7 @@ function isValidUsername(text) {
     }
 
     if (invalidSymbols.length > 0) {
-        return `This "${invalidSymbols}" symbol cannot be used`
+        return `This "${invalidSymbols}" symbol cannot be used`;
     }
 
     return text;
@@ -40,6 +40,8 @@ function isValidUsername(text) {
 function isValidEmail(text) {
     const emailMinLength = 6;
     const emailMaxLength = 50;
+    const domainMinLength = 2;
+    const domainMaxLength = 6;
    
     if (text.length < emailMinLength) {
         return 'Too short';
@@ -54,14 +56,14 @@ function isValidEmail(text) {
 
     for (let i = 0; i < text.length; i++) {
         if (text[i] === '@') {
-            countAtTheRate++
+            countAtTheRate++;
         }
     }
 
     if (countAtTheRate === 1) {
         parts = text.split('@');
     } else {
-        return 'The part after the @ should not contain the @ character'
+        return 'The part after the @ should not contain the @ character';
     }
 
     const recipientName = parts[0];
@@ -132,23 +134,23 @@ function isValidEmail(text) {
 
 
     if (recipientName.length !== recipientNameStr.length) {
-        return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`
+        return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`;
     }
 
     if (domainName.length !== domainNameStr.length) {
-        return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place`
+        return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place`;
     }
 
-    if (domain.length < 2) {
-        return `Domain too short: ${domain}`
+    if (domain.length < domainMinLength) {
+        return `Domain too short: ${domain}`;
     }
 
-    if (domain.length > 5) {
-        return `Domain too long: ${domain}`
+    if (domain.length > domainMaxLength) {
+        return `Domain too long: ${domain}`;
     }
 
     if (domainName.length === isIpAddress.length) {
-        return `"${isIpAddress}" Invalid format`
+        return `"${isIpAddress}" Invalid format`;
     }
 
     return text;

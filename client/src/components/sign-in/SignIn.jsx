@@ -1,10 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import style from './SignIn.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { charObj } from '../data/data';
+import { GlobalContext } from '../../context/GlobalContext';
 
 export function SignIn() {
+    const { updateLoginStatus } = useContext(GlobalContext);
+
     const [email, setEmail] = useState('');
     const [emailErr, setEmailErr] = useState('');
 
@@ -24,6 +27,8 @@ export function SignIn() {
     function isValidEmail(text) {
         const emailMinLength = 6;
         const emailMaxLength = 50;
+        const domainMinLength = 2;
+        const domainMaxLength = 6;
 
 
         if (text.length < emailMinLength) {
@@ -39,14 +44,14 @@ export function SignIn() {
 
         for (let i = 0; i < text.length; i++) {
             if (text[i] === '@') {
-                countAtTheRate++
+                countAtTheRate++;
             }
         }
 
         if (countAtTheRate === 1) {
             parts = text.split('@');
         } else {
-            return 'The part after the @ should not contain the @ character'
+            return 'The part after the @ should not contain the @ character';
         }
 
         const recipientName = parts[0];
@@ -117,18 +122,23 @@ export function SignIn() {
 
 
         if (recipientName.length !== recipientNameStr.length) {
-            return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`
+            return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`;
         }
 
         if (domainName.length !== domainNameStr.length) {
-            return `"${invalidDomainCharacters[0]}" Used in the wrong "${domainName}" place`
+            return `"${invalidDomainCharacters[0]}" Used in the wrong "${domainName}" place`;
         }
 
-        if (domain.length < 2) {
-            return `Domain too short: ${domain}`
+        if (domain.length < domainMinLength) {
+            return `Domain too short: ${domain}`;
         }
+
+        if (domain.length > domainMaxLength) {
+            return `Domain too long: ${domain}`;
+        }
+
         if (domainName.length === isIpAddress.length) {
-            return `"${isIpAddress}" Invalid format`
+            return `"${isIpAddress}" Invalid format`;
         }
 
         return true;
@@ -235,6 +245,7 @@ export function SignIn() {
                 .then(res => res.json())
                 .then(data => {
                     if (data.loggedIn === true) {
+                        updateLoginStatus(true);
                         navigate('/');
                     }
                 })

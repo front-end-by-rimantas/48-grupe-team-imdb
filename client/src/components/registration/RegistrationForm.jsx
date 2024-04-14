@@ -6,6 +6,7 @@ import style from './RegistrationForm.module.css';
 import logo from '../../assets/images/logo/imdb_logo.png';
 
 export function RegistrationForm() {
+    const [messageErr, setMessageErr] = useState('')
     
     const [username, setUsername] = useState('');
     const [usernameErr, setUsernameErr] = useState('');
@@ -67,7 +68,7 @@ export function RegistrationForm() {
         }
 
         if (invalidSymbols.length > 0) {
-            return `This "${invalidSymbols}" symbol cannot be used`
+            return `This "${invalidSymbols}" symbol cannot be used`;
         }
 
         return true;
@@ -77,6 +78,8 @@ export function RegistrationForm() {
     function isValidEmail(text) {
         const emailMinLength = 6;
         const emailMaxLength = 50;
+        const domainMinLength = 2;
+        const domainMaxLength = 6;
        
         if (text.length < emailMinLength) {
             return 'Too short';
@@ -98,7 +101,7 @@ export function RegistrationForm() {
         if (countAtTheRate === 1) {
             parts = text.split('@');
         } else {
-            return 'The part after the @ should not contain the @ character'
+            return 'The part after the @ should not contain the @ character';
         }
 
         const recipientName = parts[0];
@@ -169,18 +172,23 @@ export function RegistrationForm() {
 
 
         if (recipientName.length !== recipientNameStr.length) {
-            return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`
+            return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`;
         }
 
         if (domainName.length !== domainNameStr.length) {
-            return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place`
+            return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place`;
         }
 
-        if (domain.length < 2) {
-            return `Domain too short: ${domain}`
+        if (domain.length < domainMinLength) {
+            return `Domain too short: ${domain}`;
         }
+
+        if (domain.length > domainMaxLength) {
+            return `Domain too long: ${domain}`;
+        }
+
         if (domainName.length === isIpAddress.length) {
-            return `"${isIpAddress}" Invalid format`
+            return `"${isIpAddress}" Invalid format`;
         }
 
         return true;
@@ -281,7 +289,7 @@ export function RegistrationForm() {
 
         if (password !== repeatPassword) {
             isAllFormValid = false;
-            setRepeatPasswordErr('Passwords do not match')
+            setRepeatPasswordErr('Passwords do not match');
         } else {
             setRepeatPasswordErr('');
         }
@@ -301,54 +309,55 @@ export function RegistrationForm() {
             })
                 .then(res => res.json())
                 .then(data => {
+                    setMessageErr(data.message);
                     if (data.register === true) {
-                        navigate('/');
+                        navigate('/sign-in');
                     }
                 })
                 .catch(e => console.error(e));
                 }
         }
 
-
     return (
-        <div className={style.main}>
-            <div className={style.logo}>
-                <img src={logo} alt="Logo" />
-            </div>  
-    <div className={style.form}>
-          <span className={style.tittle}>
-              <h1>Create account</h1>
-          </span>
-          <form onSubmit={handleFormSubmit} className={style.context}>
-              <div className={style.formRow}>
-                  <label className={style.label} htmlFor="">Your name</label>
-                  <input value={username} onChange={handleUsernameChange} className={style.input} type="text" placeholder="First and last name" />
-                  {usernameErr.length === 0 ? null : <p className={style.error}>{usernameErr}</p>}
-              </div>
-              <div className={style.formRow}>
-                  <label className={style.label} htmlFor="">Email</label>
-                  <input value={email} onChange={handleEmailChange} className={style.input} type="email" placeholder="" />
-                  {emailErr.length === 0 ? null : <p className={style.error}>{emailErr}</p>}                
-              </div>
-              <div className={style.formRow}>
-                  <label className={style.label} htmlFor="">Password</label>
-                  <input value={password} onChange={handlePasswordChange} className={style.input} type="password" placeholder="at least 8 charachters" />
-                  {passwordErr.length === 0 ? null : <p className={style.error}>{passwordErr}</p>}
-              </div>
-              <div className={style.formRow}>
-                  <label className={style.label} htmlFor="">Re-enter password</label>
-                  <input value={repeatPassword} onChange={handleRepeatPasswordChange} className={style.input} type="password" placeholder=" " />
-                  {repeatPasswordErr.length === 0 ? null : <p className={style.error}>{repeatPasswordErr}</p>}
-              </div>
-              <div className={style.formRow}>
-                  <button className={`${style.button} ${style.textButton}`}  type="submit">Create your IMDb account</button>
-              </div>
-              <div className={style.haveAccount}>
-                  <p>Already have an account?<span className={style.linkSignIn}><Link to={'/sign-in/'}>Sign in</Link></span> </p>
-              </div>
-          </form>
-      </div>
-  </div>
+    <div className={style.main}>
+        <div className={style.logo}>
+            <Link to="/"><img src={logo} alt="Logo"/></Link>
+        </div>  
+        <div className={style.form}>
+        {messageErr.length === 0 ? null : <p className={style.error}>{messageErr}</p>}
+              <span className={style.tittle}>
+                  <h1>Create account</h1>
+              </span>
+              <form onSubmit={handleFormSubmit} className={style.context}>
+                  <div className={style.formRow}>
+                      <label className={style.label} htmlFor="">Your name</label>
+                      <input value={username} onChange={handleUsernameChange} className={style.input} type="text" placeholder="First and last name" />
+                      {usernameErr.length === 0 ? null : <p className={style.error}>{usernameErr}</p>}
+                  </div>
+                  <div className={style.formRow}>
+                      <label className={style.label} htmlFor="">Email</label>
+                      <input value={email} onChange={handleEmailChange} className={style.input} type="email" placeholder="" />
+                      {emailErr.length === 0 ? null : <p className={style.error}>{emailErr}</p>}                
+                  </div>
+                  <div className={style.formRow}>
+                      <label className={style.label} htmlFor="">Password</label>
+                      <input value={password} onChange={handlePasswordChange} className={style.input} type="password" placeholder="at least 8 charachters" />
+                      {passwordErr.length === 0 ? null : <p className={style.error}>{passwordErr}</p>}
+                  </div>
+                  <div className={style.formRow}>
+                      <label className={style.label} htmlFor="">Re-enter password</label>
+                      <input value={repeatPassword} onChange={handleRepeatPasswordChange} className={style.input} type="password" placeholder=" " />
+                      {repeatPasswordErr.length === 0 ? null : <p className={style.error}>{repeatPasswordErr}</p>}
+                  </div>
+                  <div className={style.formRow}>
+                      <button className={`${style.button} ${style.textButton}`}  type="submit">Create your IMDb account</button>
+                  </div>
+                  <div className={style.haveAccount}>
+                      <p>Already have an account?<span className={style.linkSignIn}><Link to={'/sign-in/'}>Sign in</Link></span> </p>
+                  </div>
+              </form>
+          </div>
+    </div>
     );                                                 
 }
     
