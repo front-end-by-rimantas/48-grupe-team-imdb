@@ -1,5 +1,4 @@
-{
-    "movies": [
+[
         {
     "name": "The Shawshank Redemption",
     "year": 1994,
@@ -663,5 +662,4 @@
     "description": "After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while \nsacrificing everything they have to outwit each other.",
     "href": "theprestige"
     }
-  ]
-}
+]

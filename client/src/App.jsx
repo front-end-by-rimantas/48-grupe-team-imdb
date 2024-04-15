@@ -9,28 +9,35 @@ import { PageRegistration } from "./pages/registration-page/PageRegistration";
 import { MovieItemInner } from "./components/movie-list/MovieItemInner";
 import { PageMovieList } from "./pages/movie-page/PageMovieList";
 import { ContextWrapper } from "./context/GlobalContext";
+import { PageHelp } from "./pages/help/PageHelp";
+import { PageTerms } from "./pages/terms/PageTerms";
+import { SortedMovieList } from "./components/movie-list/SortedMovieList";
+
 
 
 function App() {
   return (
-    <ContextWrapper>
-      <BrowserRouter>
-        <Routes>
-          <Route Component={BasicLayout}>
-            <Route index path="/" element={<PageHome/>}/>
-            <Route path="/list/:id" element={<MovieItemInner/>}/>
-            <Route path="/list" element={<PageMovieList/>}/>
-            <Route path="/search" element={<></>}/>
-            <Route path="/sign-in" element={<PageSignIn/>}/>
-            <Route path="/sign-in/login" element={<></>}/>
-            <Route path="/sign-in/registration" element={<PageRegistration/>}/>
-            <Route path="/about" element={<PageAbout/>}/>
-            <Route path="/top-ten" element={<PageTopTen/>}/>
-            <Route path="*" element={<PageNotFound/>}/>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </ContextWrapper>
+  <ContextWrapper>
+    <BrowserRouter>
+      <Routes>
+        <Route Component={BasicLayout}>
+          <Route index path="/" element={<PageHome/>}/>
+          <Route path="/movies/get/:href" element={<MovieItemInner/>}/>
+          <Route path="/movies/get" element={<PageMovieList/>}/>
+          <Route path="/movies/sorted" element={<SortedMovieList/>}/>
+          <Route path="/search" element={<></>}/>
+          <Route path="/sign-in" element={<PageSignIn/>}/>
+          <Route path="/sign-in/login" element={<></>}/>
+          <Route path="/sign-in/registration" element={<PageRegistration/>}/>
+          <Route path="/about" element={<PageAbout/>}/>
+          <Route path="/top-ten" element={<PageTopTen/>}/>
+          <Route path="/help" element={<PageHelp/>}/>
+          <Route path="/terms" element={<PageTerms/>}/>
+          <Route path="*" element={<PageNotFound/>}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </ContextWrapper>
   )
 }
 

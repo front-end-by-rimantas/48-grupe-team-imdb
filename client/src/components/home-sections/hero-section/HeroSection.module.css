@@ -1,6 +1,6 @@
 
 .heroSection {
-    position: relative;
+    /* position: relative; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,7 +16,7 @@
 
 .movieName {
     width: 300px;
-    word-break: break-all;
+    word-break: break-word;
     font-size: 24px;
     font-weight: bold;
     margin-right: 20px;

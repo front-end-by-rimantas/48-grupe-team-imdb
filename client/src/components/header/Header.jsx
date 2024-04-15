@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import style from './Header.module.css';
+import { SearchBar } from '../search/SearchBar'
 import { LogoImdb } from '../logo/LogoImdb';
 import { useState } from 'react';
 import { IoIosSearch } from "react-icons/io"
@@ -26,6 +27,7 @@ const [wrongSearchText, setWrongText] = useState('');
         console.log({searchText});
     }
 
+
     function handleSignOut() {
         updateLoginStatus(false)
     }
@@ -37,11 +39,15 @@ const [wrongSearchText, setWrongText] = useState('');
     <header className={style.header}>
             <Link to="/"><LogoImdb/></Link>
             <div className={style.formList}> 
+            <SearchBar />
+            
+
                <form className={style.searchForm}onSubmit={handleFormSubmit}>
                   <input value={searchText} onChange={handleSearchSectionChange} className={style.search}  type="text" placeholder='Search IMdb' />
                   <button className={style.btnSearch} type='submit' onClick={handleFormSubmit} ><IoIosSearch /></button>
                </form>
                {wrongSearchText===''?  null : <p className={style.error}>{wrongSearchText}</p>}
+
             </div>
             <nav>
                 {loginStatus ? signOutButton : signInButton}

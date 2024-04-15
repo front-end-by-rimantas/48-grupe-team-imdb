@@ -1,0 +1,102 @@
+[
+  {
+    "category": "General Information",
+    "icon": "circleInfo",
+    "items": [
+      "What is IMDb?",
+      "Why should I register on IMDb?",
+      "Site preferences",
+      "Manage Your Email Subscriptions and Watchlist Notifications",
+      "IMDb Site Index",
+      "Why do I need to enable my cookies on IMDb?",
+      "How can I access or delete personal information IMDb stores about me?",
+      "How do I update my email address?"
+    ]
+  },
+  {
+    "category": "Track Movies & TV",
+    "icon": "film",
+    "items": [
+      "Lists FAQ",
+      "Check-ins FAQ",
+      "Watchlist FAQ",
+      "How do I submit my rating on IMDb?",
+      "Ratings FAQ",
+      "How can I see all my ratings?",
+      "How do I share my review?",
+      "How do I sort my ratings by the title type?"
+    ]
+  },
+  {
+    "category": "Discover & Watch",
+    "icon": "eye",
+    "items": [
+      "How can I watch a movie or TV show?",
+      "How can I watch IMDb original videos?",
+      "IMDb What to Watch App",
+      "Movies That Changed My Life (An IMDb Podcast)",
+      "That Scene with Dan Patrick (An IMDb Podcast)",
+      "Videos FAQ",
+      "Why is there an ad shown before every trailer?",
+      "What to Watch FAQ"
+    ]
+  },
+  {
+    "category": "Featured Content",
+    "icon": "star",
+    "items": [
+      "Why doesn't a title with the average user vote of 9.4 appear in your top 250 Movies or TV list?",
+      "Ratings FAQ",
+      "Polls FAQ",
+      "How can I send a suggestion for a future IMDb Daily Poll?"
+    ]
+  },
+  {
+    "category": "Common Issues",
+    "icon": "tool",
+    "items": [
+      "Why is IMDb displaying differently on my browser?",
+      "IMDb login/registration issues",
+      "I never received my registration email. How do I login?",
+      "When I login it says there was a problem. How do I login?",
+      "My watchlist, ratings, and settings are gone. What happened?",
+      "Why do I get an error message when I try to update my email?",
+      "I don't have access to my email, how can I recover my account?",
+      "I used a third party linked account to sign up and no longer have access to the account. How do I access my IMDb account?"
+    ]
+  },
+  {
+    "category": "Special Events",
+    "icon": "calendar",
+    "items": [
+      "Where can I find awards coverage?",
+      "Where do I find festival coverage?"
+    ]
+  },
+  {
+    "category": "Mobile Web & Apps",
+    "icon": "phone",
+    "items": [
+      "Android App FAQ",
+      "iOS App FAQ",
+      "IMDb App Notifications",
+      "Mobile Site FAQ",
+      "How do I reset my password on the mobile site?",
+      "IMDb App General Troubleshooting"
+    ]
+  },
+  {
+    "category": "New Features & Updates",
+    "icon": "medal",
+    "items": [
+      "Interests",
+      "Advanced Search Redesign",
+      "Chart Pages Redesign",
+      "List Pages Redesign",
+      "Top Questions powered by Alexa",
+      "iOS Search-Browse Page Redesign",
+      "Watchlist now available on IMDb What to Watch App",
+      "IMDb Name Page Redesign"
+    ]
+  }
+]

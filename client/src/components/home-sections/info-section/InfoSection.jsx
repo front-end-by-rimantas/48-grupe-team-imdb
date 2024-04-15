@@ -1,130 +1,72 @@
-import style from './InfoSection.module.css'
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import style from './InfoSection.module.css';
+import axios from 'axios';
 
 export function InfoSection() {
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        
+        axios.get('http://localhost:4840/movies/get')
+            .then(response => {
+                const formattedMovies = response.data.movies.map(movie => {
+                    const gross = parseFloat(movie.gross.replace(/\D/g, ''));
+                    return { ...movie, gross };
+                });
+            
+                const sortedMovies = formattedMovies.sort((a, b) => b.gross - a.gross);
+                const topMovies = sortedMovies.slice(0, 10);
+                setMovies(topMovies);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching movie data:', error);
+                setError('Error fetching movie data. Please try again later.');
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
     return (
-    <section className={style.infoSection}>
-        <div className={style.topBar}>
-            <div className={style.line}></div> 
-            <h2>Top Box Office (US)</h2>
-            <div className={style.arrowButton}>{'>'}</div>
-      </div>
-      <p>Weekend of March 29-31</p>
-        <ol className={style.movieList}>
-          <li>
-            <Link to="/:id" className={style.itemUrl}>
-            <div className={style.movieInfo}>
-                <div className={`${style.rank} ${style.movieNumber}`}>
-                    <span>1</span>
-                    <div className={style.verticalLine}></div>
-                </div>
-                <div className={style.namePrice}>
-                    <span className={style.movieTitle}>Godzilla x Kong: The New Empire</span>
-                    <span className={style.revenue}>$80M</span>
-                </div>
+        <section className={style.infoSection}>
+            <div className={style.topBar}>
+                <div className={style.line}></div> 
+                <h2>Top Box Office (US)</h2>
+                <Link to={`/movies/sorted`} className={style.itemUrl}>
+                <div className={style.arrowButton}>{'>'}</div>
+                </Link>
             </div>
-            </Link>
-          </li>
-          <li>
-          <Link to="/:id" className={style.itemUrl}>
-            <div className={style.movieInfo}>
-                <div className={`${style.rank} ${style.movieNumber}`}>
-                    <span>2</span>
-                    <div className={style.verticalLine}></div>
-                </div>
-                <div className={style.namePrice}>
-                    <span className={style.movieTitle}>Matrix</span>
-                    <span className={style.revenue}>$580M</span>
-                </div>
-            </div>
-            </Link>
-          </li>
-          <li>
-          <Link to="/:id" className={style.itemUrl}>
-            <div className={style.movieInfo}>
-                <div className={`${style.rank} ${style.movieNumber}`}>
-                    <span>3</span>
-                    <div className={style.verticalLine}></div>
-                </div>
-                <div className={style.namePrice}>
-                    <span className={style.movieTitle}>Kong Kong</span>
-                    <span className={style.revenue}>$800M</span>
-                </div>
-            </div>
-            </Link>
-          </li>
-          <li>
-          <Link to="/:id" className={style.itemUrl}>
-            <div className={style.movieInfo}>
-                <div className={`${style.rank} ${style.movieNumber}`}>
-                    <span>4</span>
-                    <div className={style.verticalLine}></div>
-                </div>
-                <div className={style.namePrice}>
-                    <span className={style.movieTitle}>Spider</span>
-                    <span className={style.revenue}>$500M</span>
-                </div>
-            </div>
-            </Link>
-          </li>
-          <li>
-          <Link to="/:id" className={style.itemUrl}>
-            <div className={style.movieInfo}>
-                <div className={`${style.rank} ${style.movieNumber}`}>
-                    <span>5</span>
-                    <div className={style.verticalLine}></div>
-                </div>
-                <div className={style.namePrice}>
-                    <span className={style.movieTitle}>Traktoriukas</span>
-                    <span className={style.revenue}>$0M</span>
-                </div>
-            </div>
-            </Link>
-          </li>
-          <li>
-          <Link to="/:id" className={style.itemUrl}>
-            <div className={style.movieInfo}>
-                <div className={`${style.rank} ${style.movieNumber}`}>
-                    <span>6</span>
-                    <div className={style.verticalLine}></div>
-                </div>
-                <div className={style.namePrice}>
-                    <span className={style.movieTitle}>BOOOM</span>
-                    <span className={style.revenue}>$5000M</span>
-                </div>
-            </div>
-            </Link>
-          </li>
-          <li>
-          <Link to="/:id" className={style.itemUrl}>
-            <div className={style.movieInfo}>
-                <div className={`${style.rank} ${style.movieNumber}`}>
-                    <span>7</span>
-                    <div className={style.verticalLine}></div>
-                </div>
-                <div className={style.namePrice}>
-                    <span className={style.movieTitle}>WOW</span>
-                    <span className={style.revenue}>$80M</span>
-                </div>
-            </div>
-            </Link>
-          </li>
-          <li>
-          <Link to="/:id" className={style.itemUrl}>
-            <div className={style.movieInfo}>
-                <div className={`${style.rank} ${style.movieNumber}`}>
-                    <span>8</span>
-                    <div className={style.verticalLine}></div>
-                </div>
-                <div className={style.namePrice}>
-                    <span className={style.movieTitle}>Finished</span>
-                    <span className={style.revenue}>$8M</span>
-                </div>
-            </div>
-            </Link>
-          </li>
-        </ol>
-    </section>
+            <p>Weekend of March 29-31</p>
+            <ol className={style.movieList}>
+                {movies.map((movie, index) => (
+                    <li key={index}>
+                        <Link to={`/movies/get/${movie.href}`} className={style.itemUrl}>
+                            <div className={style.movieInfo}>
+                                <div className={`${style.rank} ${style.movieNumber}`}>
+                                    <span>{index + 1}</span>
+                                    <div className={style.verticalLine}></div>
+                                </div>
+                                <div className={style.namePrice}>
+                                    <span className={style.movieTitle}>{movie.name}</span>
+                                    <span className={style.revenue}>{`$${movie.gross}M`}</span>
+                                </div>
+                            </div>
+                        </Link>
+                    </li>
+                ))}
+            </ol>
+        </section>
     );
-  }
-  
+}
+
+
