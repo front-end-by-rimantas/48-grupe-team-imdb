@@ -16,7 +16,7 @@
     padding: 0 1rem;
   
 }
-.searchIconele {
+.searchIcon {
     height: 1rem;
     width: 1rem;
     background-color: white;
@@ -40,13 +40,14 @@
     flex-direction: column;
     margin-top: 5px;
     width: 41.76rem;
-    height: 30rem;
+    max-height: 32rem;
     background-color: #3d3d3d;
     overflow: hidden;
     overflow-y: auto;
     position: absolute;
     top: 1.55rem;
     padding: 0.5rem;
+    z-index: 50;
   }
   .searchResult::-webkit-scrollbar {
     display: none;
