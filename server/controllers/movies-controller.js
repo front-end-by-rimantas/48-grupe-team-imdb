@@ -1,15 +1,15 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 export const getMovies = (req, res) => {
-  const filePath = path.join(process.cwd(), 'data/data.json'); 
-  fs.readFile(filePath, 'utf8', (error, data) => {
+  const filePath = path.join(process.cwd(), "data/data.json");
+  fs.readFile(filePath, "utf8", (error, data) => {
     if (error) {
       console.log(error);
       res.status(500).json({ error: "Error reading movie data" });
       return;
     }
-    
+
     const movies = JSON.parse(data);
     res.json(movies);
   });
@@ -17,23 +17,38 @@ export const getMovies = (req, res) => {
 
 export const getMovie = (req, res) => {
   const { href } = req.params;
-  const filePath = path.join(process.cwd(), 'data/data.json'); 
-  fs.readFile(filePath, 'utf8', (error, data) => {
+  const filePath = path.join(process.cwd(), "data/data.json");
+  fs.readFile(filePath, "utf8", (error, data) => {
     if (error) {
       console.log(error);
       res.status(500).json({ error: "Error reading config file" });
       return;
     }
+
     const movies = JSON.parse(data);
-    const movie = movies.movies.find(movie => movie.href === href);
+    const movie = movies.movies.find((movie) => movie.href === href);
     if (movie) {
       res.json(movie);
     } else {
       res.status(404).json({ error: "Movie not found" });
     }
-  })
+  });
 };
-// export const addMovie = (req, res) => {}  
-// export const updateMovie = (req, res) => {}
-// export const deleteMovie = (req, res) => {}
 
+export const searchMovies = (req, res) => {
+  const searchName = req.query.name;
+
+  fs.readFile("../server/data/data-copy.json", "utf8", (error, data) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).json({ error: "Error reading movie data" });
+    }
+
+    const movies = JSON.parse(data);
+
+    const filterMovies = movies.filter((movie) =>
+      movie.name.toLowerCase().includes(searchName.toLowerCase())
+    );
+    res.json(filterMovies);
+  });
+};
