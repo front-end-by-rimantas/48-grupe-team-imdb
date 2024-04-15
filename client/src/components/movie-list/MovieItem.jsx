@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import style from './MovieItems.module.css';
 import { Link } from 'react-router-dom';
 
@@ -22,3 +23,5 @@ export function MovieItem({ data }) {
         </div>
     );
 }
+
+

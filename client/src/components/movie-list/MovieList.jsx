@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import { MovieItem } from './MovieItem.jsx';
 import style from './MovieItems.module.css';
