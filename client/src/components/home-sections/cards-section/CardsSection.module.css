@@ -58,6 +58,8 @@
 }
 
 .movieInfo {
+    display: flex;
+    flex-direction: column;
     text-align: left;
     margin-left: 10px;
 }
@@ -79,6 +81,7 @@
     font-size: 18px;
     font-weight: bold;
     margin-top: 5px;
+    align-self: flex-start; 
 }
 
 .trailerButton {
