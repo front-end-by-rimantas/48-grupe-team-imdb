@@ -42,7 +42,9 @@ export function InfoSection() {
             <div className={style.topBar}>
                 <div className={style.line}></div> 
                 <h2>Top Box Office (US)</h2>
+                <Link to={`/movies/sorted`} className={style.itemUrl}>
                 <div className={style.arrowButton}>{'>'}</div>
+                </Link>
             </div>
             <p>Weekend of March 29-31</p>
             <ol className={style.movieList}>
