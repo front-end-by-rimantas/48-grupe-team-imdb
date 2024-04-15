@@ -23,11 +23,11 @@ export function CardsSection() {
     }, []);
 
     const handlePrevClick = () => {
-        movieListRef.current.scrollLeft -= 250;
+        movieListRef.current.scrollLeft -= 900;
     };
 
     const handleNextClick = () => {
-        movieListRef.current.scrollLeft += 250;
+        movieListRef.current.scrollLeft += 900;
     };
 
     const handleWatchTrailerClick = (url) => {
