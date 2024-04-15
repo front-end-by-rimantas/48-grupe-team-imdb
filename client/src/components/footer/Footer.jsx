@@ -67,7 +67,7 @@ export function Footer() {
                     style={{ marginLeft: "5px" }}
                   />
                 </Link>
-                <Link className={style.presentation}>
+                <Link to='/terms' className={style.presentation}>
                   Condition of use
                   <FaExternalLinkAlt
                     size="0.9rem"

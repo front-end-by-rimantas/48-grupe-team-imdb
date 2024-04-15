@@ -50,15 +50,13 @@
   }
   
   .movieList {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    grid-template-rows: repeat(3, 1fr); 
-    gap: 20px; 
-  }
-  
-  .movieList li {
+    column-count: 2; 
+    column-gap: 20px; 
+}
+
+.movieList li {
     margin-top: 10px;
-  }
+}
   
   .rank {
     font-weight: bold;
@@ -77,6 +75,7 @@
     font-size: 16px;
     color: rgb(181, 181, 173);
     width: 100%;
+    text-align: left;
   }
 
   .movieNumber {
