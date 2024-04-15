@@ -82,6 +82,7 @@
     font-weight: bold;
     margin-top: 5px;
     align-self: flex-start; 
+    word-break: break-word;
 }
 
 .trailerButton {
