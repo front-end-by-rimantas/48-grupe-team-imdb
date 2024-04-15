@@ -10,6 +10,7 @@ import { MovieItemInner } from "./components/movie-list/MovieItemInner";
 import { PageMovieList } from "./pages/movie-page/PageMovieList";
 import { PageHelp } from "./pages/help/PageHelp";
 import { PageTerms } from "./pages/terms/PageTerms";
+import { SortedMovieList } from "./components/movie-list/SortedMovieList";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route index path="/" element={<PageHome/>}/>
           <Route path="/movies/get/:href" element={<MovieItemInner/>}/>
           <Route path="/movies/get" element={<PageMovieList/>}/>
+          <Route path="/movies/sorted" element={<SortedMovieList/>}/>
           <Route path="/search" element={<></>}/>
           <Route path="/sign-in" element={<PageSignIn/>}/>
           <Route path="/sign-in/login" element={<></>}/>

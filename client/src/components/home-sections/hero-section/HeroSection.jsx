@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import style from './HeroSection.module.css';
 import axios from 'axios';
@@ -17,12 +18,18 @@ export function HeroSection() {
             });
     }, []);
 
+    const getRandomIndex = () => {
+        return Math.floor(Math.random() * movies.length);
+    };
+
     const handleNextButtonClick = () => {
-        setCurrentMovieIndex(prevIndex => (prevIndex + 1) % movies.length);
+        const randomIndex = getRandomIndex();
+        setCurrentMovieIndex(randomIndex);
     };
 
     const handlePrevButtonClick = () => {
-        setCurrentMovieIndex(prevIndex => (prevIndex - 1 + movies.length) % movies.length);
+        const randomIndex = getRandomIndex();
+        setCurrentMovieIndex(randomIndex);
     };
 
     const currentMovie = movies.length > 0 ? movies[currentMovieIndex] : null;
