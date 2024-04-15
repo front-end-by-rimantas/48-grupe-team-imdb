@@ -4,11 +4,11 @@ import { alphabetLtObj } from "../data/validationData.js";
 function isValidUsername(text) {
 
     if (text.length < 1) {
-        return 'Too short';
+        return 'The name is too short.';
     }
 
     if (text.length > 20) {
-        return 'Too long';
+        return 'The name is too long.';
     }
 
     const valid = true;
@@ -44,11 +44,11 @@ function isValidEmail(text) {
     const domainMaxLength = 6;
    
     if (text.length < emailMinLength) {
-        return 'Too short';
+        return 'Email is too short.';
     }
 
     if (text.length > emailMaxLength) {
-        return 'Too long';
+        return 'Email is too long.';
     }
 
     let countAtTheRate = 0;
@@ -142,15 +142,15 @@ function isValidEmail(text) {
     }
 
     if (domain.length < domainMinLength) {
-        return `Domain too short: ${domain}`;
+        return `Domain too short: ${domain}.`;
     }
 
     if (domain.length > domainMaxLength) {
-        return `Domain too long: ${domain}`;
+        return `Domain too long: ${domain}.`;
     }
 
     if (domainName.length === isIpAddress.length) {
-        return `"${isIpAddress}" Invalid format`;
+        return `"${isIpAddress}" Invalid format.`;
     }
 
     return text;
@@ -163,11 +163,11 @@ function isValidPassword(text) {
     const valid = true;
 
     if (text.length < passwordMinLength) {
-        return 'Too short';
+        return 'Passwords must be at least 8 characters.';
     }
 
     if (text.length > passwordMaxLength) {
-        return 'Too long';
+        return 'Password is too long.';
     }
 
     let countLowerCaseLetters = 0;

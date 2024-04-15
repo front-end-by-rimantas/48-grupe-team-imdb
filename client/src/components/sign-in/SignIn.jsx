@@ -4,9 +4,12 @@ import style from './SignIn.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { charObj } from '../data/data';
 import { GlobalContext } from '../../context/GlobalContext';
+import { TbUfo } from "react-icons/tb";
 
 export function SignIn() {
     const { updateLoginStatus } = useContext(GlobalContext);
+
+    const [messageErr, setMessageErr] = useState('');
 
     const [email, setEmail] = useState('');
     const [emailErr, setEmailErr] = useState('');
@@ -15,6 +18,19 @@ export function SignIn() {
     const [passwordErr, setPasswordErr] = useState('');
     
     const navigate = useNavigate();
+    const mErr = messageErr.length === 0;
+    const eError = emailErr.length === 0;
+    const pError = passwordErr.length === 0;
+
+
+    const errorScreen = (
+            <div className={style.errorMessage}>
+                <p className={style.paragraphErr}><span className={style.ufo}><TbUfo /></span>Houston, we have a problem.</p>
+                {mErr ? null : <li className={style.error}>{messageErr}</li>}
+                {eError ? null : <li className={style.error}>{emailErr}</li>}
+                {pError ? null : <li className={style.error}>{passwordErr}</li>}
+            </div>
+    );
 
     function handleEmailChange(e) {
         setEmail(e.target.value);
@@ -30,13 +46,12 @@ export function SignIn() {
         const domainMinLength = 2;
         const domainMaxLength = 6;
 
-
         if (text.length < emailMinLength) {
-            return 'Too short';
+            return 'Email is too short.';
         }
 
         if (text.length > emailMaxLength) {
-            return 'Too long';
+            return 'Email is too long.';
         }
 
         let countAtTheRate = 0;
@@ -51,7 +66,7 @@ export function SignIn() {
         if (countAtTheRate === 1) {
             parts = text.split('@');
         } else {
-            return 'The part after the @ should not contain the @ character';
+            return 'The part after the @ should not contain the @ character.';
         }
 
         const recipientName = parts[0];
@@ -151,11 +166,11 @@ export function SignIn() {
         const valid = true;
 
         if (text.length < passwordMinLength) {
-            return 'Too short';
+            return 'Passwords must be at least 8 characters.';
         }
 
         if (text.length > passwordMaxLength) {
-            return 'Too long';
+            return 'Password is too long.';
         }
 
         let countLowerCaseLetters = 0;
@@ -244,6 +259,7 @@ export function SignIn() {
             })
                 .then(res => res.json())
                 .then(data => {
+                    setMessageErr(data.message);
                     if (data.loggedIn === true) {
                         updateLoginStatus(true);
                         navigate('/');
@@ -256,17 +272,16 @@ export function SignIn() {
     return (
         <div className={style.container}>
                 <div className={style.leftColumn}>
+                {mErr  && eError && pError ? null : errorScreen}
                     <form onSubmit={handleFormSubmit} className={style.form}>
                         <h1 className={style.title}>Sign in</h1>
                         <div className={style.formRow}>
                             <label className={style.label} htmlFor="">Email</label>
-                            <input value={email} onChange={handleEmailChange} className={style.input} type="email"/>
-                            {emailErr.length === 0 ? null : <p className={style.error}>{emailErr}</p>}
+                            <input value={email} onChange={handleEmailChange} className={eError ? style.input : style.inputErr} type="email"/>
                         </div>
                         <div className={style.formRow}>
                             <label className={style.label} htmlFor="">Password</label>
-                            <input value={password} onChange={handlePasswordChange} className={style.input} type="password"/>
-                            {passwordErr.length === 0 ? null : <p className={style.error}>{passwordErr}</p>}
+                            <input value={password} onChange={handlePasswordChange} className={pError ? style.input : style.inputErr} type="password"/>
                         </div>
                         <div className={style.formBtn}>
                             <button className={style.signInBtn} >Sign In for more access</button>

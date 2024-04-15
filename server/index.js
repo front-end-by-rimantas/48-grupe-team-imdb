@@ -41,8 +41,8 @@ app.post('/api/register', (req, res) => {
     let isUniqueUserEmail = true;
 
     for (const user of users) {
-        if (user.email === emailR && 
-            user.name === nameR && 
+        if (user.email === emailR || 
+            user.name === nameR || 
             user.password === passwordR) {
             isUniqueUserEmail = false;
             break;

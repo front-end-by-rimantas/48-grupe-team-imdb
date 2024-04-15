@@ -4,9 +4,10 @@ import { charObj } from '../data/data';
 import { alphabetLtObj } from '../data/data';
 import style from './RegistrationForm.module.css';
 import logo from '../../assets/images/logo/imdb_logo.png';
+import { TbUfo } from "react-icons/tb";
 
 export function RegistrationForm() {
-    const [messageErr, setMessageErr] = useState('')
+    const [messageErr, setMessageErr] = useState('');
     
     const [username, setUsername] = useState('');
     const [usernameErr, setUsernameErr] = useState('');
@@ -22,6 +23,22 @@ export function RegistrationForm() {
     
 
     const navigate = useNavigate();
+    const mErr = messageErr.length === 0;
+    const uError = usernameErr.length === 0;
+    const eError = emailErr.length === 0;
+    const pError = passwordErr.length === 0;
+    const rpError = repeatPasswordErr.length === 0;
+
+    const errorScreen = (
+            <div className={style.errorMessage}>
+                <p className={style.paragraphErr}><span className={style.ufo}><TbUfo /></span>Houston, we have a problem.</p>
+                {mErr ? null : <li className={style.error}>{messageErr}</li>}
+                {uError ? null : <li className={style.error}>{usernameErr}</li>}
+                {eError ? null : <li className={style.error}>{emailErr}</li>}
+                {pError ? null : <li className={style.error}>{passwordErr}</li>}
+                {rpError ? null : <li className={style.error}>{repeatPasswordErr}</li>}
+            </div>
+    );
 
     function handleUsernameChange(e) {
         setUsername(e.target.value);
@@ -42,11 +59,11 @@ export function RegistrationForm() {
     function isValidUsername(text) {
 
         if (text.length < 1) {
-            return 'Too short';
+            return 'The name is too short.';
         }
 
         if (text.length > 20) {
-            return 'Too long';
+            return 'The name is too long.';
         }
 
         const valid = true;
@@ -68,7 +85,7 @@ export function RegistrationForm() {
         }
 
         if (invalidSymbols.length > 0) {
-            return `This "${invalidSymbols}" symbol cannot be used`;
+            return `This "${invalidSymbols}" symbol cannot be used.`;
         }
 
         return true;
@@ -82,11 +99,11 @@ export function RegistrationForm() {
         const domainMaxLength = 6;
        
         if (text.length < emailMinLength) {
-            return 'Too short';
+            return 'Email is too short.';
         }
 
         if (text.length > emailMaxLength) {
-            return 'Too long';
+            return 'Email is too long.';
         }
 
         let countAtTheRate = 0;
@@ -94,14 +111,14 @@ export function RegistrationForm() {
 
         for (let i = 0; i < text.length; i++) {
             if (text[i] === '@') {
-                countAtTheRate++
+                countAtTheRate++;
             }
         }
 
         if (countAtTheRate === 1) {
             parts = text.split('@');
         } else {
-            return 'The part after the @ should not contain the @ character';
+            return 'The part after the @ should not contain the @ character.';
         }
 
         const recipientName = parts[0];
@@ -172,23 +189,23 @@ export function RegistrationForm() {
 
 
         if (recipientName.length !== recipientNameStr.length) {
-            return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`;
+            return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place.`;
         }
 
         if (domainName.length !== domainNameStr.length) {
-            return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place`;
+            return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place.`;
         }
 
         if (domain.length < domainMinLength) {
-            return `Domain too short: ${domain}`;
+            return `Domain too short: ${domain}.`;
         }
 
         if (domain.length > domainMaxLength) {
-            return `Domain too long: ${domain}`;
+            return `Domain too long: ${domain}.`;
         }
 
         if (domainName.length === isIpAddress.length) {
-            return `"${isIpAddress}" Invalid format`;
+            return `"${isIpAddress}" Invalid format.`;
         }
 
         return true;
@@ -201,11 +218,11 @@ export function RegistrationForm() {
         const valid = true;
 
         if (text.length < passwordMinLength) {
-            return 'Too short';
+            return 'Passwords must be at least 8 characters.';
         }
 
         if (text.length > passwordMaxLength) {
-            return 'Too long';
+            return 'Password is too long.';
         }
 
         let countLowerCaseLetters = 0;
@@ -322,32 +339,28 @@ export function RegistrationForm() {
     <div className={style.main}>
         <div className={style.logo}>
             <Link to="/"><img src={logo} alt="Logo"/></Link>
-        </div>  
+        </div>
+        {mErr && uError && eError && pError && rpError ? null : errorScreen}
         <div className={style.form}>
-        {messageErr.length === 0 ? null : <p className={style.error}>{messageErr}</p>}
               <span className={style.tittle}>
-                  <h1>Create account</h1>
+                  <h1 className={style.tittle}>Create account</h1>
               </span>
               <form onSubmit={handleFormSubmit} className={style.context}>
                   <div className={style.formRow}>
                       <label className={style.label} htmlFor="">Your name</label>
-                      <input value={username} onChange={handleUsernameChange} className={style.input} type="text" placeholder="First and last name" />
-                      {usernameErr.length === 0 ? null : <p className={style.error}>{usernameErr}</p>}
+                      <input value={username} onChange={handleUsernameChange} className={uError ? style.input : style.inputErr} type="text" placeholder="First and last name" />
                   </div>
                   <div className={style.formRow}>
                       <label className={style.label} htmlFor="">Email</label>
-                      <input value={email} onChange={handleEmailChange} className={style.input} type="email" placeholder="" />
-                      {emailErr.length === 0 ? null : <p className={style.error}>{emailErr}</p>}                
+                      <input value={email} onChange={handleEmailChange} className={eError ? style.input : style.inputErr} type="email" placeholder="" />              
                   </div>
                   <div className={style.formRow}>
                       <label className={style.label} htmlFor="">Password</label>
-                      <input value={password} onChange={handlePasswordChange} className={style.input} type="password" placeholder="at least 8 charachters" />
-                      {passwordErr.length === 0 ? null : <p className={style.error}>{passwordErr}</p>}
+                      <input value={password} onChange={handlePasswordChange} className={pError ? style.input : style.inputErr} type="password" placeholder="at least 8 charachters" />
                   </div>
                   <div className={style.formRow}>
                       <label className={style.label} htmlFor="">Re-enter password</label>
-                      <input value={repeatPassword} onChange={handleRepeatPasswordChange} className={style.input} type="password" placeholder=" " />
-                      {repeatPasswordErr.length === 0 ? null : <p className={style.error}>{repeatPasswordErr}</p>}
+                      <input value={repeatPassword} onChange={handleRepeatPasswordChange} className={rpError ? style.input : style.inputErr} type="password" placeholder=" " />
                   </div>
                   <div className={style.formRow}>
                       <button className={`${style.button} ${style.textButton}`}  type="submit">Create your IMDb account</button>
