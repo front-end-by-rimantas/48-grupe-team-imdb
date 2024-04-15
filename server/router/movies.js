@@ -1,7 +1,7 @@
 import express from "express";
-import {
-  getMovies
-} from "../controllers/movies-controller.js";
+import fs from "fs";
+import { getMovies} from "../controllers/movies-controller.js";
+import { getMovie} from "../controllers/movies-controller.js";
 
 const router = express.Router();
 
@@ -9,5 +9,7 @@ const router = express.Router();
 router.get("/get", getMovies);
 // router.patch('/update', updateMovies)
 // router.delete('/delete', deleteMovies)
+router.get("/get/:href", getMovie);
+
 
 export default router;
