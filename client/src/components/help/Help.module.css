@@ -57,7 +57,7 @@
 }
 
 .textTwo {
-  color: #0F1111;
+  color: #0f1111;
   padding: 20px;
 }
 
@@ -72,24 +72,30 @@
 .containerThree {
   display: flex;
   text-align: center;
- 
+}
+
+.borderContainer {
+  border-top: 1px solid #f3f3f3;
 }
 
 .containerFour {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid #F3F3F3;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1154px;
+  width: 100%;
+  font-family: "Amazon Ember", Arial, sans-serif;
 }
 
-.endText{
-  margin: 0 390px;
-      padding-top: 30px;
-    padding-bottom: 50px;
+.endText {
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
+
 .endTitle {
-    font-size: 28px;
-    line-height: 36px;
-        padding-bottom: 5px;
+  font-size: 28px;
+  line-height: 36px;
+  padding-bottom: 5px;
 }
 
 .endSecondTitle {
@@ -99,15 +105,16 @@
 }
 
 .allList {
-    padding-bottom: 40px;
+  padding-bottom: 40px;
 }
+
 .endList {
-    font-size: 16px;
-    line-height: 24px; 
-    margin-left: 20px;
-    text-align: left;
-    color: #0F1111;
-    list-style: disc;
+  font-size: 16px;
+  line-height: 24px;
+  margin-left: 20px;
+  text-align: left;
+  color: #0f1111;
+  list-style: disc;
 }
 
 .endList::marker {
@@ -120,7 +127,7 @@
 }
 
 .endParagraph {
-  color: #0F1111;
-      font-size: 16px;
-    line-height: 24px;
+  color: #0f1111;
+  font-size: 16px;
+  line-height: 24px;
 }

@@ -50,27 +50,29 @@ export function Help() {
       <section className={`${style.containerThree} ${style.containerSize}`}>
         <HelpCard />
       </section>
-      <section className={style.containerFour}>
-        <div className={style.endText}>
-          <h2 className={style.endTitle}>IMDb general support</h2>
-          <h5 className={style.endSecondTitle}>
-            Our support community is always around to help
-          </h5>
-          <ul className={style.allList}>
-            <li className={style.endList}>
-              Need more help? Visit the official IMDb support community powered
-              by Sprinklr.
-            </li>
-            <li className={style.endList}>
-              How do I report illegal content or ads?
-            </li>
-            <li className={style.endList}>
-              Issues logging in to IMDb? Get login help.
-            </li>
-          </ul>
-          <p className={style.endParagraph}>
-            Industry professional, not a member yet? Join IMDbPro.
-          </p>
+      <section className={style.borderContainer}>
+        <div className={style.containerFour}>
+          <div className={style.endText}>
+            <h2 className={style.endTitle}>IMDb general support</h2>
+            <h5 className={style.endSecondTitle}>
+              Our support community is always around to help
+            </h5>
+            <ul className={style.allList}>
+              <li className={style.endList}>
+                Need more help? Visit the official IMDb support community
+                powered by Sprinklr.
+              </li>
+              <li className={style.endList}>
+                How do I report illegal content or ads?
+              </li>
+              <li className={style.endList}>
+                Issues logging in to IMDb? Get login help.
+              </li>
+            </ul>
+            <p className={style.endParagraph}>
+              Industry professional, not a member yet? Join IMDbPro.
+            </p>
+          </div>
         </div>
       </section>
     </div>
