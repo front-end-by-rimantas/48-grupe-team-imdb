@@ -2,32 +2,12 @@ import { Link } from 'react-router-dom';
 import style from './Header.module.css';
 import { SearchBar } from '../search/SearchBar'
 import { LogoImdb } from '../logo/LogoImdb';
-import { useState } from 'react';
-import { IoIosSearch } from "react-icons/io"
 import { GlobalContext } from '../../context/GlobalContext';
 import { useContext } from 'react';
 
-
 export function Header() {
 const {loginStatus, updateLoginStatus} = useContext(GlobalContext);
-const [searchText, setSearchText] = useState('');
-const [wrongSearchText, setWrongText] = useState('');
-
-    function handleSearchSectionChange (e){
-        setSearchText(e.target.value)
-    }
-
-    function handleFormSubmit (e){
-        e.preventDefault()
-
-        if(!searchText.length){
-           setWrongText('Enter at least one character')
-        } else {setWrongText('')}
-
-        console.log({searchText});
-    }
-
-
+   
     function handleSignOut() {
         updateLoginStatus(false)
     }
