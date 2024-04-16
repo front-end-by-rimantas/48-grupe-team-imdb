@@ -12,6 +12,8 @@ import { ContextWrapper } from "./context/GlobalContext";
 import { PageHelp } from "./pages/help/PageHelp";
 import { PageTerms } from "./pages/terms/PageTerms";
 import { SortedMovieList } from "./components/movie-list/SortedMovieList";
+import { PageJobs } from "./pages/jobs/PageJobs";
+
 
 
 
@@ -33,6 +35,7 @@ function App() {
           <Route path="/top-ten" element={<PageTopTen/>}/>
           <Route path="/help" element={<PageHelp/>}/>
           <Route path="/terms" element={<PageTerms/>}/>
+          <Route path="/jobs" element={<PageJobs/>}/>
           <Route path="*" element={<PageNotFound/>}/>
         </Route>
       </Routes>
