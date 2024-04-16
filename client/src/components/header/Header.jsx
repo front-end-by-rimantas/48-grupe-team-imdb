@@ -39,15 +39,7 @@ const [wrongSearchText, setWrongText] = useState('');
     <header className={style.header}>
             <Link to="/"><LogoImdb/></Link>
             <div className={style.formList}> 
-            <SearchBar />
-            
-
-               <form className={style.searchForm}onSubmit={handleFormSubmit}>
-                  <input value={searchText} onChange={handleSearchSectionChange} className={style.search}  type="text" placeholder='Search IMdb' />
-                  <button className={style.btnSearch} type='submit' onClick={handleFormSubmit} ><IoIosSearch /></button>
-               </form>
-               {wrongSearchText===''?  null : <p className={style.error}>{wrongSearchText}</p>}
-
+                <SearchBar />
             </div>
             <nav>
                 {loginStatus ? signOutButton : signInButton}
