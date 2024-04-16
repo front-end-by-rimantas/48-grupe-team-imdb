@@ -8,13 +8,16 @@ import { PageTopTen } from "./pages/top-ten-page/PageTopTen";
 import { PageRegistration } from "./pages/registration-page/PageRegistration";
 import { MovieItemInner } from "./components/movie-list/MovieItemInner";
 import { PageMovieList } from "./pages/movie-page/PageMovieList";
+import { ContextWrapper } from "./context/GlobalContext";
 import { PageHelp } from "./pages/help/PageHelp";
 import { PageTerms } from "./pages/terms/PageTerms";
 import { SortedMovieList } from "./components/movie-list/SortedMovieList";
 
 
+
 function App() {
   return (
+  <ContextWrapper>
     <BrowserRouter>
       <Routes>
         <Route Component={BasicLayout}>
@@ -34,6 +37,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+  </ContextWrapper>
   )
 }
 
