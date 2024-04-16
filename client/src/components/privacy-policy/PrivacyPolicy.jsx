@@ -220,7 +220,7 @@ export function PrivacyPolicy() {
             information about you might be shared with third parties, and you
             will have an opportunity to choose not to share the information.
           </p>
-          <p>
+          <p className={style.termsP}>
             <strong>What About Advertising?</strong>
           </p>
           <ul className={style.listContainer}>
@@ -350,7 +350,7 @@ export function PrivacyPolicy() {
             13. If you are under 13 you may not sign up for IMDb Services or
             submit information about yourself to IMDb.
           </p>
-          <p>
+          <p className={style.termsP}>
             <strong>Additional State-Specific Privacy Disclosures</strong>
           </p>
           <p className={style.termsP}>
@@ -389,7 +389,7 @@ export function PrivacyPolicy() {
               <strong>
                 Our legitimate business interests and the interests of our
                 customers
-              </strong>{" "}
+              </strong>
               when we improve IMDb Services, when we publish and display credit
               and other factual biographical information on IMDb Services, for
               certain advertising services, and when we detect and prevent fraud
@@ -414,6 +414,9 @@ export function PrivacyPolicy() {
             </li>
           </ul>
         </div>
+        <a href="#" className={style.top}>
+          Back to Top &#8593;
+        </a>
       </div>
     </div>
   );
