@@ -1,0 +1,145 @@
+.container {
+    display: flex;
+    justify-content: center;
+    min-height: auto;
+    padding-top: 1rem;
+    gap: 0 1rem;
+    
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    height: auto;
+    border-right: 1px solid black;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem 0;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: column;   
+}
+
+.formBtn {
+    margin-top: 1rem;
+}
+
+.signInBtn {
+    padding: 0.9rem 5.8rem;
+    text-decoration: none;
+    font-weight: 700;
+    background-color: #f3cd44;
+    border-radius: 6px;
+    border: transparent;
+    color: black;
+    cursor: pointer;
+}
+
+.signInBtn:hover {
+    background-color: #ddb938;
+}
+
+.newAccountBtn {
+    padding: 0.7rem 5.8rem;
+    background-color: #d3a91e;
+}
+
+.newAccountBtn:hover {
+    background-color: #b9951d;
+}
+
+.input {
+    width: 21rem;
+    height: 2.5rem;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid black;
+    padding-left: 1rem;
+}
+
+.input:focus {
+    box-shadow: 0px 0px 8px #3d93a3;
+    border: 0.07rem solid #3d93a3; 
+  }
+
+.inputErr {
+    width: 21rem;
+    height: 2.5rem;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid red;
+    padding-left: 1rem;
+}
+
+.title {
+    margin-top: 1rem;
+}
+
+.title,
+.pTitle,
+.paragraph {
+    color: black;
+}
+
+.pTitle {
+    font-weight: 700;
+    margin-top: 2rem; 
+}
+
+.paragraph {
+    font-size: 1rem;
+}
+
+.paragraphErr {
+    height: 2.4em;
+    font-size: 1.25rem;
+    line-height: 2.2em;
+    margin: 3px 15px;
+    font-size: 1rem;
+    color: red;
+}
+
+.ufo {
+    color: red;
+    font-size: 2rem;
+    margin-right: 0.5rem;   
+}
+
+.or {
+    width: 21rem;
+    display: flex;
+    align-items: center;
+    color: black;
+    line-height: 1rem;
+    margin: 2rem 0;
+}
+.or:before,
+.or:after {
+    content: "";
+    flex-grow: 1;
+    background: black;
+    height: 1px;
+    margin: 0 0.5rem;
+}
+
+
+.error {
+    color: black;
+    padding: 0.2rem 2.4rem;
+    font-size: 0.9rem;
+
+}
+
+.errorMessage {
+    width: 21rem;
+    border: 1px solid red;
+    border-radius: 10px;
+}

@@ -1,0 +1,69 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background-color: black;
+    border-bottom: 0.1rem solid #ccc;
+    box-shadow: 0 0.2rem 0.4rem #0003;
+}
+.header nav {
+    display: flex;
+    gap: 1rem;
+}
+.navLink {
+    list-style: none;
+    color: #fff;
+    background-color: #000000;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 2px;
+    border: none;
+    padding: 0.5em;
+    line-height: 1em;
+    height: 1.8em;
+    cursor: pointer;
+}
+.navLink:hover {
+    background-color: rgb(51, 50, 50);
+}
+.formList {
+    display: flex;
+    flex-direction: column;
+}
+.searchForm {
+    display: flex;
+    flex-direction: row;
+}
+.search {
+    height: 1.8rem;
+    width: 40rem;
+    background-color: #fff;
+    border-radius: 2px 0 0 2px;
+    border: transparent; 
+    border-bottom: 1px solid #ffa500;
+    border-top: 1px solid #ffa500;
+    border-left: 1px solid #ffa500;
+    outline: none;
+    padding: 0 1rem;
+}
+.btnSearch {
+    line-height: 1rem;
+    font-size: 1rem;
+    background-color: #fff;
+    border: transparent; 
+    border-bottom: 1px solid #ffa500;
+    border-top: 1px solid #ffa500;
+    border-right: 1px solid #ffa500;
+    padding: 0.3rem 0.3rem 0.4rem 0.4rem;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+}
+.error {
+    color: #ff0000;
+    font-size: 1rem;
+}
+
+
+
