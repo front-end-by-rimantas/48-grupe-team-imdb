@@ -13,7 +13,7 @@ const {loginStatus, updateLoginStatus} = useContext(GlobalContext);
     }
 
     const signInButton = (<Link className={style.navLink} to="/sign-in">Sign In</Link>);
-    const signOutButton = (<button onClick={handleSignOut} className={style.navBtn}>Sign out</button>);
+    const signOutButton = (<button onClick={handleSignOut} className={style.navLink}>Sign out</button>);
 
    return  (
     <header className={style.header}>
@@ -22,9 +22,9 @@ const {loginStatus, updateLoginStatus} = useContext(GlobalContext);
                 <SearchBar />
             </div>
             <nav>
-                {loginStatus ? signOutButton : signInButton}
                 <Link className={style.navLink} to="/about">About</Link>
                 <Link className={style.navLink} to="/top-ten">Top 10</Link>
+                {loginStatus ? signOutButton : signInButton}
             </nav>
     </header>
     )

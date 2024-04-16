@@ -1,9 +1,7 @@
 
 import style from './About.module.css';
 import { Link } from 'react-router-dom';
-import  randomImg  from '../../assets/images/titanic.jpg';
-import  randomImg1  from '../../assets/images/thepianist.jpg';
-import  randomImg2  from '../../assets/images/se7en.jpg';
+
 
 
 
@@ -22,9 +20,9 @@ export function About() {
                 </nav>
            </section>
            <section style={style.right}>
-           <img className={style.imgThird} src= { randomImg2}></img>
-            <img className={style.imgFirst} src={ randomImg }></img>
-            <img className={style.imgSecond} src={ randomImg1}></img>
+               <img className={style.imgThird} src= {`http://localhost:4840/assets/images/titanic.jpg`}></img>
+               <img className={style.imgFirst} src={`http://localhost:4840/assets/images/thepianist.jpg`}></img>
+               <img className={style.imgSecond} src={`http://localhost:4840/assets/images/se7en.jpg`}></img>
            </section>
     </div>
     )
