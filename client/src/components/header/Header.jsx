@@ -33,7 +33,7 @@ const [wrongSearchText, setWrongText] = useState('');
     }
 
     const signInButton = (<Link className={style.navLink} to="/sign-in">Sign In</Link>);
-    const signOutButton = (<button onClick={handleSignOut} className={style.navBtn}>Sign out</button>);
+    const signOutButton = (<button onClick={handleSignOut} className={style.navLink}>Sign out</button>);
 
    return  (
     <header className={style.header}>
