@@ -50,9 +50,9 @@ const [wrongSearchText, setWrongText] = useState('');
 
             </div>
             <nav>
-                {loginStatus ? signOutButton : signInButton}
                 <Link className={style.navLink} to="/about">About</Link>
                 <Link className={style.navLink} to="/top-ten">Top 10</Link>
+                {loginStatus ? signOutButton : signInButton}
             </nav>
     </header>
     )

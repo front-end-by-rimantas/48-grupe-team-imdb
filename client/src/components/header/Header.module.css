@@ -7,7 +7,6 @@
     border-bottom: 0.1rem solid #ccc;
     box-shadow: 0 0.2rem 0.4rem #0003;
 }
-
 .header nav {
     display: flex;
     gap: 1rem;
@@ -18,15 +17,20 @@
     text-decoration: none;
     font-size: 1rem;
     text-align: center;
+    border-radius: 2px;
+    padding: 0.5em;
+    line-height: 1em;
+    height: 1.8em;
 }
-
+.navLink:hover {
+    background-color: rgb(51, 50, 50);
+}
 .navBtn {
     background-color: transparent;
     border: none;
     cursor: pointer;
     color: #fff;
 }
-
 .formList {
     display: flex;
     flex-direction: column;
