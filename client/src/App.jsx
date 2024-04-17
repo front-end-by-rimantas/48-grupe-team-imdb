@@ -12,6 +12,7 @@ import { ContextWrapper } from "./context/GlobalContext";
 import { PageHelp } from "./pages/help/PageHelp";
 import { PageTerms } from "./pages/terms/PageTerms";
 import { SortedMovieList } from "./components/movie-list/SortedMovieList";
+import { PagePrivacyPolicy } from "./pages/privacy-policy/PagePrivacyPolicy";
 import { NotFoundLayout } from "./layout/NotFoundLayout";
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/about" element={<PageAbout/>}/>
           <Route path="/top-ten" element={<PageTopTen/>}/>
           <Route path="/help" element={<PageHelp/>}/>
+          <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
           <Route path="/terms" element={<PageTerms/>}/>
         </Route>
 
@@ -42,7 +44,7 @@ function App() {
       </Routes>
     </BrowserRouter>
   </ContextWrapper>
-  )
+  );
 }
 
 export default App;
