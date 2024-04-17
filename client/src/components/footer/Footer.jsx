@@ -60,7 +60,7 @@ export function Footer() {
                 <Link
                   className={`${style.presentation} ${style.presentationListContact}`}
                 >
-                  Contact
+                  Jobs
                   <FaExternalLinkAlt
                     size="0.9rem"
                     className="linkAlt"
