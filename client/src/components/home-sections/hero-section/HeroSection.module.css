@@ -1,6 +1,6 @@
 
 .heroSection {
-    /* position: relative; */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,6 +16,7 @@
 
 .movieName {
     width: 300px;
+    height: 100px;
     word-break: break-word;
     font-size: 24px;
     font-weight: bold;
@@ -29,14 +30,13 @@
 }
 
 .poster img {
-
     width: 300px; 
-    height: auto;
+    height: 450px;
 }
 
 .arrowButtons {
     position: absolute; 
-    top: 40%; 
+    top: 38%; 
     display: flex;
     justify-content: space-between;
     width: 100%; 
