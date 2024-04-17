@@ -13,6 +13,8 @@ import { PageHelp } from "./pages/help/PageHelp";
 import { PageTerms } from "./pages/terms/PageTerms";
 import { SortedMovieList } from "./components/movie-list/SortedMovieList";
 import { PagePrivacyPolicy } from "./pages/privacy-policy/PagePrivacyPolicy";
+import { NotFoundLayout } from "./layout/NotFoundLayout";
+
 
 
 function App() {
@@ -21,20 +23,23 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route Component={BasicLayout}>
-          <Route index path="/" element={<PageHome />} />
-          <Route path="/movies/get/:href" element={<MovieItemInner />} />
-          <Route path="/movies/get" element={<PageMovieList />} />
-          <Route path="/movies/sorted" element={<SortedMovieList />} />
-          <Route path="/search" element={<></>} />
-          <Route path="/sign-in" element={<PageSignIn />} />
-          <Route path="/sign-in/login" element={<></>} />
-          <Route path="/sign-in/registration" element={<PageRegistration />} />
-          <Route path="/about" element={<PageAbout />} />
-          <Route path="/top-ten" element={<PageTopTen />} />
-          <Route path="/help" element={<PageHelp />} />
-          <Route path="/terms" element={<PageTerms />} />
+          <Route index path="/" element={<PageHome/>}/>
+          <Route path="/movies/get/:href" element={<MovieItemInner/>}/>
+          <Route path="/movies/get" element={<PageMovieList/>}/>
+          <Route path="/movies/sorted" element={<SortedMovieList/>}/>
+          <Route path="/search" element={<></>}/>
+          <Route path="/sign-in" element={<PageSignIn/>}/>
+          <Route path="/sign-in/login" element={<></>}/>
+          <Route path="/sign-in/registration" element={<PageRegistration/>}/>
+          <Route path="/about" element={<PageAbout/>}/>
+          <Route path="/top-ten" element={<PageTopTen/>}/>
+          <Route path="/help" element={<PageHelp/>}/>
           <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="/terms" element={<PageTerms/>}/>
+        </Route>
+
+        <Route Component={NotFoundLayout}>
+          <Route path="*" element={<PageNotFound/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
