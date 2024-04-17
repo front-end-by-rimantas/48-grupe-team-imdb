@@ -58,7 +58,7 @@ export function InfoSection() {
                                 </div>
                                 <div className={style.namePrice}>
                                     <span className={style.movieTitle}>{movie.name}</span>
-                                    <span className={style.revenue}>{`$${movie.gross}M`}</span>
+                                    <span className={style.revenue}>{`$${movie.gross}`}</span>
                                 </div>
                             </div>
                         </Link>
