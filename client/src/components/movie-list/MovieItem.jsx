@@ -2,6 +2,7 @@
 
 import style from './MovieItems.module.css';
 import { Link } from 'react-router-dom';
+import { MdFavorite } from "react-icons/md";
 
 export function MovieItem({ data }) {
     const { path, name, year, href } = data || {};
@@ -10,14 +11,19 @@ export function MovieItem({ data }) {
             <div className={style.row}>
                 <div className={style.item}>
                     <div className={style.img}>
-                        <img src={`http://localhost:4840/assets/images/${path}`} alt="" width="72px" height="106px" />
+                        <img src={`http://localhost:4840/assets/images/${path}`} alt=""  /> 
                     </div>
                 </div>
-                <div className={style.description}>
-                    <div className={style.title}>
-                        <Link to={`/movies/get/${href}`}>{name}</Link>
+                <div className={style.containerItem}>
+                    <div className={style.favoriteIconList}>
+                            <MdFavorite size="1.5rem">
+                            <button name="favorite"></button>
+                            </MdFavorite>
                     </div>
-                    <div className={style.year}>{year}</div>
+                    <div >
+                        <Link className={style.title} to={`/movies/get/${href}`}>{name}</Link>
+                    </div>
+                    <div className={style.yearItem}>{year}</div>
                 </div>
             </div>
         </div>
