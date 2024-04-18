@@ -6,6 +6,7 @@ import axios from 'axios';
 import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 import style from './MovieItems.module.css';
+import { MdFavorite } from "react-icons/md";
 
 export function MovieItemInner() {
     const { href } = useParams();
@@ -35,14 +36,26 @@ export function MovieItemInner() {
     }
 
     return (
+    <main style={{
+        background: 'linear-gradient(90deg, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)), 20%, rgba(var(--ipt-baseAlt-shade1-rgb, 31,31,31), 0.6), 80%, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)))'
+    }}>
         <div className={`${style.boss} ${style.containerInner}`}>
             <div className={style.heroSection}>
-                <div>
+                <div className={style.nameAndRating}>
                     <h1>{movie?.name}</h1>
-                    <ul className={style.underName}>
-                        <li>{movie?.year}</li>
-                        <li>{movie?.rating}</li>
-                    </ul>
+                    <div className = {style.underName}>
+                        <p>{movie?.year}</p>
+                                <svg width="20" height="20">
+                                    <circle cx="10" cy="10" r="3" fill= "white" />
+                                </svg>
+                        <p>{movie?.ageCenzor}</p>
+                                <svg width="20" height="20">
+                                    <circle cx="10" cy="10" r="3" fill= "white" />
+                                </svg>
+                        <div className={style.favoriteIcon}>
+                            <MdFavorite size="1.5rem"/>
+                        </div>
+                    </div>
                 </div>
                 <div className={style.rating}>
                     <div>
@@ -61,16 +74,16 @@ export function MovieItemInner() {
                     </div>
                 </div>
             </div>
-            <div className={style.containerItem}>
-                <img className={style.imgItem} src={`http://localhost:4840/assets/images/${movie?.path}`} alt="" />
-
-                <iframe className={style.url} src={movie?.url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
+            <div className={style.containerItemInner}>
+                    <img className={style.imgItem} src={`http://localhost:4840/assets/images/${movie?.path}`} alt="" />
+                    <iframe className={style.url} src={movie?.url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
             </div>
-            <div>
+            <div className={style.descriptionMovie}>
                 {movie?.description?.split('\n').map((line, index) => (
                     <div key={index}>{line}</div>
                 ))}
             </div>
         </div>
+    </main>
     );
 }
