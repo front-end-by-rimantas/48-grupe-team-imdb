@@ -136,3 +136,76 @@
 .nextButton:hover:before {
     border-color: yellow;
 }
+
+/* For tablet-sized screens */
+@media only screen and (max-width: 1024px) {
+    .movieCard {
+        width: 150px; 
+        height: 370px;
+        margin: 0 10px; 
+    }
+    
+    .movieImage {
+        width: 150px; 
+        height: 225px;
+    }
+
+    .movieName {
+        font-size: 12px;
+        margin-right: 5px; 
+        margin-top: 0;
+    }
+
+    .movieRating {
+        font-size: 14px;
+    }
+    
+    .trailerButton {
+        width: 50%;
+        margin-left: 25px; 
+    }
+
+    .prevButton {
+        left: 50px;
+    }
+
+    .nextButton {
+        right: 50px;
+    }
+}
+
+/* For mobile-sized screens */
+@media only screen and (max-width: 600px) {
+    .movieCard {
+        width: 120px; 
+        height: 330px;
+        margin: 0 5px;
+    }
+    
+    .movieImage {
+        width: 120px;
+        height: 180px; 
+    }
+
+    .movieName {
+        font-size: 12px;
+        margin-right: 3px; 
+    }
+
+    .movieRating {
+        font-size: 12px;
+    }
+    
+    .trailerButton {
+        width: 40%; 
+        margin-left: 20px; 
+    }
+
+    .prevButton {
+        left: 25px; 
+    }
+
+    .nextButton {
+        right: 25px; 
+    }
+}

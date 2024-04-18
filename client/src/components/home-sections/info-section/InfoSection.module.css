@@ -94,7 +94,6 @@ margin-right: 5px;
 .movieInfo {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .movieDetails {
@@ -116,4 +115,28 @@ margin-right: 5px;
 
 .itemUrl {
     text-decoration: none;
+}
+
+/* For tablet */
+@media only screen and (max-width: 1024px) {
+  .movieList {
+    column-count: 1; 
+  }
+}
+
+/* For mobile */
+@media only screen and (max-width: 600px) {
+  .movieList {
+    column-count: 1; 
+    column-gap: 0;
+  }
+
+  .infoSection {
+    padding: 50px 20px;
+  }
+
+  .rank {
+    width: auto;
+    justify-content: flex-start; 
+  }
 }
