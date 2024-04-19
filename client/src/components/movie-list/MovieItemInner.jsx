@@ -9,7 +9,7 @@ import { MdFavorite } from "react-icons/md";
 import MediaQuery from 'react-responsive';
 import { MovieItemMobile } from './responsive-design/MovieItemMobile';
 import { MovieItemTable } from './responsive-design/MovieItemTable';
-import { MovieItemDesctop } from './responsive-design/MovieItemDesctop';
+
 
 
 export function MovieItemInner() {
@@ -48,17 +48,12 @@ export function MovieItemInner() {
                             matches ? (
                                 <MovieItemMobile movie={movie} />
                                 ):(
-                        <MediaQuery minWidth={641} maxWidth={1280}>
+                        <MediaQuery minWidth={641} maxWidth={1276}>
                             {(matches) =>
                             matches ? (
                                 <MovieItemTable movie={movie} />
                             ):(
-                        <MediaQuery minWidth={1281} maxWidth={1920}>
-                            {(matches) =>
-                            matches ? (
-                                <MovieItemDesctop movie={movie} />
-                                ):(
-                                <div className={`${style.boss} ${style.containerInner}`}>
+                                    <div className={`${style.boss} ${style.containerInner}`}>
                                     <div className={style.heroSection}>
                                         <div className={style.nameAndRating}>
                                             <h1>{movie?.name}</h1>
@@ -78,7 +73,7 @@ export function MovieItemInner() {
                                         </div>
                                         <div className={style.rating}>
                                             <div>
-                                                <p>IMDb RATING</p>
+                                                <p>IMDB RATING</p>
                                                 <div className={style.yellow}>
                                                     <i className={style.yellowStar}><GoStarFill size="1.5rem" /> </i>
                                                     <p>{movie?.rating}/10</p>
@@ -107,8 +102,6 @@ export function MovieItemInner() {
                          </MediaQuery>
                         )}
                 </MediaQuery>
-                )}
-            </MediaQuery>
         </main>
     </>);
 }
