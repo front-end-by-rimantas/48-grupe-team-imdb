@@ -337,8 +337,8 @@ export function RegistrationForm() {
 
     return (
     <div className={style.main}>
-        <div className={style.logo}>
-            <Link to="/"><img src={logo} alt="Logo"/></Link>
+        <div className={style.logoBox}>
+            <Link to="/"><img className={style.registrationLogo} src={logo} alt="Logo"/></Link>
         </div>
         {mErr && uError && eError && pError && rpError ? null : errorScreen}
         <div className={style.form}>

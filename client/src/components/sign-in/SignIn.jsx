@@ -293,7 +293,7 @@ export function SignIn() {
                     </div>
                 </div>
                 <div className={style.rightColumn}>
-                    <h1 className={style.title} >Benefits of your free IMDb account</h1>
+                    <h2 className={style.title} >Benefits of your free IMDb account</h2>
                     <p className={style.pTitle} >Personalized Recommendations</p>
                         <p className={style.paragraph} >Discover shows you'll love.</p>
                     <p className={style.pTitle} >Your Watchlist</p>
