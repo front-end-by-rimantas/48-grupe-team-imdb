@@ -14,6 +14,7 @@ import { PageTerms } from "./pages/terms/PageTerms";
 import { SortedMovieList } from "./components/movie-list/SortedMovieList";
 import { PagePrivacyPolicy } from "./pages/privacy-policy/PagePrivacyPolicy";
 import { NotFoundLayout } from "./layout/NotFoundLayout";
+import { PageFavoriteMovies } from "./pages/favorite-movies-page/PageFavoriteMovies";
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/help" element={<PageHelp/>}/>
           <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
           <Route path="/terms" element={<PageTerms/>}/>
+          <Route path="/favorite-movies" element={<PageFavoriteMovies/>}/>
         </Route>
 
         <Route Component={NotFoundLayout}>
