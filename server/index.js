@@ -109,6 +109,40 @@ app.post('/api/login', (req, res) => {
 });
 
 
+
+const favoriteArr = [];
+
+app.post('/api/favorite', (req, res) => {
+    const { href, favorite } = req.body;
+    console.log(favorite)
+    
+    let isInArr = false;
+
+    for (const favorit of favoriteArr) {
+        console.log(favorit, href)
+        if (favorit === href) {
+            isInArr = true;
+            break
+        }
+    }
+
+    if (!isInArr) {
+        favoriteArr.push(href)
+    }
+    return res.send(JSON.stringify({
+        arr: favoriteArr,
+        statusOffFavorite: favorite,
+        isInArr: false,
+    }));
+    
+    // return res.send(JSON.stringify({
+    //     arr: [],
+    //     statusOffFavorite: favorite,
+    //     isInArr: true,
+    // }));
+});
+
+
 app.get('*', (req, res) => {
     console.log('404');
     return res.send('404 - content not found');
