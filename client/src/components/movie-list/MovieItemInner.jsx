@@ -1,19 +1,28 @@
 /* eslint-disable no-unused-vars */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 import style from './MovieItems.module.css';
 import { MdFavorite } from "react-icons/md";
+import { GlobalContext } from '../../context/GlobalContext';
+
 
 export function MovieItemInner() {
     const { href } = useParams();
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const {favorite, favoriteStatus, updateFavoriteData, updateFavoriteStatus } = useContext(GlobalContext);
+    const [favorit, setFavorite] = useState(false);
 
+    const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
+    const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
+
+    console.log(href, favorite)
+    
     useEffect(() => {
         axios.get(`http://localhost:4840/movies/get/${href}`)
             .then(response => {
@@ -35,6 +44,32 @@ export function MovieItemInner() {
         return <div>{error}</div>;
     }
 
+    
+    function handleFavorite () {
+        setFavorite(!favorit)
+
+        fetch('http://localhost:4840/api/favorite', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    href,
+                    favorit,
+
+                }),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    updateFavoriteData(data.arr),
+                    updateFavoriteStatus(data.statusOffFavorite)
+                    
+                })
+                .catch(e => console.error(e));
+            }
+    
+
     return (
     <main style={{
         background: 'linear-gradient(90deg, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)), 20%, rgba(var(--ipt-baseAlt-shade1-rgb, 31,31,31), 0.6), 80%, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)))'
@@ -52,9 +87,9 @@ export function MovieItemInner() {
                                 <svg width="20" height="20">
                                     <circle cx="10" cy="10" r="3" fill= "white" />
                                 </svg>
-                        <div className={style.favoriteIcon}>
-                            <MdFavorite size="1.5rem"/>
-                        </div>
+                        <button className={style.favoriteBtn}  onClick={handleFavorite} >
+                            {favorite.includes(href)? activeFavoriteBtn : inactiveFavoriteBtn}
+                        </button>
                     </div>
                 </div>
                 <div className={style.rating}>
