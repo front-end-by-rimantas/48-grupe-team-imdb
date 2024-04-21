@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  background-color: #D6D6D1;
+  background-color: #d6d6d1;
 }
 
 .pageContent {
@@ -15,36 +15,12 @@
   box-sizing: border-box;
 }
 
-.content > p {
+.content > .termsP {
   color: #333;
   font-size: 13px;
   line-height: 140%;
-  margin: 0.5em 0;
-}
-
-.title {
-  color: #333333;
-  font-size: 21px;
-  line-height: 110%;
-  margin: 14px 0;
-  font-weight: bold;
-  font-family: inherit;
-}
-
-.style.termsP {
   margin: 0.5em 0 0.75em;
-  line-height: 140%;
-  padding: 0;
-  font-size: 13px;
   font-family: Verdana, Arial, sans-serif;
-}
-
-.yellowHeader {
-  color: #a58500;
-  font-size: 15px;
-  margin: 0.5em 0 0.5em;
-  padding: 0;
-  border-right: none;
 }
 
 .listContainer {
@@ -58,6 +34,7 @@
   list-style: disc;
   text-align: left;
   font-size: 13px;
+  font-family: Verdana, Arial, sans-serif;
 }
 
 .list::marker {
@@ -83,3 +60,5 @@
   border-radius: 100px;
   white-space: nowrap;
 }
+
+

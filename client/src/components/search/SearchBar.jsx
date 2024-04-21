@@ -44,7 +44,7 @@ export function SearchBar() {
     <div className={style.serchPage}>
       <div className={style.searchForma}>
         <input
-          placeholder="Search IMdb."
+          placeholder="Search IMDb."
           type="text"
           className={style.searchInput}
           value={searchText}

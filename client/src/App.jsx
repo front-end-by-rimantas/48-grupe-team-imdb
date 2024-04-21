@@ -13,6 +13,8 @@ import { PageHelp } from "./pages/help/PageHelp";
 import { PageTerms } from "./pages/terms/PageTerms";
 import { SortedMovieList } from "./components/movie-list/SortedMovieList";
 import { PageJobs } from "./pages/jobs/PageJobs";
+import { PagePrivacyPolicy } from "./pages/privacy-policy/PagePrivacyPolicy";
+import { NotFoundLayout } from "./layout/NotFoundLayout";
 
 
 
@@ -34,14 +36,18 @@ function App() {
           <Route path="/about" element={<PageAbout/>}/>
           <Route path="/top-ten" element={<PageTopTen/>}/>
           <Route path="/help" element={<PageHelp/>}/>
+          <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
           <Route path="/terms" element={<PageTerms/>}/>
           <Route path="/jobs" element={<PageJobs/>}/>
+        </Route>
+
+        <Route Component={NotFoundLayout}>
           <Route path="*" element={<PageNotFound/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
   </ContextWrapper>
-  )
+  );
 }
 
 export default App;

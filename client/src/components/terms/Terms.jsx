@@ -214,6 +214,9 @@ export function Terms() {
             </li>
           </ul>
         </div>
+        <a href="#" className={style.top}>
+          Back to Top &#8593;
+        </a>
       </div>
     </div>
   );

@@ -37,6 +37,7 @@ span {
 .linksImg {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap:0.5rem;
 }
 .btn {
@@ -59,28 +60,67 @@ span {
 .btn:hover { 
     background-color:  #caac3e;
 }
-.rigth {
+.rightSection{
     width:40%;
     height: 30rem;
 }
 .imgFirst {
     position: relative;
-    top:50px;
-    right:10px;
+    bottom: 160px;
+    left:190px;
     width: 10rem;
     height: 15rem;
 }
 .imgSecond{
     position:relative;
-    bottom:130px;
+    bottom:330px;
     left:40px;
     width: 12rem;
     height: 17rem;
 }
 .imgThird {
     position:relative;
-    top:30px;
+    top:10px;
     left:20px;
     width: 12rem;
     height: 16rem;
+}
+@media (max-width: 50rem) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content:unset;
+        width: 50rem;
+        margin: 1rem calc(50% - 15rem)
+    }
+    .rightSection {
+        height: 30rem;
+        width:30rem;
+    }
+    .imgSecond{
+        position:relative;
+        bottom:130px;
+        left:120px;
+    }
+    .imgFirst {
+        position: relative;
+       top: 40px;
+       left: 70px;
+    }
+    .imgThird {
+        position:relative;
+        left:100px;
+    }
+
+}
+@media (max-width: 25rem) {
+    .main {
+        width: 60rem;
+        margin: 1rem 1rem;
+    }
+    .rightSection {
+        height: 30rem;
+        width:30rem;
+    }
+
 }
