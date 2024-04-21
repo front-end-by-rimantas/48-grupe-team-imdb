@@ -155,6 +155,28 @@ export function Jobs() {
           </div>
         </div>
       </section>
+      <section className={style.thirdSection}>
+        <div className={style.thirdContainer}>
+            <div className={style.bottomText}>
+              <h2 className={style.bottomH}>Working at IMDb</h2>
+              <p className={style.bottomPara}>
+                Hear from our employees about why they love working at IMDb.
+              </p>
+            </div>
+            <div className={style.video}>
+              <iframe
+                width="553"
+                height="311"
+                src="https://www.youtube.com/embed/MhFxMI_ujVk"
+                title="Join us at IMDb: The world’s most popular &amp; authoritative source for movies, shows, &amp; entertainment"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullscreen
+              ></iframe>
+            </div>
+        </div>
+      </section>
     </div>
   );
 }
