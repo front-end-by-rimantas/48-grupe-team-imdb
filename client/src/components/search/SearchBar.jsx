@@ -2,11 +2,12 @@ import style from "./SearchBar.module.css";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoIosClose } from "react-icons/io";
-
+import { Link } from "react-router-dom";
+ 
 export function SearchBar() {
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [wrongSearchText, setWrongText] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSearchInput = async (event) => {
     setSearchText(event.target.value);
@@ -29,9 +30,9 @@ export function SearchBar() {
     e.preventDefault();
 
     if (!searchText.length) {
-      setWrongText("Enter at least one character");
+      setErrorMessage("Enter at least one character");
     } else {
-      setWrongText("");
+      setErrorMessage("");
     }
   }
 
@@ -67,9 +68,9 @@ export function SearchBar() {
           <div className={style.searchResult}>
             {filteredData.map((value, key) => {
               return (
-                <a
+                <Link
                   className={style.searchItem}
-                  href={`/${value.href}`}
+                  to={`/movies/get/${value.href}`}
                   key={key}
                   target="_blank"
                 >
@@ -83,14 +84,14 @@ export function SearchBar() {
                     <span className={style.nameLink}>{value.name}</span>
                     <span className={style.awardsLink}>{value.awards}</span>
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>
         ) : null}
       </div>
-      {wrongSearchText === "" ? null : (
-        <p className={style.error}>{wrongSearchText}</p>
+      {errorMessage === "" ? null : (
+        <p className={style.error}>{errorMessage}</p>
       )}
     </div>
   );

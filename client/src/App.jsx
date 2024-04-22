@@ -12,9 +12,11 @@ import { ContextWrapper } from "./context/GlobalContext";
 import { PageHelp } from "./pages/help/PageHelp";
 import { PageTerms } from "./pages/terms/PageTerms";
 import { SortedMovieList } from "./components/movie-list/SortedMovieList";
+import { PageJobs } from "./pages/jobs/PageJobs";
 import { PagePrivacyPolicy } from "./pages/privacy-policy/PagePrivacyPolicy";
 import { NotFoundLayout } from "./layout/NotFoundLayout";
 import { PageFavoriteMovies } from "./pages/favorite-movies-page/PageFavoriteMovies";
+
 
 
 
@@ -38,6 +40,7 @@ function App() {
           <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
           <Route path="/terms" element={<PageTerms/>}/>
           <Route path="/favorite-movies" element={<PageFavoriteMovies/>}/>
+          <Route path="/jobs" element={<PageJobs/>}/>
         </Route>
 
         <Route Component={NotFoundLayout}>

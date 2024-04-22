@@ -128,29 +128,12 @@ img{
     height: 22rem;
     margin-left: 2.3rem;
 }
-.btnCategory{
-    display: flex;
-    justify-items: right;
-    flex-direction: row;
-    gap: 1.3rem
-}
-.btn{
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 17px;
-    line-height: 20px;
-    background:transparent;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    border: 1.5px white solid;
-}
 .descriptionMovie{
     color: #d2d0d0;
     font-size: 18px;
     line-height: 24px;
 }
+
 /* MovieList */
 .titleList>h3{
     font-size: 1.3rem;
@@ -172,172 +155,146 @@ img{
 .itemList{
     display: grid;
     grid-template-columns: auto auto auto auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-
-
-
-
-
-
-
-
-
- 
- 
-
-
-
-
- 
-
-
-
-/* 
-
-.titleList h3{
-    font-size: 1.3rem;
-}
-.titleList h1{
-    font-size: 2.4rem;
-    border-right: 3px yellow solid ;
-    border-radius: 5px;
-}
-.itemList{
-    display: grid;
-    grid-template-columns: auto auto auto;
-}
-.imgList{
-    width: 12.5;
-    height: 17.5; 
-}
-.nameAndRating h1{
-    font-size: 2rem;
-    line-height:2.125rem;
-    color:white;
-
-}
-
-.row{
+/*Responsive design MovieItemInner using React-Responsive*/
+/*mobileversion*/
+.bossMobile{
     display: flex;
-    flex-direction: row;
-    gap: 0.4rem;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    gap:1rem;
 }
-.title{
-    font-weight:200;
-    font-size: 1.25rem;
+.heroTitleMobile{
+    font-size: 0.8rem;
+    color:white;
+    margin-top: 2.5rem;
 }
-.year{
-    font-weight:100;
-    font-size: 1rem;
+.underNameMobile{
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
-.heroSection{
+.underNameMobile>p{
+    color: white;
+    font-size: 14px;
+    line-height: 24px;
+}
+.imgAndDescriptionMobile{
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-around;
+    color: #d2d0d0;
+    font-size: 1rem;
+    line-height: 24px;
+    padding: 1rem;
+    gap:2rem;
+    width: 23rem;
 }
-.rating{
+.urlMobile{
+    display: flex;
+    justify-content: space-between;
+    width: 23rem;
+    height: 16rem;
+}
+.imgItemMobile{
+    width: 8rem;
+    height: 12rem;
+}
+.ratingMobile{
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
     gap:2rem;
 }
-.rating p{
-    font-size: 1rem;
+.ratingMobile p{
+    font-size: 0.8rem;
     color: #ffffff;
     font-weight: bolder;
 }
-.yellowStar{
-    color: #ffff05;
+/*tableversion*/
+.bossTable{
+    padding: 1.5rem 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    gap:1rem;
 }
-.yellow, .blue{
+.heroSectionTable{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 2rem;
-    gap: 10px;
+    padding-top: 3rem;
 }
-.blue>.blueRate{
-    color:  #5799ef;
-    font-size: 1.25rem;
-    line-height: 1.5rem;
-}
-.yellow:hover, .blue:hover{
-    background-color: #626261;
-    border-radius: 5px;
-    line-height: 1.5rem;
-    height: 2rem;
-
-}
-.blueStar{
-    color:  #5799ef;
-    font-weight: 900;
-}
-.underName{
-   display: flex;
-   justify-content: start;
-}
-.url{
-    width: 40rem;
-    height: 22rem;
-    margin-left: 2.3rem;
-}
-.imgItem{
-   width: 15rem;
-   height: 22rem;
-   position: relative;
-}
-.favoriteIcon{
-    position: absolute;
-    cursor: pointer;
-}
-.favoriteIcon:hover{
-    color: rgb(222, 191, 15);
-
-}
-.containerInner{
+.containerTable{
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-}   
-.containerItem{
-    display: flex;
-    justify-content:flex-start;
     flex-direction: row;
+    justify-content:center;
+    padding: 0 2rem;
+    gap: 1rem;
+}
+.underNameTable{
+    display: flex;
     gap: 0.5rem;
+    margin-top: 1rem;
 }
-.btnCategory{
-    display: flex;
-    justify-items: right;
-    flex-direction: row;
-    gap: 1.3rem
-}
-.btn{
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 17px;
-    line-height: 20px;
-    background:transparent;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    border: 1.5px white solid;
-}
-.descriptionMovie, .underName>p{
+.underNameTable>p{
     color: white;
     font-size: 14px;
     line-height: 24px;
 }
-.descriptionMovie{
-    color: #d2d0d0;
-    font-size: 18px;
-    line-height: 24px;
+.urlTable{
+    width: 45rem;
+    height: 22rem;
+}
+.ratingTable{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    gap:2rem;
+    padding-bottom: 2rem;
+}
+.ratingTable p{
+    font-size: 0.8rem;
+    color: #ffffff;
+    font-weight: bolder;
+}
+.descriptionMovieTable{
+    margin: 1.8rem;
+    color: #ffffff;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+}
+.blueTable, .yellowTable{
+    color: #ffffff;
+}
+
+/*Responsive design MovieList*/
+@media screen and (max-width: 1080px) {
+    .itemList {
+        grid-template-columns: auto auto auto;
+    }
+}
+@media screen and (max-width: 768px) {
+    .itemList {
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width: 480px) {
+    .itemList {
+        grid-template-columns: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+     
+    }
 }
 
 
-  */
+
+
+ 
+
+
+
