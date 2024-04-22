@@ -2,12 +2,13 @@ import style from "./SearchBar.module.css";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoIosClose } from "react-icons/io";
-import { Link } from "react-router-dom";
- 
+
 export function SearchBar() {
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [wrongSearchText, setWrongText] = useState("");
+  const [inputFocused, setInputFocused] = useState(false);
+  const [hideResultsTimeout, setHideResultsTimeout] = useState(null);
 
   const onSearchInput = async (event) => {
     setSearchText(event.target.value);
@@ -30,9 +31,9 @@ export function SearchBar() {
     e.preventDefault();
 
     if (!searchText.length) {
-      setErrorMessage("Enter at least one character");
+      setWrongText("Enter at least one character");
     } else {
-      setErrorMessage("");
+      setWrongText("");
     }
   }
 
@@ -41,11 +42,24 @@ export function SearchBar() {
     setSearchText("");
   };
 
+  const handleBlur = () => {
+    setHideResultsTimeout(setTimeout(() => setInputFocused(false), 200));
+  };
+
+  const handleFocus = () => {
+    clearTimeout(hideResultsTimeout);
+    setInputFocused(true);
+  };
+
+  const handleResultItemClick = () => {
+    clearTimeout(hideResultsTimeout);
+  };
+
   return (
-    <div className={style.serchPage}>
+    <div className={style.serchPage} onBlur={handleBlur} onFocus={handleFocus}>
       <div className={style.searchForma}>
         <input
-          placeholder="Search IMDb."
+          placeholder="Search IMdb."
           type="text"
           className={style.searchInput}
           value={searchText}
@@ -64,17 +78,17 @@ export function SearchBar() {
             )}
           </button>
         </div>
-        {filteredData.length && searchText.length ? (
+        {inputFocused && filteredData.length && searchText.length ? (
           <div className={style.searchResult}>
             {filteredData.map((value, key) => {
               return (
-                <Link
+                <a
                   className={style.searchItem}
-                  to={`/movies/get/${value.href}`}
+                  href={`/movies/get/${value.href}`}
                   key={key}
                   target="_blank"
+                  onClick={handleResultItemClick}
                 >
-                  {/* <a className={style.dataItem} href={value.href} key={key} target="_blank"></a> */}
                   <img
                     className={style.imgItemSearch}
                     src={value.path}
@@ -84,14 +98,14 @@ export function SearchBar() {
                     <span className={style.nameLink}>{value.name}</span>
                     <span className={style.awardsLink}>{value.awards}</span>
                   </div>
-                </Link>
+                </a>
               );
             })}
           </div>
         ) : null}
       </div>
-      {errorMessage === "" ? null : (
-        <p className={style.error}>{errorMessage}</p>
+      {wrongSearchText === "" ? null : (
+        <p className={style.error}>{wrongSearchText}</p>
       )}
     </div>
   );
