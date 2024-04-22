@@ -43,7 +43,7 @@ export function SearchBar() {
   };
 
   const handleBlur = () => {
-    setHideResultsTimeout(setTimeout(() => setInputFocused(false), 200));
+    setHideResultsTimeout(setTimeout(() => setInputFocused(false)));
   };
 
   const handleFocus = () => {
@@ -56,8 +56,12 @@ export function SearchBar() {
   };
 
   return (
-    <div className={style.serchPage} onBlur={handleBlur} onFocus={handleFocus}>
-      <div className={style.searchForma}>
+    <div className={style.serchPage}>
+      <div
+        className={style.searchForma}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+      >
         <input
           placeholder="Search IMdb."
           type="text"
