@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const initialContext = {
     loginStatus: false,
@@ -19,6 +19,16 @@ export function ContextWrapper(props) {
     const [userId, setUserId] = useState(initialContext.userId);
     const [favorite, setFavorite] = useState(initialContext.favorite);
 
+
+
+    useEffect(() => {
+        if (loginStatus === true) {
+            fetch('http://localhost:4840/api/favorite/' + userId)
+                .then(res => res.json())
+                .then(dataObj => setFavorite(dataObj.list))
+                .catch(console.error);
+        }
+    }, []);
 
     function updateLoginStatus(newStatusValue) {
         setLoginStatus(newStatusValue);

@@ -166,6 +166,7 @@ app.delete('/api/favorite/:favoriteId', (req, res) => {
 });
 
 
+
 app.get('*', (req, res) => {
     console.log('404');
     return res.send('404 - content not found');
