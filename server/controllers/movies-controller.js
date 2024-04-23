@@ -1,54 +1,38 @@
-import fs from "fs";
-import path from "path";
+import { sqlPool } from '../index.js';
 
-export const getMovies = (req, res) => {
-  const filePath = path.join(process.cwd(), "data/data.json");
-  fs.readFile(filePath, "utf8", (error, data) => {
-    if (error) {
-      console.log(error);
-      res.status(500).json({ error: "Error reading movie data" });
-      return;
-    }
+export async function getMovies() {
+  try {
+    const connection = await sqlPool();
+    const [rows] = await connection.query('SELECT * FROM movies;');
+    await connection.end();
+    return { movies: rows }; 
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 
-    const movies = JSON.parse(data);
-    res.json(movies);
-  });
-};
+export async function getMovie(href) {
+  try {
+    const connection = await sqlPool();
+    const [rows] = await connection.query('SELECT * FROM movies WHERE href = ?', [href]);
+    await connection.end();
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 
-export const getMovie = (req, res) => {
-  const { href } = req.params;
-  const filePath = path.join(process.cwd(), "data/data.json");
-  fs.readFile(filePath, "utf8", (error, data) => {
-    if (error) {
-      console.log(error);
-      res.status(500).json({ error: "Error reading config file" });
-      return;
-    }
-
-    const movies = JSON.parse(data);
-    const movie = movies.movies.find((movie) => movie.href === href);
-    if (movie) {
-      res.json(movie);
-    } else {
-      res.status(404).json({ error: "Movie not found" });
-    }
-  });
-};
-
-export const searchMovies = (req, res) => {
-  const searchName = req.query.name;
-
-  fs.readFile("../server/data/data-copy.json", "utf8", (error, data) => {
-    if (error) {
-      console.log(error);
-      return res.status(500).json({ error: "Error reading movie data" });
-    }
-
-    const movies = JSON.parse(data);
-
-    const filterMovies = movies.filter((movie) =>
-      movie.name.toLowerCase().includes(searchName.toLowerCase())
-    );
-    res.json(filterMovies);
-  });
+export const searchMovies = async (req, res) => {
+  try {
+    const { name } = req.query;
+    const connection = await sqlPool();
+    const [rows] = await connection.query('SELECT * FROM movies WHERE name LIKE ?', [`%${name}%`]);
+    await connection.end();
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
