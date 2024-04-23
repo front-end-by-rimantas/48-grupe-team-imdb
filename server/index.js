@@ -28,7 +28,12 @@ app.get('/', (req, res) => {
     return res.send('Home page');
 });
 
+
+let lastUserId = 0;
 const users = [];
+
+let lastFavoriteId = 0;
+const favoriteArr = [];
 
 app.post('/api/register', (req, res) => {
     const data = req.body;
@@ -50,8 +55,13 @@ app.post('/api/register', (req, res) => {
     }
 
     if (isUniqueUserEmail) {
-        users.push(req.body);
-        console.log(users);
+        users.push({
+            id: ++lastUserId,
+            name,
+            email,
+            password,
+            favoriteList: [],
+        });
 
         return res.send(JSON.stringify({
             message: 'User successfully registered',
@@ -68,24 +78,25 @@ app.post('/api/register', (req, res) => {
 app.post('/api/login', (req, res) => {
     const data = req.body;
     const {email, password} = data;
-
+    
     const emailL = isValidEmail(email);
     const passwordL = isValidPassword(password);
 
-    let userExists = false;
+    let userId = -1;
 
     for (const user of users) {
         if (user.email === emailL &&
             user.password === passwordL) {
-            userExists = true;
+            userId = user.id;
             break;
         }
     }
 
-    if (userExists) {
+    if (userId > 0) {
         return res.send(JSON.stringify({
             message: 'User successfully logged in',
             loggedIn: true,
+            userId,
         }));
     }
 
@@ -96,38 +107,51 @@ app.post('/api/login', (req, res) => {
 });
 
 
-
-const favoriteArr = [];
-
 app.post('/api/favorite', (req, res) => {
-    const { href, favorite } = req.body;
-    console.log(favorite)
+    const {userId, href, favorite } = req.body;
     
     let isInArr = false;
 
     for (const favorit of favoriteArr) {
-        console.log(favorit, href)
-        if (favorit === href) {
+        if (favorit.href === href && favorit.userId === userId) {
             isInArr = true;
             break
         }
     }
 
+    
     if (!isInArr) {
-        favoriteArr.push(href)
+        favoriteArr.push({
+            id: ++lastFavoriteId,
+            userId,
+            href,
+        })
+
+        for (const user of users) {
+            if (user.id === userId) {
+                user.favoriteList.push(lastFavoriteId);
+                break;
+            }
+        }
     }
+    
+    console.log(users, favoriteArr)
+    
     return res.send(JSON.stringify({
-        arr: favoriteArr,
-        statusOffFavorite: favorite,
+        favoriteArr,
         isInArr: false,
     }));
     
-    // return res.send(JSON.stringify({
-    //     arr: [],
-    //     statusOffFavorite: favorite,
-    //     isInArr: true,
-    // }));
+
 });
+
+
+app.get('/api/favorit/:userId', (req, res) => {
+    return res.send(JSON.stringify({
+        list: favoriteList.filter(favorit => favorit.userId === +req.params.userId),
+    }));
+});
+
 
 
 app.get('*', (req, res) => {

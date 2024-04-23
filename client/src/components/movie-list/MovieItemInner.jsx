@@ -10,18 +10,31 @@ import { MdFavorite } from "react-icons/md";
 import { GlobalContext } from '../../context/GlobalContext';
 
 
+
 export function MovieItemInner() {
     const { href } = useParams();
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const {favorite, favoriteStatus, updateFavoriteData, updateFavoriteStatus } = useContext(GlobalContext);
+    const {userId, favorite, favoriteStatus, loginStatus, updateFavoriteData, updateFavoriteStatus } = useContext(GlobalContext);
     const [favorit, setFavorite] = useState(false);
+    
+    const favoriteMoviesHrefArr = [];
+
+    for (const data of favorite) {
+        if (data.userId === userId) {
+            favoriteMoviesHrefArr.push(data.href);
+        }
+    } 
 
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
+    const favoriteBtn = (
+        <button className={style.favoriteBtn}  onClick={handleFavorite} >
+        {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
+        </button>
+    );
 
-    console.log(href, favorite)
     
     useEffect(() => {
         axios.get(`http://localhost:4840/movies/get/${href}`)
@@ -57,12 +70,12 @@ export function MovieItemInner() {
                 body: JSON.stringify({
                     href,
                     favorit,
-
+                    userId,
                 }),
             })
                 .then(res => res.json())
                 .then(data => {
-                    updateFavoriteData(data.arr),
+                    updateFavoriteData(data.favoriteArr),
                     updateFavoriteStatus(data.statusOffFavorite)
                     
                 })
@@ -87,9 +100,7 @@ export function MovieItemInner() {
                                 <svg width="20" height="20">
                                     <circle cx="10" cy="10" r="3" fill= "white" />
                                 </svg>
-                        <button className={style.favoriteBtn}  onClick={handleFavorite} >
-                            {favorite.includes(href)? activeFavoriteBtn : inactiveFavoriteBtn}
-                        </button>
+                        {loginStatus ? favoriteBtn : null}
                     </div>
                 </div>
                 <div className={style.rating}>
