@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import router from './router/index.js';
 import helmet, { crossOriginResourcePolicy } from 'helmet';
+import mysql from 'mysql2/promise';
 import { isValidEmail, isValidPassword, isValidUsername } from './validation/formsValidation.js';
 
 
@@ -15,6 +16,24 @@ const corsOptions = {
 const helmetOptions = {
     crossOriginResourcePolicy: false,
 };
+
+try {
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+    });
+
+    await connection.query('USE imdb');
+
+    const sql = 'SELECT * FROM movies;';
+    const ats = await connection.execute(sql);
+
+    console.log(ats[0]);
+
+} catch (error) {
+    console.log(error);
+}
 
 app.use(cors(corsOptions));
 app.use(helmet(helmetOptions));
