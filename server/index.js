@@ -17,22 +17,16 @@ const helmetOptions = {
     crossOriginResourcePolicy: false,
 };
 
-try {
+export async function sqlPool() {
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
         password: '',
+        database: 'imdb', 
+        connectionLimit: 10,
     });
-
-    await connection.query('USE imdb');
-
-    const sql = 'SELECT * FROM movies;';
-    const ats = await connection.execute(sql);
-
-    console.log(ats[0]);
-
-} catch (error) {
-    console.log(error);
+    await connection.query("USE imdb");
+    return connection;
 }
 
 app.use(cors(corsOptions));

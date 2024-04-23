@@ -96,7 +96,7 @@ export function SearchBar() {
                 >
                   <img
                     className={style.imgItemSearch}
-                    src={value.path}
+                    src={`http://localhost:4840/assets/images/${value?.path}`}
                     alt=""
                   />
                   <div className={style.searchSection}>
