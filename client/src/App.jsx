@@ -16,7 +16,7 @@ import { PageJobs } from "./pages/jobs/PageJobs";
 import { PagePrivacyPolicy } from "./pages/privacy-policy/PagePrivacyPolicy";
 import { NotFoundLayout } from "./layout/NotFoundLayout";
 import { PageFavoriteMovies } from "./pages/favorite-movies-page/PageFavoriteMovies";
-
+import { MovieTop10 } from "./components/movie-list/MovieTop10";
 
 
 
@@ -30,6 +30,7 @@ function App() {
           <Route path="/movies/get/:href" element={<MovieItemInner/>}/>
           <Route path="/movies/get" element={<PageMovieList/>}/>
           <Route path="/movies/sorted" element={<SortedMovieList/>}/>
+          <Route path="/movies/top10" element={<MovieTop10/>}/>
           <Route path="/search" element={<></>}/>
           <Route path="/sign-in" element={<PageSignIn/>}/>
           <Route path="/sign-in/login" element={<></>}/>
