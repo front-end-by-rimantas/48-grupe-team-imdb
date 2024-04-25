@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 
 export function FavoriteMovies() {
-    const { favorite, userId } = useContext(GlobalContext);
+    const { favorite, userId, deleteFavoriteData } = useContext(GlobalContext);
     const [delet, setDelet] = useState(false);
 
     const favoriteMoviesHrefArr = [];
@@ -19,9 +19,20 @@ export function FavoriteMovies() {
         }
     } 
 
-    function handleDelete (favorit) {
+    function handleDelete (favoriteId) {
         setDelet(!delet);
-        console.log(favorit);
+        
+
+        fetch('http://localhost:4840/api/favorite/' + favoriteId, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.message === 'favorite deleted') {
+                    deleteFavoriteData(favoriteId);
+                }
+            })
+            .catch(console.error);
         
     }
 

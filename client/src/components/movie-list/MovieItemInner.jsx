@@ -32,8 +32,8 @@ export function MovieItemInner() {
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
     const favoriteBtn = (
-        <button className={style.favoriteBtn}  onClick={handleFavorite} >
-        {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
+        <button className={style.favoriteBtn}  onClick={() => handleFavorite(favorit)} >
+            {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
         </button>
     );
 
@@ -58,7 +58,9 @@ export function MovieItemInner() {
     if (error) {
         return <div>{error}</div>;
     }
-    function handleFavorite () {
+
+    
+    function handleFavorite (favorit) {
         setFavorite(!favorit)
 
         fetch('http://localhost:4840/api/favorite', {

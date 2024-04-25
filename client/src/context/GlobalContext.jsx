@@ -43,6 +43,10 @@ export function ContextWrapper(props) {
         
     }
 
+    function deleteFavoriteData(favoriteId) {
+        setFavorite(prev => prev.filter(favorit => favorit.id !== favoriteId))
+    }
+
     function updateFavoriteStatus(newStatusValue) {
         setFavoriteStatus(newStatusValue)
     }
@@ -56,6 +60,7 @@ export function ContextWrapper(props) {
         updateFavoriteData,
         favoriteStatus,
         updateFavoriteStatus,
+        deleteFavoriteData,
     };
 
     return (
