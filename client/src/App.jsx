@@ -17,7 +17,7 @@ import { PagePrivacyPolicy } from "./pages/privacy-policy/PagePrivacyPolicy";
 import { NotFoundLayout } from "./layout/NotFoundLayout";
 import { PageFavoriteMovies } from "./pages/favorite-movies-page/PageFavoriteMovies";
 import { MovieTop10 } from "./components/movie-list/MovieTop10";
-import { PageAccount } from "./components/account/Account";
+import { PageAccount } from "./pages/account/PageAccount";
 
 
 
