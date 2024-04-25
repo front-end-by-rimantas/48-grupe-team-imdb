@@ -108,7 +108,7 @@ app.post('/api/login', (req, res) => {
 
 
 app.post('/api/favorite', (req, res) => {
-    const {userId, href, favorite } = req.body;
+    const {userId, href, favorit } = req.body;
     
     let isInArr = false;
 
@@ -119,12 +119,12 @@ app.post('/api/favorite', (req, res) => {
         }
     }
 
-    
     if (!isInArr) {
         favoriteArr.push({
             id: ++lastFavoriteId,
             userId,
             href,
+            favorit,
         })
 
         for (const user of users) {
@@ -134,8 +134,10 @@ app.post('/api/favorite', (req, res) => {
             }
         }
     }
+
+   
     
-    console.log(users, favoriteArr)
+    console.log(favoriteArr)
     
     return res.send(JSON.stringify({
         favoriteArr,
@@ -146,9 +148,22 @@ app.post('/api/favorite', (req, res) => {
 });
 
 
-app.get('/api/favorit/:userId', (req, res) => {
+app.delete('/api/favorite/:favoriteId', (req, res) => {
+    // favoriteArr = favoriteArr.filter(favorit => favorit.id !== +req.params.favoriteId)
+    
+    const delMovieId = (+req.params.favoriteId);
+    let index = 0;
+
+    for (let i = 0; i < favoriteArr.length; i++) {
+        if (favoriteArr[i].id === delMovieId) {
+            index = i;
+        }
+    }
+
+    favoriteArr.splice(index, 1);
+
     return res.send(JSON.stringify({
-        list: favoriteList.filter(favorit => favorit.userId === +req.params.userId),
+        message: 'favorite deleted'
     }));
 });
 
