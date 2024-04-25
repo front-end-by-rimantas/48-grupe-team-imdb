@@ -17,6 +17,7 @@ import { PagePrivacyPolicy } from "./pages/privacy-policy/PagePrivacyPolicy";
 import { NotFoundLayout } from "./layout/NotFoundLayout";
 import { PageFavoriteMovies } from "./pages/favorite-movies-page/PageFavoriteMovies";
 import { MovieTop10 } from "./components/movie-list/MovieTop10";
+import { PageAccount } from "./components/account/Account";
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/sign-in/registration" element={<PageRegistration/>}/>
           <Route path="/about" element={<PageAbout/>}/>
           <Route path="/top-ten" element={<PageTopTen/>}/>
+          <Route path="/account" element={<PageAccount/>}/>
           <Route path="/help" element={<PageHelp/>}/>
           <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
           <Route path="/terms" element={<PageTerms/>}/>
