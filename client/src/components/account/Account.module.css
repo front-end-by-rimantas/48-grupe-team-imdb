@@ -1,6 +1,6 @@
 .page {
   background-color: #f5f5f5;
-  min-height: calc(100vh - 25.1rem);
+  min-height: calc(100vh - 8.1rem);
 }
 
 .heroContainer {
@@ -130,7 +130,7 @@
     grid-template-columns: 1fr;
   }
   .page {
-    min-height: calc(100vh - 25.1rem);
+    min-height: calc(100vh - 8.1rem);
   }
 }
 
