@@ -342,8 +342,8 @@ export function RegistrationForm() {
         </div>
         {mErr && uError && eError && pError && rpError ? null : errorScreen}
         <div className={style.form}>
-              <span className={style.tittle}>
-                  <h1 className={style.tittle}>Create account</h1>
+              <span className={style.title}>
+                  <h1 className={style.title}>Create account</h1>
               </span>
               <form onSubmit={handleFormSubmit} className={style.context}>
                   <div className={style.formRow}>
