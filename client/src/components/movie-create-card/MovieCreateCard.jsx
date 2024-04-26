@@ -29,6 +29,12 @@ export function MovieCreateCard() {
           </div>
           <div className={style.formRow}>
             <label className={style.label} htmlFor="">
+              Rating
+            </label>
+            <input className={style.inputForm} type="number" placeholder="" />
+          </div>
+          <div className={style.formRow}>
+            <label className={style.label} htmlFor="">
               Category
             </label>
             <input className={style.inputForm} type="text" placeholder="" />
@@ -38,6 +44,50 @@ export function MovieCreateCard() {
               Age Cenzor
             </label>
             <input className={style.inputForm} type="text" placeholder=" " />
+          </div>
+          <div className={style.formRow}>
+            <label className={style.label} htmlFor="">
+              Awards
+            </label>
+            <input className={style.inputForm} type="text" placeholder=" " />
+          </div>
+          <div className={style.formRow}>
+            <label className={style.label} htmlFor="">
+              Gross
+            </label>
+            <input className={style.inputForm} type="text" placeholder=" " />
+          </div>
+          <div className={style.formRow}>
+            <label className={style.label} htmlFor="youtubeUrl">
+              YouTube URL
+            </label>
+            <input
+              className={style.inputForm}
+              type="url"
+              id="youtubeUrl"
+              placeholder="Enter YouTube URL"
+            />
+          </div>
+          <div className={style.formRow}>
+            <label className={style.label} htmlFor="imageUpload">
+              Image
+            </label>
+            <input
+              className={style.inputFormImg}
+              type="file"
+              id="imageUpload"
+              accept="image/*"
+            />
+          </div>
+          <div className={style.formRow}>
+            <label className={style.label} htmlFor="description">
+              Description
+            </label>
+            <textarea
+              className={style.inputForm}
+              id="description"
+              placeholder="Enter description"
+            />
           </div>
           <div className={style.formRow}>
             <button
