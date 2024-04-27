@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const initialContext = {
     loginStatus: false,
@@ -20,16 +20,6 @@ export function ContextWrapper(props) {
     const [favorite, setFavorite] = useState(initialContext.favorite);
 
 
-
-    useEffect(() => {
-        if (loginStatus === true) {
-            fetch('http://localhost:4840/api/favorite/' + userId)
-                .then(res => res.json())
-                .then(dataObj => setFavorite(dataObj.list))
-                .catch(console.error);
-        }
-    }, []);
-
     function updateLoginStatus(newStatusValue) {
         setLoginStatus(newStatusValue);
     }
@@ -47,6 +37,7 @@ export function ContextWrapper(props) {
         setFavorite(prev => prev.filter(favorit => favorit.id !== favoriteId))
     }
 
+    
     
 
     const value = {
