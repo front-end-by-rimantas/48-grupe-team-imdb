@@ -43,6 +43,31 @@ export function MovieItemInner() {
         </button>
     );
 
+    const {userId, favorite, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
+    const [favorit, setFavorite] = useState(false);
+    
+    const favoriteMoviesHrefArr = [];
+    let favoriteId = 'favoriteId';
+    let isInArr = false;
+
+    for (const data of favorite) {
+        if (data.userId === userId) {
+            favoriteMoviesHrefArr.push(data.href);
+            if (data.href === href) {
+                favoriteId = data.id;
+                isInArr = data.isInArr;
+            }
+        }
+    } 
+
+    const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
+    const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
+    const favoriteBtn = (
+        <button className={style.favoriteBtn}  onClick={() => handleFavorite(favorit)} >
+            {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
+        </button>
+    );
+
 
     useEffect(() => {
         axios.get(`http://localhost:4840/movies/get/${href}`)
@@ -63,6 +88,41 @@ export function MovieItemInner() {
 
     if (error) {
         return <div>{error}</div>;
+    }
+    
+    function handleFavorite (favorit) {
+        setFavorite(!favorit);
+
+        if(isInArr === false) {
+            fetch('http://localhost:4840/api/favorite', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        href,
+                        userId,
+                    }),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        updateFavoriteData(data.favoriteArr)
+                    })
+                    .catch(e => console.error(e));
+        } else {
+            fetch('http://localhost:4840/api/favorite/' + favoriteId, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message === 'favorite deleted') {
+                        deleteFavoriteData(favoriteId);
+                    }
+                })
+                .catch(console.error); 
+            }
+        }
     }
     
     function handleFavorite (favorit) {
