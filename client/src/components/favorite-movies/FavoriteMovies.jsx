@@ -42,7 +42,7 @@ export function FavoriteMovies() {
                 {favoriteMoviesHrefArr.map((favorit, index) => (
                     <div key = {index} className={style.favoriteMovieCard}>
                     < Link to={`/movies/get/${favorit.href}`}>
-                        <img className={style.cardImg} src={`http://localhost:4840/assets/images/${favorit.href}.jpg`} alt="" />
+                        <img className={style.cardImg} src={`http://localhost:4840/assets/images/${favorit.href.split('-').join('')}.jpg`} alt="" />
                     </Link>
                     <button onClick={() => handleDelete(favorit.id)} className={style.deleteBtn}>DELETE</button>
                 </div>
