@@ -32,8 +32,7 @@ export function FavoriteMovies() {
                     deleteFavoriteData(favoriteId);
                 }
             })
-            .catch(console.error);
-        
+            .catch(console.error); 
     }
 
     return (

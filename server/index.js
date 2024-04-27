@@ -110,6 +110,7 @@ app.post('/api/login', (req, res) => {
 app.post('/api/favorite', (req, res) => {
     const {userId, href, favorit } = req.body;
     
+    
     let isInArr = false;
 
     for (const favorit of favoriteArr) {
@@ -118,13 +119,13 @@ app.post('/api/favorite', (req, res) => {
             break
         }
     }
-
+    
     if (!isInArr) {
         favoriteArr.push({
             id: ++lastFavoriteId,
             userId,
             href,
-            favorit,
+            isInArr: true,
         })
 
         for (const user of users) {
@@ -135,8 +136,6 @@ app.post('/api/favorite', (req, res) => {
         }
     }
 
-   
-    
     console.log(favoriteArr)
     
     return res.send(JSON.stringify({
@@ -144,7 +143,6 @@ app.post('/api/favorite', (req, res) => {
         isInArr: false,
     }));
     
-
 });
 
 
@@ -163,10 +161,9 @@ app.delete('/api/favorite/:favoriteId', (req, res) => {
     favoriteArr.splice(index, 1);
 
     return res.send(JSON.stringify({
-        message: 'favorite deleted'
+        message: 'favorite deleted' 
     }));
 });
-
 
 
 app.get('*', (req, res) => {
@@ -182,7 +179,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`)
