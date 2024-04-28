@@ -6,7 +6,6 @@ import { MdFavorite } from "react-icons/md";
 import { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 
-
 export function MovieItem({ data }) {
     const { path, name, year, href } = data || {};
     const {userId, favorite, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);

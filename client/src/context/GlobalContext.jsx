@@ -8,17 +8,14 @@ export const initialContext = {
     updateUserId: () => { },
     favorite: [],
     updateFavoriteData: () => { },
-    favoriteStatus: false,
-    updateFavoriteStatus: () => { },
 };
 
-export const GlobalContext = createContext(initialContext)
+export const GlobalContext = createContext(initialContext);
 
 export function ContextWrapper(props) {
     const [loginStatus, setLoginStatus] = useState(initialContext.loginStatus);
     const [userId, setUserId] = useState(initialContext.userId);
     const [favorite, setFavorite] = useState(initialContext.favorite);
-
 
     function updateLoginStatus(newStatusValue) {
         setLoginStatus(newStatusValue);
@@ -29,16 +26,13 @@ export function ContextWrapper(props) {
     }
 
     function updateFavoriteData(newValue) {
-        setFavorite(newValue)
+        setFavorite(newValue);
         
     }
 
     function deleteFavoriteData(favoriteId) {
-        setFavorite(prev => prev.filter(favorit => favorit.id !== favoriteId))
+        setFavorite(prev => prev.filter(favorit => favorit.id !== favoriteId));
     }
-
-    
-    
 
     const value = {
         loginStatus,

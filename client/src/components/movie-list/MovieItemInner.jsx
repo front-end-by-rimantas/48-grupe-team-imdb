@@ -106,12 +106,12 @@ export function MovieItemInner() {
     <MediaQuery maxWidth={640}> 
         {(matches) =>
         matches ? (
-            <MovieItemMobile movie={movie} />
+            <MovieItemMobile movie={movie} favoriteBtn={favoriteBtn} loginStatus={loginStatus}/>
             ):(
     <MediaQuery minWidth={641} maxWidth={1276}>
         {(matches) =>
         matches ? (
-            <MovieItemTable movie={movie} />
+            <MovieItemTable movie={movie} favoriteBtn={favoriteBtn} loginStatus={loginStatus}/>
         ):(
                 <div className={`${style.boss} ${style.containerInner}`}>
                 <div className={style.heroSection}>
@@ -126,7 +126,7 @@ export function MovieItemInner() {
                                     <svg width="20" height="20">
                                         <circle cx="10" cy="10" r="3" fill= "white" />
                                     </svg>
-                                    {loginStatus ? favoriteBtn : null}
+                            {loginStatus ? favoriteBtn : null}
                         </div>
                     </div>
                     <div className={style.rating}>

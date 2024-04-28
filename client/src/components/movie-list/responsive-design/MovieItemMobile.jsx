@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
-import { MdFavorite } from "react-icons/md";
 import style from '../MovieItems.module.css';
 
-export function MovieItemMobile({  movie }) {
+export function MovieItemMobile({  movie, loginStatus, favoriteBtn }) {
     return (
 <div className={`${style.bossMobile} ${style.containerInnerMobile}`}>
     <div className={style.heroTitleMobile}>
@@ -18,9 +17,7 @@ export function MovieItemMobile({  movie }) {
                     <svg width="20" height="20">
                         <circle cx="10" cy="10" r="3" fill= "white" />
                     </svg>
-            <div className={style.favoriteIcon}>
-                <MdFavorite size="1.5rem"/>
-            </div>
+            {loginStatus ? favoriteBtn : null}
         </div>
     </div>
     <iframe className={style.urlMobile} src={movie?.url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
