@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import style from './Account.module.css';
 
 export function Account() {
@@ -23,7 +24,8 @@ export function Account() {
                     />
                     <h1 className={style.title}>My favorite films</h1>
                     <div>
-                      <button className={style.btn}>View</button>
+                      {/* <button className={style.btn}>View</button> */}
+                      <Link className={style.btn} to="/account/favorite-movies">View</Link>
                     </div>
                   </div>
                 </div>

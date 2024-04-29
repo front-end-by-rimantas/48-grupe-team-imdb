@@ -7,7 +7,7 @@ import { GlobalContext } from '../../context/GlobalContext';
 import { TbUfo } from "react-icons/tb";
 
 export function SignIn() {
-    const { updateLoginStatus } = useContext(GlobalContext);
+    const { updateLoginStatus, updateUserId } = useContext(GlobalContext);
 
     const [messageErr, setMessageErr] = useState('');
 
@@ -253,8 +253,8 @@ export function SignIn() {
                   'Accept': 'application/json',
                 },
                 body: JSON.stringify({
-                    email: email,
-                    password: password,
+                    email,
+                    password,
                 }),
             })
                 .then(res => res.json())
@@ -262,6 +262,7 @@ export function SignIn() {
                     setMessageErr(data.message);
                     if (data.loggedIn === true) {
                         updateLoginStatus(true);
+                        updateUserId(data.userId)
                         navigate('/');
                     }
                 })

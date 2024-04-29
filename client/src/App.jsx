@@ -43,7 +43,7 @@ function App() {
           <Route path="/help" element={<PageHelp/>}/>
           <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
           <Route path="/terms" element={<PageTerms/>}/>
-          <Route path="/favorite-movies" element={<PageFavoriteMovies/>}/>
+          <Route path="/account/favorite-movies" element={<PageFavoriteMovies/>}/>
           <Route path="/movie-create" element={<PageMovieCreate/>}/>
           <Route path="/jobs" element={<PageJobs/>}/>
         </Route>
