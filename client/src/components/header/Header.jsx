@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './Header.module.css';
 import { SearchBar } from '../search/SearchBar';
 import { LogoImdb } from '../logo/LogoImdb';
@@ -8,6 +8,7 @@ import { LuMenuSquare } from "react-icons/lu";
 import { IoClose, IoSearch } from "react-icons/io5";
 
 export function Header() {
+    const navigate = useNavigate();
     const {loginStatus, updateLoginStatus} = useContext(GlobalContext);
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(true);
@@ -26,6 +27,7 @@ export function Header() {
 
     function handleSignOut() {
         updateLoginStatus(false);
+        navigate('/')
     }
 
    return  (

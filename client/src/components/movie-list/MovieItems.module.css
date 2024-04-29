@@ -70,13 +70,22 @@ img{
     font-size: 14px;
     line-height: 24px;
 }
-.favoriteIcon{
+
+.favoriteBtn {
+    background-color: transparent;
+    border: transparent;
+}
+
+.favoriteIconActive,
+.favoriteIconInactive{
     cursor: pointer;
     color: #f7f7f7;
+    font-size: 1.5rem;
 }
-.favoriteIcon:hover{
-     color: rgb(222, 191, 15);
+.favoriteIconActive{
+     color: #debf0f;
 }
+
 .rating{
     display: flex;
     flex-direction: row;
