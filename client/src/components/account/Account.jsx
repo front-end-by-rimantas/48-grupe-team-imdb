@@ -24,7 +24,6 @@ export function Account() {
                     />
                     <h1 className={style.title}>My favorite films</h1>
                     <div>
-                      {/* <button className={style.btn}>View</button> */}
                       <Link className={style.btn} to="/account/favorite-movies">View</Link>
                     </div>
                   </div>
@@ -40,7 +39,7 @@ export function Account() {
                     />
                     <h1 className={style.title}>My movies</h1>
                     <div>
-                      <button className={style.btn}>View</button>
+                      <Link className={style.btn} to="/movies/get">View</Link>
                     </div>
                   </div>
                 </div>
