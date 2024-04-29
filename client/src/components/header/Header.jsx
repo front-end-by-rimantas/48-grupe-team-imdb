@@ -22,7 +22,8 @@ export function Header() {
     const signInButton = (<Link className={style.navLink} to="/sign-in">Sign In</Link>);
     const signOutButton = (<button onClick={handleSignOut} className={style.navLink + ' ' + style.signOutBtn}>Sign out</button>);
 
-    const signInUser = (<Link className={style.navLink} to="/account">Account</Link>)
+    const signInUser = (<Link className={style.navLink} to="/favorite-movies">My Favorit Movies</Link>)
+    const movieList = (<Link className={style.navLink} to="/movies/get">Movie List</Link>)
 
     function handleSignOut() {
         updateLoginStatus(false);
@@ -47,6 +48,7 @@ export function Header() {
             </div>
             <div className={menuOpen ? style.navLinkBox : style.navLinkBoxClose}>
                 <nav>
+                    {loginStatus ? movieList :null}
                     {loginStatus ? signInUser : null}
                     <Link className={style.navLink} to="/about">About</Link>
                     <Link className={style.navLink} to="/top-ten">Top 10</Link>
