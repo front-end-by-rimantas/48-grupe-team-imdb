@@ -180,7 +180,7 @@ export function SignIn() {
             return `"${isIpAddress}" Invalid format.`;
         }
     
-        return text;
+        return true;
     }
     
 

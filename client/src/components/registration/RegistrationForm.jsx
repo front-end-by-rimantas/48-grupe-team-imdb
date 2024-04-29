@@ -231,7 +231,7 @@ export function RegistrationForm() {
             return `"${isIpAddress}" Invalid format.`;
         }
     
-        return text;
+        return true;
     }
     
 
