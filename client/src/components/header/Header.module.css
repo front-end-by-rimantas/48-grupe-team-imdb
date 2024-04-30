@@ -67,7 +67,7 @@
     background-color: rgb(51, 50, 50);
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 55rem) {
 
     .header {
         grid-template-columns: repeat(2, 1fr);

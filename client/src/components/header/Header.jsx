@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './Header.module.css';
 import { SearchBar } from '../search/SearchBar';
 import { LogoImdb } from '../logo/LogoImdb';
@@ -8,6 +8,7 @@ import { LuMenuSquare } from "react-icons/lu";
 import { IoClose, IoSearch } from "react-icons/io5";
 
 export function Header() {
+    const navigate = useNavigate();
     const {loginStatus, updateLoginStatus} = useContext(GlobalContext);
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(true);
@@ -21,10 +22,11 @@ export function Header() {
     const signInButton = (<Link className={style.navLink} to="/sign-in">Sign In</Link>);
     const signOutButton = (<button onClick={handleSignOut} className={style.navLink + ' ' + style.signOutBtn}>Sign out</button>);
 
-    const signInUser = (<Link className={style.navLink} to="/favorite-movies">My Favorit Movies</Link>)
+    const signInUser = (<Link className={style.navLink} to="/account">Account</Link>);
 
     function handleSignOut() {
         updateLoginStatus(false);
+        navigate('/')
     }
 
    return  (

@@ -107,53 +107,17 @@
   font-size: 1rem;
 }
 
-@media (max-width: 75rem) {
+@media (max-width: 80rem) {
   .searchInput {
-      width: 25rem;
+      width: 24rem;
   }
 
   .searchResult {
-      width: 26.7rem;
+      width: 25.7rem;
   }
 }
 
-@media (max-width: 60rem) {
-
-  .searchInput {
-       width: 18rem;
-  }
-
-  .searchResult {
-    width: 19.7rem;
-  }
-
-}
-
-@media (max-width: 50rem) {
-
-  .searchInput {
-       width: 30rem;
-  }
-
-  .searchResult {
-    width: 31.7rem;
-  }
-
-}
-
-@media (max-width: 40rem) {
-
-  .searchInput {
-       width: 22rem;
-  }
-
-  .searchResult {
-    width: 23.7rem;
-  }
-
-}
-
-@media (max-width: 33rem) {
+@media (max-width: 63rem) {
 
   .searchInput {
        width: 16rem;
@@ -162,10 +126,77 @@
   .searchResult {
     width: 17.7rem;
   }
-
 }
 
-@media (max-width: 27rem) {
+@media (max-width: 55rem) {
+
+  .searchInput {
+       width: 40rem;
+  }
+
+  .searchResult {
+    width: 41.7rem;
+  }
+}
+
+@media (max-width: 50rem) {
+
+  .searchInput {
+       width: 35rem;
+  }
+
+  .searchResult {
+    width: 36.7rem;
+  }
+}
+
+@media (max-width: 45rem) {
+
+  .searchInput {
+       width: 30rem;
+  }
+
+  .searchResult {
+    width: 31.7rem;
+  }
+}
+
+@media (max-width: 40rem) {
+
+  .searchInput {
+       width: 25rem;
+  }
+
+  .searchResult {
+    width: 26.7rem;
+  }
+}
+
+
+@media (max-width: 35rem) {
+
+  .searchInput {
+       width: 22rem;
+  }
+
+  .searchResult {
+    width: 23.7rem;
+  }
+}
+
+@media (max-width: 32rem) {
+
+  .searchInput {
+       width: 18rem;
+  }
+
+  .searchResult {
+    width: 19.7rem;
+  }
+}
+
+
+@media (max-width: 29rem) {
 
   .searchInput {
        width: 14rem;
@@ -174,5 +205,4 @@
   .searchResult {
     width: 15.7rem;
   }
-
 }

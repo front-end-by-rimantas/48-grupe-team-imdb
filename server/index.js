@@ -41,7 +41,12 @@ app.get('/', (req, res) => {
     return res.send('Home page');
 });
 
+
+let lastUserId = 0;
 const users = [];
+
+let lastFavoriteId = 0;
+const favoriteArr = [];
 
 app.post('/api/register', (req, res) => {
     const data = req.body;
@@ -63,8 +68,13 @@ app.post('/api/register', (req, res) => {
     }
 
     if (isUniqueUserEmail) {
-        users.push(req.body);
-        console.log(users);
+        users.push({
+            id: ++lastUserId,
+            name,
+            email,
+            password,
+            favoriteList: [],
+        });
 
         return res.send(JSON.stringify({
             message: 'User successfully registered',
@@ -81,30 +91,90 @@ app.post('/api/register', (req, res) => {
 app.post('/api/login', (req, res) => {
     const data = req.body;
     const {email, password} = data;
-
+    
     const emailL = isValidEmail(email);
     const passwordL = isValidPassword(password);
 
-    let userExists = false;
+    let userId = -1;
 
     for (const user of users) {
         if (user.email === emailL &&
             user.password === passwordL) {
-            userExists = true;
+            userId = user.id;
             break;
         }
     }
 
-    if (userExists) {
+    if (userId > 0) {
         return res.send(JSON.stringify({
             message: 'User successfully logged in',
             loggedIn: true,
+            userId,
         }));
     }
 
     return res.send(JSON.stringify({
         message: 'Such user does not exist',
         loggedIn: false,
+    }));
+});
+
+
+app.post('/api/favorite', (req, res) => {
+    const {userId, href, favorit } = req.body;
+    
+    
+    let isInArr = false;
+
+    for (const favorit of favoriteArr) {
+        if (favorit.href === href && favorit.userId === userId) {
+            isInArr = true;
+            break
+        }
+    }
+    
+    if (!isInArr) {
+        favoriteArr.push({
+            id: ++lastFavoriteId,
+            userId,
+            href,
+            isInArr: true,
+        })
+
+        for (const user of users) {
+            if (user.id === userId) {
+                user.favoriteList.push(lastFavoriteId);
+                break;
+            }
+        }
+    }
+
+    console.log(favoriteArr)
+    
+    return res.send(JSON.stringify({
+        favoriteArr,
+        isInArr: false,
+    }));
+    
+});
+
+
+app.delete('/api/favorite/:favoriteId', (req, res) => {
+    // favoriteArr = favoriteArr.filter(favorit => favorit.id !== +req.params.favoriteId)
+    
+    const delMovieId = (+req.params.favoriteId);
+    let index = 0;
+
+    for (let i = 0; i < favoriteArr.length; i++) {
+        if (favoriteArr[i].id === delMovieId) {
+            index = i;
+        }
+    }
+
+    favoriteArr.splice(index, 1);
+
+    return res.send(JSON.stringify({
+        message: 'favorite deleted' 
     }));
 });
 
@@ -122,7 +192,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`)
