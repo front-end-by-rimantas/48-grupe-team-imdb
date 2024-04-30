@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import style from './Account.module.css';
 
 export function Account() {
@@ -23,7 +24,9 @@ export function Account() {
                     />
                     <h1 className={style.title}>My favorite films</h1>
                     <div>
-                      <button className={style.btn}>View</button>
+                      <Link to="/">
+                        <button className={style.btn}>View</button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -38,7 +41,9 @@ export function Account() {
                     />
                     <h1 className={style.title}>My movies</h1>
                     <div>
-                      <button className={style.btn}>View</button>
+                      <Link to="./movie-create-card/MovieCreateCard.jsx">
+                        <button className={style.btn}>View</button>
+                      </Link>
                     </div>
                   </div>
                 </div>

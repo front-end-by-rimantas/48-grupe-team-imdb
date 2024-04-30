@@ -18,7 +18,7 @@ import { NotFoundLayout } from "./layout/NotFoundLayout";
 import { PageFavoriteMovies } from "./pages/favorite-movies-page/PageFavoriteMovies";
 import { MovieTop10 } from "./components/movie-list/MovieTop10";
 import { PageAccount } from "./pages/account/PageAccount";
-import { PageMovieCreate } from "./pages/movie-create-card/PageMovieCreate";
+import { PageMovieCreate } from "./pages/account/movie-create-card/PageMovieCreate";
 
 
 
