@@ -20,40 +20,44 @@ import { MovieTop10 } from "./components/movie-list/MovieTop10";
 import { PageAccount } from "./pages/account/PageAccount";
 import { PageMovieCreate } from "./pages/account/movie-create-card/PageMovieCreate";
 
-
-
 function App() {
   return (
-  <ContextWrapper>
-    <BrowserRouter>
-      <Routes>
-        <Route Component={BasicLayout}>
-          <Route index path="/" element={<PageHome/>}/>
-          <Route path="/movies/get/:href" element={<MovieItemInner/>}/>
-          <Route path="/movies/get" element={<PageMovieList/>}/>
-          <Route path="/movies/sorted" element={<SortedMovieList/>}/>
-          <Route path="/movies/top10" element={<MovieTop10/>}/>
-          <Route path="/search" element={<></>}/>
-          <Route path="/sign-in" element={<PageSignIn/>}/>
-          <Route path="/sign-in/login" element={<></>}/>
-          <Route path="/sign-in/registration" element={<PageRegistration/>}/>
-          <Route path="/about" element={<PageAbout/>}/>
-          <Route path="/top-ten" element={<PageTopTen/>}/>
-          <Route path="/account" element={<PageAccount/>}/>
-          <Route path="/help" element={<PageHelp/>}/>
-          <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
-          <Route path="/terms" element={<PageTerms/>}/>
-          <Route path="/account/favorite-movies" element={<PageFavoriteMovies/>}/>
-          <Route path="/movie-create" element={<PageMovieCreate/>}/>
-          <Route path="/jobs" element={<PageJobs/>}/>
-        </Route>
+    <ContextWrapper>
+      <BrowserRouter>
+        <Routes>
+          <Route Component={BasicLayout}>
+            <Route index path="/" element={<PageHome />} />
+            <Route path="/movies/get/:href" element={<MovieItemInner />} />
+            <Route path="/movies/get" element={<PageMovieList />} />
+            <Route path="/movies/sorted" element={<SortedMovieList />} />
+            <Route path="/movies/top10" element={<MovieTop10 />} />
+            <Route path="/search" element={<></>} />
+            <Route path="/sign-in" element={<PageSignIn />} />
+            <Route path="/sign-in/login" element={<></>} />
+            <Route
+              path="/sign-in/registration"
+              element={<PageRegistration />}
+            />
+            <Route path="/about" element={<PageAbout />} />
+            <Route path="/top-ten" element={<PageTopTen />} />
+            <Route path="/account" element={<PageAccount />} />
+            <Route path="/help" element={<PageHelp />} />
+            <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
+            <Route path="/terms" element={<PageTerms />} />
+            <Route
+              path="/account/favorite-movies"
+              element={<PageFavoriteMovies />}
+            />
+            <Route path="/account/movie-create" element={<PageMovieCreate />} />
+            <Route path="/jobs" element={<PageJobs />} />
+          </Route>
 
-        <Route Component={NotFoundLayout}>
-          <Route path="*" element={<PageNotFound/>}/>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </ContextWrapper>
+          <Route Component={NotFoundLayout}>
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ContextWrapper>
   );
 }
 
