@@ -39,7 +39,9 @@ export function Account() {
                     />
                     <h1 className={style.title}>My movies</h1>
                     <div>
-                      <Link className={style.btn} to="/movies/get">View</Link>
+                      <Link to="./movie-create-card/MovieCreateCard.jsx">
+                        <button className={style.btn}>View</button>
+                      </Link>
                     </div>
                   </div>
                 </div>
