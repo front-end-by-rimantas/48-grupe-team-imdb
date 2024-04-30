@@ -24,7 +24,9 @@ export function Account() {
                     />
                     <h1 className={style.title}>My favorite films</h1>
                     <div>
-                      <Link className={style.btn} to="/account/favorite-movies">View</Link>
+                      <Link className={style.btn} to="/account/favorite-movies">
+                        View
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -39,8 +41,8 @@ export function Account() {
                     />
                     <h1 className={style.title}>My movies</h1>
                     <div>
-                      <Link to="./movie-create-card/MovieCreateCard.jsx">
-                        <button className={style.btn}>View</button>
+                      <Link className={style.btn} to="/account/favorite-movies">
+                        View
                       </Link>
                     </div>
                   </div>
