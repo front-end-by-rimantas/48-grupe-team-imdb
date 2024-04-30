@@ -23,7 +23,7 @@ export function FavoriteMovies() {
         setDelet(!delet);
         
 
-        fetch('http://localhost:4840/api/favorite/' + favoriteId, {
+        fetch('http://localhost:4840/user/favorite/' + favoriteId, {
             method: 'DELETE',
         })
             .then(res => res.json())

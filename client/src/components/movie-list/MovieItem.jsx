@@ -38,7 +38,7 @@ export function MovieItem({ data }) {
         setFavorite(!favorit)
 
         if(isInArr === false) {
-            fetch('http://localhost:4840/api/favorite', {
+            fetch('http://localhost:4840/user/favorite', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export function MovieItem({ data }) {
                     })
                     .catch(e => console.error(e));
         } else {
-            fetch('http://localhost:4840/api/favorite/' + favoriteId, {
+            fetch('http://localhost:4840/user/favorite/' + favoriteId, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
