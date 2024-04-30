@@ -11,8 +11,27 @@
 .favoritMoviesTitle {
     margin: 7rem 0 2rem 0;
     color: #d3cfcf;
+    text-align: center;
 }
 
+.emptyMoviesBox {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    min-height: 70vh;
+}
+
+.linkToMoviesList {
+    font-size: 1.5rem;
+    color: #76ABAE;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.linkToMoviesList:hover {
+    text-decoration: underline;
+}
 
 .favoritMoviesBox {
     display: flex;
