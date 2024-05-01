@@ -7,7 +7,7 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 
 export function MovieItem({ data }) {
-    const { path, name, year, href } = data || {};
+    const { path, name, year, href, rating } = data || {};
     const {userId, favorite, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
     const [favorit, setFavorite] = useState(false);
 
@@ -69,24 +69,30 @@ export function MovieItem({ data }) {
         }
 
     return (
-        <div className={style.container}>
-            <div className={style.row}>
-                <div className={style.item}>
-                    <div className={style.img}>
-                        <img src={`http://localhost:4840/assets/images/${path}`} alt=""  /> 
-                    </div>
-                </div>
-                <div className={style.containerItem}>
-                    <div className={style.favoriteIconList}>
-                        {loginStatus ? favoriteBtn : null}
-                    </div>
-                    <div >
-                        <Link className={style.title} to={`/movies/get/${href}`}>{name}</Link>
-                    </div>
-                    <div className={style.yearItem}>{year}</div>
-                </div>
+      <div className={style.container}>
+        <div className={style.row}>
+          <div className={style.item}>
+            <div className={style.img}>
+              <img src={`http://localhost:4840/assets/images/${path}`} alt="" />
             </div>
+          </div>
+          <div className={style.containerItem}>
+            <div className={style.favoriteIconList}>
+              {loginStatus ? favoriteBtn : null}
+            </div>
+            <div>
+              <Link className={style.title} to={`/movies/get/${href}`}>
+                {name}
+              </Link>
+            </div>
+            <div className={style.yearItem}>{year}</div>
+            <div className={style.starRating}>
+              <span className={style.star}>★</span>
+              {rating}
+            </div>
+          </div>
         </div>
+      </div>
     );
 }
 

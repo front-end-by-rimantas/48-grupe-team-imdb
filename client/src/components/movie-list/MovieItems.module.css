@@ -1,309 +1,366 @@
 /* MovieItem */
 .container {
-    display: flex;
-    flex-direction: column;
-    padding: 5px 10px;
-    border-bottom: 1px #ccc solid;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  border-bottom: 1px #ccc solid;
 }
-.row{
-    display: flex;
-    flex-direction: row;
-    gap: 0.4rem;
-    align-items: center;
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  align-items: center;
 }
-img{
-    width:5.5rem; 
-    height:7.6rem 
+
+img {
+  width: 5.5rem;
+  height: 7.6rem;
 }
-.containerItem{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.5rem;
+
+.containerItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
-.title{
-    text-decoration: none;
+
+.title {
+  text-decoration: none;
 }
-.yearItem{
-    font-weight:100;
-    font-size: 0.8rem;
+
+.yearItem {
+  font-weight: 100;
+  font-size: 0.8rem;
 }
-.favoriteIconList{
-    cursor: pointer;
-    color: #aaa5a5;
+
+.favoriteIconList {
+  cursor: pointer;
+  color: #aaa5a5;
 }
- .favoriteIconList:hover{
-     color: rgb(222, 191, 15);
+
+.favoriteIconList:hover {
+  color: rgb(222, 191, 15);
 }
+
 /* MoviItemInner */
-.boss{
-    padding: 1.5rem 5rem;
-    font-family: Arial, Helvetica, sans-serif;
-    gap:1rem;
+.boss {
+  padding: 1.5rem 5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 1rem;
 }
-.containerInner{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}   
-.containerItemInner{
-    display: flex;
-    flex-direction: row;
-    gap: 1.3rem;
+
+.containerInner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-.heroSection{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
+
+.containerItemInner {
+  display: flex;
+  flex-direction: row;
+  gap: 1.3rem;
 }
-.nameAndRating h1{
-    font-size: 2rem;
-    line-height:2.125rem;
-    color:white;
+
+.heroSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.underName{
-    display: flex;
-    gap: 0.5rem;
+
+.nameAndRating h1 {
+  font-size: 2rem;
+  line-height: 2.125rem;
+  color: white;
 }
-.underName>p{
-    color: white;
-    font-size: 14px;
-    line-height: 24px;
+
+.underName {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.underName > p {
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .favoriteBtn {
-    background-color: transparent;
-    border: transparent;
+  background-color: transparent;
+  border: transparent;
 }
 
 .favoriteIconActive,
-.favoriteIconInactive{
-    cursor: pointer;
-    color: #f7f7f7;
-    font-size: 1.5rem;
-}
-.favoriteIconActive{
-     color: #debf0f;
+.favoriteIconInactive {
+  cursor: pointer;
+  color: #f7f7f7;
+  font-size: 1.5rem;
 }
 
-.rating{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    gap:2rem;
+.favoriteIconActive {
+  color: #debf0f;
 }
-.year{
-    font-weight:100;
-    font-size: 1rem;
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }
-.rating p{
-    font-size: 0.8rem;
-    color: #ffffff;
-    font-weight: bolder;
+
+.year {
+  font-weight: 100;
+  font-size: 1rem;
 }
-.yellowStar{
-    color: #ffff05;
+
+.rating p {
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: bolder;
 }
-.yellow, .blue{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 2rem;
-    gap: 10px;
+
+.yellowStar {
+  color: #ffff05;
 }
-.blue>.blueRate{
-    color:  #5799ef;
-    font-size: 1.25rem;
-    line-height: 1.5rem;
+
+.yellow,
+.blue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  gap: 10px;
 }
-.yellow:hover, .blue:hover{
-    background-color: #626261;
-    border-radius: 5px;
-    line-height: 1.5rem;
-    height: 2rem;
+
+.blue > .blueRate {
+  color: #5799ef;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 }
-.blueStar{
-    color:  #5799ef;
-    font-weight: 900;
+
+.yellow:hover,
+.blue:hover {
+  background-color: #626261;
+  border-radius: 5px;
+  line-height: 1.5rem;
+  height: 2rem;
 }
-.imgItem{
-    width: 15rem;
-    height: 22rem;
+
+.blueStar {
+  color: #5799ef;
+  font-weight: 900;
 }
-.url{
-    width: 40rem;
-    height: 22rem;
-    margin-left: 2.3rem;
+
+.imgItem {
+  width: 15rem;
+  height: 22rem;
 }
-.descriptionMovie{
-    color: #d2d0d0;
-    font-size: 18px;
-    line-height: 24px;
+
+.url {
+  width: 40rem;
+  height: 22rem;
+  margin-left: 2.3rem;
+}
+
+.descriptionMovie {
+  color: #d2d0d0;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 /* MovieList */
-.titleList>h3{
-    font-size: 1.3rem;
+.titleList > h3 {
+  font-size: 1.3rem;
 }
-.titleList > h1{
-    font-size: 2.2rem;
-    padding-bottom: 1rem;
+
+.titleList > h1 {
+  font-size: 2.2rem;
+  padding-bottom: 1rem;
 }
+
 .titleList > h1::before {
-    content: '';
-    border-left: 5px yellow solid ;
-    padding-left: 0.75rem;
+  content: "";
+  border-left: 5px yellow solid;
+  padding-left: 0.75rem;
 }
-.containerList{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+.containerList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.itemList{
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+.itemList {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 /*Responsive design MovieItemInner using React-Responsive*/
 /*mobileversion*/
-.bossMobile{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    gap:1rem;
+.bossMobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 1rem;
 }
-.heroTitleMobile{
-    font-size: 0.8rem;
-    color:white;
-    margin-top: 2.5rem;
+
+.heroTitleMobile {
+  font-size: 0.8rem;
+  color: white;
+  margin-top: 2.5rem;
 }
-.underNameMobile{
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+
+.underNameMobile {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
-.underNameMobile>p{
-    color: white;
-    font-size: 14px;
-    line-height: 24px;
+
+.underNameMobile > p {
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
 }
-.imgAndDescriptionMobile{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    color: #d2d0d0;
-    font-size: 1rem;
-    line-height: 24px;
-    padding: 1rem;
-    gap:2rem;
-    width: 23rem;
+
+.imgAndDescriptionMobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: #d2d0d0;
+  font-size: 1rem;
+  line-height: 24px;
+  padding: 1rem;
+  gap: 2rem;
+  width: 23rem;
 }
-.urlMobile{
-    display: flex;
-    justify-content: space-between;
-    width: 23rem;
-    height: 16rem;
+
+.urlMobile {
+  display: flex;
+  justify-content: space-between;
+  width: 23rem;
+  height: 16rem;
 }
-.imgItemMobile{
-    width: 8rem;
-    height: 12rem;
+
+.imgItemMobile {
+  width: 8rem;
+  height: 12rem;
 }
-.ratingMobile{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    gap:2rem;
+
+.ratingMobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }
-.ratingMobile p{
-    font-size: 0.8rem;
-    color: #ffffff;
-    font-weight: bolder;
+
+.ratingMobile p {
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: bolder;
 }
+
 /*tableversion*/
-.bossTable{
-    padding: 1.5rem 3rem;
-    font-family: Arial, Helvetica, sans-serif;
-    gap:1rem;
+.bossTable {
+  padding: 1.5rem 3rem;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 1rem;
 }
-.heroSectionTable{
-    display: flex;
-    flex-direction: row;
-    padding-top: 3rem;
+
+.heroSectionTable {
+  display: flex;
+  flex-direction: row;
+  padding-top: 3rem;
 }
-.containerTable{
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    padding: 0 2rem;
-    gap: 1rem;
+
+.containerTable {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 2rem;
+  gap: 1rem;
 }
-.underNameTable{
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+
+.underNameTable {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
-.underNameTable>p{
-    color: white;
-    font-size: 14px;
-    line-height: 24px;
+
+.underNameTable > p {
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
 }
-.urlTable{
-    width: 45rem;
-    height: 22rem;
+
+.urlTable {
+  width: 45rem;
+  height: 22rem;
 }
-.ratingTable{
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    align-items: center;
-    gap:2rem;
-    padding-bottom: 2rem;
+
+.ratingTable {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
 }
-.ratingTable p{
-    font-size: 0.8rem;
-    color: #ffffff;
-    font-weight: bolder;
+
+.ratingTable p {
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: bolder;
 }
-.descriptionMovieTable{
-    margin: 1.8rem;
-    color: #ffffff;
-    font-size: 1.3rem;
-    line-height: 1.5rem;
+
+.descriptionMovieTable {
+  margin: 1.8rem;
+  color: #ffffff;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
 }
-.blueTable, .yellowTable{
-    color: #ffffff;
+
+.blueTable,
+.yellowTable {
+  color: #ffffff;
+}
+
+.starRating {
+  display: flex;
+  align-items: self-end;
+  gap: 10px;
+}
+
+.star {
+  color: rgb(222, 191, 15);
+}
+
+.h3TopTen {
+  padding-bottom: 2rem;
+  font-size: 2rem;
 }
 
 /*Responsive design MovieList*/
 @media screen and (max-width: 1080px) {
-    .itemList {
-        grid-template-columns: auto auto auto;
-    }
+  .itemList {
+    grid-template-columns: auto auto auto;
+  }
 }
 @media screen and (max-width: 768px) {
-    .itemList {
-        grid-template-columns: auto auto;
-    }
+  .itemList {
+    grid-template-columns: auto auto;
+  }
 }
 @media screen and (max-width: 480px) {
-    .itemList {
-        grid-template-columns: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-     
-    }
+  .itemList {
+    grid-template-columns: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
-
-
-
-
- 
-
-
-
