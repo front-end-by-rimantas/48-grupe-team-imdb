@@ -2,9 +2,6 @@ import { sqlPool } from '../index.js';
 import { isValidEmail, isValidPassword, isValidUsername } from '../validation/formsValidation.js'
 
 
-let lastFavoriteId = 0;
-const favoriteArr = [];
-
 export const login = async (req, res) => {
     const data = req.body;
     const {email, password} = data;
@@ -130,58 +127,92 @@ export const register = async (req, res) => {
 }
 
 export const favorite = async (req, res) => {
-    const {userId, href, favorit } = req.body;
+    const { userId, href } = req.body;
     const connection = await sqlPool();
 
-    let isInArr = false;
-
-    for (const favorit of favoriteArr) {
-        if (favorit.href === href && favorit.userId === userId) {
-            isInArr = true;
-            break
+    try {
+        const selecthref = `SELECT * FROM favoriteMovies WHERE href = ?;`;
+        const favoriteMoviesHref = await connection.execute(selecthref, [href]);
+        const selectUserId = `SELECT * FROM favoriteMovies WHERE userId = ?;`;
+        const favoriteMoviesUserId = await connection.execute(selectUserId, [userId]);
+        
+        if (favoriteMoviesHref[0].length > 0 && !favoriteMoviesUserId) {
+            return res.send(JSON.stringify({
+                isInArr: true,
+            }));
         }
-    }
-    
-    if (!isInArr) {
-        favoriteArr.push({
-            id: ++lastFavoriteId,
-            userId,
-            href,
-            isInArr: true,
-        })
+    } catch (error) {
+        console.error(error);
 
-        for (const user of users) {
-            if (user.id === userId) {
-                user.favoriteList.push(lastFavoriteId);
-                break;
-            }
-        }
+        return res.send(JSON.stringify({
+            message: 'Problem while trying add to "favorite movies"',
+            register: false,
+        }));
     }
 
-    console.log(favoriteArr)
-    
+    try {
+        const insertQuery = `INSERT INTO favoriteMovies (userId, href) VALUES (?, ?);`;
+        const dbResponse = await connection.execute(insertQuery, [userId, href]);
+
+        const selectQuery = `SELECT * FROM favoriteMovies;`;
+        const favoriteMoviesList = await connection.execute(selectQuery);
+
+    if (dbResponse[0].affectedRows === 0) {
+        return res.send(JSON.stringify({
+            type: 'error',
+            message: 'The card cannot be added (dublicate found)',
+        }));
+    }
+    if (dbResponse[0].affectedRows === 1) {
+        return res.send(JSON.stringify({
+            type: 'success',
+            id: dbResponse[0].insertId,
+            favoriteArr: favoriteMoviesList[0],
+            isInArr : false,
+        }));
+    }
     return res.send(JSON.stringify({
-        favoriteArr,
-        isInArr: false,
+        type: 'error',
+        message: 'Critical error add to "favorite movies"',
     }));
+
+    } catch (error) {
+        console.error(error);
+
+        return res.send(JSON.stringify({
+            type: 'error',
+            message: 'Fatal error while trying to add movie card to favorites list',
+        }));
+    } 
 }
 
 export const deleteFavorite = async (req, res) => {
 
     const connection = await sqlPool();
     const delMovieId = (+req.params.favoriteId);
-    let index = 0;
+    
+ try {
+        const deleteQuery = `DELETE FROM favoriteMovies WHERE id = ?;`;
+        const dbResponse = await connection.execute(deleteQuery, [delMovieId]);
 
-    for (let i = 0; i < favoriteArr.length; i++) {
-        if (favoriteArr[i].id === delMovieId) {
-            index = i;
+        if (dbResponse[0].affectedRows === 0) {
+            return res.send(JSON.stringify({
+                type: 'error',
+                message: 'Could not delete favorite movie, because it does not exist',
+            }));
         }
+
+        return res.send(JSON.stringify({
+            type: 'success',
+            message: 'favorite deleted',
+        }));
+
+    } catch (error) {
+        console.error(error);
+
+        return res.send(JSON.stringify({
+            type: 'error',
+            message: 'Critical error while trying to get favorite movies"',
+        }));
     }
-
-    favoriteArr.splice(index, 1);
-
-    return res.send(JSON.stringify({
-        message: 'favorite deleted' 
-    }));
-
 }

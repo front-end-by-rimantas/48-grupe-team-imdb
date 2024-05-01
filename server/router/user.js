@@ -7,5 +7,5 @@ const router = express.Router();
 router.post('/register', register) // controlleris jau sukurtas
 router.post('/login', login)  // controlleris jau sukurtas
 router.post('/favorite', favorite)  
-router.delete('/favorite/:id', deleteFavorite)
+router.delete('/favorite/:favoriteId', deleteFavorite)
 export default router;

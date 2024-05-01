@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/jsx-key */
 
-import { useContext, useState } from 'react'
-import style from './FavoriteMovies.module.css'
-import { GlobalContext } from '../../context/GlobalContext'
-import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react';
+import style from './FavoriteMovies.module.css';
+import { GlobalContext } from '../../context/GlobalContext';
+import { Link } from 'react-router-dom';
 
 
 export function FavoriteMovies() {

@@ -80,7 +80,6 @@ export function MovieItemInner() {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data.favoriteArr)
                         updateFavoriteData(data.favoriteArr)
                     })
                     .catch(e => console.error(e));
