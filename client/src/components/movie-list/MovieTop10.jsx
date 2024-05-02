@@ -44,9 +44,9 @@ export function MovieTop10() {
             <div>
                 <div className={style.main}>
                     <div>
-                        <h3>Top 10 Movies Sorted by Rating</h3>
+                        <h3 className={style.h3TopTen}>Top 10 Movies Sorted by Rating</h3>
                     </div>
-                    <div className={style.container}>
+                    <div className={style.topTenContainer}>
                         <div className={style.item}>
                             {movies.map((movie, index) => <MovieItem key={index} data={movie} />)}
                         </div>

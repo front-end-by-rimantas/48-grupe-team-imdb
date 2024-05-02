@@ -14,6 +14,7 @@ export function Account() {
               />
             </div>
             <div className={style.heroBoxContainer}>
+
               <div className={style.heroBox}>
                 <div className={style.heroContent}>
                   <div className={style.content}>
@@ -31,6 +32,7 @@ export function Account() {
                   </div>
                 </div>
               </div>
+
               <div className={style.heroBox}>
                 <div className={style.heroContent}>
                   <div className={style.content}>
@@ -48,6 +50,7 @@ export function Account() {
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </section>
