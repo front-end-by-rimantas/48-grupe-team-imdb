@@ -3,17 +3,13 @@ import logo from "../../../assets/images/logo/imdb_logo.png";
 import style from "./MovieCreateCard.module.css";
 import { MovieItem } from "../../movie-list/MovieItem.jsx";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { GlobalContext } from '../../../context/GlobalContext.jsx'
 
 export function MovieCreateCard() {
-  const [movies, setMovies] = useState([
-    {
-      path: "lorem ipsum",
-      name: "lorem ipsum",
-      year: "lorem ipsum",
-      href: "lorem ipsum",
-    },
-  ]);
-
+  const { userId } = useContext(GlobalContext);
+  const [movies, setMovies] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
@@ -29,6 +25,25 @@ export function MovieCreateCard() {
     href: "",
   });
 
+  useEffect(() => {
+    async function fetchMovies() {
+      try {
+        const response = await fetch("http://localhost:4840/movies/get");
+        if (response.ok) {
+          const data = await response.json();
+          const userMovies = data.movies.filter(movie => movie.userId === userId);
+          setMovies(userMovies);
+        } else {
+          console.error("Failed to fetch movies");
+        }
+      } catch (error) {
+        console.error("Failed to fetch movies", error);
+      }
+    }
+
+    fetchMovies();
+  }, [userId]);
+  
   const requiredFields = () => {
     return (
       formData.name &&
