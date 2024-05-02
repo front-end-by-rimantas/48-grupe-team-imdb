@@ -91,7 +91,7 @@ export function MovieCreateCard() {
 
   return (
     <div className={style.container}>
-      <div className={style.rightColumn}>
+      <div className={style.leftColumn}>
         <div className={style.boss}>
           <div className={style.titleList}>
             <h1>My movie list</h1>
@@ -105,7 +105,7 @@ export function MovieCreateCard() {
           </div>
         </div>
       </div>
-      <div className={style.leftColumn}>
+      <div className={style.rightColumn}>
         <div className={style.logoBox}>
           <Link to="/">
             <img className={style.registrationLogo} src={logo} alt="Logo" />

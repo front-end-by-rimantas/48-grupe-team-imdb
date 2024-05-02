@@ -336,7 +336,7 @@ export function RegistrationForm() {
         }
 
         if (isAllFormValid) {
-                    fetch('http://localhost:4840/api/register', {
+                    fetch('http://localhost:4840/user/register', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

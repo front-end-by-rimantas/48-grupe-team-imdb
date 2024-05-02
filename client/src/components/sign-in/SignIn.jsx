@@ -271,7 +271,7 @@ export function SignIn() {
         }
 
         if (isAllFormValid) {
-            fetch('http://localhost:4840/api/login', {
+            fetch('http://localhost:4840/user/login', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
