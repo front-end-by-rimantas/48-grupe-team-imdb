@@ -44,10 +44,10 @@ export const searchMovies = async (req, res) => {
 
 export async function addMovie(req, res) {
   try {
-    const { name, year, rating, category, ageCenzor, awards, gross, url, path, description, href } = req.body;
-    const sql = `INSERT INTO movies (name, year, rating, category, ageCenzor, awards, gross, url, path, description, href) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-    const values = [name, year, rating, category, ageCenzor, awards, gross, url, path, description, href];
+    const { name, year, rating, category, ageCenzor, awards, gross, url, path, description, href, userId } = req.body;
+    const sql = `INSERT INTO movies (name, year, rating, category, ageCenzor, awards, gross, url, path, description, href, userId) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const values = [name, year, rating, category, ageCenzor, awards, gross, url, path, description, href, userId];
     const connection = await sqlPool();
     await connection.query(sql, values);
     await connection.end();
