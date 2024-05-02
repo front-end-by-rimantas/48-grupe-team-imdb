@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom';
 
 
 export function FavoriteMovies() {
-    const { favorite, userId, deleteFavoriteData } = useContext(GlobalContext);
+    const { favoriteData, userId, deleteFavoriteData } = useContext(GlobalContext);
     const [delet, setDelet] = useState(false);
 
     const favoriteMoviesHrefArr = [];
 
-    for (const data of favorite) {
+    for (const data of favoriteData) {
         if (data.userId === userId) {
             favoriteMoviesHrefArr.push(data);
         }
@@ -49,7 +49,7 @@ export function FavoriteMovies() {
         <div className={style.favoritMoviesBox}>
             {favoriteMoviesHrefArr.map((favorit, index) => (
             <div key = {index} className={style.favoriteMovieCard}>
-                < Link to={`/movies/get/${favorit.href}`}>
+                <Link to={`/movies/get/${favorit.href}`}>
                     <img className={style.cardImg} src={`http://localhost:4840/assets/images/${favorit.href.split('-').join('')}.jpg`} alt="" />
                 </Link>
                 <button onClick={() => handleDelete(favorit.id)} className={style.deleteBtn}>Remove from list</button>

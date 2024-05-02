@@ -17,14 +17,14 @@ export function MovieItemInner() {
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const {userId, favorite, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
-    const [favorit, setFavorite] = useState(false);
+    const {userId, favoriteData, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
+    const [favoriteBtn, setFavoriteBtn] = useState(false);
     
     const favoriteMoviesHrefArr = [];
     let favoriteId = 'favoriteId';
     let isInArr = false;
 
-    for (const data of favorite) {
+    for (const data of favoriteData) {
         if (data.userId === userId) {
             favoriteMoviesHrefArr.push(data.href);
             if (data.href === href) {
@@ -36,8 +36,8 @@ export function MovieItemInner() {
 
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
-    const favoriteBtn = (
-        <button className={style.favoriteBtn}  onClick={() => handleFavorite(favorit)} >
+    const favoriteHtmlBtn = (
+        <button className={style.favoriteBtn}  onClick={() => handleFavorite(favoriteBtn)} >
             {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
         </button>
     );
@@ -63,9 +63,9 @@ export function MovieItemInner() {
         return <div>{error}</div>;
     }
     
-    function handleFavorite (favorit) {
-        setFavorite(!favorit);
-
+    function handleFavorite (favoriteBtn) {
+        setFavoriteBtn(!favoriteBtn);
+    
         if(isInArr === false) {
             fetch('http://localhost:4840/user/favorite', {
                     method: 'POST',
@@ -81,6 +81,7 @@ export function MovieItemInner() {
                     .then(res => res.json())
                     .then(data => {
                         updateFavoriteData(data.favoriteArr)
+                        console.log(data.favoriteArr)
                     })
                     .catch(e => console.error(e));
         } else {
@@ -95,9 +96,8 @@ export function MovieItemInner() {
                     }
                 })
                 .catch(console.error); 
-            }
-        }
-
+        }  
+    }
        
     
     return (
@@ -128,7 +128,7 @@ export function MovieItemInner() {
                                     <svg width="20" height="20">
                                         <circle cx="10" cy="10" r="3" fill= "white" />
                                     </svg>
-                            {loginStatus ? favoriteBtn : null}
+                            {loginStatus ? favoriteHtmlBtn : null}
                         </div>
                     </div>
                     <div className={style.rating}>

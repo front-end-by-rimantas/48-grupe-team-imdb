@@ -8,14 +8,14 @@ import { GlobalContext } from '../../context/GlobalContext';
 
 export function MovieItem({ data }) {
     const { path, name, year, href } = data || {};
-    const {userId, favorite, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
-    const [favorit, setFavorite] = useState(false);
+    const {userId, favoriteData, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
+    const [favoriteBtn, setFavoriteBtn] = useState(false);
 
     const favoriteMoviesHrefArr = [];
     let favoriteId = 'favoriteId';
     let isInArr = false;
 
-    for (const data of favorite) {
+    for (const data of favoriteData) {
         if (data.userId === userId) {
             favoriteMoviesHrefArr.push(data.href);
             if (data.href === href) {
@@ -27,15 +27,15 @@ export function MovieItem({ data }) {
 
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
-    const favoriteBtn = (
-        <button className={style.favoriteBtn}  onClick={() => handleFavorite(favorit)} >
+    const favoriteHtmlBtn = (
+        <button className={style.favoriteBtn}  onClick={() => handleFavorite(favoriteBtn)} >
             {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
         </button>
     );
 
 
-    function handleFavorite (favorit) {
-        setFavorite(!favorit)
+    function handleFavorite (favoriteBtn) {
+        setFavoriteBtn(!favoriteBtn)
 
         if(isInArr === false) {
             fetch('http://localhost:4840/user/favorite', {
@@ -78,7 +78,7 @@ export function MovieItem({ data }) {
                 </div>
                 <div className={style.containerItem}>
                     <div className={style.favoriteIconList}>
-                        {loginStatus ? favoriteBtn : null}
+                        {loginStatus ? favoriteHtmlBtn : null}
                     </div>
                     <div >
                         <Link className={style.title} to={`/movies/get/${href}`}>{name}</Link>

@@ -186,6 +186,27 @@ export const favorite = async (req, res) => {
     } 
 }
 
+export const allFavoriteMovies = async (req, res) => {
+    const connection = await sqlPool();
+    try {
+        const selectQuery = `SELECT * FROM favoriteMovies;`;
+        const dbResponse = await connection.execute(selectQuery);
+
+        return res.send(JSON.stringify({
+            type: 'success',
+            favoriteArr: dbResponse[0],
+        }));
+        
+    } catch (error) {
+        console.error(error);
+
+        return res.send(JSON.stringify({
+            type: 'error',
+            message: 'Critical error while trying to get favorite movies"',
+        }));
+    }
+}
+
 export const deleteFavorite = async (req, res) => {
 
     const connection = await sqlPool();
