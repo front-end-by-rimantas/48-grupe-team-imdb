@@ -67,7 +67,7 @@ export function MovieItemInner() {
         setFavorite(!favorit);
 
         if(isInArr === false) {
-            fetch('http://localhost:4840/api/favorite', {
+            fetch('http://localhost:4840/user/favorite', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
@@ -84,11 +84,12 @@ export function MovieItemInner() {
                     })
                     .catch(e => console.error(e));
         } else {
-            fetch('http://localhost:4840/api/favorite/' + favoriteId, {
+            fetch('http://localhost:4840/user/favorite/' + favoriteId, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(data)
                     if (data.message === 'favorite deleted') {
                         deleteFavoriteData(favoriteId);
                     }
@@ -97,6 +98,7 @@ export function MovieItemInner() {
             }
         }
 
+       
     
     return (
         <>

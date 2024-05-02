@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/jsx-key */
 
-import { useContext, useState } from 'react'
-import style from './FavoriteMovies.module.css'
-import { GlobalContext } from '../../context/GlobalContext'
-import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react';
+import style from './FavoriteMovies.module.css';
+import { GlobalContext } from '../../context/GlobalContext';
+import { Link } from 'react-router-dom';
 
 
 export function FavoriteMovies() {
@@ -23,7 +23,7 @@ export function FavoriteMovies() {
         setDelet(!delet);
         
 
-        fetch('http://localhost:4840/api/favorite/' + favoriteId, {
+        fetch('http://localhost:4840/user/favorite/' + favoriteId, {
             method: 'DELETE',
         })
             .then(res => res.json())
