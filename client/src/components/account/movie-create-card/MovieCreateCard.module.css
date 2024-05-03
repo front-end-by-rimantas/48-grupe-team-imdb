@@ -6,19 +6,22 @@
   gap: 0 1rem;
 }
 
-.rightColumn {     
+.rightColumn {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 30rem;
   height: auto;
-  border-left: 1px solid black;
   margin-bottom: 70px;
 }
 
-.leftColumn {   
+.leftColumn {
   max-width: 35rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid black;
 }
 
 .title {
@@ -162,10 +165,10 @@
 }
 
 @media (max-width: 768px) {
-    .container {
+  .container {
     flex-wrap: wrap-reverse;
   }
-  .rightColumn {   
+  .rightColumn {
     padding: 0 2rem 2rem;
     border-left: none;
   }
@@ -174,4 +177,3 @@
     width: 15rem;
   }
 }
-
