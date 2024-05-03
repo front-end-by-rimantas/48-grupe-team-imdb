@@ -6,8 +6,9 @@ import { MdFavorite } from "react-icons/md";
 import { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 
-export function MovieItem({ data }) {
+export function MovieItem({ data, updateMovies }) {
 
+  
     const { id, path, name, year, href, rating } = data || {};
     const {userId, favoriteData, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
     const [favoriteBtn, setFavoriteBtn] = useState(false);
@@ -41,6 +42,7 @@ export function MovieItem({ data }) {
       .then(response => {
           if (response.ok) {
               console.log(`Movie with ID ${id} deleted successfully`);
+              updateMovies(id);
           } else {
               throw new Error('Failed to delete movie');
           }
@@ -108,22 +110,26 @@ export function MovieItem({ data }) {
                 </div>
                 <div className={style.buttons}>
                 {loginStatus ? (
-                  <>
-                    <button className={style.button}>
-                      <Link className={style.link} to={`/movies/get/${href}`}>
-                        View
-                      </Link>
-                    </button>
-                    <button className={style.button}>
-                      <Link className={style.link} to={`/account/movie-edit/${data.id}`}>
-                        Edit
-                      </Link>
-                    </button>
-                    <button className={style.button} onClick={() => handleDeleteTask(id)}>
-                      Delete
-                  </button>
-                  </>
-                ) : null}
+                <>
+                  {userId === data.userId && (
+                    <div className={style.crud}>
+                      <button className={style.button}>
+                        <Link className={style.link} to={`/movies/get/${href}`}>
+                          View
+                        </Link>
+                      </button>
+                      <button className={style.button}>
+                        <Link className={style.link} to={`/account/movie-edit/${data.href}`}>
+                          Edit
+                        </Link>
+                      </button>
+                      <button className={style.button} onClick={() => handleDeleteTask(id)}>
+                        Delete
+                      </button>
+                    </div>
+                  )}
+                </>
+              ) : null}
               </div>
               </div>
             </div>

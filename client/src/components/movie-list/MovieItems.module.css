@@ -345,6 +345,18 @@ img {
   font-size: 2rem;
 }
 
+.crud {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button {
+  background-color: blanchedalmond;
+  /* border: none; */
+}
 /*Responsive design MovieList*/
 @media screen and (max-width: 1080px) {
   .itemList {
@@ -354,6 +366,11 @@ img {
 @media screen and (max-width: 768px) {
   .itemList {
     grid-template-columns: auto auto;
+  }
+  .crud {
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: flex-start;
   }
 }
 @media screen and (max-width: 480px) {

@@ -49,6 +49,7 @@ export function Header() {
                 <nav>
                     {loginStatus ? signInUser : null}
                     <Link className={style.navLink} to="/about">About</Link>
+                    <Link className={style.navLink} to="/movies">Movies</Link>
                     <Link className={style.navLink} to="/top-ten">Top 10</Link>
                     {loginStatus ? signOutButton : signInButton}
                 </nav>

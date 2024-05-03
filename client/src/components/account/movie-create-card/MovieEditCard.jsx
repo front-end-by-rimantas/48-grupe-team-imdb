@@ -2,8 +2,11 @@ import { Link, useParams } from "react-router-dom";
 import logo from "../../../assets/images/logo/imdb_logo.png";
 import style from "./MovieCreateCard.module.css";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export function MovieEditCard() {
+  const navigate = useNavigate();
   const { href } = useParams();
   const [formData, setFormData] = useState({
     name: "",
@@ -40,6 +43,7 @@ export function MovieEditCard() {
   }, [href]);
 
   const handleChange = (e) => {
+    console.log("changed");
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -59,7 +63,11 @@ export function MovieEditCard() {
       });
       if (response.ok) {
         console.log("Movie updated successfully");
-        setSuccessMessage("Movie update successfully");
+        setSuccessMessage("Movie updated successfully");
+        setTimeout(() => {
+          console.log("Navigating to /movies/get");
+          navigate('/movies/get');
+        }, 2000);
       } else {
         console.error("Failed to update movie");
         setErrorMessage("Failed to update movie");
@@ -68,7 +76,7 @@ export function MovieEditCard() {
       console.error("Failed to update movie", error);
     }
   };
-
+  
   return (
     <div className={style.container}>
       <div className={style.leftColumn}>
