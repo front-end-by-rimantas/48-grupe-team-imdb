@@ -23,6 +23,10 @@ export function MovieList() {
             });
     }, []);
 
+    const updateMovies = (deletedMovieId) => {
+        setMovies(prevMovies => prevMovies.filter(movie => movie.id !== deletedMovieId));
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -43,7 +47,8 @@ export function MovieList() {
                 </div>
                 <div className={style.containerList}>
                     <div className={style.itemList}>
-                        {movies.map((movie, index) => <MovieItem key={index} data={movie} />)}
+                        {movies.map((movie, index) => <MovieItem key={index} data={movie} updateMovies={updateMovies} />)}
+
                     </div>
                 </div>
         </div>

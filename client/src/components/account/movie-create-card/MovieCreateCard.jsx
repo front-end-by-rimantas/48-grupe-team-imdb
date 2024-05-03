@@ -46,6 +46,21 @@ export function MovieCreateCard() {
     fetchMovies();
   }, [userId]);
   
+  const updateMovies = async () => {
+    try {
+      const response = await fetch("http://localhost:4840/movies/get");
+      if (response.ok) {
+        const data = await response.json();
+        const userMovies = data.movies.filter(movie => movie.userId === userId);
+        setMovies(userMovies);
+      } else {
+        console.error("Failed to fetch updated movies");
+      }
+    } catch (error) {
+      console.error("Failed to fetch updated movies", error);
+    }
+  };
+
   const requiredFields = () => {
     return (
       formData.name &&
@@ -80,6 +95,12 @@ export function MovieCreateCard() {
         if (response.ok) {
           console.log("Movie added successfully");
           setSuccessMessage("Movie added successfully");
+           const updatedResponse = await fetch("http://localhost:4840/movies/get");
+        if (updatedResponse.ok) {
+          const data = await updatedResponse.json();
+          const userMovies = data.movies.filter(movie => movie.userId === userId);
+          setMovies(userMovies);
+        }
         } else {
           console.error("Failed to add movie");
         }
@@ -100,8 +121,8 @@ export function MovieCreateCard() {
           </div>
           <div className={style.containerList}>
             <div className={style.itemList}>
-              {movies.map((movie, index) => (
-                <MovieItem key={index} data={movie} />
+            {movies.map((movie, index) => (
+                <MovieItem key={index} data={movie} updateMovies={updateMovies} />
               ))}
             </div>
           </div>
