@@ -9,7 +9,7 @@ import { GlobalContext } from '../../context/GlobalContext';
 export function MovieItem({ data }) {
 
     const { id, path, name, year, href, rating } = data || {};
-    const {userId, favorite, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
+    const {userId, favoriteData, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
     const [favoriteBtn, setFavoriteBtn] = useState(false);
 
     const favoriteMoviesHrefArr = [];
@@ -94,7 +94,7 @@ export function MovieItem({ data }) {
               </div>
               <div className={style.containerItem}>
                 <div className={style.favoriteIconList}>
-                  {loginStatus ? favoriteBtn : null}
+                  {loginStatus ? favoriteHtmlBtn : null}
                 </div>
                 <div>
                   <Link className={style.title} to={`/movies/get/${href}`}>
