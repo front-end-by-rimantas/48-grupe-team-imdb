@@ -7,7 +7,7 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 
 export function MovieItem({ data }) {
-    const { path, name, year, href, rating } = data || {};
+    const { id, path, name, year, href, rating } = data || {};
     const {userId, favorite, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
     const [favorit, setFavorite] = useState(false);
 
@@ -33,6 +33,21 @@ export function MovieItem({ data }) {
         </button>
     );
 
+    function handleDeleteTask(id) {
+      fetch(`http://localhost:4840/movies/delete/` + id, {
+          method: 'DELETE',
+      })
+      .then(response => {
+          if (response.ok) {
+              console.log(`Movie with ID ${id} deleted successfully`);
+          } else {
+              throw new Error('Failed to delete movie');
+          }
+      })
+      .catch(error => {
+          console.error('Error deleting movie:', error);
+      });
+  }
 
     function handleFavorite (favorit) {
         setFavorite(!favorit)
@@ -68,32 +83,51 @@ export function MovieItem({ data }) {
             }
         }
 
-    return (
-      <div className={style.container}>
-        <div className={style.row}>
-          <div className={style.item}>
-            <div className={style.img}>
-              <img src={`http://localhost:4840/assets/images/${path}`} alt="" />
+        return (
+          <div className={style.container}>
+            <div className={style.row}>
+              <div className={style.item}>
+                <div className={style.img}>
+                  <img src={`http://localhost:4840/assets/images/${path}`} alt="" />
+                </div>
+              </div>
+              <div className={style.containerItem}>
+                <div className={style.favoriteIconList}>
+                  {loginStatus ? favoriteBtn : null}
+                </div>
+                <div>
+                  <Link className={style.title} to={`/movies/get/${href}`}>
+                    {name}
+                  </Link>
+                </div>
+                <div className={style.yearItem}>{year}</div>
+                <div className={style.starRating}>
+                  <span className={style.star}>★</span>
+                  {rating}
+                </div>
+                <div className={style.buttons}>
+                {loginStatus ? (
+                  <>
+                    <button className={style.button}>
+                      <Link className={style.link} to={`/movies/get/${href}`}>
+                        View
+                      </Link>
+                    </button>
+                    <button className={style.button}>
+                      <Link className={style.link} to={`/account/movie-edit/${data.id}`}>
+                        Edit
+                      </Link>
+                    </button>
+                    <button className={style.button} onClick={() => handleDeleteTask(id)}>
+                      Delete
+                  </button>
+                  </>
+                ) : null}
+              </div>
+              </div>
             </div>
           </div>
-          <div className={style.containerItem}>
-            <div className={style.favoriteIconList}>
-              {loginStatus ? favoriteBtn : null}
-            </div>
-            <div>
-              <Link className={style.title} to={`/movies/get/${href}`}>
-                {name}
-              </Link>
-            </div>
-            <div className={style.yearItem}>{year}</div>
-            <div className={style.starRating}>
-              <span className={style.star}>★</span>
-              {rating}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+        );
 }
 
 

@@ -19,6 +19,7 @@ import { PageFavoriteMovies } from "./pages/favorite-movies-page/PageFavoriteMov
 import { MovieTop10 } from "./components/movie-list/MovieTop10";
 import { PageAccount } from "./pages/account/PageAccount";
 import { PageMovieCreate } from "./pages/account/movie-create-card/PageMovieCreate";
+import { PageMovieEdit } from "./pages/account/movie-create-card/PageMovieEdit";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
               element={<PageFavoriteMovies />}
             />
             <Route path="/account/movie-create" element={<PageMovieCreate />} />
+            <Route path="/account/movie-edit/:href" element={<PageMovieEdit />} />
             <Route path="/jobs" element={<PageJobs />} />
           </Route>
 
