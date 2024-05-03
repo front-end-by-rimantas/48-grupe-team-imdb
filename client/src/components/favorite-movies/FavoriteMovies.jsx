@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom';
 
 
 export function FavoriteMovies() {
-    const { favorite, userId, deleteFavoriteData } = useContext(GlobalContext);
+    const { favoriteData, userId, deleteFavoriteData } = useContext(GlobalContext);
     const [delet, setDelet] = useState(false);
 
     const favoriteMoviesHrefArr = [];
 
-    for (const data of favorite) {
+    for (const data of favoriteData) {
         if (data.userId === userId) {
             favoriteMoviesHrefArr.push(data);
         }

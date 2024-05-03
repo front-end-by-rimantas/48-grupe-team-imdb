@@ -7,15 +7,16 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 
 export function MovieItem({ data }) {
+
     const { id, path, name, year, href, rating } = data || {};
     const {userId, favorite, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
-    const [favorit, setFavorite] = useState(false);
+    const [favoriteBtn, setFavoriteBtn] = useState(false);
 
     const favoriteMoviesHrefArr = [];
     let favoriteId = 'favoriteId';
     let isInArr = false;
 
-    for (const data of favorite) {
+    for (const data of favoriteData) {
         if (data.userId === userId) {
             favoriteMoviesHrefArr.push(data.href);
             if (data.href === href) {
@@ -27,8 +28,8 @@ export function MovieItem({ data }) {
 
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
-    const favoriteBtn = (
-        <button className={style.favoriteBtn}  onClick={() => handleFavorite(favorit)} >
+    const favoriteHtmlBtn = (
+        <button className={style.favoriteBtn}  onClick={() => handleFavorite(favoriteBtn)} >
             {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
         </button>
     );
@@ -49,8 +50,8 @@ export function MovieItem({ data }) {
       });
   }
 
-    function handleFavorite (favorit) {
-        setFavorite(!favorit)
+    function handleFavorite (favoriteBtn) {
+        setFavoriteBtn(!favoriteBtn)
 
         if(isInArr === false) {
             fetch('http://localhost:4840/user/favorite', {

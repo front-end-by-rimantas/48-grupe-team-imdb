@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const initialContext = {
     loginStatus: false,
     updateLoginStatus: () => { },
     userId: -1,
     updateUserId: () => { },
-    favorite: [],
+    favoriteData: [],
     updateFavoriteData: () => { },
 };
 
@@ -15,7 +15,17 @@ export const GlobalContext = createContext(initialContext);
 export function ContextWrapper(props) {
     const [loginStatus, setLoginStatus] = useState(initialContext.loginStatus);
     const [userId, setUserId] = useState(initialContext.userId);
-    const [favorite, setFavorite] = useState(initialContext.favorite);
+    const [favoriteData, setFavoriteData] = useState(initialContext.favoriteData);
+
+    useEffect(() => {
+        if (loginStatus === true) {
+        fetch('http://localhost:4840/user/allFavoriteMovies')
+            .then(res => res.json())
+            .then(data => updateFavoriteData(data.favoriteArr))
+            .catch(console.error);
+        }
+    }, [loginStatus]);
+
 
     function updateLoginStatus(newStatusValue) {
         setLoginStatus(newStatusValue);
@@ -26,12 +36,12 @@ export function ContextWrapper(props) {
     }
 
     function updateFavoriteData(newValue) {
-        setFavorite(newValue);
+        setFavoriteData(newValue);
         
     }
 
     function deleteFavoriteData(favoriteId) {
-        setFavorite(prev => prev.filter(favorit => favorit.id !== favoriteId));
+        setFavoriteData(prev => prev.filter(favorit => favorit.id !== favoriteId));
     }
 
     const value = {
@@ -39,7 +49,7 @@ export function ContextWrapper(props) {
         updateLoginStatus,
         userId,
         updateUserId,
-        favorite,
+        favoriteData,
         updateFavoriteData,
         deleteFavoriteData,
     };
