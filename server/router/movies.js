@@ -17,4 +17,6 @@ router.post('/add', addMovie);
 router.put('/update/:id', updateMovies)
 router.delete('/delete/:id', deleteMovies)
 
+
+
 export default router;

@@ -1,20 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import logo from "../../../assets/images/logo/imdb_logo.png";
 import style from "./MovieCreateCard.module.css";
-import { MovieItem } from "../../movie-list/MovieItem.jsx";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
-import { GlobalContext } from '../../../context/GlobalContext.jsx'
+import { useState, useEffect } from "react";
 
-export function MovieCreateCard() {
-  const { userId } = useContext(GlobalContext);
-  console.log("User ID:", userId); 
-  const [movies, setMovies] = useState([]);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+export function MovieEditCard() {
+  const { href } = useParams();
   const [formData, setFormData] = useState({
-    userId: userId || "",
     name: "",
     year: "",
     rating: "",
@@ -26,37 +17,27 @@ export function MovieCreateCard() {
     description: "",
     href: "",
   });
+  const [movieId, setMovieId] = useState(null); 
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    async function fetchMovies() {
+    async function fetchMovie() {
       try {
-        const response = await fetch("http://localhost:4840/movies/get");
+        const response = await fetch(`http://localhost:4840/movies/get/` + href);
         if (response.ok) {
-          const data = await response.json();
-          const userMovies = data.movies.filter(movie => movie.userId === userId);
-          setMovies(userMovies);
+          const movieData = await response.json();
+          setFormData(movieData);
+          setMovieId(movieData.id); 
         } else {
-          console.error("Failed to fetch movies");
+          console.error("Failed to fetch movie");
         }
       } catch (error) {
-        console.error("Failed to fetch movies", error);
+        console.error("Failed to fetch movie", error);
       }
     }
-
-    fetchMovies();
-  }, [userId]);
-  
-  const requiredFields = () => {
-    return (
-      formData.name &&
-      formData.year &&
-      formData.rating &&
-      formData.category &&
-      formData.gross &&
-      formData.url &&
-      formData.href
-    );
-  };
+    fetchMovie();
+  }, [href]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,45 +49,28 @@ export function MovieCreateCard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (requiredFields()) {
-      try {
-        const response = await fetch("http://localhost:4840/movies/add", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-        if (response.ok) {
-          console.log("Movie added successfully");
-          setSuccessMessage("Movie added successfully");
-        } else {
-          console.error("Failed to add movie");
-        }
-      } catch (error) {
-        console.error("Failed to add movie", error);
+    try {
+      const response = await fetch(`http://localhost:4840/movies/update/${movieId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        console.log("Movie updated successfully");
+        setSuccessMessage("Movie update successfully");
+      } else {
+        console.error("Failed to update movie");
+        setErrorMessage("Failed to update movie");
       }
-    } else {
-      setErrorMessage("Please fill all required fields");
+    } catch (error) {
+      console.error("Failed to update movie", error);
     }
   };
 
   return (
     <div className={style.container}>
-      <div className={style.rightColumn}>
-        <div className={style.boss}>
-          <div className={style.titleList}>
-            <h1>My movie list</h1>
-          </div>
-          <div className={style.containerList}>
-            <div className={style.itemList}>
-              {movies.map((movie, index) => (
-                <MovieItem key={index} data={movie} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
       <div className={style.leftColumn}>
         <div className={style.logoBox}>
           <Link to="/">
@@ -115,7 +79,7 @@ export function MovieCreateCard() {
         </div>
         <div className={style.form}>
           <span className={style.titleF}>
-            <h1 className={style.titleF}>Create movie</h1>
+            <h1 className={style.titleF}>Edit movie</h1>
           </span>
           <form className={style.context} onSubmit={handleSubmit}>
             <div className={style.formRow}>
@@ -274,11 +238,11 @@ export function MovieCreateCard() {
                 className={`${style.button} ${style.textButton}`}
                 type="submit"
               >
-                Create your movie
+                Update your movie
               </button>
             </div>
-          </form>
-          {successMessage && <p>{successMessage}</p>}
+            </form>
+            {successMessage && <p>{successMessage}</p>}
           {errorMessage && <p>{errorMessage}</p>}
         </div>
       </div>

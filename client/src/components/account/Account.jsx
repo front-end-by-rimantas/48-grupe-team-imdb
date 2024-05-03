@@ -43,7 +43,7 @@ export function Account() {
                     />
                     <h1 className={style.title}>My movies</h1>
                     <div>
-                      <Link className={style.btn} to="/account/favorite-movies">
+                      <Link className={style.btn} to="/account/movie-create">
                         View
                       </Link>
                     </div>
