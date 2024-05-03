@@ -2,6 +2,8 @@
 import style from "./PrivacyPolicy.module.css";
 
 export function PrivacyPolicy() {
+
+  
   return (
     <div className={style.container}>
       <div className={style.pageContent}>
