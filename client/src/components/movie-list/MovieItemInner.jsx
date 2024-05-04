@@ -108,12 +108,12 @@ export function MovieItemInner() {
     <MediaQuery maxWidth={640}> 
         {(matches) =>
         matches ? (
-            <MovieItemMobile movie={movie} favoriteBtn={favoriteBtn} loginStatus={loginStatus}/>
+            <MovieItemMobile movie={movie} favoriteHtmlBtn={favoriteHtmlBtn} loginStatus={loginStatus}/>
             ):(
     <MediaQuery minWidth={641} maxWidth={1276}>
         {(matches) =>
         matches ? (
-            <MovieItemTable movie={movie} favoriteBtn={favoriteBtn} loginStatus={loginStatus}/>
+            <MovieItemTable movie={movie} favoriteHtmlBtn={favoriteHtmlBtn} loginStatus={loginStatus}/>
         ):(
                 <div className={`${style.boss} ${style.containerInner}`}>
                 <div className={style.heroSection}>

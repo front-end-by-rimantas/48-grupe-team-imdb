@@ -1,6 +1,6 @@
 import { sqlPool } from '../index.js';
-import { isValidEmail, isValidPassword, isValidUsername } from '../validation/formsValidation.js'
-
+import { isValidEmail, isValidPassword, isValidUsername } from '../lib/formsValidation.js'
+import { cookieGenerator } from '../lib/cookieGenerator.js';
 
 export const login = async (req, res) => {
     const data = req.body;
@@ -9,17 +9,17 @@ export const login = async (req, res) => {
     
     if (email !== isValidEmail(email)) {
         return res.send(JSON.stringify({
-            type: 'error',
             message: isValidEmail(email),
         }));
     }
 
     if (password !== isValidPassword(password)) {
         return res.send(JSON.stringify({
-            type: 'error',
             message: isValidPassword(password),
         }));
     }
+
+    let loginObj = null;
 
     try {
         const selectQuery = `SELECT * FROM users WHERE email = ? AND password = ?;`;
@@ -30,20 +30,13 @@ export const login = async (req, res) => {
                 message: 'Such user does not exist',
                 loggedIn: false,
             }));
+        } else if (dbResponse[0].length === 1) {
+                loginObj = dbResponse[0][0];
+        } else { res.send(JSON.stringify({
+                message: 'Such user does not exist',
+                loggedIn: false,
+                }));
         }
-
-        if (dbResponse[0].length === 1) {
-            return res.send(JSON.stringify({
-                message: 'Welcome',
-                loggedIn: true,
-                userId: dbResponse[0][0].id,
-            }));
-        }
-
-        return res.send(JSON.stringify({
-            message: 'Such user does not exist',
-            loggedIn: false,
-        }));
 
     } catch (error) {
         console.error(error);
@@ -53,8 +46,87 @@ export const login = async (req, res) => {
             loggedIn: false,
         }));
     }
+
+    
+    const loginToken = cookieGenerator(20);
+
+    
+    try {
+        const insertQuery = `INSERT INTO loginToken (userId, token) VALUES (?, ?);`;
+        const dbResponse = await connection.execute(insertQuery, [loginObj.id, loginToken]);
+
+        if (dbResponse[0].affectedRows !== 1) {
+            return res.send(JSON.stringify({
+                message: 'Problem while trying to login user',
+                loggedIn: false,
+            }));
+        }
+    } catch (error) {
+        console.error(error)
+        return res.send(JSON.stringify({
+            message: 'Problem while trying to login user',
+            loggedIn: false,
+        }));
+    }
+
+    const cookie = [
+        'loginToken=' + loginToken,
+        'domain=localhost',
+        'path=/',
+        'max-age=' + 1800,
+        'SameSite=Lax',
+        'HttpOnly',
+    ].join('; ');
+
+    return res.set('Set-Cookie', cookie).send(JSON.stringify({
+        loggedIn: true,
+        userId: loginObj.id,
+    }));
+
+    
+
 }
 
+export const loginCookies = async (req, res) => {
+    const connection = await sqlPool();
+    const loginTokenSize = 20;
+
+    if (typeof req.cookies.loginToken === 'undefined') {
+            return res.send(JSON.stringify({
+                message: 'Login token is Undefined',
+                loggedIn: false,
+            }));
+    }
+
+    if (typeof req.cookies.loginToken !== 'string' && req.cookies.loginToken.length !== loginTokenSize) {
+        return res.send(JSON.stringify({
+            message: 'Login token is invalid',
+            loggedIn: false,
+        }));
+    }
+
+    try {
+        const selectQuery = 'SELECT * FROM loginToken INNER JOIN users ON loginToken.userId = users.id;';
+        const dbResponse = await connection.execute(selectQuery, [req.cookies.loginToken]);
+
+       
+
+        if (dbResponse.length !== 0) {
+            return res.send(JSON.stringify({
+                loggedIn: true,
+                id: dbResponse[0][0].id,
+            }));
+        }
+
+    } catch (error) {
+        console.error(error)
+    }
+
+    return res.send(JSON.stringify({
+        message: 'error',
+        loggedIn: false,
+    }));
+}
 
 export const register = async (req, res) => {
     const data = req.body;
@@ -63,21 +135,18 @@ export const register = async (req, res) => {
 
     if (name !== isValidUsername(name)) {
         return res.send(JSON.stringify({
-            type: 'error',
             message: isValidUsername(name),
         }));
     }
 
     if (email !== isValidEmail(email)) {
         return res.send(JSON.stringify({
-            type: 'error',
             message: isValidEmail(email),
         }));
     }
 
     if (password !== isValidPassword(password)) {
         return res.send(JSON.stringify({
-            type: 'error',
             message: isValidPassword(password),
         }));
     }
@@ -120,11 +189,11 @@ export const register = async (req, res) => {
         console.error(error);
 
         return res.send(JSON.stringify({
-            type: 'error',
             message: 'Problem while trying to register a user',
         }));
     }
 }
+
 
 export const favorite = async (req, res) => {
     const { userId, href } = req.body;
@@ -159,8 +228,7 @@ export const favorite = async (req, res) => {
 
     if (dbResponse[0].affectedRows === 0) {
         return res.send(JSON.stringify({
-            type: 'error',
-            message: 'The card cannot be added (dublicate found)',
+            message: 'Problem while trying add to "favorite movies"',
         }));
     }
     if (dbResponse[0].affectedRows === 1) {
@@ -172,7 +240,6 @@ export const favorite = async (req, res) => {
         }));
     }
     return res.send(JSON.stringify({
-        type: 'error',
         message: 'Critical error add to "favorite movies"',
     }));
 
@@ -180,7 +247,6 @@ export const favorite = async (req, res) => {
         console.error(error);
 
         return res.send(JSON.stringify({
-            type: 'error',
             message: 'Fatal error while trying to add movie card to favorites list',
         }));
     } 
@@ -193,7 +259,6 @@ export const allFavoriteMovies = async (req, res) => {
         const dbResponse = await connection.execute(selectQuery);
 
         return res.send(JSON.stringify({
-            type: 'success',
             favoriteArr: dbResponse[0],
         }));
         
@@ -201,7 +266,6 @@ export const allFavoriteMovies = async (req, res) => {
         console.error(error);
 
         return res.send(JSON.stringify({
-            type: 'error',
             message: 'Critical error while trying to get favorite movies"',
         }));
     }
@@ -218,13 +282,11 @@ export const deleteFavorite = async (req, res) => {
 
         if (dbResponse[0].affectedRows === 0) {
             return res.send(JSON.stringify({
-                type: 'error',
                 message: 'Could not delete favorite movie, because it does not exist',
             }));
         }
 
         return res.send(JSON.stringify({
-            type: 'success',
             message: 'favorite deleted',
         }));
 
@@ -232,7 +294,6 @@ export const deleteFavorite = async (req, res) => {
         console.error(error);
 
         return res.send(JSON.stringify({
-            type: 'error',
             message: 'Critical error while trying to get favorite movies"',
         }));
     }

@@ -277,6 +277,7 @@ export function SignIn() {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     email,
                     password,
@@ -300,7 +301,7 @@ export function SignIn() {
                 <div className={style.leftColumn}>
                 {mErr  && eError && pError ? null : errorScreen}
                     <form onSubmit={handleFormSubmit} className={style.form}>
-                        <h1 className={style.title}>Sign in</h1>
+                        <h1 className={style.title}>Login</h1>
                         <div className={style.formRow}>
                             <label className={style.label} htmlFor="">Email</label>
                             <input value={email} onChange={handleEmailChange} className={eError ? style.input : style.inputErr} type="email"/>
@@ -310,12 +311,12 @@ export function SignIn() {
                             <input value={password} onChange={handlePasswordChange} className={pError ? style.input : style.inputErr} type="password"/>
                         </div>
                         <div className={style.formBtn}>
-                            <button className={style.signInBtn} >Sign In for more access</button>
+                            <button className={style.signInBtn} >Login for more access</button>
                         </div>
                     </form>
                     <div className={style.or}>or</div>
                     <div>
-                        <Link className={style.signInBtn + ' ' + style.newAccountBtn} to="/sign-in/registration">Create a New Account</Link>
+                        <Link className={style.signInBtn + ' ' + style.newAccountBtn} to="/registration">Create a New Account</Link>
                     </div>
                 </div>
                 <div className={style.rightColumn}>

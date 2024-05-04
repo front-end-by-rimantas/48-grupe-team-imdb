@@ -18,6 +18,22 @@ export function ContextWrapper(props) {
     const [favoriteData, setFavoriteData] = useState(initialContext.favoriteData);
 
     useEffect(() => {
+        fetch('http://localhost:4840/user/login', {
+            method: 'GET',
+            credentials: 'include',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (typeof data !== 'undefined') {
+                    updateLoginStatus(data.loggedIn);
+                    updateUserId(data.id);
+                }
+            })
+            .catch(console.error);
+    }, []);
+
+
+    useEffect(() => {
         if (loginStatus === true) {
         fetch('http://localhost:4840/user/allFavoriteMovies')
             .then(res => res.json())

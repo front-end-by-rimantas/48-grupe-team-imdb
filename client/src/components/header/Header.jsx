@@ -19,8 +19,8 @@ export function Header() {
     const openMenuBtn = (<span className={style.menuBtn}><LuMenuSquare /></span>);
     const closeMenuBtn = (<span className={style.closeMenuBtn}><LuMenuSquare /></span>);
 
-    const signInButton = (<Link className={style.navLink} to="/sign-in">Sign In</Link>);
-    const signOutButton = (<button onClick={handleSignOut} className={style.navLink + ' ' + style.signOutBtn}>Sign out</button>);
+    const signInButton = (<Link className={style.navLink} to="/login">Login</Link>);
+    const signOutButton = (<button onClick={handleSignOut} className={style.navLink + ' ' + style.signOutBtn}>Logout</button>);
 
     const signInUser = (<Link className={style.navLink} to="/account">Account</Link>);
 
@@ -49,7 +49,7 @@ export function Header() {
                 <nav>
                     {loginStatus ? signInUser : null}
                     <Link className={style.navLink} to="/about">About</Link>
-                    <Link className={style.navLink} to="/movies">Movies</Link>
+                    <Link className={style.navLink} to="/movies/get">Movies</Link>
                     <Link className={style.navLink} to="/top-ten">Top 10</Link>
                     {loginStatus ? signOutButton : signInButton}
                 </nav>
