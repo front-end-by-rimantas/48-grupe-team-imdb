@@ -33,12 +33,8 @@ function App() {
             <Route path="/movies/sorted" element={<SortedMovieList />} />
             <Route path="/movies/top10" element={<MovieTop10 />} />
             <Route path="/search" element={<></>} />
-            <Route path="/sign-in" element={<PageSignIn />} />
-            <Route path="/sign-in/login" element={<></>} />
-            <Route
-              path="/sign-in/registration"
-              element={<PageRegistration />}
-            />
+            <Route path="/login" element={<PageSignIn />} />
+            <Route path="/registration"element={<PageRegistration />}/>
             <Route path="/about" element={<PageAbout />} />
             <Route path="/top-ten" element={<PageTopTen />} />
             <Route path="/account" element={<PageAccount />} />

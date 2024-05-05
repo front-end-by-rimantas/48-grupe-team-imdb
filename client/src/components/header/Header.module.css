@@ -67,7 +67,44 @@
     background-color: rgb(51, 50, 50);
 }
 
-@media (max-width: 55rem) {
+
+@media (max-width: 89rem) {
+
+    .header,
+    .headerStandart,
+    .headerSearch {
+            grid-template-columns: 15fr 51fr 34fr;
+    }
+}
+
+@media (max-width: 70rem) {
+
+    .header,
+    .headerStandart,
+    .headerSearch {
+            grid-template-columns: 12fr 53fr 35fr;
+    }
+}
+
+@media (max-width: 67rem) {
+
+    .header,
+    .headerStandart,
+    .headerSearch {
+            grid-template-columns: 13fr 50fr 37fr;
+    }
+}
+
+@media (max-width: 63rem) {
+
+    .header,
+    .headerStandart,
+    .headerSearch {
+        grid-template-columns: 13fr 48fr 39fr;
+    }
+}
+
+@media (max-width: 58rem) {
 
     .header {
         grid-template-columns: repeat(2, 1fr);

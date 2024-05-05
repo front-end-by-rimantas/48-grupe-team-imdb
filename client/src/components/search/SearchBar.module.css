@@ -107,28 +107,60 @@
   font-size: 1rem;
 }
 
-@media (max-width: 80rem) {
+
+@media (max-width: 82rem) {
   .searchInput {
-      width: 24rem;
+      width: 40rem;
   }
 
   .searchResult {
-      width: 25.7rem;
+      width: 41.7rem;
+  }
+}
+
+@media (max-width: 75rem) {
+  .searchInput {
+      width: 35rem;
+  }
+
+  .searchResult {
+      width: 36.7rem;
+  }
+}
+
+@media (max-width: 72rem) {
+  .searchInput {
+      width: 33rem;
+  }
+
+  .searchResult {
+      width: 34.7rem;
+  }
+}
+
+@media (max-width: 67rem) {
+
+  .searchInput {
+       width: 28rem;
+  }
+
+  .searchResult {
+    width: 29.7rem;
   }
 }
 
 @media (max-width: 63rem) {
 
   .searchInput {
-       width: 16rem;
+       width: 24rem;
   }
 
   .searchResult {
-    width: 17.7rem;
+    width: 25.7rem;
   }
 }
 
-@media (max-width: 55rem) {
+@media (max-width: 58rem) {
 
   .searchInput {
        width: 40rem;

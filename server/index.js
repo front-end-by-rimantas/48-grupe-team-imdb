@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import router from './router/index.js';
 import helmet, { crossOriginResourcePolicy } from 'helmet';
 import mysql from 'mysql2/promise';
@@ -9,7 +10,8 @@ const PORT = 4840;
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:4839",
+    credentials: true,
+    origin: "http://localhost:4839",
 };
 const helmetOptions = {
     crossOriginResourcePolicy: false,
@@ -29,6 +31,7 @@ export async function sqlPool() {
 
 app.use(cors(corsOptions));
 app.use(helmet(helmetOptions));
+app.use(cookieParser());
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
