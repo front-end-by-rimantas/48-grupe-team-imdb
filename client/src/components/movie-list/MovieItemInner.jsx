@@ -24,6 +24,9 @@ export function MovieItemInner() {
     deleteFavoriteData,
   } = useContext(GlobalContext);
   const [favoriteBtn, setFavoriteBtn] = useState(false);
+  const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(null);
+  const [totalStars, setTotalStars] = useState(10);
 
   const favoriteMoviesHrefArr = [];
   let favoriteId = "favoriteId";
@@ -118,6 +121,28 @@ export function MovieItemInner() {
     }
   }
 
+  function onMovieRate(rating) {
+    setRating(rating);
+
+    fetch("http://localhost:4840/movies/set-rate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        userId,
+        movieId: movie.id,
+        rate: rating,
+      }),
+    })
+    //   .then((res) => res.json())
+      .then((data) => {
+        console.log("--> rating res", data);
+      })
+      .catch(console.error);
+  }
+
   return (
     <>
       <main
@@ -177,10 +202,42 @@ export function MovieItemInner() {
                           <div>
                             <p>YOUR RATING</p>
                             <div className={style.blue}>
-                              <i className={style.blueStar}>
+                              {/* <i className={style.blueStar}>
                                 <CiStar size="1.5rem" />
-                              </i>
-                              <p className={style.blueRate}>Rate</p>
+                              </i> */}
+                              {/* <p className={style.blueRate}>Rate</p> */}
+                              {[...Array(totalStars)].map((star, index) => {
+                                const currentRating = index + 1;
+
+                                return (
+                                  <label key={index}>
+                                    <input
+                                      className={style.rateInput}
+                                      type="radio"
+                                      name="rating"
+                                      value={currentRating}
+                                      onChange={() =>
+                                        onMovieRate(currentRating)
+                                      }
+                                    />
+                                    <span
+                                      className="star"
+                                      style={{
+                                        color:
+                                          currentRating <= (hover || rating)
+                                            ? "#ffc107"
+                                            : "#e4e5e9",
+                                      }}
+                                      onMouseEnter={() =>
+                                        setHover(currentRating)
+                                      }
+                                      onMouseLeave={() => setHover(null)}
+                                    >
+                                      &#9733;
+                                    </span>
+                                  </label>
+                                );
+                              })}
                             </div>
                           </div>
                         </div>

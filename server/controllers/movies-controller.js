@@ -70,6 +70,24 @@ export async function addMovie(req, res) {
   }
 }
 
+export async function setRate(req, res) {
+  try {
+    const { userId, movieId, rate } = req.body;
+    console.log(req.body)
+    const sql = `INSERT INTO rating (userId,  movieId, rate) 
+                 VALUES (?, ?, ?)`;
+    const values = [userId, movieId, rate];
+    const connection = await sqlPool();
+    await connection.query(sql, values);
+    await connection.end();
+    res.status(200).send('Rating saved successfully');
+  } catch (error) {
+    console.error(error);
+    console.log("lorem ipsum")
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
 export async function updateMovies(req, res) {
   try {
     const { name, year, rating, category, ageCenzor, awards, gross, url, path, description, href } = req.body;
