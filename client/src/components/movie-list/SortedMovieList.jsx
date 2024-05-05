@@ -10,22 +10,25 @@ export function SortedMovieList() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:4840/movies/get')
-            .then(response => {
-                const formattedMovies = response.data.movies.map(movie => {
-                    const gross = parseFloat(movie.gross.replace(/\D/g, ''));
-                    return { ...movie, gross };
-                });
-
-                const sortedMovies = formattedMovies.sort((a, b) => b.gross - a.gross);
-                setMovies(sortedMovies);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching movie data:', error);
-                setError('Error fetching movie data. Please try again later.');
-                setLoading(false);
+        axios
+          .get("http://localhost:4840/movies/get-most-profitable")
+          .then((response) => {
+            const formattedMovies = response.data.movies.map((movie) => {
+              const gross = parseFloat(movie.gross.replace(/\D/g, ""));
+              return { ...movie, gross };
             });
+
+            const sortedMovies = formattedMovies.sort(
+              (a, b) => b.gross - a.gross
+            );
+            setMovies(sortedMovies);
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Error fetching movie data:", error);
+            setError("Error fetching movie data. Please try again later.");
+            setLoading(false);
+          });
     }, []);
 
     if (loading) {
@@ -39,7 +42,7 @@ export function SortedMovieList() {
     if (!Array.isArray(movies) || movies.length === 0) {
         return <div>No movies found.</div>;
     }
-
+console.log(movies)
     return (
         <div className={style.boss}>
             <div className={style.main}>

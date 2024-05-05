@@ -9,7 +9,7 @@ import { GlobalContext } from '../../context/GlobalContext';
 export function MovieItem({ data, updateMovies }) {
 
   
-    const { id, path, name, year, href, rating } = data || {};
+    const { id, path, name, year, href, rating, gross } = data || {};
     const {userId, favoriteData, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
     const [favoriteBtn, setFavoriteBtn] = useState(false);
 
@@ -91,7 +91,10 @@ export function MovieItem({ data, updateMovies }) {
             <div className={style.row}>
               <div className={style.item}>
                 <div className={style.img}>
-                  <img src={`http://localhost:4840/assets/images/${path}`} alt="" />
+                  <img
+                    src={`http://localhost:4840/assets/images/${path}`}
+                    alt=""
+                  />
                 </div>
               </div>
               <div className={style.containerItem}>
@@ -104,33 +107,50 @@ export function MovieItem({ data, updateMovies }) {
                   </Link>
                 </div>
                 <div className={style.yearItem}>{year}</div>
-                <div className={style.starRating}>
-                  <span className={style.star}>★</span>
-                  {rating}
-                </div>
+                {rating ? (
+                  <div className={style.starRating}>
+                    <span className={style.star}>★</span>
+                    {rating}
+                  </div>
+                ) : null}
+                {gross ? (
+                  <div className={style.starRating}>
+                    <span className={style.star}>$</span>
+                    {gross}
+                  </div>
+                ) : null}
                 <div className={style.buttons}>
-                {loginStatus ? (
-                <>
-                  {userId === data.userId && (
-                    <div className={style.crud}>
-                      <button className={style.button}>
-                        <Link className={style.link} to={`/movies/get/${href}`}>
-                          View
-                        </Link>
-                      </button>
-                      <button className={style.button}>
-                        <Link className={style.link} to={`/account/movie-edit/${data.href}`}>
-                          Edit
-                        </Link>
-                      </button>
-                      <button className={style.button} onClick={() => handleDeleteTask(id)}>
-                        Delete
-                      </button>
-                    </div>
-                  )}
-                </>
-              ) : null}
-              </div>
+                  {loginStatus ? (
+                    <>
+                      {userId === data.userId && (
+                        <div className={style.crud}>
+                          <button className={style.button}>
+                            <Link
+                              className={style.link}
+                              to={`/movies/get/${href}`}
+                            >
+                              View
+                            </Link>
+                          </button>
+                          <button className={style.button}>
+                            <Link
+                              className={style.link}
+                              to={`/account/movie-edit/${data.href}`}
+                            >
+                              Edit
+                            </Link>
+                          </button>
+                          <button
+                            className={style.button}
+                            onClick={() => handleDeleteTask(id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>

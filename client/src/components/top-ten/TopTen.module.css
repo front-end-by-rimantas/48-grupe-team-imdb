@@ -18,7 +18,7 @@
   align-items: center;
   font-size: 2em;
   padding-left: 10px;
-  height: 2rem;
+  line-height: 2rem;
   color: black;
   border-left: 4px solid yellow;
 }

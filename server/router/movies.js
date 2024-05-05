@@ -6,11 +6,13 @@ import {
   addMovie,
   deleteMovies,
   updateMovies,
+  getMostProfitable,
 } from "../controllers/movies-controller.js";
 
 const router = express.Router();
 
 router.get("/get", getMovies);
+router.get("/get-most-profitable", getMostProfitable);
 router.get("/get/:href", getMovie);
 router.get("/search", searchMovies);
 router.post('/add', addMovie);  

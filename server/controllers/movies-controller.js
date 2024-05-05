@@ -11,6 +11,18 @@ export async function getMovies(req, res) {
     res.status(500).json({ error: "Internal server error" });
   }
 }
+export async function getMostProfitable(req, res) {
+  try {
+    const connection = await sqlPool();
+    const [rows] = await connection.query("SELECT name, year, gross, path FROM movies ORDER BY gross DESC LIMIT 10;");
+    // const [rows] = await connection.query("SELECT name, year, gross, path FROM movies;");
+    await connection.end();
+    res.json({ movies: rows });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
 
 export async function getMovie(req, res) {
   try {
