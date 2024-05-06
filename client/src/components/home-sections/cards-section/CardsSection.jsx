@@ -22,13 +22,29 @@ export function CardsSection() {
             });
     }, []);
 
-    const handlePrevClick = () => {
-        movieListRef.current.scrollLeft -= 900;
-    };
+const handlePrevClick = () => {
+    let scrollDistance;
+    if (window.innerWidth >= 1280) {
+        scrollDistance = 900;
+    } else if (window.innerWidth >= 600) {
+        scrollDistance = 500; 
+    } else {
+        scrollDistance = 100;
+    }
+    movieListRef.current.scrollLeft -= scrollDistance;
+};
 
-    const handleNextClick = () => {
-        movieListRef.current.scrollLeft += 900;
-    };
+const handleNextClick = () => {
+    let scrollDistance;
+    if (window.innerWidth >= 1280) {
+        scrollDistance = 900; 
+    } else if (window.innerWidth >= 600) {
+        scrollDistance = 500; 
+    } else {
+        scrollDistance = 100;
+    }
+    movieListRef.current.scrollLeft += scrollDistance;
+};
 
     const handleWatchTrailerClick = (url) => {
         const trailerUrl = url + '?autoplay=1'; 
@@ -56,7 +72,7 @@ export function CardsSection() {
                             <div className={style.movieInfo}>
                                 <div className={style.movieRating}><span>&#9733;</span>{movie.rating}</div>
                                 <div className={style.movieName}>{movie.name}</div>
-                                <button className={style.trailerButton} onClick={() => handleWatchTrailerClick(movie.url)}>Watch Trailer</button>
+                                <button className={style.trailerButton} onClick={() => handleWatchTrailerClick(movie.url)}>Trailer</button>
                             </div>
                         </li>
                     ))}

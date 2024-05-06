@@ -3,6 +3,6 @@ import style from './LogoImdb.module.css'
 
 export function LogoImdb() {
     return (
-        <img className={style.logo} src={imdbLogo} alt="" />
+        <img className={style.headerLogo} src={imdbLogo} alt="" />
     )
 }

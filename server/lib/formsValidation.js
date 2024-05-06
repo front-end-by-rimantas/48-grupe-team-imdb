@@ -36,12 +36,12 @@ function isValidUsername(text) {
     return text;
 }
 
-
 function isValidEmail(text) {
     const emailMinLength = 6;
     const emailMaxLength = 50;
     const domainMinLength = 2;
     const domainMaxLength = 6;
+    const domainPartsMinLength = 2;
    
     if (text.length < emailMinLength) {
         return 'Email is too short.';
@@ -60,16 +60,32 @@ function isValidEmail(text) {
         }
     }
 
-    if (countAtTheRate === 1) {
+    
+    if (countAtTheRate > 1) {
+        return 'The part after the @ should not contain the @ character.';
+    }else if (countAtTheRate < 1) {
+        return 'The @ symbol is missing.'
+    }else {
         parts = text.split('@');
-    } else {
-        return 'The part after the @ should not contain the @ character';
     }
 
-    const recipientName = parts[0];
-    const domainNameParts = parts[1].split('.');
-    const domain = domainNameParts[domainNameParts.length -1];
-    const domainName = parts[1].slice(0, -(domain.length +1));
+    const recipientName = parts[0].length < domainPartsMinLength ? '' : parts[0];
+    const domainNameParts = parts[1] < domainPartsMinLength ? '' : parts[1].split('.');
+    const domain = domainNameParts.length < domainPartsMinLength ? '' : domainNameParts[domainNameParts.length -1];
+    const domainName = parts[1].slice(0, -(domain.length +1)).length < 1 ? '' : parts[1].slice(0, -(domain.length +1));
+
+    if (domainNameParts.length === 0) {
+        return 'Incomplete email mail adress.'
+    }
+
+    if (recipientName.length === 0) {
+        return 'Missing recipient name.'
+    }
+
+    if (domainName.length === 0) {
+        return 'Missing domain name.'
+    }
+
  
     const firstCharacter = recipientName[0];
     const lastCharacter = recipientName[recipientName.length -1];
@@ -109,6 +125,8 @@ function isValidEmail(text) {
     let invalidDomainCharacters = '';
     let isIpAddress = '';
 
+    const firstCharacterDomainN = domainName[0];
+    const lastCharacterDomainN = domainName[domainName.length -1];
     for (let i = 0; i < domainName.length; i++) {
         //a-z
         //0-9
@@ -123,12 +141,12 @@ function isValidEmail(text) {
             domainNameStr += domainName[i];
             isIpAddress += domainName[i];
         } else if (symbolAtCharCode === charObj.minus || symbolAtCharCode === charObj.dot) {
-            if (firstCharacter !== domainName[i] && domainName[i] !== lastCharacter && domainName[i] !== domainName[i + 1]) {
+            if (firstCharacterDomainN !== domainName[i] && domainName[i] !== lastCharacterDomainN && domainName[i] !== domainName[i + 1]) {
                 domainNameStr += domainName[i];
                 if (symbolAtCharCode === charObj.dot) {
                     isIpAddress += domainName[i];
                 }
-            } else invalidDomainCharacters += recipientName[i];
+            } else invalidDomainCharacters += domainName[i];
         } else invalidDomainCharacters += domainName[i];        
     }
 
@@ -141,6 +159,10 @@ function isValidEmail(text) {
         return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place`;
     }
 
+    if (domain.length === 0) {
+        return `The domain is missing.`;
+    }
+
     if (domain.length < domainMinLength) {
         return `Domain too short: ${domain}.`;
     }
@@ -149,12 +171,14 @@ function isValidEmail(text) {
         return `Domain too long: ${domain}.`;
     }
 
+
     if (domainName.length === isIpAddress.length) {
         return `"${isIpAddress}" Invalid format.`;
     }
 
     return text;
 }
+
 
 function isValidPassword(text) {
     const passwordMinLength = 8;

@@ -23,6 +23,10 @@ export function MovieList() {
             });
     }, []);
 
+    const updateMovies = (deletedMovieId) => {
+        setMovies(prevMovies => prevMovies.filter(movie => movie.id !== deletedMovieId));
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -37,17 +41,16 @@ export function MovieList() {
 
     return (
         <div className={style.boss}>
-            <div className={style.main}>
-                <div>
+                <div className={style.titleList}>
                     <h3>IMDb Charts</h3>
-                    <h1>Most Popular movies</h1>
+                    <h1>List movies</h1>
                 </div>
-                <div className={style.container}>
-                    <div className={style.item}>
-                        {movies.map((movie, index) => <MovieItem key={index} data={movie} />)}
+                <div className={style.containerList}>
+                    <div className={style.itemList}>
+                        {movies.map((movie, index) => <MovieItem key={index} data={movie} updateMovies={updateMovies} />)}
+
                     </div>
                 </div>
-            </div>
         </div>
     );
 }

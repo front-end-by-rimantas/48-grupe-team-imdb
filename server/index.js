@@ -1,23 +1,37 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import router from './router/index.js';
 import helmet, { crossOriginResourcePolicy } from 'helmet';
-import { isValidEmail, isValidPassword, isValidUsername } from './validation/formsValidation.js';
-
+import mysql from 'mysql2/promise';
 
 const PORT = 4840;
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:4839",
+    credentials: true,
+    origin: "http://localhost:4839",
 };
 const helmetOptions = {
     crossOriginResourcePolicy: false,
 };
 
+export async function sqlPool() {
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'imdb', 
+        connectionLimit: 10,
+    });
+    await connection.query("USE imdb");
+    return connection;
+}
+
 app.use(cors(corsOptions));
 app.use(helmet(helmetOptions));
+app.use(cookieParser());
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -26,73 +40,6 @@ app.use(router);
 
 app.get('/', (req, res) => {
     return res.send('Home page');
-});
-
-const users = [];
-
-app.post('/api/register', (req, res) => {
-    const data = req.body;
-    const {name, email, password} = data;
-
-    const nameR = isValidUsername(name);
-    const emailR = isValidEmail(email);
-    const passwordR = isValidPassword(password);
-
-    let isUniqueUserEmail = true;
-
-    for (const user of users) {
-        if (user.email === emailR || 
-            user.name === nameR || 
-            user.password === passwordR) {
-            isUniqueUserEmail = false;
-            break;
-        }
-    }
-
-    if (isUniqueUserEmail) {
-        users.push(req.body);
-        console.log(users);
-
-        return res.send(JSON.stringify({
-            message: 'User successfully registered',
-            register: true,
-        }));
-    }
-
-    return res.send(JSON.stringify({
-        message: 'User already exists',
-        register: false,
-    }));
-});
-
-app.post('/api/login', (req, res) => {
-    const data = req.body;
-    const {email, password} = data;
-
-    const emailL = isValidEmail(email);
-    const passwordL = isValidPassword(password);
-
-    let userExists = false;
-
-    for (const user of users) {
-        if (user.email === emailL &&
-            user.password === passwordL) {
-            userExists = true;
-            break;
-        }
-    }
-
-    if (userExists) {
-        return res.send(JSON.stringify({
-            message: 'User successfully logged in',
-            loggedIn: true,
-        }));
-    }
-
-    return res.send(JSON.stringify({
-        message: 'Such user does not exist',
-        loggedIn: false,
-    }));
 });
 
 
@@ -109,7 +56,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`)

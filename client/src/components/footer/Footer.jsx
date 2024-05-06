@@ -57,10 +57,10 @@ export function Footer() {
                     style={{ marginLeft: "5px" }}
                   />
                 </Link>
-                <Link
+                <Link to="/jobs"
                   className={`${style.presentation} ${style.presentationListContact}`}
                 >
-                  Contact
+                  Jobs
                   <FaExternalLinkAlt
                     size="0.9rem"
                     className="linkAlt"
@@ -75,7 +75,7 @@ export function Footer() {
                     style={{ marginLeft: "5px" }}
                   />
                 </Link>
-                <Link className={style.presentation}>
+                <Link to="/privacy-policy" className={style.presentation}>
                   Privacy policy
                   <FaExternalLinkAlt
                     size="0.9rem"

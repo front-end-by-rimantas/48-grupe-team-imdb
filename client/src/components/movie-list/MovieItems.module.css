@@ -1,133 +1,395 @@
-.boss{
-    padding: 1.5rem 5rem;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-h3{
-    border-right: 3px yellow solid ;
-    border-radius: 5px;
-}
-h1{
-    font-size: 2rem;
-    line-height:2.125rem;
-    color:white;
-
-}
+/* MovieItem */
 .container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  border-bottom: 1px #ccc solid;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+img {
+  width: 5.5rem;
+  height: 7.6rem;
+}
+
+.containerItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.title {
+  text-decoration: none;
+}
+
+.yearItem {
+  font-weight: 100;
+  font-size: 0.8rem;
+}
+
+.favoriteIconList {
+  cursor: pointer;
+  color: #aaa5a5;
+}
+
+.favoriteIconList:hover {
+  color: rgb(222, 191, 15);
+}
+
+/* MoviItemInner */
+.boss {
+  padding: 1.5rem 5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 1rem;
+}
+
+.containerInner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.containerItemInner {
+  display: flex;
+  flex-direction: row;
+  gap: 1.3rem;
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nameAndRating h1 {
+  font-size: 2rem;
+  line-height: 2.125rem;
+  color: white;
+}
+
+.underName {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.underName > p {
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.favoriteBtn {
+  background-color: transparent;
+  border: transparent;
+}
+
+.favoriteIconActive,
+.favoriteIconInactive {
+  cursor: pointer;
+  color: #b3aeae;
+  font-size: 1.5rem;
+}
+
+.favoriteIconActive {
+  color: #debf0f;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.year {
+  font-weight: 100;
+  font-size: 1rem;
+}
+
+.rating p {
+  font-size: 0.8rem;
+  color: #b8b7b7;
+  font-weight: bolder;
+}
+
+.yellowStar {
+  color: #ffff05;
+}
+
+.yellow,
+.blue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  gap: 10px;
+}
+
+.blue > .blueRate {
+  color: #5799ef;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.yellow:hover,
+.blue:hover {
+  background-color: #626261;
+  border-radius: 5px;
+  line-height: 1.5rem;
+  height: 2rem;
+}
+
+.blueStar {
+  color: #5799ef;
+  font-weight: 900;
+}
+
+.imgItem {
+  width: 15rem;
+  height: 22rem;
+}
+
+.url {
+  width: 40rem;
+  height: 22rem;
+  margin-left: 2.3rem;
+}
+
+.descriptionMovie {
+  color: #d2d0d0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+
+
+.rateInput {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 5px;
+}
+
+/* MovieList */
+.titleList > h3 {
+  font-size: 1.3rem;
+}
+
+.titleList > h1 {
+  font-size: 2.2rem;
+  padding-bottom: 1rem;
+}
+
+.titleList > h1::before {
+  content: "";
+  border-left: 5px yellow solid;
+  padding-left: 0.75rem;
+}
+
+.containerList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.itemList {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/*Responsive design MovieItemInner using React-Responsive*/
+/*mobileversion*/
+.bossMobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 1rem;
+}
+
+.heroTitleMobile {
+  font-size: 0.8rem;
+  color: white;
+  margin-top: 2.5rem;
+}
+
+.underNameMobile {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.underNameMobile > p {
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.imgAndDescriptionMobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: #d2d0d0;
+  font-size: 1rem;
+  line-height: 24px;
+  padding: 1rem;
+  gap: 2rem;
+  width: 23rem;
+}
+
+.urlMobile {
+  display: flex;
+  justify-content: space-between;
+  width: 23rem;
+  height: 16rem;
+}
+
+.imgItemMobile {
+  width: 8rem;
+  height: 12rem;
+}
+
+.ratingMobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.ratingMobile p {
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: bolder;
+}
+
+/*tableversion*/
+.bossTable {
+  padding: 1.5rem 3rem;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 1rem;
+}
+
+.heroSectionTable {
+  display: flex;
+  flex-direction: row;
+  padding-top: 3rem;
+}
+
+.containerTable {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 2rem;
+  gap: 1rem;
+}
+
+.underNameTable {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.underNameTable > p {
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.urlTable {
+  width: 45rem;
+  height: 22rem;
+}
+
+.ratingTable {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.ratingTable p {
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: bolder;
+}
+
+.descriptionMovieTable {
+  margin: 1.8rem;
+  color: #ffffff;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+}
+
+.blueTable,
+.yellowTable {
+  color: #ffffff;
+}
+
+.starRating {
+  display: flex;
+  align-items: self-end;
+  gap: 10px;
+}
+
+.star {
+  color: rgb(222, 191, 15);
+}
+
+.h3TopTen {
+  padding-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.crud {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button {
+  background-color: blanchedalmond;
+  /* border: none; */
+}
+/*Responsive design MovieList*/
+@media screen and (max-width: 1080px) {
+  .itemList {
+    grid-template-columns: auto auto auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .itemList {
+    grid-template-columns: auto auto;
+  }
+  .crud {
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: flex-start;
+  }
+}
+@media screen and (max-width: 480px) {
+  .itemList {
+    grid-template-columns: auto;
     display: flex;
     flex-direction: column;
-    padding: 5px 10px;
-    border-bottom: 1px #ccc solid;
-}
-.row{
-    display: flex;
-    flex-direction: row;
-    gap: 0.4rem;
-    align-items: center;
-}
-.title{
-    font-weight:200;
-    font-size: 1.25rem;
-}
-.year{
-    font-weight:100;
-    font-size: 1rem;
-}
-.heroSection{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-}
-.rating{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    gap:2rem;
-}
-.rating p{
-    font-size: 1rem;
-    color: #ffffff;
-    font-weight: bolder;
-}
-.yellowStar{
-    color: #ffff05;
-}
-.yellow, .blue{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
-    height: 2rem;
-    gap: 10px;
+  }
 }
-.blue>.blueRate{
-    color:  #5799ef;
-    font-size: 1.25rem;
-    line-height: 1.5rem;
-}
-.yellow:hover, .blue:hover{
-    background-color: #626261;
-    border-radius: 5px;
-    line-height: 1.5rem;
-    height: 1.8rem;
-
-}
-.blueStar{
-    color:  #5799ef;
-    font-weight: 900;
-}
-.underName{
-    display: flex;
-    gap: 0.8rem;
-}
-.url{
-    width: 40rem;
-    height: 22rem;
-    margin-left: 2.3rem;
-}
-.imgItem{
-   width: 15rem;
-   height: 22rem;
-}
-.containerInner{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background: linear-gradient(90deg, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)), 
-                20%, rgba(var(--ipt-baseAlt-shade1-rgb, 31,31,31), 0.6), 
-                80%, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)));
-    };
-    
-.containerItem{
-    background-color: aqua;
-    display: flex;
-    justify-content:space-between;
-    flex-direction: row;
-    gap: 2.5rem;
-}
-.btnCategory{
-    display: flex;
-    justify-items: right;
-    flex-direction: row;
-    gap: 1.3rem
-}
-.btn{
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 17px;
-    line-height: 20px;
-    background:transparent;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    border: 1.5px white solid;
-}
-p{
-    color: white;
-    font-size: 20px;
-    line-height: 24px;
-}
-
- 

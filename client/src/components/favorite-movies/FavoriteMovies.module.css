@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #212121;
+    gap: 5rem;
+}
+
+.favoritMoviesTitle {
+    margin-top: 7rem;
+    color: #bbb6b6;
+    text-align: center;
+}
+
+.emptyMoviesBox {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    min-height: 70vh;
+}
+
+.linkToMoviesList {
+    font-size: 1.5rem;
+    color: #76ABAE;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.linkToMoviesList:hover {
+    text-decoration: underline;
+}
+
+.favoritMoviesBox {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    min-height: 70vh;
+    margin: 0 5rem 5rem 5rem;
+}
+
+.favoriteMovieCard {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    height: 26rem;
+    width: 15rem;
+    background-color: #323232;
+    gap: 1.7rem;
+    border-radius: 10px;
+}
+
+.cardImg {
+    height: 20rem;
+    width: 15rem;
+    border-radius: 10px 10px 0 0;
+}
+
+.deleteBtn {
+    height: 2.5rem;
+    width: 8rem;
+    border-radius: 7px;
+    border: 2px solid #bbb6b6;
+    cursor: pointer;
+    color: #bbb6b6;
+    background-color: transparent;
+    transition: border 0.3s,  color 0.3s;
+}
+
+.deleteBtn:hover {
+    border: 2px solid #fff;
+    color: #fff;
+    transition: border 0.3s,  color 0.3s;
+}

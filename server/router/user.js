@@ -1,12 +1,13 @@
 import express from "express";
-// import { registerUser, loginUser } from "../controllers/user-controller.js";
+import { register, login, favorite, deleteFavorite, allFavoriteMovies, loginCookies } from "../controllers/user-controller.js";
 
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.post('/register', registerUser) // controlleris jau sukurtas
-// router.post('/login', loginUser)  // controlleris jau sukurtas
-// router.patch('/update', updateUser)
-// router.delete('/delete', deleteUser)
-
-// export default router;
+router.post('/register', register) // controlleris jau sukurtas
+router.post('/login', login)  // controlleris jau sukurtas
+router.get('/login', loginCookies)
+router.post('/favorite', favorite)
+router.get('/allFavoriteMovies', allFavoriteMovies)  
+router.delete('/favorite/:favoriteId', deleteFavorite)
+export default router;

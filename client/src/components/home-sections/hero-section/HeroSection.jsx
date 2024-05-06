@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import style from './HeroSection.module.css';
 import axios from 'axios';
@@ -7,6 +8,7 @@ import axios from 'axios';
 export function HeroSection() {
     const [movies, setMovies] = useState([]);
     const [currentMovieIndex, setCurrentMovieIndex] = useState(0);
+    const autoSlideInterval = useRef(null);
 
     useEffect(() => {
         axios.get('http://localhost:4840/movies/get')
@@ -18,18 +20,31 @@ export function HeroSection() {
             });
     }, []);
 
-    const getRandomIndex = () => {
-        return Math.floor(Math.random() * movies.length);
+    useEffect(() => {
+        startAutoSlide();
+        return () => clearInterval(autoSlideInterval.current); 
+    }, [movies.length]);
+
+    const startAutoSlide = () => {
+        autoSlideInterval.current = setInterval(() => {
+            const randomIndex = Math.floor(Math.random() * movies.length);
+            setCurrentMovieIndex(randomIndex);
+        }, 4000);
     };
 
     const handleNextButtonClick = () => {
-        const randomIndex = getRandomIndex();
-        setCurrentMovieIndex(randomIndex);
+        setCurrentMovieIndex(prevIndex => (prevIndex + 1) % movies.length);
+        restartAutoSlide();
     };
 
     const handlePrevButtonClick = () => {
-        const randomIndex = getRandomIndex();
-        setCurrentMovieIndex(randomIndex);
+        setCurrentMovieIndex(prevIndex => (prevIndex - 1 + movies.length) % movies.length);
+        restartAutoSlide();
+    };
+
+    const restartAutoSlide = () => {
+        clearInterval(autoSlideInterval.current);
+        startAutoSlide();
     };
 
     const currentMovie = movies.length > 0 ? movies[currentMovieIndex] : null;

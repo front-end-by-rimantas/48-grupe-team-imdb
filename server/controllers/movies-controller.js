@@ -1,54 +1,121 @@
-import fs from "fs";
-import path from "path";
+import { sqlPool } from '../index.js';
 
-export const getMovies = (req, res) => {
-  const filePath = path.join(process.cwd(), "data/data.json");
-  fs.readFile(filePath, "utf8", (error, data) => {
-    if (error) {
-      console.log(error);
-      res.status(500).json({ error: "Error reading movie data" });
-      return;
-    }
+export async function getMovies(req, res) {
+  try {
+    const connection = await sqlPool();
+    const [rows] = await connection.query('SELECT * FROM movies;');
+    await connection.end();
+    res.json({ movies: rows }); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+export async function getMostProfitable(req, res) {
+  try {
+    const connection = await sqlPool();
+    const [rows] = await connection.query("SELECT name, year, gross, path FROM movies ORDER BY gross DESC LIMIT 10;");
+    // const [rows] = await connection.query("SELECT name, year, gross, path FROM movies;");
+    await connection.end();
+    res.json({ movies: rows });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
 
-    const movies = JSON.parse(data);
-    res.json(movies);
-  });
-};
-
-export const getMovie = (req, res) => {
-  const { href } = req.params;
-  const filePath = path.join(process.cwd(), "data/data.json");
-  fs.readFile(filePath, "utf8", (error, data) => {
-    if (error) {
-      console.log(error);
-      res.status(500).json({ error: "Error reading config file" });
-      return;
-    }
-
-    const movies = JSON.parse(data);
-    const movie = movies.movies.find((movie) => movie.href === href);
-    if (movie) {
-      res.json(movie);
+export async function getMovie(req, res) {
+  try {
+    const { href } = req.params;
+    const connection = await sqlPool();
+    const [rows] = await connection.query('SELECT * FROM movies WHERE href = ?', [href]);
+    await connection.end();
+    if (rows.length > 0) {
+      res.json(rows[0]);
     } else {
       res.status(404).json({ error: "Movie not found" });
     }
-  });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export const searchMovies = async (req, res) => {
+  try {
+    const { name } = req.query;
+    const connection = await sqlPool();
+    const [rows] = await connection.query('SELECT * FROM movies WHERE name LIKE ?', [`%${name}%`]);
+    await connection.end();
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
 
-export const searchMovies = (req, res) => {
-  const searchName = req.query.name;
+export async function addMovie(req, res) {
+  try {
+    const { name, year, rating, category, ageCenzor, awards, gross, url, path, description, href, userId } = req.body;
+    const sql = `INSERT INTO movies (name, year, rating, category, ageCenzor, awards, gross, url, path, description, href, userId) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const values = [name, year, rating, category, ageCenzor, awards, gross, url, path, description, href, userId];
+    const connection = await sqlPool();
+    await connection.query(sql, values);
+    await connection.end();
+    res.status(200).send('Item added successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
 
-  fs.readFile("../server/data/data-copy.json", "utf8", (error, data) => {
-    if (error) {
-      console.log(error);
-      return res.status(500).json({ error: "Error reading movie data" });
-    }
+export async function setRate(req, res) {
+  try {
+    const { userId, movieId, rate } = req.body;
+    console.log(req.body)
+    const sql = `INSERT INTO rating (userId,  movieId, rate) 
+                 VALUES (?, ?, ?)`;
+    const values = [userId, movieId, rate];
+    const connection = await sqlPool();
+    await connection.query(sql, values);
+    await connection.end();
+    res.status(200).send('Rating saved successfully');
+  } catch (error) {
+    console.error(error);
+    console.log("lorem ipsum")
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
 
-    const movies = JSON.parse(data);
+export async function updateMovies(req, res) {
+  try {
+    const { name, year, rating, category, ageCenzor, awards, gross, url, path, description, href } = req.body;
+    const { id } = req.params;
+    const sql = `UPDATE movies SET name =?, year =?, rating =?, category =?, ageCenzor =?, awards =?, gross =?, url =?, path =?, description =?, href =? WHERE id =?`;
+    const values = [name, year, rating, category, ageCenzor, awards, gross, url, path, description, href, id];
+    const connection = await sqlPool();
+    await connection.query(sql, values);
+    await connection.end();
+    res.status(200).send('Item updated successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 
-    const filterMovies = movies.filter((movie) =>
-      movie.name.toLowerCase().includes(searchName.toLowerCase())
-    );
-    res.json(filterMovies);
-  });
+
+export async function deleteMovies(req, res) {
+  try {
+    const { id } = req.params;
+    const sql = `delete from movies where id = ?`;
+    const values = [id];
+    const connection = await sqlPool();
+    await connection.query(sql, values);
+    await connection.end();
+    res.status(200).send('Item deleted successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };

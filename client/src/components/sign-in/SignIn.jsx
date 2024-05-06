@@ -7,7 +7,7 @@ import { GlobalContext } from '../../context/GlobalContext';
 import { TbUfo } from "react-icons/tb";
 
 export function SignIn() {
-    const { updateLoginStatus } = useContext(GlobalContext);
+    const { updateLoginStatus, updateUserId } = useContext(GlobalContext);
 
     const [messageErr, setMessageErr] = useState('');
 
@@ -45,47 +45,64 @@ export function SignIn() {
         const emailMaxLength = 50;
         const domainMinLength = 2;
         const domainMaxLength = 6;
-
+        const domainPartsMinLength = 2;
+       
         if (text.length < emailMinLength) {
             return 'Email is too short.';
         }
-
+    
         if (text.length > emailMaxLength) {
             return 'Email is too long.';
         }
-
+    
         let countAtTheRate = 0;
         let parts = null;
-
+    
         for (let i = 0; i < text.length; i++) {
             if (text[i] === '@') {
                 countAtTheRate++;
             }
         }
-
-        if (countAtTheRate === 1) {
-            parts = text.split('@');
-        } else {
+    
+        
+        if (countAtTheRate > 1) {
             return 'The part after the @ should not contain the @ character.';
+        }else if (countAtTheRate < 1) {
+            return 'The @ symbol is missing.'
+        }else {
+            parts = text.split('@');
         }
-
-        const recipientName = parts[0];
-        const domainNameParts = parts[1].split('.');
-        const domain = domainNameParts[domainNameParts.length -1];
-        const domainName = parts[1].slice(0, -(domain.length +1));
+    
+        const recipientName = parts[0].length < domainPartsMinLength ? '' : parts[0];
+        const domainNameParts = parts[1] < domainPartsMinLength ? '' : parts[1].split('.');
+        const domain = domainNameParts.length < domainPartsMinLength ? '' : domainNameParts[domainNameParts.length -1];
+        const domainName = parts[1].slice(0, -(domain.length +1)).length < 1 ? '' : parts[1].slice(0, -(domain.length +1));
+    
+        if (domainNameParts.length === 0) {
+            return 'Incomplete email mail adress.'
+        }
+    
+        if (recipientName.length === 0) {
+            return 'Missing recipient name.'
+        }
+    
+        if (domainName.length === 0) {
+            return 'Missing domain name.'
+        }
+    
      
         const firstCharacter = recipientName[0];
         const lastCharacter = recipientName[recipientName.length -1];
         
         let recipientNameStr = '';
         let invalidCharacters = '';
-
+    
         for (let i = 0; i < recipientName.length; i++) {
             //a-z
             //0-9
             //!# $ % & '* + - /.=?_
             const symbolAtCharCode = recipientName.charCodeAt(i);
-
+    
             if (symbolAtCharCode >= charObj.alphabetBeginning && symbolAtCharCode <= charObj.alphabetEnd) {
                 recipientNameStr += recipientName[i];
             } else if (recipientName[i] >= '0' && recipientName[i] <= '9') {
@@ -105,19 +122,21 @@ export function SignIn() {
                     recipientNameStr += recipientName[i];
                 } else invalidCharacters += recipientName[i];
             } else invalidCharacters += recipientName[i];
-
+    
         }
-
+    
         let domainNameStr = '';
         let invalidDomainCharacters = '';
         let isIpAddress = '';
-
+    
+        const firstCharacterDomainN = domainName[0];
+        const lastCharacterDomainN = domainName[domainName.length -1];
         for (let i = 0; i < domainName.length; i++) {
             //a-z
             //0-9
             //-.
             const symbolAtCharCode = domainName.charCodeAt(i);
-
+    
             if (symbolAtCharCode >= charObj.alphabetBeginning && symbolAtCharCode <= charObj.alphabetEnd) {
                 domainNameStr += domainName[i];
             } else if (symbolAtCharCode >= charObj.alphabetUpperCaseBeginning && symbolAtCharCode <= charObj.alphabetUpperCaseEnd) {
@@ -126,38 +145,44 @@ export function SignIn() {
                 domainNameStr += domainName[i];
                 isIpAddress += domainName[i];
             } else if (symbolAtCharCode === charObj.minus || symbolAtCharCode === charObj.dot) {
-                if (firstCharacter !== domainName[i] && domainName[i] !== lastCharacter && domainName[i] !== domainName[i + 1]) {
+                if (firstCharacterDomainN !== domainName[i] && domainName[i] !== lastCharacterDomainN && domainName[i] !== domainName[i + 1]) {
                     domainNameStr += domainName[i];
                     if (symbolAtCharCode === charObj.dot) {
                         isIpAddress += domainName[i];
                     }
-                } else invalidDomainCharacters += recipientName[i];
+                } else invalidDomainCharacters += domainName[i];
             } else invalidDomainCharacters += domainName[i];        
         }
-
-
+    
+    
         if (recipientName.length !== recipientNameStr.length) {
             return `"${invalidCharacters[0]}" Used in the wrong "${recipientName}" place`;
         }
-
+    
         if (domainName.length !== domainNameStr.length) {
-            return `"${invalidDomainCharacters[0]}" Used in the wrong "${domainName}" place`;
+            return `"${invalidDomainCharacters[0]}" Used in the wrong ${domainName} place`;
         }
-
+    
+        if (domain.length === 0) {
+            return `The domain is missing.`;
+        }
+    
         if (domain.length < domainMinLength) {
-            return `Domain too short: ${domain}`;
+            return `Domain too short: ${domain}.`;
         }
-
+    
         if (domain.length > domainMaxLength) {
-            return `Domain too long: ${domain}`;
+            return `Domain too long: ${domain}.`;
         }
-
+    
+    
         if (domainName.length === isIpAddress.length) {
-            return `"${isIpAddress}" Invalid format`;
+            return `"${isIpAddress}" Invalid format.`;
         }
-
+    
         return true;
     }
+    
 
     function isValidPassword(text) {
         const passwordMinLength = 8;
@@ -246,15 +271,16 @@ export function SignIn() {
         }
 
         if (isAllFormValid) {
-            fetch('http://localhost:4840/api/login', {
+            fetch('http://localhost:4840/user/login', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
-                    email: email,
-                    password: password,
+                    email,
+                    password,
                 }),
             })
                 .then(res => res.json())
@@ -262,6 +288,7 @@ export function SignIn() {
                     setMessageErr(data.message);
                     if (data.loggedIn === true) {
                         updateLoginStatus(true);
+                        updateUserId(data.userId)
                         navigate('/');
                     }
                 })
@@ -274,7 +301,7 @@ export function SignIn() {
                 <div className={style.leftColumn}>
                 {mErr  && eError && pError ? null : errorScreen}
                     <form onSubmit={handleFormSubmit} className={style.form}>
-                        <h1 className={style.title}>Sign in</h1>
+                        <h1 className={style.title}>Login</h1>
                         <div className={style.formRow}>
                             <label className={style.label} htmlFor="">Email</label>
                             <input value={email} onChange={handleEmailChange} className={eError ? style.input : style.inputErr} type="email"/>
@@ -284,16 +311,16 @@ export function SignIn() {
                             <input value={password} onChange={handlePasswordChange} className={pError ? style.input : style.inputErr} type="password"/>
                         </div>
                         <div className={style.formBtn}>
-                            <button className={style.signInBtn} >Sign In for more access</button>
+                            <button className={style.signInBtn} >Login for more access</button>
                         </div>
                     </form>
                     <div className={style.or}>or</div>
                     <div>
-                        <Link className={style.signInBtn + ' ' + style.newAccountBtn} to="/sign-in/registration">Create a New Account</Link>
+                        <Link className={style.signInBtn + ' ' + style.newAccountBtn} to="/registration">Create a New Account</Link>
                     </div>
                 </div>
                 <div className={style.rightColumn}>
-                    <h1 className={style.title} >Benefits of your free IMDb account</h1>
+                    <h2 className={style.title} >Benefits of your free IMDb account</h2>
                     <p className={style.pTitle} >Personalized Recommendations</p>
                         <p className={style.paragraph} >Discover shows you'll love.</p>
                     <p className={style.pTitle} >Your Watchlist</p>

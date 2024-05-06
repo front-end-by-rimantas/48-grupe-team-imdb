@@ -2,11 +2,14 @@ import style from "./SearchBar.module.css";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoIosClose } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export function SearchBar() {
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [wrongSearchText, setWrongText] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [inputFocused, setInputFocused] = useState(false);
+  const [hideResultsTimeout, setHideResultsTimeout] = useState(null);
 
   const onSearchInput = async (event) => {
     setSearchText(event.target.value);
@@ -29,9 +32,9 @@ export function SearchBar() {
     e.preventDefault();
 
     if (!searchText.length) {
-      setWrongText("Enter at least one character");
+      setErrorMessage("Enter at least one character");
     } else {
-      setWrongText("");
+      setErrorMessage("");
     }
   }
 
@@ -40,9 +43,26 @@ export function SearchBar() {
     setSearchText("");
   };
 
+  const handleBlur = () => {
+    setHideResultsTimeout(setTimeout(() => setInputFocused(false)));
+  };
+
+  const handleFocus = () => {
+    clearTimeout(hideResultsTimeout);
+    setInputFocused(true);
+  };
+
+  const handleResultItemClick = () => {
+    clearTimeout(hideResultsTimeout);
+  };
+
   return (
     <div className={style.serchPage}>
-      <div className={style.searchForma}>
+      <div
+        className={style.searchForma}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+      >
         <input
           placeholder="Search IMdb."
           type="text"
@@ -63,34 +83,34 @@ export function SearchBar() {
             )}
           </button>
         </div>
-        {filteredData.length && searchText.length ? (
+        {inputFocused && filteredData.length && searchText.length ? (
           <div className={style.searchResult}>
             {filteredData.map((value, key) => {
               return (
-                <a
+                <Link
                   className={style.searchItem}
-                  href={`/${value.href}`}
+                  to={`/movies/get/${value.href}`}
                   key={key}
                   target="_blank"
+                  onClick={handleResultItemClick}
                 >
-                  {/* <a className={style.dataItem} href={value.href} key={key} target="_blank"></a> */}
                   <img
                     className={style.imgItemSearch}
-                    src={value.path}
+                    src={`http://localhost:4840/assets/images/${value?.path}`}
                     alt=""
                   />
                   <div className={style.searchSection}>
                     <span className={style.nameLink}>{value.name}</span>
                     <span className={style.awardsLink}>{value.awards}</span>
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>
         ) : null}
       </div>
-      {wrongSearchText === "" ? null : (
-        <p className={style.error}>{wrongSearchText}</p>
+      {errorMessage === "" ? null : (
+        <p className={style.error}>{errorMessage}</p>
       )}
     </div>
   );

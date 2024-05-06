@@ -1,0 +1,115 @@
+.heroContainer {
+  display: grid;
+}
+
+.imgContainer {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.heroImage {
+  max-height: 640px;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 640px 480px;
+  background-position: center;
+  vertical-align: middle;
+}
+
+.heroBoxContainer {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  margin: 8% auto 5%;
+}
+
+.heroBox {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.heroContent {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 5;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  gap: 16px;
+  height: auto;
+  align-items: center;
+  text-align: center;
+  padding: 64px 24px;
+  background: hsla(0, 0%, 100%, 0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 0 #d1d5da;
+  color: #56616c;
+}
+
+.logoImg {
+  height: auto;
+  object-fit: contain;
+  color: transparent;
+  object-position: 0% 0%;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 22px;
+  line-height: 24px;
+  color: #56616c;
+  font-weight: 700;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 35px;
+  line-height: 60px;
+  color: #161e2d;
+  font-weight: 400;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.btn {
+  display: flex;
+  font-size: 20px;
+  border-color: transparent;
+  min-width: 128px;
+  background-color: rgb(23, 104, 201);
+  color: rgb(255, 255, 255);
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  min-height: 32px;
+  position: relative;
+  text-align: center;
+  font-family: sans-serif;
+  letter-spacing: 2px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: rgb(163, 197, 233);
+}
+
+@media (max-width: 768px) {
+  .heroBoxContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+  }
+}

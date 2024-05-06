@@ -1,94 +1,99 @@
 
 .infoSection {
-    padding: 100px 100px 50px 100px;
-    background-color: black;
-    color: white;
-  }
+  padding: 100px 100px 50px 100px;
+  background-color: black;
+  color: white;
+}
 
-  .infoSection::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -10px;
-    width: 5px;
-    height: 100%;
-    background-color: yellow;
-  }
-  
-  .infoSection h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-  }
-  
-  .infoSection p {
-    font-size: 16px;
-    color: #ccc;
-  }
-
-  .topBar {
-    display: flex;
-    align-items: center;
-  }
-
- .line {
-  height: 30px;
+.infoSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
   width: 5px;
+  height: 100%;
   background-color: yellow;
-  margin-right: 5px;
+}
+
+.infoSection h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.infoSection p {
+  font-size: 16px;
+  color: #ccc;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+height: 30px;
+width: 5px;
+background-color: yellow;
+margin-right: 5px;
 }
 
 .arrowButton {
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-    margin-left: 10px; 
-  }
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px; 
+}
 
-  .arrowButton:hover {
-    color: yellow;
-  }
-  
-  .movieList {
-    column-count: 2; 
-    column-gap: 20px; 
+.arrowButton:hover {
+  color: yellow;
+}
+
+.movieList {
+  column-count: 2; 
+  column-gap: 20px; 
+  list-style-type: none;
 }
 
 .movieList li {
     margin-top: 10px;
 }
   
-  .rank {
-    font-weight: bold;
-    font-size: 18px;
-    color: white;
-    margin-right: 10px;
-  }
+.rank {
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  margin-right: 10px;
+  width: 20px; 
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  padding-left: 10px; 
+}
   
-  .movieTitle {
-    font-size: 18px;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .revenue {
-    font-size: 16px;
-    color: rgb(181, 181, 173);
-    width: 100%;
-    text-align: left;
-  }
+.movieTitle {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
 
-  .movieNumber {
-    display: flex;
-    align-items: center;
-    position: relative; 
-    margin-right: 10px;
-  }
-  
-  .movieInfo {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+.revenue {
+  font-size: 16px;
+  color: rgb(181, 181, 173);
+  width: 100%;
+  text-align: left;
+}
+
+.movieNumber {
+  display: flex;
+  align-items: center;
+  position: relative; 
+  margin-right: 10px;
+}
+
+.movieInfo {
+  display: flex;
+  align-items: center;
 }
 
 .movieDetails {
@@ -96,11 +101,11 @@
 }
 
 .verticalLine {
-    height: 22px;
-    width: 1.5px;
-    background-color: yellow;
-    color: yellow;
-    margin-left: 6px; 
+  height: 22px;
+  width: 1.5px;
+  background-color: yellow;
+  position: absolute; 
+  left: 23px;
 }
 
 .namePrice {
@@ -110,4 +115,39 @@
 
 .itemUrl {
     text-decoration: none;
+}
+
+.top {
+  position: absolute;
+  left: 73%;
+  text-decoration: none;
+  padding: 10px;
+  font-family: sans-serif;
+  color: #fff;
+  background: rgba(102, 97, 97, 0.5);
+  border-radius: 100px;
+}
+
+/* For tablet */
+@media only screen and (max-width: 1024px) {
+  .movieList {
+    column-count: 1; 
+  }
+}
+
+/* For mobile */
+@media only screen and (max-width: 600px) {
+  .movieList {
+    column-count: 1; 
+    column-gap: 0;
+  }
+
+  .infoSection {
+    padding: 50px 20px;
+  }
+
+  .rank {
+    width: auto;
+    justify-content: flex-start; 
+  }
 }
