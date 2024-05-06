@@ -114,8 +114,8 @@ export function MovieItem({ data, updateMovies }) {
                   </div>
                 ) : null}
                 {gross ? (
-                  <div className={style.starRating}>
-                    <span className={style.star}>$</span>
+                  <div className={style.dolarRating}>
+                    <span className={style.dolar}>$</span>
                     {gross}
                   </div>
                 ) : null}
@@ -124,7 +124,7 @@ export function MovieItem({ data, updateMovies }) {
                     <>
                       {userId === data.userId && (
                         <div className={style.crud}>
-                          <button className={style.button}>
+                          <button className={style.viewButton}>
                             <Link
                               className={style.link}
                               to={`/movies/get/${href}`}
@@ -132,7 +132,7 @@ export function MovieItem({ data, updateMovies }) {
                               View
                             </Link>
                           </button>
-                          <button className={style.button}>
+                          <button className={style.editButton}>
                             <Link
                               className={style.link}
                               to={`/account/movie-edit/${data.href}`}
@@ -141,7 +141,7 @@ export function MovieItem({ data, updateMovies }) {
                             </Link>
                           </button>
                           <button
-                            className={style.button}
+                            className={style.deleteButton}
                             onClick={() => handleDeleteTask(id)}
                           >
                             Delete
