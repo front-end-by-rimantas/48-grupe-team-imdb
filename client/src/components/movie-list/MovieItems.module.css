@@ -95,11 +95,54 @@ img {
   cursor: pointer;
   color: #b3aeae;
   font-size: 1.5rem;
+  transition: 0.3s;
 }
 
 .favoriteIconActive {
   color: #debf0f;
+  transition: 0.3s;
 }
+
+.favoriteMessage {
+  opacity: 1;
+  transition: 3s;
+}
+
+.favoriteMessageRemove {
+  opacity: 0;
+  transition: 3s;
+}
+
+.favoriteMessageDark {
+  color: #626261;
+  opacity: 1;
+  transition: 3s;
+}
+
+.favoriteMessageRemoveDark {
+  color: #626261;
+  opacity: 0;
+  transition: 3s;
+}
+
+.off {
+  opacity: 0;
+  transition: 3s;
+}
+
+
+/* .favoriteMessageRemove {
+  animation: turn 4s ease-out forwards;
+} */
+
+/* @keyframes turn {
+  0%{
+    opacity: 1;
+  }
+  100%{
+      opacity: 0;
+  }
+} */
 
 .rating {
   display: flex;

@@ -3,7 +3,7 @@ import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 import style from '../MovieItems.module.css';
 
-export function MovieItemMobile({  movie, loginStatus, favoriteHtmlBtn }) {
+export function MovieItemMobile({  movie, loginStatus, favoriteHtmlBtn, isInArr, addedFavoriteMsg, removedFavoritesMsg }) {
     return (
 <div className={`${style.bossMobile} ${style.containerInnerMobile}`}>
     <div className={style.heroTitleMobile}>
@@ -18,6 +18,7 @@ export function MovieItemMobile({  movie, loginStatus, favoriteHtmlBtn }) {
                         <circle cx="10" cy="10" r="3" fill= "white" />
                     </svg>
             {loginStatus ? favoriteHtmlBtn : null}
+            {isInArr ? addedFavoriteMsg : removedFavoritesMsg}
         </div>
     </div>
     <iframe className={style.urlMobile} src={movie?.url} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>

@@ -29,11 +29,13 @@ export function MovieItemInner() {
             favoriteMoviesHrefArr.push(data.href);
             if (data.href === href) {
                 favoriteId = data.id;
-                isInArr = data.isInArr;
+                isInArr = true;
             }
         }
     } 
 
+    const addedFavoriteMsg = (<p className={isInArr ? style.favoriteMessage : style.off}>Added to favorite</p>);
+    const removedFavoritesMsg = (<p className={!isInArr ? style.favoriteMessageRemove : style.off}>Removed from favorites</p>);
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
     const favoriteHtmlBtn = (
@@ -81,7 +83,6 @@ export function MovieItemInner() {
                     .then(res => res.json())
                     .then(data => {
                         updateFavoriteData(data.favoriteArr)
-                        console.log(data.favoriteArr)
                     })
                     .catch(e => console.error(e));
         } else {
@@ -90,7 +91,6 @@ export function MovieItemInner() {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     if (data.message === 'favorite deleted') {
                         deleteFavoriteData(favoriteId);
                     }
@@ -100,6 +100,7 @@ export function MovieItemInner() {
     }
        
     
+    
     return (
         <>
           <main style={{
@@ -108,12 +109,16 @@ export function MovieItemInner() {
     <MediaQuery maxWidth={640}> 
         {(matches) =>
         matches ? (
-            <MovieItemMobile movie={movie} favoriteHtmlBtn={favoriteHtmlBtn} loginStatus={loginStatus}/>
+            <MovieItemMobile movie={movie} favoriteHtmlBtn={favoriteHtmlBtn} 
+            loginStatus={loginStatus} isInArr={isInArr} 
+            addedFavoriteMsg={addedFavoriteMsg} removedFavoritesMsg={removedFavoritesMsg}/>
             ):(
     <MediaQuery minWidth={641} maxWidth={1276}>
         {(matches) =>
         matches ? (
-            <MovieItemTable movie={movie} favoriteHtmlBtn={favoriteHtmlBtn} loginStatus={loginStatus}/>
+            <MovieItemTable movie={movie} favoriteHtmlBtn={favoriteHtmlBtn} 
+            loginStatus={loginStatus} isInArr={isInArr} 
+            addedFavoriteMsg={addedFavoriteMsg} removedFavoritesMsg={removedFavoritesMsg}/>
         ):(
                 <div className={`${style.boss} ${style.containerInner}`}>
                 <div className={style.heroSection}>
@@ -129,6 +134,7 @@ export function MovieItemInner() {
                                         <circle cx="10" cy="10" r="3" fill= "white" />
                                     </svg>
                             {loginStatus ? favoriteHtmlBtn : null}
+                            {isInArr ? addedFavoriteMsg : removedFavoritesMsg}
                         </div>
                     </div>
                     <div className={style.rating}>
