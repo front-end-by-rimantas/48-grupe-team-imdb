@@ -10,7 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30rem;
+  max-width: 40rem;
+  width: 100%;
   height: auto;
   margin-bottom: 70px;
 }
@@ -22,6 +23,10 @@
   flex-direction: column;
   align-items: center;
   border-left: 1px solid black;
+}
+
+.leftColum > .border {
+  border-left: none;
 }
 
 .title {
@@ -58,8 +63,9 @@
 
 .itemList {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
 }
 
 .context {
@@ -170,6 +176,8 @@
   }
   .rightColumn {
     padding: 0 2rem 2rem;
+  }
+  .leftColumn {
     border-left: none;
   }
   .titleList > h1 {

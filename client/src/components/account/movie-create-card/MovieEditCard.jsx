@@ -79,7 +79,7 @@ export function MovieEditCard() {
   
   return (
     <div className={style.container}>
-      <div className={style.leftColumn}>
+      <div className={`${style.leftColumn} ${style.border}`}>
         <div className={style.logoBox}>
           <Link to="/">
             <img className={style.registrationLogo} src={logo} alt="Logo" />
