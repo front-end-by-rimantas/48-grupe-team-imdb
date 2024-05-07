@@ -1,7 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useEffect } from "react";
 import style from "./Terms.module.css";
 
 export function Terms() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={style.container}>
       <div className={style.pageContent}>
