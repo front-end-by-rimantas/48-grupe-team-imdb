@@ -3,7 +3,7 @@ import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 import style from '../MovieItems.module.css';
 
-export function MovieItemTable({  movie, loginStatus, favoriteHtmlBtn }) {
+export function MovieItemTable({  movie, loginStatus, favoriteHtmlBtn, isInArr, addedFavoriteMsg, removedFavoritesMsg }) {
     return (
     <>
         <div className={`${style.bossTable} ${style.heroSectionTable}`}> 
@@ -19,6 +19,7 @@ export function MovieItemTable({  movie, loginStatus, favoriteHtmlBtn }) {
                         <circle cx="10" cy="10" r="3" fill="white" />
                     </svg>
                     {loginStatus ? favoriteHtmlBtn : null}
+                    {isInArr ? addedFavoriteMsg : removedFavoritesMsg}
                 </div>
             </div>
         </div>
