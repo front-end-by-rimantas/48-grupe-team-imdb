@@ -32,7 +32,7 @@ export function MovieItem({ data, updateMovies }) {
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
     const favoriteHtmlBtn = (
-      <div className=''>
+      <div className={style.favoriteBox}>
         <button className={style.favoriteBtn}  onClick={() => handleFavorite(favoriteBtn)} >
             {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
         </button>

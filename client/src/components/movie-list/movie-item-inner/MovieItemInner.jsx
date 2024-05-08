@@ -4,12 +4,10 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
-import style from "./MovieItems.module.css";
+import style from "./MovieItemInner.module.css";
 import { MdFavorite } from "react-icons/md";
-import MediaQuery from "react-responsive";
-import { MovieItemMobile } from "./responsive-design/MovieItemMobile";
-import { MovieItemTable } from "./responsive-design/MovieItemTable";
-import { GlobalContext } from "../../context/GlobalContext";
+import { GlobalContext } from "../../../context/GlobalContext";
+
 
 export function MovieItemInner() {
   const { href } = useParams();
@@ -131,22 +129,8 @@ export function MovieItemInner() {
       }
     
     return (
-        <>
-          <main style={{
-        background: 'linear-gradient(90deg, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)), 20%, rgba(var(--ipt-baseAlt-shade1-rgb, 31,31,31), 0.6), 80%, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)))'
-    }}>  
-    <MediaQuery maxWidth={640}> 
-        {(matches) =>
-        matches ? (
-            <MovieItemMobile movie={movie} favoriteHtmlBtn={favoriteHtmlBtn} loginStatus={loginStatus}/>
-            ):(
-    <MediaQuery minWidth={641} maxWidth={1276}>
-        {(matches) =>
-        matches ? (
-            <MovieItemTable movie={movie} favoriteHtmlBtn={favoriteHtmlBtn} loginStatus={loginStatus}/>
-        ):(
+            <main className={style.container}>  
                 <div className={`${style.boss} ${style.containerInner}`}>
-                <div className={style.heroSection}>
                     <div className={style.nameAndRating}>
                         <h1>{movie?.name}</h1>
                         <div className = {style.underName}>
@@ -218,34 +202,28 @@ export function MovieItemInner() {
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div className={style.containerItemInner}>
-                        <img
-                          className={style.imgItem}
-                          src={`http://localhost:4840/assets/images/${movie?.path}`}
-                          alt=""
-                        />
-                        <iframe
-                          className={style.url}
-                          src={movie?.url}
-                          title="YouTube video player"
-                          frameBorder="0"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
+                        <div className={style.imgBox}>
+                            <img
+                              className={style.imgItem}
+                              src={`http://localhost:4840/assets/images/${movie?.path}`}
+                              alt=""
+                            />
+                        </div>
+                        <div className={style.videoBox}>
+                            < iframe 
+                              className={style.url}
+                              src={movie?.url}
+                              title="YouTube video player"
+                              frameBorder="0"
+                              allowFullScreen
+                            ></iframe>
+                        </div>
                       <div className={style.descriptionMovie}>
                         {movie?.description?.split("\n").map((line, index) => (
-                          <div key={index}>{line}</div>
+                          <p key={index}>{line}</p>
                         ))}
                       </div>
-                    </div>
-                  )
-                }
-              </MediaQuery>
-            )
-          }
-        </MediaQuery>
-      </main>
-    </>
+                  </div>
+            </main>
   );
 }

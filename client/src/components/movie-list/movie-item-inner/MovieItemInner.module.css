@@ -1,0 +1,279 @@
+
+.container {
+  background: linear-gradient(90deg, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)), 
+  20%, rgba(var(--ipt-baseAlt-shade1-rgb, 31,31,31), 0.6), 
+  80%, rgb(var(--ipt-baseAlt-shade1-rgb, 31,31,31)))
+}
+
+.boss {
+    padding: 1.5rem 5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    gap: 1rem;
+  }
+  
+  .containerInner {
+    min-height: 40rem;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 17rem 1fr 1fr 2fr;
+    grid-template-rows: 0.8fr 3fr 0.3fr;
+    gap: 20px;
+  }
+  
+  .nameAndRating {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    color: white;
+    gap: 1rem 0;
+    grid-column: 1 / 4;
+  }
+  
+  .h1 {
+    font-size: 2rem;
+    line-height: 2.125rem;
+    color: white;
+  }
+
+  .underName {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .underName > p {
+    color: white;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  .favoriteBtn {
+    background-color: transparent;
+    border: transparent;
+  }
+  
+  .favoriteIconActive,
+  .favoriteIconInactive {
+    cursor: pointer;
+    color: #b3aeae;
+    font-size: 1.5rem;
+    transition: 0.3s;
+  }
+  
+  .favoriteIconActive {
+    color: #debf0f;
+    transition: 0.3s;
+  }
+  
+  .favoriteMessage {
+    opacity: 1;
+    transition: 2s;
+  }
+  
+  .favoriteMessageRemove {
+    opacity: 0;
+    transition: 2s;
+  }
+  
+  .off {
+    opacity: 0;
+    transition: 3s;
+  }
+  
+  
+  .rating {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 2rem;
+    grid-column: 4 / 5;
+  }
+  
+  .year {
+    font-weight: 100;
+    font-size: 1rem;
+  }
+  
+  .rating p {
+    font-size: 0.8rem;
+    color: #b8b7b7;
+    font-weight: bolder;
+  }
+  
+  .yellowStar {
+    color: #ffff05;
+  }
+  
+  .yellow,
+  .blue {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    gap: 10px;
+  }
+  
+  .blue > .blueRate {
+    color: #5799ef;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  
+  .yellow:hover,
+  .blue:hover {
+    background-color: #626261;
+    border-radius: 5px;
+    line-height: 1.5rem;
+    height: 2rem;
+  }
+  
+  .blueStar {
+    color: #5799ef;
+    font-weight: 900;
+  }
+  
+  .imgItem {
+    width: 15rem;
+    height: 22rem;
+  }
+  
+  .url {
+    width: 40rem;
+    height: 22rem;
+  }
+  
+  .imgBox {
+    display: grid;
+    justify-content: left;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  .videoBox {
+    display: flex;
+    align-items: center;
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+  }
+
+  .descriptionMovie {
+    display: flex;
+    align-items: center;
+    color: #d2d0d0;
+    font-size: 18px;
+    line-height: 24px;
+    grid-column: 1 / 5;
+  }
+  
+  .rateInput {
+    display: none;
+  }
+  
+  .star {
+    cursor: pointer;
+    font-size: 1 rem;
+    margin: 5px;
+    color: rgb(222, 191, 15);
+  }
+  
+  .dolar {
+    cursor: pointer;
+    font-size: 1 rem;
+    margin: 5px;
+    color: rgb(222, 191, 15);
+  }
+  
+  @media (max-width: 80rem) {
+
+    .containerInner {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 3fr 0.4fr 1fr;
+    }
+
+    .nameAndRating {
+        grid-column: 1 / 5;
+    }
+
+    .rating {
+        justify-content: center;
+        grid-column: 1 / 5;
+        grid-row: 4 / 5;
+    }
+
+  }
+
+  @media (max-width: 50rem) {
+
+    .containerInner {
+        grid-template-rows: 0.5fr 1fr 1fr 0.5fr;
+
+    }
+
+    .nameAndRating {
+        align-items: center;
+        flex-wrap: wrap;
+        grid-column: 1 / 5;
+        text-align: center;
+    }
+
+    .imgBox {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+      }
+    
+    .descriptionMovie {
+        height: 22rem;
+        flex-wrap: wrap;
+        align-items: start;
+        grid-column: 2 / 5;
+        grid-row: 3 / 4;
+    }
+
+    .videoBox {
+        grid-column: 1 / 5;
+        grid-row: 2 / 3;
+    }
+
+    .boss {
+        padding: 1.5rem 1rem;
+    }
+
+      .underName {
+        flex-wrap: wrap;
+      }
+    
+  }
+
+  @media (max-width: 35rem) {
+
+    .nameAndRating {
+        grid-column: 1 / 5;
+    }
+    .containerInner {
+        grid-template-rows: 0.5fr 1fr 0.4fr 0.5fr 0.3fr;
+        grid-template-columns: 1fr ;
+    }
+
+     .imgBox {
+        justify-content: center;
+        grid-column: 1 / 5;
+        grid-row: 2 / 3;
+      }
+
+     .videoBox {
+        grid-column: 1 / 5;
+        grid-row: 4 / 5;
+    }
+
+    
+    .descriptionMovie {
+        height: auto;
+        grid-row: 3 / 4;
+    }  
+
+    .rating {
+        flex-direction: column;
+        grid-row: 5 / 6;
+    }
+      
+  }
