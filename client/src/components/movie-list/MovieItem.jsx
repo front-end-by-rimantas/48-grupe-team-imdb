@@ -22,17 +22,22 @@ export function MovieItem({ data, updateMovies }) {
             favoriteMoviesHrefArr.push(data.href);
             if (data.href === href) {
                 favoriteId = data.id;
-                isInArr = data.isInArr;
+                isInArr = true;
             }
         }
     } 
 
+    const addedFavoriteMsg = (<p className={isInArr ? style.favoriteMessageDark : style.off}>Added to favorite</p>);
+    const removedFavoritesMsg = (<p className={!isInArr ? style.favoriteMessageRemoveDark : style.off}>Removed</p>);
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
     const favoriteHtmlBtn = (
+      <div className={style.favoriteBox}>
         <button className={style.favoriteBtn}  onClick={() => handleFavorite(favoriteBtn)} >
             {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
         </button>
+        {isInArr ? addedFavoriteMsg : removedFavoritesMsg}
+      </div>
     );
 
     function handleDeleteTask(id) {
