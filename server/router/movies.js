@@ -7,7 +7,7 @@ import {
   deleteMovies,
   updateMovies,
   getMostProfitable,
-  setRate,
+  setRate
 } from "../controllers/movies-controller.js";
 
 const router = express.Router();
