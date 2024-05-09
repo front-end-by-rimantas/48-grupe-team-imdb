@@ -265,13 +265,12 @@ export function MovieEditCard() {
                 placeholder="localhost/movies/get/ENTER:your-address-name"
               />
             </div>
-            <p>* - Required Fields</p>
             <div className={style.formRow}>
               <button
                 className={`${style.button} ${style.textButton}`}
                 type="submit"
               >
-                Create your movie
+                Update your movie
               </button>
             </div>
           </form>
