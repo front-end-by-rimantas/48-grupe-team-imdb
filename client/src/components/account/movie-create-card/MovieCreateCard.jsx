@@ -6,27 +6,16 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { GlobalContext } from '../../../context/GlobalContext.jsx'
+import movieDefaultImg from '../../../../../server/assets/imdb.png';
 
 export function MovieCreateCard() {
   const { userId } = useContext(GlobalContext);
   console.log("User ID:", userId); 
   const [movies, setMovies] = useState([]);
+  const [image, setImage] = useState('');
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [formData, setFormData] = useState({
-    userId: userId || "",
-    name: "",
-    year: "",
-    rating: "",
-    category: "",
-    ageCenzor: "",
-    awards: "",
-    gross: "",
-    url: "",
-    description: "",
-    href: "",
-  });
-
+  
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -42,10 +31,25 @@ export function MovieCreateCard() {
         console.error("Failed to fetch movies", error);
       }
     }
-
+  
     fetchMovies();
   }, [userId]);
   
+  const [formData, setFormData] = useState({
+    userId: "",
+    name: "",
+    year: "",
+    rating: "",
+    category: "",
+    ageCenzor: "",
+    awards: "",
+    gross: "",
+    url: "",
+    description: "",
+    href: "",
+    path: "", 
+  });
+
   const updateMovies = async () => {
     try {
       const response = await fetch("http://localhost:4840/movies/get");
@@ -73,6 +77,43 @@ export function MovieCreateCard() {
     );
   };
 
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    if (!file) {
+      console.error("No file selected.");
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append('movie_image', file);
+  
+    fetch('http://localhost:4840/movies/upload', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to upload image (${res.status} ${res.statusText})`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      if (data.type === 'success') {
+        const fullPath = `http://localhost:4840/assets/images/${data.imgPath}`;
+        setImage(fullPath);
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          path: data.imgPath,
+        }));
+      } else {
+        console.error("Failed to upload image:", data.error);
+      }
+    })
+    .catch(error => {
+      console.error("Error uploading image:", error);
+    });
+  }
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -85,22 +126,47 @@ export function MovieCreateCard() {
     e.preventDefault();
     if (requiredFields()) {
       try {
+        const formDataWithUserId = {
+          ...formData,
+          userId: userId || "", 
+        };
+  
         const response = await fetch("http://localhost:4840/movies/add", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(formDataWithUserId), 
         });
+  
         if (response.ok) {
           console.log("Movie added successfully");
           setSuccessMessage("Movie added successfully");
-           const updatedResponse = await fetch("http://localhost:4840/movies/get");
-        if (updatedResponse.ok) {
-          const data = await updatedResponse.json();
-          const userMovies = data.movies.filter(movie => movie.userId === userId);
-          setMovies(userMovies);
-        }
+          const newMovieResponse = await fetch("http://localhost:4840/movies/get");
+          if (newMovieResponse.ok) {
+            const newData = await newMovieResponse.json();
+            const newMovie = newData.movies.find(movie => movie.userId === userId && movie.name === formData.name);
+            if (newMovie) {
+              setMovies(prevMovies => [...prevMovies, newMovie]);
+              setFormData({
+                userId: userId || "",
+                name: "",
+                year: "",
+                rating: "",
+                category: "",
+                ageCenzor: "",
+                awards: "",
+                gross: "",
+                url: "",
+                description: "",
+                href: "",
+                path: newMovie.path, 
+              });
+              setImage('');
+            }
+          } else {
+            console.error("Failed to fetch movies after adding a new movie");
+          }
         } else {
           console.error("Failed to add movie");
         }
@@ -111,7 +177,7 @@ export function MovieCreateCard() {
       setErrorMessage("Please fill all required fields");
     }
   };
-
+  
   return (
     <div className={style.container}>
       <div className={style.rightColumn}>
@@ -121,7 +187,7 @@ export function MovieCreateCard() {
           </div>
           <div className={style.containerList}>
             <div className={style.itemList}>
-            {movies.map((movie, index) => (
+              {movies.map((movie, index) => (
                 <MovieItem key={index} data={movie} updateMovies={updateMovies} />
               ))}
             </div>
@@ -139,6 +205,10 @@ export function MovieCreateCard() {
             <h1 className={style.titleF}>Create movie</h1>
           </span>
           <form className={style.context} onSubmit={handleSubmit}>
+          <div className={style.formRow}>
+                <img src={image ? image : movieDefaultImg} alt="Movie photo" className={style.movieImg} />
+                <input onChange={handleImageChange} type="file" id="image" />
+            </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="name">
                 Movie title *
@@ -248,7 +318,7 @@ export function MovieCreateCard() {
                 placeholder="ENTER:https://youtube.com/embed/your-youtube"
               />
             </div>
-            <div className={style.formRow}>
+            {/* <div className={style.formRow}>
               <label className={style.label} htmlFor="path">
                 Path to image *
               </label>
@@ -261,7 +331,7 @@ export function MovieCreateCard() {
                 onChange={handleChange}
                 placeholder="Enter image name (example.jpg)"
               />
-            </div>
+            </div> */}
             <div className={style.formRow}>
               <label className={style.label} htmlFor="description">
                 Description

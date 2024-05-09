@@ -1,9 +1,7 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import logo from "../../../assets/images/logo/imdb_logo.png";
 import style from "./MovieCreateCard.module.css";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
 
 export function MovieEditCard() {
   const navigate = useNavigate();
@@ -18,7 +16,7 @@ export function MovieEditCard() {
     gross: "",
     url: "",
     description: "",
-    href: "",
+    path: "",
   });
   const [movieId, setMovieId] = useState(null); 
   const [successMessage, setSuccessMessage] = useState("");
@@ -32,6 +30,7 @@ export function MovieEditCard() {
           const movieData = await response.json();
           setFormData(movieData);
           setMovieId(movieData.id); 
+          console.log(formData.path);
         } else {
           console.error("Failed to fetch movie");
         }
@@ -43,7 +42,6 @@ export function MovieEditCard() {
   }, [href]);
 
   const handleChange = (e) => {
-    console.log("changed");
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -51,6 +49,28 @@ export function MovieEditCard() {
     });
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const formDataToUpdate = new FormData();
+    formDataToUpdate.append('movie_image', file);
+  
+    fetch('http://localhost:4840/movies/upload', {
+      method: 'POST',
+      body: formDataToUpdate,
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.type === 'success') {
+          setFormData(prevFormData => ({
+            ...prevFormData,
+            path: data.imgPath,
+          }));
+        }
+      })
+      .catch(console.error);
+  };
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -76,10 +96,11 @@ export function MovieEditCard() {
       console.error("Failed to update movie", error);
     }
   };
-  
+
+  console.log(formData.path);
   return (
     <div className={style.container}>
-      <div className={`${style.leftColumn} ${style.border}`}>
+      <div className={style.leftColumn}>
         <div className={style.logoBox}>
           <Link to="/">
             <img className={style.registrationLogo} src={logo} alt="Logo" />
@@ -90,6 +111,10 @@ export function MovieEditCard() {
             <h1 className={style.titleF}>Edit movie</h1>
           </span>
           <form className={style.context} onSubmit={handleSubmit}>
+            <div className={style.formRow}>
+              <img src={`http://localhost:4840/assets/images/${formData.path}`} alt="Current Movie" className={style.movieImg} />
+              <input onChange={handleImageChange} type="file" id="movie_image" />
+            </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="name">
                 Movie title *
@@ -199,7 +224,7 @@ export function MovieEditCard() {
                 placeholder="ENTER:https://youtube.com/embed/your-youtube"
               />
             </div>
-            <div className={style.formRow}>
+            {/* <div className={style.formRow}>
               <label className={style.label} htmlFor="path">
                 Path to image *
               </label>
@@ -212,7 +237,7 @@ export function MovieEditCard() {
                 onChange={handleChange}
                 placeholder="Enter image name (example.jpg)"
               />
-            </div>
+            </div> */}
             <div className={style.formRow}>
               <label className={style.label} htmlFor="description">
                 Description
@@ -240,7 +265,6 @@ export function MovieEditCard() {
                 placeholder="localhost/movies/get/ENTER:your-address-name"
               />
             </div>
-            <p>* - Required Fields</p>
             <div className={style.formRow}>
               <button
                 className={`${style.button} ${style.textButton}`}
@@ -249,8 +273,8 @@ export function MovieEditCard() {
                 Update your movie
               </button>
             </div>
-            </form>
-            {successMessage && <p>{successMessage}</p>}
+          </form>
+          {successMessage && <p>{successMessage}</p>}
           {errorMessage && <p>{errorMessage}</p>}
         </div>
       </div>
