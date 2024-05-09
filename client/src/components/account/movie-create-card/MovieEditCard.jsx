@@ -16,7 +16,7 @@ export function MovieEditCard() {
     gross: "",
     url: "",
     description: "",
-    path: "", // Add path field for the image
+    path: "",
   });
   const [movieId, setMovieId] = useState(null); 
   const [successMessage, setSuccessMessage] = useState("");
