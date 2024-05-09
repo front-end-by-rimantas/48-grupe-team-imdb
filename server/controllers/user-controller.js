@@ -233,7 +233,6 @@ export const favorite = async (req, res) => {
     }
     if (dbResponse[0].affectedRows === 1) {
         return res.send(JSON.stringify({
-            type: 'success',
             id: dbResponse[0].insertId,
             favoriteArr: favoriteMoviesList[0],
             isInArr : false,

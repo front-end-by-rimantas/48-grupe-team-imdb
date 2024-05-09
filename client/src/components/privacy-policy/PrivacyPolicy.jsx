@@ -1,8 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useEffect } from "react";
 import style from "./PrivacyPolicy.module.css";
 
 export function PrivacyPolicy() {
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   
   return (
     <div className={style.container}>
