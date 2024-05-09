@@ -1,5 +1,7 @@
 import { sqlPool } from '../index.js';
 
+
+
 export async function getMovies(req, res) {
   try {
     const connection = await sqlPool();
@@ -14,7 +16,7 @@ export async function getMovies(req, res) {
 export async function getMostProfitable(req, res) {
   try {
     const connection = await sqlPool();
-    const [rows] = await connection.query("SELECT name, year, gross, path FROM movies ORDER BY gross DESC LIMIT 10;");
+    const [rows] = await connection.query("SELECT name, year, gross, path, href FROM movies ORDER BY gross DESC LIMIT 20;");
     // const [rows] = await connection.query("SELECT name, year, gross, path FROM movies;");
     await connection.end();
     res.json({ movies: rows });
@@ -74,7 +76,7 @@ export async function setRate(req, res) {
   try {
     const { userId, movieId, rate } = req.body;
     console.log(req.body)
-    const sql = `INSERT INTO rating (userId,  movieId, rate) 
+    const sql = `INSERT INTO rating (userId, movieId, rate) 
                  VALUES (?, ?, ?)`;
     const values = [userId, movieId, rate];
     const connection = await sqlPool();
@@ -105,6 +107,7 @@ export async function updateMovies(req, res) {
 };
 
 
+
 export async function deleteMovies(req, res) {
   try {
     const { id } = req.params;
@@ -119,3 +122,5 @@ export async function deleteMovies(req, res) {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+

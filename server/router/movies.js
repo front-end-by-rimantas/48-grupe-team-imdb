@@ -9,6 +9,7 @@ import {
   getMostProfitable,
   setRate,
 } from "../controllers/movies-controller.js";
+import { uploadMovie } from "../controllers/upload-controller.js";
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.post('/add', addMovie);
 router.post('/set-rate', setRate);  
 router.put('/update/:id', updateMovies)
 router.delete('/delete/:id', deleteMovies)
+router.post('/upload', uploadMovie)
 
 
 
