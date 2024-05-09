@@ -22,17 +22,22 @@ export function MovieItem({ data, updateMovies }) {
             favoriteMoviesHrefArr.push(data.href);
             if (data.href === href) {
                 favoriteId = data.id;
-                isInArr = data.isInArr;
+                isInArr = true;
             }
         }
     } 
 
+    const addedFavoriteMsg = (<p className={isInArr ? style.favoriteMessageDark : style.off}>Added to favorite</p>);
+    const removedFavoritesMsg = (<p className={!isInArr ? style.favoriteMessageRemoveDark : style.off}>Removed</p>);
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
     const favoriteHtmlBtn = (
+      <div className={style.favoriteBox}>
         <button className={style.favoriteBtn}  onClick={() => handleFavorite(favoriteBtn)} >
             {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
         </button>
+        {isInArr ? addedFavoriteMsg : removedFavoritesMsg}
+      </div>
     );
 
     function handleDeleteTask(id) {
@@ -114,8 +119,8 @@ export function MovieItem({ data, updateMovies }) {
                   </div>
                 ) : null}
                 {gross ? (
-                  <div className={style.starRating}>
-                    <span className={style.star}>$</span>
+                  <div className={style.dolarRating}>
+                    <span className={style.dolar}>$</span>
                     {gross}
                   </div>
                 ) : null}
@@ -124,7 +129,7 @@ export function MovieItem({ data, updateMovies }) {
                     <>
                       {userId === data.userId && (
                         <div className={style.crud}>
-                          <button className={style.button}>
+                          <button className={style.viewButton}>
                             <Link
                               className={style.link}
                               to={`/movies/get/${href}`}
@@ -132,7 +137,7 @@ export function MovieItem({ data, updateMovies }) {
                               View
                             </Link>
                           </button>
-                          <button className={style.button}>
+                          <button className={style.editButton}>
                             <Link
                               className={style.link}
                               to={`/account/movie-edit/${data.href}`}
@@ -141,7 +146,7 @@ export function MovieItem({ data, updateMovies }) {
                             </Link>
                           </button>
                           <button
-                            className={style.button}
+                            className={style.deleteButton}
                             onClick={() => handleDeleteTask(id)}
                           >
                             Delete

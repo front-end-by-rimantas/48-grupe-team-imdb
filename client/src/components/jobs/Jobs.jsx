@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import style from "./Jobs.module.css";
 
 export function Jobs() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <section className={style.page}>

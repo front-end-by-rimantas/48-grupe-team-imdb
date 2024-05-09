@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import style from "./Help.module.css";
 import { HelpCard } from "./card/helpCard";
 
 export function Help() {
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <section className={style.container}>

@@ -7,7 +7,7 @@ import {
   deleteMovies,
   updateMovies,
   getMostProfitable,
-  setRate,
+  setRate
 } from "../controllers/movies-controller.js";
 import { uploadMovie } from "../controllers/upload-controller.js";
 
