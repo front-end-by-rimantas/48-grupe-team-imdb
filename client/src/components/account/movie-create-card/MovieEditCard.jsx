@@ -224,7 +224,7 @@ export function MovieEditCard() {
                 placeholder="ENTER:https://youtube.com/embed/your-youtube"
               />
             </div>
-            <div className={style.formRow}>
+            {/* <div className={style.formRow}>
               <label className={style.label} htmlFor="path">
                 Path to image *
               </label>
@@ -237,8 +237,7 @@ export function MovieEditCard() {
                 onChange={handleChange}
                 placeholder="Enter image name (example.jpg)"
               />
-            </div>
-          
+            </div> */}
             <div className={style.formRow}>
               <label className={style.label} htmlFor="description">
                 Description

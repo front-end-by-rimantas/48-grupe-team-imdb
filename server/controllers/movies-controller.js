@@ -17,7 +17,6 @@ export async function getMostProfitable(req, res) {
   try {
     const connection = await sqlPool();
     const [rows] = await connection.query("SELECT name, year, gross, path, href FROM movies ORDER BY gross DESC LIMIT 20;");
-    // const [rows] = await connection.query("SELECT name, year, gross, path FROM movies;");
     await connection.end();
     res.json({ movies: rows });
   } catch (error) {

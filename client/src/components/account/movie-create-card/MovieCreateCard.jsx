@@ -94,29 +94,42 @@ export function MovieCreateCard() {
   };
 
   function handleImageChange(e) {
+    const file = e.target.files[0];
+    if (!file) {
+      console.error("No file selected.");
+      return;
+    }
+  
     const formData = new FormData();
-    formData.append('movie_image', e.target.files[0]);
+    formData.append('movie_image', file);
   
     fetch('http://localhost:4840/movies/upload', {
       method: 'POST',
       body: formData,
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.type === 'success') {
-          const fullPath = `http://localhost:4840/assets/images/${data.imgPath}`; 
-          setImage(fullPath); 
-          setFormData({
-            ...formData,
-            path: data.imgPath, 
-          });
-        }
-      })
-      .catch(console.error);
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to upload image (${res.status} ${res.statusText})`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      if (data.type === 'success') {
+        const fullPath = `http://localhost:4840/assets/images/${data.imgPath}`;
+        setImage(fullPath);
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          path: data.imgPath,
+        }));
+      } else {
+        console.error("Failed to upload image:", data.error);
+      }
+    })
+    .catch(error => {
+      console.error("Error uploading image:", error);
+    });
   }
   
-  
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -145,37 +158,31 @@ export function MovieCreateCard() {
         if (response.ok) {
           console.log("Movie added successfully");
           setSuccessMessage("Movie added successfully");
-          
-         
           const newMovieResponse = await fetch("http://localhost:4840/movies/get");
           if (newMovieResponse.ok) {
             const newData = await newMovieResponse.json();
             const newMovie = newData.movies.find(movie => movie.userId === userId && movie.name === formData.name);
             if (newMovie) {
-         
               setMovies(prevMovies => [...prevMovies, newMovie]);
-              
               setFormData({
-                ...formData,
+                userId: userId || "",
+                name: "",
+                year: "",
+                rating: "",
+                category: "",
+                ageCenzor: "",
+                awards: "",
+                gross: "",
+                url: "",
+                description: "",
+                href: "",
                 path: newMovie.path, 
               });
+              setImage('');
             }
+          } else {
+            console.error("Failed to fetch movies after adding a new movie");
           }
-         
-          setFormData({
-            ...formData,
-            name: "",
-            year: "",
-            rating: "",
-            category: "",
-            ageCenzor: "",
-            awards: "",
-            gross: "",
-            url: "",
-            description: "",
-            href: "",
-            path: "", 
-          });
         } else {
           console.error("Failed to add movie");
         }
@@ -186,7 +193,6 @@ export function MovieCreateCard() {
       setErrorMessage("Please fill all required fields");
     }
   };
-  
   
   return (
     <div className={style.container}>
@@ -328,7 +334,7 @@ export function MovieCreateCard() {
                 placeholder="ENTER:https://youtube.com/embed/your-youtube"
               />
             </div>
-            <div className={style.formRow}>
+            {/* <div className={style.formRow}>
               <label className={style.label} htmlFor="path">
                 Path to image *
               </label>
@@ -341,8 +347,7 @@ export function MovieCreateCard() {
                 onChange={handleChange}
                 placeholder="Enter image name (example.jpg)"
               />
-            </div>
-          
+            </div> */}
             <div className={style.formRow}>
               <label className={style.label} htmlFor="description">
                 Description
