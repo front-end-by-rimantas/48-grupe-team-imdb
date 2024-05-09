@@ -31,26 +31,10 @@ export function MovieCreateCard() {
         console.error("Failed to fetch movies", error);
       }
     }
-
+  
     fetchMovies();
-
-    
-    setFormData({
-      userId: userId || "",
-      name: "",
-      year: "",
-      rating: "",
-      category: "",
-      ageCenzor: "",
-      awards: "",
-      gross: "",
-      url: "",
-      description: "",
-      href: "",
-      path: "", 
-    });
   }, [userId]);
-
+  
   const [formData, setFormData] = useState({
     userId: "",
     name: "",
