@@ -121,16 +121,10 @@ export async function getIsUserRated(req, res) {
   try {
     const { userId, movieId } = req.params;
     console.log("rate params", req.params);
-    // const sql = `SELECT CASE WHEN EXISTS
-    // (SELECT * FROM rating WHERE userId = ? AND movieId = ?) 
-    // THEN 'TRUE'
-    // ELSE 'FALSE'
-    // END AS userRated`;
     const sql = `SELECT rate FROM rating WHERE userId = ? AND movieId = ?`;
     const values = [userId, movieId];
     const connection = await sqlPool();
     const [[result]] = await connection.query(sql, values);
-    console.log("rest --->>>>", result);
     await connection.end();
     res.status(200).json(result?.rate);
   } catch (error) {
