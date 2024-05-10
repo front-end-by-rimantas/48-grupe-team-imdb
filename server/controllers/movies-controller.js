@@ -28,19 +28,14 @@ export async function getMostProfitable(req, res) {
 export async function getMovie(req, res) {
   try {
     const { href } = req.params;
-    const sql = `SELECT m.*, COALESCE(AVG(r.rate), 0) as average_rating FROM movies m LEFT JOIN rating r ON m.id = r.movieId WHERE href = ? GROUP BY m.id;`;
+    const sql = `SELECT m.*, CAST(COALESCE(AVG(r.rate), null) AS DECIMAL(10,1)) as average_rating FROM movies m LEFT JOIN rating r ON m.id = r.movieId WHERE href = ? GROUP BY m.id;`;
     const connection = await sqlPool();
     const [rows] = await connection.query(sql, [href]);
-    console.log(href, '--->>')
-    // const [rows] = await connection.query(
-    //   "SELECT * FROM movies WHERE href = ?",
-    //   [href]
-    // );
     await connection.end();
     if (rows.length > 0) {
       res.json(rows[0]);
     } else {
-      res.status(404).json({ error: "Movie not found" });
+      res.status(404).json({ error: "Movie not found" }); 
     }
   } catch (error) {
     console.error(error);
@@ -109,7 +104,6 @@ export async function addMovie(req, res) {
 export async function setRate(req, res) {
   try {
     const { userId, movieId, rate } = req.body;
-    console.log(req.body);
     const sql = `INSERT INTO rating (userId, movieId, rate)
                  VALUES (?, ?, ?)`;
     const values = [userId, movieId, rate];
@@ -119,7 +113,28 @@ export async function setRate(req, res) {
     res.status(200).send("Rating saved successfully");
   } catch (error) {
     console.error(error);
-    console.log("lorem ipsum");
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export async function getIsUserRated(req, res) {
+  try {
+    const { userId, movieId } = req.params;
+    console.log("rate params", req.params);
+    // const sql = `SELECT CASE WHEN EXISTS
+    // (SELECT * FROM rating WHERE userId = ? AND movieId = ?) 
+    // THEN 'TRUE'
+    // ELSE 'FALSE'
+    // END AS userRated`;
+    const sql = `SELECT rate FROM rating WHERE userId = ? AND movieId = ?`;
+    const values = [userId, movieId];
+    const connection = await sqlPool();
+    const [[result]] = await connection.query(sql, values);
+    console.log("rest --->>>>", result);
+    await connection.end();
+    res.status(200).json(result?.rate);
+  } catch (error) {
+    console.error("get user rated", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
