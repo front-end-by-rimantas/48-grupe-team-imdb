@@ -245,7 +245,7 @@ export function MovieEditCard() {
                 name="year"
                 value={formData.year || ""}
                 onChange={handleChange}
-                placeholder="Enter year"
+                placeholder="the year the film was released"
                 autoComplete="off"
               />
               {yearError && <p className={style.errorMessage}>{yearError}</p>}
