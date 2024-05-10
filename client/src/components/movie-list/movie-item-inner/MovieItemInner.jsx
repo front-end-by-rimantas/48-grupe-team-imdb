@@ -121,6 +121,7 @@ export function MovieItemInner() {
         body: JSON.stringify({
           href,
           userId,
+          imgPath: movie.path,
         }),
       })
         .then((res) => res.json())

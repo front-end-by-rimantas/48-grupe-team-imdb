@@ -70,6 +70,7 @@ export function MovieItem({ data, updateMovies }) {
                     body: JSON.stringify({
                         href,
                         userId,
+                        imgPath: path,
                     }),
                 })
                     .then(res => res.json())

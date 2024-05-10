@@ -196,7 +196,7 @@ export const register = async (req, res) => {
 
 
 export const favorite = async (req, res) => {
-    const { userId, href } = req.body;
+    const { userId, href, imgPath } = req.body;
     const connection = await sqlPool();
 
     try {
@@ -220,8 +220,8 @@ export const favorite = async (req, res) => {
     }
 
     try {
-        const insertQuery = `INSERT INTO favoriteMovies (userId, href) VALUES (?, ?);`;
-        const dbResponse = await connection.execute(insertQuery, [userId, href]);
+        const insertQuery = `INSERT INTO favoriteMovies (userId, href, imgPath) VALUES (?, ?, ?);`;
+        const dbResponse = await connection.execute(insertQuery, [userId, href, imgPath]);
 
         const selectQuery = `SELECT * FROM favoriteMovies;`;
         const favoriteMoviesList = await connection.execute(selectQuery);
