@@ -207,7 +207,7 @@ export function MovieCreateCard() {
     const category1 = formData.category1 || "";
     const category2 = formData.category2 || "";
     const category3 = formData.category3 || "";
-    const category = [category1, category2, category3].filter(Boolean).join('/');
+    const category = [category1, category2, category3].filter(Boolean).join(', ');
     console.log("Combined categories:", category); 
 }
      else {
@@ -227,7 +227,7 @@ export function MovieCreateCard() {
           userId: userId || "", 
         };
   
-        const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join('/');
+        const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join(', ');
         formDataWithUserId.category = combinedCategories;
         
         const response = await fetch("http://localhost:4840/movies/add", {

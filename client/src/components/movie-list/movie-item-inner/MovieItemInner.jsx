@@ -7,6 +7,7 @@ import { CiStar } from "react-icons/ci";
 import style from "./MovieItemInner.module.css";
 import { MdFavorite } from "react-icons/md";
 import { GlobalContext } from "../../../context/GlobalContext";
+import movieDefaultImg from '../../../../../server/assets/imdb.png';
 
 export function MovieItemInner() {
   const { href } = useParams();
@@ -239,7 +240,7 @@ export function MovieItemInner() {
         <div className={style.imgBox}>
           <img
             className={style.imgItem}
-            src={`http://localhost:4840/assets/images/${movie?.path}`}
+            src={movie?.path ? `http://localhost:4840/assets/images/${movie.path}` : movieDefaultImg}
             alt=""
           />
         </div>
