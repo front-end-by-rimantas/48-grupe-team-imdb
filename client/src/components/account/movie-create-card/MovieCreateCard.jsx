@@ -15,6 +15,9 @@ export function MovieCreateCard() {
   const [image, setImage] = useState('');
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [yearError, setYearError] = useState("");
+  const [ratingError, setRatingError] = useState("");
+
   
   useEffect(() => {
     async function fetchMovies() {
@@ -40,7 +43,9 @@ export function MovieCreateCard() {
     name: "",
     year: "",
     rating: "",
-    category: "",
+    category1: "",
+    category2: "",
+    category3: "",
     ageCenzor: "",
     awards: "",
     gross: "",
@@ -70,7 +75,7 @@ export function MovieCreateCard() {
       formData.name &&
       formData.year &&
       formData.rating &&
-      formData.category &&
+      formData.category1 &&
       formData.gross &&
       formData.url &&
       formData.href
@@ -116,10 +121,100 @@ export function MovieCreateCard() {
   
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log("Category 1:", formData.category1);
+    console.log("Category 2:", formData.category2);
+    console.log("Category 3:", formData.category3);
+    if (name === "rating") {
+      if (value < 1 || value > 10) {
+        setRatingError("Rating should be between 1 - 10");
+        return;
+      }
+      const newValue = parseInt(value);
+      setFormData({
+        ...formData,
+        [name]: newValue,
+      });
+      setRatingError(""); 
+    } 
+    
+    else if (name === "awards") {
+      const newValue = Math.max(parseFloat(value), 0);
+      setFormData({
+        ...formData,
+        [name]: newValue,
+      });
+    } 
+    else if (name === "gross") {
+      const newValue = Math.max(parseFloat(value), 0);
+      setFormData({
+        ...formData,
+        [name]: newValue,
+      });
+    } 
+    else if (name === "ageCenzor") {
+      const allowedValues = ["G", "PG", "PG-13", "R", "NC-17"];
+      if (allowedValues.includes(value)) {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      } else {
+        console.error("Invalid age censor value");
+      }
+    } 
+    else if (name === "name") {
+      const hrefValue = value.trim().toLowerCase().replace(/\s+/g, '-');
+      setFormData({
+        ...formData,
+        [name]: value,
+        href: hrefValue,
+      });
+    } 
+    else if (name === "year") {
+      const newValue = value.replace(/\D/g, ''); 
+      let newYear = parseInt(newValue);
+      if (newYear < 1800) {
+        setYearError("Date is too old");
+      } else if (newYear > new Date().getFullYear()) {
+        setYearError("Future date is not allowed");
+      } else {
+        setYearError(""); 
+      }
+      setFormData({
+        ...formData,
+        [name]: newYear.toString(),
+      });
+    }
+    else if (name === "url") {
+ 
+      if (!value.startsWith("https://www.youtube.com/embed/")) {
+        setErrorMessage("URL should start with 'https://www.youtube.com/embed/'");
+      } else {
+        setErrorMessage(""); 
+      }
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+   else if (name === "category1" || name === "category2" || name === "category3") {
     setFormData({
-      ...formData,
-      [name]: value,
+        ...formData,
+        [name]: value,
     });
+
+    const category1 = formData.category1 || "";
+    const category2 = formData.category2 || "";
+    const category3 = formData.category3 || "";
+    const category = [category1, category2, category3].filter(Boolean).join('/');
+    console.log("Combined categories:", category); 
+}
+     else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -131,6 +226,9 @@ export function MovieCreateCard() {
           userId: userId || "", 
         };
   
+        const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join('/');
+        formDataWithUserId.category = combinedCategories;
+        
         const response = await fetch("http://localhost:4840/movies/add", {
           method: "POST",
           headers: {
@@ -228,16 +326,20 @@ export function MovieCreateCard() {
               </label>
               <input
                 className={style.inputForm}
-                type="number"
+                type="text"
+                pattern="[0-9]*" 
                 id="year"
                 name="year"
                 value={formData.year || ""}
                 onChange={handleChange}
+                placeholder="Enter year"
+                autoComplete="off"
               />
+              {yearError && <p className={style.errorMessage}>{yearError}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="rating">
-                Rating *
+                Rating (1 - 10) *
               </label>
               <input
                 className={style.inputForm}
@@ -248,34 +350,98 @@ export function MovieCreateCard() {
                 onChange={handleChange}
                 placeholder="IMDB Rating"
               />
+              {ratingError && <p className={style.errorMessage}>{ratingError}</p>}
             </div>
             <div className={style.formRow}>
-              <label className={style.label} htmlFor="category">
-                Category *
+              <label className={style.label} htmlFor="category1">
+                Category 1 *
               </label>
-              <input
+              <select
                 className={style.inputForm}
-                type="text"
-                id="category"
-                name="category"
-                value={formData.category || ""}
+                id="category1"
+                name="category1"
+                value={formData.category1}
                 onChange={handleChange}
-                placeholder="Action/Comedy/etc.."
-              />
+              >
+                <option value="">Select...</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+                <option value="Science Fiction">Science Fiction (Sci-Fi)</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Documentary">Documentary</option>
+              </select>
+            </div>
+            <div className={style.formRow}>
+              <label className={style.label} htmlFor="category2">
+                Category 2
+              </label>
+              <select
+                className={style.inputForm}
+                id="category2"
+                name="category2"
+                value={formData.category2}
+                onChange={handleChange}
+              >
+                <option value="">Select...</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+                <option value="Science Fiction">Science Fiction (Sci-Fi)</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Documentary">Documentary</option>
+              </select>
+            </div>
+            <div className={style.formRow}>
+              <label className={style.label} htmlFor="category3">
+                Category 3
+              </label>
+              <select
+                className={style.inputForm}
+                id="category3"
+                name="category3"
+                value={formData.category3}
+                onChange={handleChange}
+              >
+                <option value="">Select...</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+                <option value="Science Fiction">Science Fiction (Sci-Fi)</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Documentary">Documentary</option>
+              </select>
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="ageCenzor">
-                ageCenzor
+                Age Censor
               </label>
-              <input
+              <select
                 className={style.inputForm}
-                type="text"
                 id="ageCenzor"
                 name="ageCenzor"
                 value={formData.ageCenzor || ""}
                 onChange={handleChange}
-                placeholder="G/PG/PG-13/R/NC17"
-              />
+              >
+                <option value="">Select...</option>
+                <option value="G">G - For all audiences</option>
+                <option value="PG">PG - Parental Guidance Suggested</option>
+                <option value="PG-13">PG-13 - Parental Guidance Suggested for children under 13</option>
+                <option value="R">R - Under 17 not admitted without parent or guardian</option>
+                <option value="NC-17">NC-17 - Under 17 not admitted</option>
+              </select>
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="awards">
@@ -283,25 +449,26 @@ export function MovieCreateCard() {
               </label>
               <input
                 className={style.inputForm}
-                type="text"
+                type="number"
                 id="awards"
                 name="awards"
                 value={formData.awards || ""}
                 onChange={handleChange}
+                placeholder="How many Oscars"
               />
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="gross">
-                Gross *
+                Gross (Millions $) *
               </label>
               <input
                 className={style.inputForm}
-                type="text"
+                type="number"
+                step="0.1"
                 id="gross"
                 name="gross"
                 value={formData.gross || ""}
                 onChange={handleChange}
-                placeholder="Example: $100 million"
               />
             </div>
             <div className={style.formRow}>
@@ -317,21 +484,8 @@ export function MovieCreateCard() {
                 onChange={handleChange}
                 placeholder="ENTER:https://youtube.com/embed/your-youtube"
               />
+              {errorMessage && <p className={style.errorMessage}>{errorMessage}</p>}
             </div>
-            {/* <div className={style.formRow}>
-              <label className={style.label} htmlFor="path">
-                Path to image *
-              </label>
-              <input
-                className={style.inputForm}
-                type="text"
-                id="path"
-                name="path"
-                value={formData.path || ""}
-                onChange={handleChange}
-                placeholder="Enter image name (example.jpg)"
-              />
-            </div> */}
             <div className={style.formRow}>
               <label className={style.label} htmlFor="description">
                 Description
@@ -343,20 +497,7 @@ export function MovieCreateCard() {
                 name="description"
                 value={formData.description || ""}
                 onChange={handleChange}
-              />
-            </div>
-            <div className={style.formRow}>
-              <label className={style.label} htmlFor="href">
-                Address Name *
-              </label>
-              <input
-                className={style.inputForm}
-                type="text"
-                id="href"
-                name="href"
-                value={formData.href || ""}
-                onChange={handleChange}
-                placeholder="localhost/movies/get/ENTER:your-address-name"
+                placeholder="Write description about movie..."
               />
             </div>
             <p>* - Required Fields</p>
