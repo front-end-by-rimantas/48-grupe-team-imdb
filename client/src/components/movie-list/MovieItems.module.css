@@ -318,6 +318,7 @@ img {
   display: inline-block;
   text-decoration: none;
   color: black;
+  cursor: pointer
 }
 
 .link {
