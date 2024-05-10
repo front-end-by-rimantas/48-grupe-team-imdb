@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { MdFavorite } from "react-icons/md";
 import { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
+import movieDefaultImg from '../../../../server/assets/imdb.png';
 
 export function MovieItem({ data, updateMovies }) {
 
@@ -12,6 +13,7 @@ export function MovieItem({ data, updateMovies }) {
     const { id, path, name, year, href, rating, gross } = data || {};
     const {userId, favoriteData, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
     const [favoriteBtn, setFavoriteBtn] = useState(false);
+    const imagePath = path ? `http://localhost:4840/assets/images/${path}` : movieDefaultImg;
 
     const favoriteMoviesHrefArr = [];
     let favoriteId = 'favoriteId';
@@ -97,7 +99,7 @@ export function MovieItem({ data, updateMovies }) {
               <div className={style.item}>
                 <div className={style.img}>
                   <img
-                    src={`http://localhost:4840/assets/images/${path}`}
+                    src={imagePath}
                     alt=""
                   />
                 </div>

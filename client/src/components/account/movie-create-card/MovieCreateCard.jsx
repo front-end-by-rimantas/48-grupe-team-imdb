@@ -124,6 +124,7 @@ export function MovieCreateCard() {
     console.log("Category 1:", formData.category1);
     console.log("Category 2:", formData.category2);
     console.log("Category 3:", formData.category3);
+
     if (name === "rating") {
       if (value < 1 || value > 10) {
         setRatingError("Rating should be between 1 - 10");
@@ -251,7 +252,9 @@ export function MovieCreateCard() {
                 name: "",
                 year: "",
                 rating: "",
-                category: "",
+                category1: "",
+                category2: "",
+                category3: "",
                 ageCenzor: "",
                 awards: "",
                 gross: "",
