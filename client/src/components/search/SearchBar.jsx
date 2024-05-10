@@ -64,7 +64,7 @@ export function SearchBar() {
         onFocus={handleFocus}
       >
         <input
-          placeholder="Search IMdb."
+          placeholder="Search IMDb."
           type="text"
           className={style.searchInput}
           value={searchText}
