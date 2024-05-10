@@ -403,9 +403,8 @@ export function MovieEditCard() {
               <label className={style.label} htmlFor="description">
                 Description
               </label>
-              <input
+              <textarea
                 className={style.inputForm}
-                type="text"
                 id="description"
                 name="description"
                 value={formData.description || ""}
