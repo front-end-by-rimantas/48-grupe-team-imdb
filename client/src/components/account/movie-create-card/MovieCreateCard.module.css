@@ -173,6 +173,11 @@
   margin-bottom: 20px;
 }
 
+.movieImg {
+  width: 8rem;
+  height: 8rem;
+}
+
 @media (max-width: 768px) {
   .container {
     flex-wrap: wrap-reverse;
