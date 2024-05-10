@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import style from './FavoriteMovies.module.css';
 import { GlobalContext } from '../../context/GlobalContext';
 import { Link } from 'react-router-dom';
+import movieDefaultImg from '../../../../server/assets/imdb.png';
 
 
 export function FavoriteMovies() {
@@ -49,7 +50,7 @@ export function FavoriteMovies() {
             {favoriteMoviesHrefArr.map((favorit, index) => (
             <div key = {index} className={style.favoriteMovieCard}>
                 <Link to={`/movies/get/${favorit.href}`}>
-                    <img className={style.cardImg} src={`http://localhost:4840/assets/images/${favorit.imgPath}`} alt="" />
+                    <img className={style.cardImg} src={favorit.imgPath ? `http://localhost:4840/assets/images/${favorit.imgPath}` : movieDefaultImg} alt="" />
                 </Link>
                 <button onClick={() => handleDelete(favorit.id)} className={style.deleteBtn}>Remove from list</button>
             </div>
