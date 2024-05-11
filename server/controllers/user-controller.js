@@ -47,10 +47,8 @@ export const login = async (req, res) => {
         }));
     }
 
-    
     const loginToken = cookieGenerator(20);
 
-    
     try {
         const insertQuery = `INSERT INTO loginToken (userId, token) VALUES (?, ?);`;
         const dbResponse = await connection.execute(insertQuery, [loginObj.id, loginToken]);
@@ -82,9 +80,6 @@ export const login = async (req, res) => {
         loggedIn: true,
         userId: loginObj.id,
     }));
-
-    
-
 }
 
 export const loginCookies = async (req, res) => {
@@ -128,6 +123,11 @@ export const loginCookies = async (req, res) => {
     }));
 }
 
+export const logout = (req, res) => {
+    res.clearCookie('loginToken');
+    return res.sendStatus(200);
+}
+    
 export const register = async (req, res) => {
     const data = req.body;
     const {name, email, password} = data;
