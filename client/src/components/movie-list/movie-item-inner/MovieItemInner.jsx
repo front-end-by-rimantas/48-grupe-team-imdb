@@ -86,7 +86,6 @@ export function MovieItemInner() {
           .catch((error) => {
             console.error("Error fetching movie data:", error);
             setError("Error fetching movie data. Please try again later.");
-            // setLoading(false);
           });
 
         setMovie(response.data);

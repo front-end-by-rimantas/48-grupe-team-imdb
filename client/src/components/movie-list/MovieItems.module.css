@@ -34,7 +34,6 @@ img {
   font-size: 0.8rem;
 }
 
-
 /* favorite btn style */
 
 .favoriteBox {
@@ -263,15 +262,22 @@ img {
 .starRating {
   display: flex;
   align-items: self-end;
-  display: inline-block;
   gap: 10px;
 }
 
-.dpolarRating {
+.star {
+  color: #ffd814;
+}
+
+.dolarRating {
   display: flex;
   align-items: self-end;
   display: inline-flex;
   gap: 10px;
+}
+
+.dolar {
+  color: #ffd814;
 }
 
 .h3TopTen {
@@ -318,7 +324,7 @@ img {
   display: inline-block;
   text-decoration: none;
   color: black;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .link {

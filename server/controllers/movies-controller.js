@@ -120,7 +120,6 @@ export async function setRate(req, res) {
 export async function getIsUserRated(req, res) {
   try {
     const { userId, movieId } = req.params;
-    console.log("rate params", req.params);
     const sql = `SELECT rate FROM rating WHERE userId = ? AND movieId = ?`;
     const values = [userId, movieId];
     const connection = await sqlPool();
