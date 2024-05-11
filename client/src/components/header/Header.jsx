@@ -25,6 +25,9 @@ export function Header() {
     const signInUser = (<Link className={style.navLink} to="/account">Account</Link>);
 
     function handleSignOut() {
+        fetch('http://localhost:4840/user/logout',
+         { method: 'POST', credentials: 'include' });
+
         updateLoginStatus(false);
         updateUserId(-1);
         navigate('/');
