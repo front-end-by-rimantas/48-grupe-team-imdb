@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import logo from "../../../assets/images/logo/imdb_logo.png";
 import style from "./MovieCreateCard.module.css";
 import { useState, useEffect } from "react";
+import movieDefaultImg from '../../../../../server/assets/imdb.png';
 
 export function MovieEditCard() {
   const navigate = useNavigate();
@@ -33,15 +34,14 @@ export function MovieEditCard() {
         if (response.ok) {
           const movieData = await response.json();
           console.log("Movie Data:", movieData);
-          const categories = movieData.category.split('/');
+          const categories = movieData.category.split(',').map(category => category.trim());
           setFormData({
             ...movieData,
             category1: categories[0] || "",
             category2: categories[1] || "",
             category3: categories[2] || "",
           });
-          setMovieId(movieData.id); 
-          console.log(formData.path);
+          setMovieId(movieData.id);
         } else {
           console.error("Failed to fetch movie");
         }
@@ -51,6 +51,7 @@ export function MovieEditCard() {
     }
     fetchMovie();
   }, [href]);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,17 +60,21 @@ export function MovieEditCard() {
     console.log("Category 3:", formData.category3);
 
     if (name === "rating") {
-      if (value < 1 || value > 10) {
-        setRatingError("Rating should be between 1 - 10");
-        return;
+      if (!isNaN(value) || value === "") {
+        const rating = parseFloat(value);
+        if (!isNaN(rating) && rating >= 1 && rating <= 10) {
+          setFormData({
+            ...formData,
+            [name]: rating,
+          });
+          setRatingError(""); 
+        } else {
+          setRatingError("Rating should be a number between 1 and 10");
+        }
+      } else {
+        setRatingError("Rating should be a number");
       }
-      const newValue = parseInt(value);
-      setFormData({
-        ...formData,
-        [name]: newValue,
-      });
-      setRatingError(""); 
-    } 
+    }
     
     else if (name === "awards") {
       const newValue = Math.max(parseFloat(value), 0);
@@ -140,7 +145,7 @@ export function MovieEditCard() {
       const category1 = formData.category1 || "";
       const category2 = formData.category2 || "";
       const category3 = formData.category3 || "";
-      const category = [category1, category2, category3].filter(Boolean).join('/');
+      const category = [category1, category2, category3].filter(Boolean).join(', ');
       console.log("Combined categories:", category); 
     }
     else {
@@ -176,7 +181,7 @@ export function MovieEditCard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join('/');
+      const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join(', ');
       formData.category = combinedCategories;
   
       const response = await fetch(`http://localhost:4840/movies/update/${movieId}`, {
@@ -217,7 +222,7 @@ export function MovieEditCard() {
           </span>
           <form className={style.context} onSubmit={handleSubmit}>
             <div className={style.formRow}>
-              <img src={`http://localhost:4840/assets/images/${formData.path}`} alt="Current Movie" className={style.movieImg} />
+              <img src={formData.path ? `http://localhost:4840/assets/images/${formData.path}` : movieDefaultImg} alt="Current Movie" className={style.movieImg} />
               <input onChange={handleImageChange} type="file" id="movie_image" />
             </div>
             <div className={style.formRow}>
@@ -257,6 +262,7 @@ export function MovieEditCard() {
               <input
                 className={style.inputForm}
                 type="number"
+                step="any"
                 id="rating"
                 name="rating"
                 value={formData.rating || ""}

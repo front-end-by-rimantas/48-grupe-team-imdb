@@ -125,18 +125,23 @@ export function MovieCreateCard() {
     console.log("Category 2:", formData.category2);
     console.log("Category 3:", formData.category3);
 
+
     if (name === "rating") {
-      if (value < 1 || value > 10) {
-        setRatingError("Rating should be between 1 - 10");
-        return;
+      if (!isNaN(value) || value === "") {
+        const rating = parseFloat(value);
+        if (!isNaN(rating) && rating >= 1 && rating <= 10) {
+          setFormData({
+            ...formData,
+            [name]: rating,
+          });
+          setRatingError(""); 
+        } else {
+          setRatingError("Rating should be a number between 1 and 10");
+        }
+      } else {
+        setRatingError("Rating should be a number");
       }
-      const newValue = parseInt(value);
-      setFormData({
-        ...formData,
-        [name]: newValue,
-      });
-      setRatingError(""); 
-    } 
+    }
     
     else if (name === "awards") {
       const newValue = Math.max(parseFloat(value), 0);
@@ -207,7 +212,7 @@ export function MovieCreateCard() {
     const category1 = formData.category1 || "";
     const category2 = formData.category2 || "";
     const category3 = formData.category3 || "";
-    const category = [category1, category2, category3].filter(Boolean).join('/');
+    const category = [category1, category2, category3].filter(Boolean).join(', ');
     console.log("Combined categories:", category); 
 }
      else {
@@ -227,7 +232,7 @@ export function MovieCreateCard() {
           userId: userId || "", 
         };
   
-        const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join('/');
+        const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join(', ');
         formDataWithUserId.category = combinedCategories;
         
         const response = await fetch("http://localhost:4840/movies/add", {
@@ -347,6 +352,7 @@ export function MovieCreateCard() {
               <input
                 className={style.inputForm}
                 type="number"
+                step="any"
                 id="rating"
                 name="rating"
                 value={formData.rating || ""}
