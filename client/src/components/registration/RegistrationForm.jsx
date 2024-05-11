@@ -352,7 +352,7 @@ export function RegistrationForm() {
                 .then(data => {
                     setMessageErr(data.message);
                     if (data.register === true) {
-                        navigate('/sign-in');
+                        navigate('/login')
                     }
                 })
                 .catch(e => console.error(e));
@@ -390,7 +390,7 @@ export function RegistrationForm() {
                       <button className={`${style.button} ${style.textButton}`}  type="submit">Create your IMDb account</button>
                   </div>
                   <div className={style.haveAccount}>
-                      <p>Already have an account?<span className={style.linkSignIn}><Link to={'/sign-in/'}>Sign in</Link></span> </p>
+                      <p>Already have an account?<span className={style.linkSignIn}><Link to={'/login'}>login</Link></span> </p>
                   </div>
               </form>
           </div>
