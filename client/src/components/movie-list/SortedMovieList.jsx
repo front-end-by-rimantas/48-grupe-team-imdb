@@ -44,17 +44,19 @@ export function SortedMovieList() {
     }
 console.log(movies)
     return (
-        <div className={style.boss}>
-            <div className={style.main}>
-                <div>
-                    <h3>Sorted by Gross Revenue</h3>
-                </div>
-                <div className={style.container}>
-                    <div className={style.item}>
-                        {movies.map((movie, index) => <MovieItem key={index} data={movie} />)}
-                    </div>
-                </div>
+      <div className={style.boss}>
+        <div className={style.main}>
+          <div>
+            <h3 className={style.sortedTitle}>Sorted by Gross Revenue</h3>
+          </div>
+          <div className={style.sortedContainer}>
+            <div className={style.item}>
+              {movies.map((movie, index) => (
+                <MovieItem key={index} data={movie} />
+              ))}
             </div>
+          </div>
         </div>
+      </div>
     );
 }

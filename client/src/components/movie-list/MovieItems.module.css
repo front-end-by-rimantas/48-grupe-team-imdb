@@ -34,7 +34,6 @@ img {
   font-size: 0.8rem;
 }
 
-
 /* favorite btn style */
 
 .favoriteBox {
@@ -126,6 +125,22 @@ img {
   display: grid;
   grid-template-columns: auto auto auto auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/*Sorted movie list */
+
+.main {
+  padding: 20px;
+}
+
+.main .sortedTitle {
+  font-size: 2rem;
+  padding-bottom: 20px;
+}
+
+.sortedContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
 }
 
 /*Responsive design MovieItemInner using React-Responsive*/
@@ -263,15 +278,22 @@ img {
 .starRating {
   display: flex;
   align-items: self-end;
-  display: inline-block;
   gap: 10px;
 }
 
-.dpolarRating {
+.star {
+  color: #ffd814;
+}
+
+.dolarRating {
   display: flex;
   align-items: self-end;
   display: inline-flex;
   gap: 10px;
+}
+
+.dolar {
+  color: #ffd814;
 }
 
 .h3TopTen {
@@ -318,7 +340,7 @@ img {
   display: inline-block;
   text-decoration: none;
   color: black;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .link {
