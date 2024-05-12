@@ -79,7 +79,7 @@ export function MovieItemInner() {
             `http://localhost:4840/movies/get-user-is-rated/${userId}/${response.data.id}`
           )
           .then((userRating) => {
-            setUserRate(userRating.data)
+            setUserRate(userRating.data);
             setMovie(response.data);
             setLoading(false);
           })
@@ -155,11 +155,13 @@ export function MovieItemInner() {
         userId,
         movieId: movie.id,
         rate: rating,
+        href: href,
       }),
     })
-      //   .then((res) => res.json())
+      .then((res) => res.json())
       .then((data) => {
-        console.log("--> rating res", data);
+        setUserRate(data.userRating.rate);
+        setMovie(data.movie);
       })
       .catch(console.error);
   }

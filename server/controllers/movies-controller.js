@@ -103,14 +103,18 @@ export async function addMovie(req, res) {
 
 export async function setRate(req, res) {
   try {
-    const { userId, movieId, rate } = req.body;
+    const { userId, movieId, rate, href} = req.body;
     const sql = `INSERT INTO rating (userId, movieId, rate)
                  VALUES (?, ?, ?)`;
     const values = [userId, movieId, rate];
     const connection = await sqlPool();
     await connection.query(sql, values);
+    const sqlGetMovie = `SELECT m.*, CAST(COALESCE(AVG(r.rate), null) AS DECIMAL(10,1)) as average_rating FROM movies m LEFT JOIN rating r ON m.id = r.movieId WHERE href = ? GROUP BY m.id;`;
+    const [[movie]] = await connection.query(sqlGetMovie, [href]);
+    const sqlUserRate = `SELECT rate FROM rating WHERE userId = ? AND movieId = ?`; 
+    const [[userRating]] = await connection.query(sqlUserRate, [userId, movieId]);
     await connection.end();
-    res.status(200).send("Rating saved successfully");
+    res.status(200).json({movie, userRating});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
