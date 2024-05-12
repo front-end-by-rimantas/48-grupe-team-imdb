@@ -178,7 +178,7 @@
   height: 8rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .container {
     flex-wrap: wrap-reverse;
   }
