@@ -126,6 +126,22 @@ img {
   grid-template-columns: auto auto auto auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+/*Sorted movie list */
+
+.main {
+  padding: 20px;
+}
+
+.main .sortedTitle {
+  font-size: 2rem;
+  padding-bottom: 20px;
+}
+
+.sortedContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+}
 
 /*Responsive design MovieItemInner using React-Responsive*/
 /*mobileversion*/
