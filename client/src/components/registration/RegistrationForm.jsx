@@ -226,9 +226,27 @@ export function RegistrationForm() {
             return `Domain too long: ${domain}.`;
         }
     
-    
         if (domainName.length === isIpAddress.length) {
-            return `"${isIpAddress}" Invalid format.`;
+            const isIpArr = isIpAddress.split('.');
+    
+            let isIp = true;
+    
+            if (isIpArr.length === 4) {
+
+                const numArr = [];
+        
+                for (let i = 0; i < isIpArr.length; i++) {
+                    const num = (+ isIpArr[i]);
+                    if (num >= 0 && num <= 255) {
+                        numArr.push('' + num)
+                    }
+                }
+                isIp = numArr.join('.') === isIpAddress;
+        
+                if (isIp === true) {
+                     return `"${isIpAddress}" Nice Ip ;)`;
+                }
+            }
         }
     
         return true;
