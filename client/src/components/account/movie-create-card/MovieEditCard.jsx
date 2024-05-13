@@ -26,6 +26,7 @@ export function MovieEditCard() {
   const [errorMessage, setErrorMessage] = useState("");
   const [yearError, setYearError] = useState("");
   const [ratingError, setRatingError] = useState("");
+  const [urlError, setUrlError] = useState("");
 
   useEffect(() => {
     async function fetchMovie() {
@@ -60,36 +61,42 @@ export function MovieEditCard() {
     console.log("Category 3:", formData.category3);
 
     if (name === "rating") {
-      if (!isNaN(value) || value === "") {
-        const rating = parseFloat(value);
-        if (!isNaN(rating) && rating >= 1 && rating <= 10) {
-          setFormData({
-            ...formData,
-            [name]: rating,
-          });
-          setRatingError(""); 
-        } else {
-          setRatingError("Rating should be a number between 1 and 10");
-        }
+      const rating = parseFloat(value);
+      if ((!isNaN(rating) && rating >= 1 && rating <= 10) || value === "") {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+        setRatingError(""); 
       } else {
-        setRatingError("Rating should be a number");
+        setRatingError("Rating should be a number between 1 and 10");
       }
     }
     
     else if (name === "awards") {
-      const newValue = Math.max(parseFloat(value), 0);
-      setFormData({
-        ...formData,
-        [name]: newValue,
-      });
-    } 
+      const newValue = value === "" ? "" : parseInt(value);
+      if (!isNaN(newValue) && newValue >= 0) {
+        setFormData({
+          ...formData,
+          [name]: newValue,
+        });
+      } else {
+        console.error("Invalid input for awards");
+      }
+    }
+    
     else if (name === "gross") {
-      const newValue = Math.max(parseFloat(value), 0);
-      setFormData({
-        ...formData,
-        [name]: newValue,
-      });
-    } 
+      const newValue = value === "" ? "" : parseFloat(value);
+      if ((!isNaN(newValue) && newValue >= 0) || value === "0") {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      } else {
+        console.error("Invalid input for gross");
+      }
+    }
+     
     else if (name === "ageCenzor") {
       const allowedValues = ["G", "PG", "PG-13", "R", "NC-17"];
       if (allowedValues.includes(value)) {
@@ -124,12 +131,12 @@ export function MovieEditCard() {
         [name]: newYear.toString(),
       });
     }
+
     else if (name === "url") {
-  
       if (!value.startsWith("https://www.youtube.com/embed/")) {
-        setErrorMessage("URL should start with 'https://www.youtube.com/embed/'");
+        setUrlError("URL should start with 'https://www.youtube.com/embed/'");
       } else {
-        setErrorMessage(""); 
+        setUrlError(""); 
       }
       setFormData({
         ...formData,
@@ -180,6 +187,17 @@ export function MovieEditCard() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !formData.name ||
+      !formData.year ||
+      !formData.rating ||
+      !formData.gross ||
+      !formData.category1 ||
+      !formData.url
+    ) {
+      setErrorMessage("Please fill in all required fields.");
+      return; // Prevent form submission
+    }
     try {
       const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join(', ');
       formData.category = combinedCategories;
@@ -382,8 +400,7 @@ export function MovieEditCard() {
               </label>
               <input
                 className={style.inputForm}
-                type="number"
-                step="0.1"
+                type="text"
                 id="gross"
                 name="gross"
                 value={formData.gross || ""}
@@ -403,7 +420,7 @@ export function MovieEditCard() {
                 onChange={handleChange}
                 placeholder="ENTER:https://youtube.com/embed/your-youtube"
               />
-              {errorMessage && <p className={style.errorMessage}>{errorMessage}</p>}
+              {urlError && <p className={style.errorMessage}>{urlError}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="description">
