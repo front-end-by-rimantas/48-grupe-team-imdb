@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { MdFavorite } from "react-icons/md";
 import { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
+import movieDefaultImg from '../../../../server/assets/imdb.png';
 
 export function MovieItem({ data, updateMovies }) {
 
@@ -12,6 +13,7 @@ export function MovieItem({ data, updateMovies }) {
     const { id, path, name, year, href, rating, gross } = data || {};
     const {userId, favoriteData, loginStatus, updateFavoriteData, deleteFavoriteData} = useContext(GlobalContext);
     const [favoriteBtn, setFavoriteBtn] = useState(false);
+    const imagePath = path ? `http://localhost:4840/assets/images/${path}` : movieDefaultImg;
 
     const favoriteMoviesHrefArr = [];
     let favoriteId = 'favoriteId';
@@ -22,17 +24,22 @@ export function MovieItem({ data, updateMovies }) {
             favoriteMoviesHrefArr.push(data.href);
             if (data.href === href) {
                 favoriteId = data.id;
-                isInArr = data.isInArr;
+                isInArr = true;
             }
         }
     } 
 
+    const addedFavoriteMsg = (<p className={isInArr ? style.favoriteMessageDark : style.off}>Added to favorite</p>);
+    const removedFavoritesMsg = (<p className={!isInArr ? style.favoriteMessageRemoveDark : style.off}>Removed</p>);
     const activeFavoriteBtn = (<span className={style.favoriteIconActive}><MdFavorite/></span>);
     const inactiveFavoriteBtn = (<span className={style.favoriteIconInactive}><MdFavorite/></span>);
     const favoriteHtmlBtn = (
+      <div className={style.favoriteBox}>
         <button className={style.favoriteBtn}  onClick={() => handleFavorite(favoriteBtn)} >
             {favoriteMoviesHrefArr.includes(href) ? activeFavoriteBtn : inactiveFavoriteBtn}
         </button>
+        {isInArr ? addedFavoriteMsg : removedFavoritesMsg}
+      </div>
     );
 
     function handleDeleteTask(id) {
@@ -65,6 +72,7 @@ export function MovieItem({ data, updateMovies }) {
                     body: JSON.stringify({
                         href,
                         userId,
+                        imgPath: path,
                     }),
                 })
                     .then(res => res.json())
@@ -92,7 +100,7 @@ export function MovieItem({ data, updateMovies }) {
               <div className={style.item}>
                 <div className={style.img}>
                   <img
-                    src={`http://localhost:4840/assets/images/${path}`}
+                    src={imagePath}
                     alt=""
                   />
                 </div>
@@ -114,8 +122,8 @@ export function MovieItem({ data, updateMovies }) {
                   </div>
                 ) : null}
                 {gross ? (
-                  <div className={style.starRating}>
-                    <span className={style.star}>$</span>
+                  <div className={style.dolarRating}>
+                    <span className={style.dolar}>$</span>
                     {gross}
                   </div>
                 ) : null}
@@ -124,7 +132,7 @@ export function MovieItem({ data, updateMovies }) {
                     <>
                       {userId === data.userId && (
                         <div className={style.crud}>
-                          <button className={style.button}>
+                          <button className={style.viewButton}>
                             <Link
                               className={style.link}
                               to={`/movies/get/${href}`}
@@ -132,7 +140,7 @@ export function MovieItem({ data, updateMovies }) {
                               View
                             </Link>
                           </button>
-                          <button className={style.button}>
+                          <button className={style.editButton}>
                             <Link
                               className={style.link}
                               to={`/account/movie-edit/${data.href}`}
@@ -141,7 +149,7 @@ export function MovieItem({ data, updateMovies }) {
                             </Link>
                           </button>
                           <button
-                            className={style.button}
+                            className={style.deleteButton}
                             onClick={() => handleDeleteTask(id)}
                           >
                             Delete

@@ -226,9 +226,27 @@ export function RegistrationForm() {
             return `Domain too long: ${domain}.`;
         }
     
-    
         if (domainName.length === isIpAddress.length) {
-            return `"${isIpAddress}" Invalid format.`;
+            const isIpArr = isIpAddress.split('.');
+    
+            let isIp = true;
+    
+            if (isIpArr.length === 4) {
+
+                const numArr = [];
+        
+                for (let i = 0; i < isIpArr.length; i++) {
+                    const num = (+ isIpArr[i]);
+                    if (num >= 0 && num <= 255) {
+                        numArr.push('' + num)
+                    }
+                }
+                isIp = numArr.join('.') === isIpAddress;
+        
+                if (isIp === true) {
+                     return `"${isIpAddress}" Nice Ip ;)`;
+                }
+            }
         }
     
         return true;
@@ -352,7 +370,7 @@ export function RegistrationForm() {
                 .then(data => {
                     setMessageErr(data.message);
                     if (data.register === true) {
-                        navigate('/sign-in');
+                        navigate('/login')
                     }
                 })
                 .catch(e => console.error(e));
@@ -390,7 +408,7 @@ export function RegistrationForm() {
                       <button className={`${style.button} ${style.textButton}`}  type="submit">Create your IMDb account</button>
                   </div>
                   <div className={style.haveAccount}>
-                      <p>Already have an account?<span className={style.linkSignIn}><Link to={'/sign-in/'}>Sign in</Link></span> </p>
+                      <p>Already have an account?<span className={style.linkSignIn}><Link to={'/login'}>login</Link></span> </p>
                   </div>
               </form>
           </div>

@@ -6,7 +6,6 @@ import { PageSignIn } from "./pages/sign-in-page/PageSignIn";
 import { PageAbout } from "./pages/about-page/PageAbout";
 import { PageTopTen } from "./pages/top-ten-page/PageTopTen";
 import { PageRegistration } from "./pages/registration-page/PageRegistration";
-import { MovieItemInner } from "./components/movie-list/MovieItemInner";
 import { PageMovieList } from "./pages/movie-page/PageMovieList";
 import { ContextWrapper } from "./context/GlobalContext";
 import { PageHelp } from "./pages/help/PageHelp";
@@ -20,6 +19,8 @@ import { MovieTop10 } from "./components/movie-list/MovieTop10";
 import { PageAccount } from "./pages/account/PageAccount";
 import { PageMovieCreate } from "./pages/account/movie-create-card/PageMovieCreate";
 import { PageMovieEdit } from "./pages/account/movie-create-card/PageMovieEdit";
+import { MovieItemInner } from "./components/movie-list/movie-item-inner/MovieItemInner";
+import { AccountLayout }  from "./layout/AccountLayout"
 
 function App() {
   return (
@@ -37,17 +38,17 @@ function App() {
             <Route path="/registration"element={<PageRegistration />}/>
             <Route path="/about" element={<PageAbout />} />
             <Route path="/top-ten" element={<PageTopTen />} />
-            <Route path="/account" element={<PageAccount />} />
             <Route path="/help" element={<PageHelp />} />
             <Route path="/privacy-policy" element={<PagePrivacyPolicy />} />
             <Route path="/terms" element={<PageTerms />} />
-            <Route
-              path="/account/favorite-movies"
-              element={<PageFavoriteMovies />}
-            />
+            <Route path="/jobs" element={<PageJobs />} />
+          </Route>
+
+          <Route Component={AccountLayout}>
+            <Route path="/account" element={<PageAccount />} />
+            <Route path="/account/favorite-movies" element={<PageFavoriteMovies />}/>
             <Route path="/account/movie-create" element={<PageMovieCreate />} />
             <Route path="/account/movie-edit/:href" element={<PageMovieEdit />} />
-            <Route path="/jobs" element={<PageJobs />} />
           </Route>
 
           <Route Component={NotFoundLayout}>

@@ -9,7 +9,7 @@ import { IoClose, IoSearch } from "react-icons/io5";
 
 export function Header() {
     const navigate = useNavigate();
-    const {loginStatus, updateLoginStatus} = useContext(GlobalContext);
+    const {loginStatus, updateLoginStatus, updateUserId} = useContext(GlobalContext);
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(true);
 
@@ -25,8 +25,12 @@ export function Header() {
     const signInUser = (<Link className={style.navLink} to="/account">Account</Link>);
 
     function handleSignOut() {
+        fetch('http://localhost:4840/user/logout',
+         { method: 'POST', credentials: 'include' });
+
         updateLoginStatus(false);
-        navigate('/')
+        updateUserId(-1);
+        navigate('/');
     }
 
    return  (

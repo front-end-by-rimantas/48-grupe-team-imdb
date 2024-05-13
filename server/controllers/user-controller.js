@@ -1,6 +1,7 @@
 import { sqlPool } from '../index.js';
 import { isValidEmail, isValidPassword, isValidUsername } from '../lib/formsValidation.js'
 import { cookieGenerator } from '../lib/cookieGenerator.js';
+import { hash } from '../lib/hash.js';
 
 export const login = async (req, res) => {
     const data = req.body;
@@ -23,7 +24,7 @@ export const login = async (req, res) => {
 
     try {
         const selectQuery = `SELECT * FROM users WHERE email = ? AND password = ?;`;
-        const dbResponse = await connection.execute(selectQuery, [email, password]);
+        const dbResponse = await connection.execute(selectQuery, [email, hash(password)]);
 
         if (dbResponse[0].length === 0) {
             return res.send(JSON.stringify({
@@ -47,10 +48,8 @@ export const login = async (req, res) => {
         }));
     }
 
-    
     const loginToken = cookieGenerator(20);
 
-    
     try {
         const insertQuery = `INSERT INTO loginToken (userId, token) VALUES (?, ?);`;
         const dbResponse = await connection.execute(insertQuery, [loginObj.id, loginToken]);
@@ -82,9 +81,6 @@ export const login = async (req, res) => {
         loggedIn: true,
         userId: loginObj.id,
     }));
-
-    
-
 }
 
 export const loginCookies = async (req, res) => {
@@ -128,6 +124,11 @@ export const loginCookies = async (req, res) => {
     }));
 }
 
+export const logout = (req, res) => {
+    res.clearCookie('loginToken');
+    return res.sendStatus(200);
+}
+    
 export const register = async (req, res) => {
     const data = req.body;
     const {name, email, password} = data;
@@ -172,7 +173,7 @@ export const register = async (req, res) => {
 
     try {
         const insertQuery = `INSERT INTO users (name, email, password) VALUES (?, ?, ?);`;
-        const dbResponse = await connection.execute(insertQuery, [name, email, password]);
+        const dbResponse = await connection.execute(insertQuery, [name, email, hash(password)]);
 
         if (dbResponse[0].affectedRows !== 1) {
             return res.send(JSON.stringify({
@@ -196,7 +197,7 @@ export const register = async (req, res) => {
 
 
 export const favorite = async (req, res) => {
-    const { userId, href } = req.body;
+    const { userId, href, imgPath } = req.body;
     const connection = await sqlPool();
 
     try {
@@ -220,8 +221,8 @@ export const favorite = async (req, res) => {
     }
 
     try {
-        const insertQuery = `INSERT INTO favoriteMovies (userId, href) VALUES (?, ?);`;
-        const dbResponse = await connection.execute(insertQuery, [userId, href]);
+        const insertQuery = `INSERT INTO favoriteMovies (userId, href, imgPath) VALUES (?, ?, ?);`;
+        const dbResponse = await connection.execute(insertQuery, [userId, href, imgPath]);
 
         const selectQuery = `SELECT * FROM favoriteMovies;`;
         const favoriteMoviesList = await connection.execute(selectQuery);
@@ -233,7 +234,6 @@ export const favorite = async (req, res) => {
     }
     if (dbResponse[0].affectedRows === 1) {
         return res.send(JSON.stringify({
-            type: 'success',
             id: dbResponse[0].insertId,
             favoriteArr: favoriteMoviesList[0],
             isInArr : false,
