@@ -162,6 +162,7 @@ export function MovieItemInner() {
     })
       .then((res) => res.json())
       .then((data) => {
+ console.log({ data });
         setUserRate(data.userRating.rate);
         setMovie(data.movie);
       })
