@@ -86,6 +86,9 @@ function isValidEmail(text) {
         return 'Missing domain name.'
     }
 
+    if (!isNaN(+ domain)) {
+        return `${domain} Invalid domain format.`
+    }
  
     const firstCharacter = recipientName[0];
     const lastCharacter = recipientName[recipientName.length -1];
@@ -171,30 +174,25 @@ function isValidEmail(text) {
         return `Domain too long: ${domain}.`;
     }
 
-
-    if (domainName.length === isIpAddress.length) {
-        const isIpArr = isIpAddress.split('.');
-
-        let isIp = true;
-
-        if (isIpArr.length === 4) {
-
-            const numArr = [];
-    
-            for (let i = 0; i < isIpArr.length; i++) {
-                const num = (+ isIpArr[i]);
-                if (num >= 0 && num <= 255) {
-                    numArr.push('' + num)
-                }
-            }
-            isIp = numArr.join('.') === isIpAddress;
-    
-            if (isIp === true) {
-                 return `"${isIpAddress}" Nice Ip ;)`;
+    const ipArr = isIpAddress.split('.');
+    const isIpArr = ipArr[ipArr.length -1] === '' ? ipArr.slice(0, -1) : ipArr;
+    const isIpStr = isIpArr.join('.');
+    let isIp = true;
+    if (isIpArr.length === 4) {
+        const numArr = [];
+        for (let i = 0; i < isIpArr.length; i++) {
+            const num = (+ isIpArr[i]);
+            if (num >= 0 && num <= 255) {
+                numArr.push('' + num);
             }
         }
+    
+        isIp = numArr.join('.') === isIpStr;
+        if (isIp === true) {
+             return `"${isIpStr}" Nice Ip ;)`;
+        }
     }
-
+    
     return text;
 }
 
