@@ -148,19 +148,31 @@ export function MovieEditCard() {
 
     else if (name === "year") {
       const newValue = value.replace(/\D/g, ''); 
+      if (newValue === "") {
+          setYearError("");
+          setFormData({
+              ...formData,
+              [name]: "",
+          });
+          return;
+      }
       let newYear = parseInt(newValue);
+      if (isNaN(newYear)) {
+          setYearError("Invalid year");
+          return; 
+      }
       if (newYear < 1800) {
-        setYearError("Date is too old");
+          setYearError("Date is too old");
       } else if (newYear > new Date().getFullYear()) {
-        setYearError("Future date is not allowed");
+          setYearError("Future date is not allowed");
       } else {
-        setYearError(""); 
+          setYearError(""); 
       }
       setFormData({
-        ...formData,
-        [name]: newYear.toString(),
+          ...formData,
+          [name]: newYear.toString(),
       });
-    }
+  }
 
     else if (name === "url") {
       if (!value.startsWith("https://www.youtube.com/embed/")) {
@@ -214,7 +226,6 @@ export function MovieEditCard() {
       .catch(console.error);
   };
   
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -226,7 +237,7 @@ export function MovieEditCard() {
       !formData.url
     ) {
       setErrorMessage("Please fill in all required fields.");
-      return; // Prevent form submission
+      return;
     }
     try {
       const combinedCategories = [formData.category1, formData.category2, formData.category3].filter(Boolean).join(', ');
@@ -246,6 +257,7 @@ export function MovieEditCard() {
           console.log("Navigating to /movies/get");
           navigate('/movies/get');
         }, 2000);
+        setErrorMessage("");
       } else {
         console.error("Failed to update movie");
         setErrorMessage("Failed to update movie");
@@ -255,7 +267,6 @@ export function MovieEditCard() {
     }
   };
 
-  console.log(formData.path);
   return (
     <div className={style.container}>
       <div className={style.leftColumn}>

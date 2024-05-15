@@ -194,6 +194,7 @@ export function MovieCreateCard() {
         console.error("Invalid age censor value");
       }
     } 
+    
     else if (name === "name") {
       const maxLength = 50;
       const trimmedValue = value.trim();
@@ -315,6 +316,7 @@ export function MovieCreateCard() {
                 path: newMovie.path, 
               });
               setImage('');
+              setErrorMessage("");
             }
           } else {
             console.error("Failed to fetch movies after adding a new movie");
@@ -326,9 +328,11 @@ export function MovieCreateCard() {
         console.error("Failed to add movie", error);
       }
     } else {
+      setSuccessMessage("");
       setErrorMessage("Please fill all required fields");
     }
   };
+  
   
   
   return (
