@@ -80,7 +80,7 @@ export async function addMovie(req, res) {
     const values = [
       name,
       year,
-      rating,
+      parseFloat(rating),
       category,
       ageCenzor,
       awards,

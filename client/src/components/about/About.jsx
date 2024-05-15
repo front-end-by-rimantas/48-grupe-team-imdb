@@ -14,8 +14,8 @@ export function About() {
                <h1 className={style.heading1}>About Us</h1>
                <p className={style.p}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, quam iusto magni id porro totam consectetur sit dolorum doloribus illo.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis voluptas aut deleniti modi exercitationem eaque ipsum, aliquam odit. Delectus, repellendus?</p>
                  <nav className={style.linksImg}>
-                    <Link className={style.btn} to='./contactUs'>Contact us</Link>
-                    <Link className={style.btn} to="/sign-in/registration">Register</Link>
+                    <Link className={style.btn} to='/jobs'>Jobs</Link>
+                    <Link className={style.btn} to="/registration">Register</Link>
                     <Link className={style.btn} to="/top-ten">Check out our top picks</Link>
                 </nav>
            </section>
