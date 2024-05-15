@@ -18,6 +18,9 @@ export function MovieCreateCard() {
   const [yearError, setYearError] = useState("");
   const [ratingError, setRatingError] = useState("");
   const [urlError, setUrlError] = useState("");
+  const [titleLimit, setTitleLimit] = useState("");
+  const [grossLimit, setGrossLimit] = useState("");
+  const [awardsLimit, setAwardsLimit] = useState("");
 
   
   useEffect(() => {
@@ -132,38 +135,54 @@ export function MovieCreateCard() {
       if ((!isNaN(rating) && rating >= 1 && rating <= 10) || value === "") {
         setFormData({
           ...formData,
-          [name]: value,
+          [name]: parseFloat(value),
         });
         setRatingError(""); 
       } else {
         setRatingError("Rating should be a number between 1 and 10");
       }
     }
-      
+  
     else if (name === "awards") {
-      const newValue = value === "" ? "" : parseInt(value);
-      if (!isNaN(newValue) && newValue >= 0) {
-        setFormData({
-          ...formData,
-          [name]: newValue,
-        });
+      const newValue = value.replace(/\D/g, '');
+      if (newValue.length > 5) {
+          setAwardsLimit("Exceeds maximum length");
+          return; 
+        } else {
+            setAwardsLimit("");
+        }
+      
+      const parsedValue = parseFloat(newValue);
+      if (!isNaN(parsedValue) || newValue === "") {
+          setFormData({
+              ...formData,
+              [name]: newValue === "" ? "" : parsedValue.toString(),
+          });
       } else {
-        console.error("Invalid input for awards");
+          setAwardsLimit("Invalid input");
       }
     }
 
     else if (name === "gross") {
-      const newValue = value === "" ? "" : parseFloat(value);
-      if ((!isNaN(newValue) && newValue >= 0) || value === "0") {
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
+      const newValue = value.replace(/\D/g, '');
+      if (newValue.length > 5) {
+        setGrossLimit("Exceeds maximum length");
+        return; 
+        } else {
+            setGrossLimit("");
+        }
+      
+      const parsedValue = parseFloat(newValue);
+      if (!isNaN(parsedValue) || newValue === "") {
+          setFormData({
+              ...formData,
+              [name]: newValue === "" ? "" : parsedValue.toString(),
+          });
       } else {
-        console.error("Invalid input for gross");
+          setGrossLimit("Exceeds maximum length");
       }
-    }
-     
+  }
+
     else if (name === "ageCenzor") {
       const allowedValues = ["G", "PG", "PG-13", "R", "NC-17"];
       if (allowedValues.includes(value)) {
@@ -176,30 +195,50 @@ export function MovieCreateCard() {
       }
     } 
     else if (name === "name") {
-      const hrefValue = value.trim().toLowerCase().replace(/\s+/g, '-');
-      setFormData({
-        ...formData,
-        [name]: value,
-        href: hrefValue,
-      });
-    } 
+      const maxLength = 50;
+      const trimmedValue = value.trim();
+      if (trimmedValue.length <= maxLength) {
+          setTitleLimit("");
+          const hrefValue = trimmedValue.toLowerCase().replace(/\s+/g, '-');
+          setFormData({
+              ...formData,
+              [name]: trimmedValue,
+              href: hrefValue,
+          });
+      } else {
+          setTitleLimit("Exceeds maximum length");
+      }
+  }
+
     else if (name === "year") {
       const newValue = value.replace(/\D/g, ''); 
+      if (newValue === "") {
+          setYearError("");
+          setFormData({
+              ...formData,
+              [name]: "",
+          });
+          return;
+      }
       let newYear = parseInt(newValue);
+      if (isNaN(newYear)) {
+          setYearError("Invalid year");
+          return; 
+      }
       if (newYear < 1800) {
-        setYearError("Date is too old");
+          setYearError("Date is too old");
       } else if (newYear > new Date().getFullYear()) {
-        setYearError("Future date is not allowed");
+          setYearError("Future date is not allowed");
       } else {
-        setYearError(""); 
+          setYearError(""); 
       }
       setFormData({
-        ...formData,
-        [name]: newYear.toString(),
+          ...formData,
+          [name]: newYear.toString(),
       });
-    }
+  }
+
     else if (name === "url") {
- 
       if (!value.startsWith("https://www.youtube.com/embed/")) {
         setUrlError("URL should start with 'https://www.youtube.com/embed/'");
       } else {
@@ -335,6 +374,7 @@ export function MovieCreateCard() {
                 value={formData.name || ""}
                 onChange={handleChange}
               />
+              {titleLimit && <p className={style.errorMessage}>{titleLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="year">
@@ -473,6 +513,7 @@ export function MovieCreateCard() {
                 onChange={handleChange}
                 placeholder="How many Oscars"
               />
+              {awardsLimit && <p className={style.errorMessage}>{awardsLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="gross">
@@ -486,6 +527,7 @@ export function MovieCreateCard() {
                 value={formData.gross || ""}
                 onChange={handleChange}
               />
+              {grossLimit && <p className={style.errorMessage}>{grossLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="url">

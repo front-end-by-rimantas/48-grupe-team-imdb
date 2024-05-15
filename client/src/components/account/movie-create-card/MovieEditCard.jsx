@@ -27,6 +27,9 @@ export function MovieEditCard() {
   const [yearError, setYearError] = useState("");
   const [ratingError, setRatingError] = useState("");
   const [urlError, setUrlError] = useState("");
+  const [titleLimit, setTitleLimit] = useState("");
+  const [grossLimit, setGrossLimit] = useState("");
+  const [awardsLimit, setAwardsLimit] = useState("");
 
   useEffect(() => {
     async function fetchMovie() {
@@ -35,9 +38,11 @@ export function MovieEditCard() {
         if (response.ok) {
           const movieData = await response.json();
           console.log("Movie Data:", movieData);
+          const formattedRating = Number.isInteger(parseFloat(movieData.rating)) ? parseFloat(movieData.rating).toFixed(0) : parseFloat(movieData.rating).toFixed(1);
           const categories = movieData.category.split(',').map(category => category.trim());
           setFormData({
             ...movieData,
+            rating: formattedRating,
             category1: categories[0] || "",
             category2: categories[1] || "",
             category3: categories[2] || "",
@@ -74,28 +79,44 @@ export function MovieEditCard() {
     }
     
     else if (name === "awards") {
-      const newValue = value === "" ? "" : parseInt(value);
-      if (!isNaN(newValue) && newValue >= 0) {
-        setFormData({
-          ...formData,
-          [name]: newValue,
-        });
+      const newValue = value.replace(/\D/g, '');
+      if (newValue.length > 5) {
+          setAwardsLimit("Exceeds maximum length");
+          return; 
+        } else {
+            setAwardsLimit("");
+        }
+      
+      const parsedValue = parseFloat(newValue);
+      if (!isNaN(parsedValue) || newValue === "") {
+          setFormData({
+              ...formData,
+              [name]: newValue === "" ? "" : parsedValue.toString(),
+          });
       } else {
-        console.error("Invalid input for awards");
+          setAwardsLimit("Invalid input");
       }
     }
-    
+
     else if (name === "gross") {
-      const newValue = value === "" ? "" : parseFloat(value);
-      if ((!isNaN(newValue) && newValue >= 0) || value === "0") {
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
+      const newValue = value.replace(/\D/g, '');
+      if (newValue.length > 5) {
+        setGrossLimit("Exceeds maximum length");
+        return; 
+        } else {
+            setGrossLimit("");
+        }
+      
+      const parsedValue = parseFloat(newValue);
+      if (!isNaN(parsedValue) || newValue === "") {
+          setFormData({
+              ...formData,
+              [name]: newValue === "" ? "" : parsedValue.toString(),
+          });
       } else {
-        console.error("Invalid input for gross");
+          setGrossLimit("Exceeds maximum length");
       }
-    }
+  }
      
     else if (name === "ageCenzor") {
       const allowedValues = ["G", "PG", "PG-13", "R", "NC-17"];
@@ -108,14 +129,23 @@ export function MovieEditCard() {
         console.error("Invalid age censor value");
       }
     } 
-    else if (name === "name") {
-      const hrefValue = value.trim().toLowerCase().replace(/\s+/g, '-');
-      setFormData({
-        ...formData,
-        [name]: value,
-        href: hrefValue,
-      });
-    } 
+
+   else if (name === "name") {
+      const maxLength = 50;
+      const trimmedValue = value.trim();
+      if (trimmedValue.length <= maxLength) {
+          setTitleLimit("");
+          const hrefValue = trimmedValue.toLowerCase().replace(/\s+/g, '-');
+          setFormData({
+              ...formData,
+              [name]: trimmedValue,
+              href: hrefValue,
+          });
+      } else {
+          setTitleLimit("Exceeds maximum length");
+      }
+  }
+
     else if (name === "year") {
       const newValue = value.replace(/\D/g, ''); 
       let newYear = parseInt(newValue);
@@ -255,6 +285,7 @@ export function MovieEditCard() {
                 value={formData.name || ""}
                 onChange={handleChange}
               />
+              {titleLimit && <p className={style.errorMessage}>{titleLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="year">
@@ -393,6 +424,7 @@ export function MovieEditCard() {
                 onChange={handleChange}
                 placeholder="How many Oscars"
               />
+              {awardsLimit && <p className={style.errorMessage}>{awardsLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="gross">
@@ -406,6 +438,7 @@ export function MovieEditCard() {
                 value={formData.gross || ""}
                 onChange={handleChange}
               />
+               {grossLimit && <p className={style.errorMessage}>{grossLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="url">
