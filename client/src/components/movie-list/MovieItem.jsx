@@ -115,10 +115,11 @@ export function MovieItem({ data, updateMovies }) {
                   </Link>
                 </div>
                 <div className={style.yearItem}>{year}</div>
+                {console.log("Rating value:", rating)}
                 {rating ? (
                   <div className={style.starRating}>
                     <span className={style.star}>★</span>
-                    {rating}
+                    {Number.isInteger(parseFloat(rating)) ? parseFloat(rating).toFixed(0) : parseFloat(rating).toFixed(1)}
                   </div>
                 ) : null}
                 {gross ? (

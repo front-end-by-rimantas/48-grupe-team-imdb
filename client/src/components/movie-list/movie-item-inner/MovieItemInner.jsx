@@ -198,7 +198,7 @@ export function MovieItemInner() {
               <i className={style.yellowStar}>
                 <GoStarFill size="1.5rem" />
               </i>
-              <p>{movie?.average_rating ?? movie.rating}/10</p>
+              <p>{Number.isInteger(parseFloat(movie?.average_rating ?? movie.rating)) ? parseFloat(movie?.average_rating ?? movie.rating).toFixed(0) : parseFloat(movie?.average_rating ?? movie.rating).toFixed(1)}/10</p>
             </div>
           </div>
           <div>
