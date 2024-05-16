@@ -45,41 +45,7 @@
     font-size: 14px;
     line-height: 24px;
   }
-  
-  .favoriteBtn {
-    background-color: transparent;
-    border: transparent;
-  }
-  
-  .favoriteIconActive,
-  .favoriteIconInactive {
-    cursor: pointer;
-    color: #b3aeae;
-    font-size: 1.5rem;
-    transition: 0.3s;
-  }
-  
-  .favoriteIconActive {
-    color: #debf0f;
-    transition: 0.3s;
-  }
-  
-  .favoriteMessage {
-    opacity: 1;
-    transition: 2s;
-  }
-  
-  .favoriteMessageRemove {
-    opacity: 0;
-    transition: 2s;
-  }
-  
-  .off {
-    opacity: 0;
-    transition: 3s;
-  }
-  
-  
+
   .rating {
     display: flex;
     justify-content: end;
