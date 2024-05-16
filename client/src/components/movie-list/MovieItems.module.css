@@ -100,8 +100,14 @@ img {
 }
 
 /* MovieList */
-.titleList > h3 {
+
+.listContainer {
+  margin: 20px;
+}
+
+.movieTitle {
   font-size: 1.3rem;
+  padding-bottom: 10px;
 }
 
 .titleList > h1 {
@@ -355,6 +361,7 @@ img {
     grid-template-columns: auto auto auto;
   }
 }
+
 @media screen and (max-width: 768px) {
   .itemList {
     grid-template-columns: auto auto;
@@ -365,6 +372,7 @@ img {
     align-items: flex-start;
   }
 }
+
 @media screen and (max-width: 480px) {
   .itemList {
     grid-template-columns: auto;
