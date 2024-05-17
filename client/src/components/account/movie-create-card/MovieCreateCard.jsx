@@ -10,7 +10,6 @@ import movieDefaultImg from '../../../../../server/assets/imdb.png';
 
 export function MovieCreateCard() {
   const { userId } = useContext(GlobalContext);
-  console.log("User ID:", userId); 
   const [movies, setMovies] = useState([]);
   const [image, setImage] = useState('');
   const [successMessage, setSuccessMessage] = useState("");
@@ -125,11 +124,6 @@ export function MovieCreateCard() {
   
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("Category 1:", formData.category1);
-    console.log("Category 2:", formData.category2);
-    console.log("Category 3:", formData.category3);
-
-
     if (name === "rating") {
       const rating = parseFloat(value);
       if ((!isNaN(rating) && rating >= 1 && rating <= 10) || value === "") {
@@ -194,7 +188,7 @@ export function MovieCreateCard() {
         console.error("Invalid age censor value");
       }
     } 
-    
+
     else if (name === "name") {
       const maxLength = 50;
       const trimmedValue = value.trim();
@@ -392,7 +386,7 @@ export function MovieCreateCard() {
                 name="year"
                 value={formData.year || ""}
                 onChange={handleChange}
-                placeholder="the year the movie was released"
+                placeholder="enter year the movie was released"
                 autoComplete="off"
               />
               {yearError && <p className={style.errorMessage}>{yearError}</p>}
