@@ -169,10 +169,9 @@ export function Jobs() {
                 Hear from our employees about why they love working at IMDb.
               </p>
             </div>
-            <div className={style.video}>
+            <div className={style.videoBox}>
               <iframe
-                width="553"
-                height="311"
+                className={style.video}
                 src="https://www.youtube.com/embed/MhFxMI_ujVk"
                 title="Join us at IMDb: The world’s most popular &amp; authoritative source for movies, shows, &amp; entertainment"
                 frameBorder="0"
