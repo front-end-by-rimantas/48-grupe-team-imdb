@@ -20,7 +20,7 @@ export function MovieItem({ data, updateMovies }) {
       })
       .then(response => {
           if (response.ok) {
-              console.log(`Movie with ID ${id} deleted successfully`);
+              // console.log(`Movie with ID ${id} deleted successfully`);
               updateMovies(id);
           } else {
               throw new Error('Failed to delete movie');
@@ -58,7 +58,7 @@ export function MovieItem({ data, updateMovies }) {
                   </Link>
                 </div>
                 <div className={style.yearItem}>{year}</div>
-                {console.log("Rating value:", rating)}
+                {/* {console.log("Rating value:", rating)} */}
                 {rating ? (
                   <div className={style.starRating}>
                     <span className={style.star}>★</span>

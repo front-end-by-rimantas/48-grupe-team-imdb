@@ -41,7 +41,7 @@ export function MovieItemInner() {
           });
 
         setMovie(response.data);
-        console.log(response);
+        // console.log(response);
         setLoading(false);
       })
       .catch((error) => {
@@ -77,7 +77,7 @@ export function MovieItemInner() {
     })
       .then((res) => res.json())
       .then((data) => {
- console.log({ data });
+//  console.log({ data });
         setUserRate(data.userRating.rate);
         setMovie(data.movie);
       })
