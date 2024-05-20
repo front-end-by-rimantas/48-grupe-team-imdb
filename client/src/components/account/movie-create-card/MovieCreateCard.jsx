@@ -10,13 +10,16 @@ import movieDefaultImg from '../../../../../server/assets/imdb.png';
 
 export function MovieCreateCard() {
   const { userId } = useContext(GlobalContext);
-  console.log("User ID:", userId); 
   const [movies, setMovies] = useState([]);
   const [image, setImage] = useState('');
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [yearError, setYearError] = useState("");
   const [ratingError, setRatingError] = useState("");
+  const [urlError, setUrlError] = useState("");
+  const [titleLimit, setTitleLimit] = useState("");
+  const [grossLimit, setGrossLimit] = useState("");
+  const [awardsLimit, setAwardsLimit] = useState("");
 
   
   useEffect(() => {
@@ -121,42 +124,59 @@ export function MovieCreateCard() {
   
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("Category 1:", formData.category1);
-    console.log("Category 2:", formData.category2);
-    console.log("Category 3:", formData.category3);
-
-
     if (name === "rating") {
-      if (!isNaN(value) || value === "") {
-        const rating = parseFloat(value);
-        if (!isNaN(rating) && rating >= 1 && rating <= 10) {
-          setFormData({
-            ...formData,
-            [name]: rating,
-          });
-          setRatingError(""); 
-        } else {
-          setRatingError("Rating should be a number between 1 and 10");
-        }
+      const rating = parseFloat(value);
+      if ((!isNaN(rating) && rating >= 1 && rating <= 10) || value === "") {
+        setFormData({
+          ...formData,
+          [name]: parseFloat(value),
+        });
+        setRatingError(""); 
       } else {
-        setRatingError("Rating should be a number");
+        setRatingError("Rating should be a number between 1 and 10");
       }
     }
-    
+  
     else if (name === "awards") {
-      const newValue = Math.max(parseFloat(value), 0);
-      setFormData({
-        ...formData,
-        [name]: newValue,
-      });
-    } 
+      const newValue = value.replace(/\D/g, '');
+      if (newValue.length > 5) {
+          setAwardsLimit("Exceeds maximum length");
+          return; 
+        } else {
+            setAwardsLimit("");
+        }
+      
+      const parsedValue = parseFloat(newValue);
+      if (!isNaN(parsedValue) || newValue === "") {
+          setFormData({
+              ...formData,
+              [name]: newValue === "" ? "" : parsedValue.toString(),
+          });
+      } else {
+          setAwardsLimit("Invalid input");
+      }
+    }
+
     else if (name === "gross") {
-      const newValue = Math.max(parseFloat(value), 0);
-      setFormData({
-        ...formData,
-        [name]: newValue,
-      });
-    } 
+      const newValue = value.replace(/\D/g, '');
+      if (newValue.length > 5) {
+        setGrossLimit("Exceeds maximum length");
+        return; 
+        } else {
+            setGrossLimit("");
+        }
+      
+      const parsedValue = parseFloat(newValue);
+      if (!isNaN(parsedValue) || newValue === "") {
+          setFormData({
+              ...formData,
+              [name]: newValue === "" ? "" : parsedValue.toString(),
+          });
+      } else {
+          setGrossLimit("Exceeds maximum length");
+      }
+  }
+
     else if (name === "ageCenzor") {
       const allowedValues = ["G", "PG", "PG-13", "R", "NC-17"];
       if (allowedValues.includes(value)) {
@@ -168,35 +188,56 @@ export function MovieCreateCard() {
         console.error("Invalid age censor value");
       }
     } 
+
     else if (name === "name") {
-      const hrefValue = value.trim().toLowerCase().replace(/\s+/g, '-');
-      setFormData({
-        ...formData,
-        [name]: value,
-        href: hrefValue,
-      });
-    } 
+      const maxLength = 50;
+      const trimmedValue = value.trim();
+      if (trimmedValue.length <= maxLength) {
+          setTitleLimit("");
+          const hrefValue = trimmedValue.toLowerCase().replace(/\s+/g, '-');
+          setFormData({
+              ...formData,
+              [name]: trimmedValue,
+              href: hrefValue,
+          });
+      } else {
+          setTitleLimit("Exceeds maximum length");
+      }
+  }
+
     else if (name === "year") {
       const newValue = value.replace(/\D/g, ''); 
+      if (newValue === "") {
+          setYearError("");
+          setFormData({
+              ...formData,
+              [name]: "",
+          });
+          return;
+      }
       let newYear = parseInt(newValue);
+      if (isNaN(newYear)) {
+          setYearError("Invalid year");
+          return; 
+      }
       if (newYear < 1800) {
-        setYearError("Date is too old");
+          setYearError("Date is too old");
       } else if (newYear > new Date().getFullYear()) {
-        setYearError("Future date is not allowed");
+          setYearError("Future date is not allowed");
       } else {
-        setYearError(""); 
+          setYearError(""); 
       }
       setFormData({
-        ...formData,
-        [name]: newYear.toString(),
+          ...formData,
+          [name]: newYear.toString(),
       });
-    }
+  }
+
     else if (name === "url") {
- 
       if (!value.startsWith("https://www.youtube.com/embed/")) {
-        setErrorMessage("URL should start with 'https://www.youtube.com/embed/'");
+        setUrlError("URL should start with 'https://www.youtube.com/embed/'");
       } else {
-        setErrorMessage(""); 
+        setUrlError(""); 
       }
       setFormData({
         ...formData,
@@ -209,11 +250,11 @@ export function MovieCreateCard() {
         [name]: value,
     });
 
-    const category1 = formData.category1 || "";
-    const category2 = formData.category2 || "";
-    const category3 = formData.category3 || "";
-    const category = [category1, category2, category3].filter(Boolean).join(', ');
-    console.log("Combined categories:", category); 
+    // const category1 = formData.category1 || "";
+    // const category2 = formData.category2 || "";
+    // const category3 = formData.category3 || "";
+    // const category = [category1, category2, category3].filter(Boolean).join(', ');
+    // console.log("Combined categories:", category); 
 }
      else {
       setFormData({
@@ -269,6 +310,7 @@ export function MovieCreateCard() {
                 path: newMovie.path, 
               });
               setImage('');
+              setErrorMessage("");
             }
           } else {
             console.error("Failed to fetch movies after adding a new movie");
@@ -280,9 +322,12 @@ export function MovieCreateCard() {
         console.error("Failed to add movie", error);
       }
     } else {
+      setSuccessMessage("");
       setErrorMessage("Please fill all required fields");
     }
   };
+  
+  
   
   return (
     <div className={style.container}>
@@ -327,6 +372,7 @@ export function MovieCreateCard() {
                 value={formData.name || ""}
                 onChange={handleChange}
               />
+              {titleLimit && <p className={style.errorMessage}>{titleLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="year">
@@ -340,7 +386,7 @@ export function MovieCreateCard() {
                 name="year"
                 value={formData.year || ""}
                 onChange={handleChange}
-                placeholder="the year the movie was released"
+                placeholder="enter year the movie was released"
                 autoComplete="off"
               />
               {yearError && <p className={style.errorMessage}>{yearError}</p>}
@@ -458,13 +504,14 @@ export function MovieCreateCard() {
               </label>
               <input
                 className={style.inputForm}
-                type="number"
+                type="text"
                 id="awards"
                 name="awards"
                 value={formData.awards || ""}
                 onChange={handleChange}
                 placeholder="How many Oscars"
               />
+              {awardsLimit && <p className={style.errorMessage}>{awardsLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="gross">
@@ -472,13 +519,13 @@ export function MovieCreateCard() {
               </label>
               <input
                 className={style.inputForm}
-                type="number"
-                step="0.1"
+                type="text"
                 id="gross"
                 name="gross"
                 value={formData.gross || ""}
                 onChange={handleChange}
               />
+              {grossLimit && <p className={style.errorMessage}>{grossLimit}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="url">
@@ -493,7 +540,7 @@ export function MovieCreateCard() {
                 onChange={handleChange}
                 placeholder="ENTER:https://youtube.com/embed/your-youtube"
               />
-              {errorMessage && <p className={style.errorMessage}>{errorMessage}</p>}
+              {urlError && <p className={style.errorMessage}>{urlError}</p>}
             </div>
             <div className={style.formRow}>
               <label className={style.label} htmlFor="description">

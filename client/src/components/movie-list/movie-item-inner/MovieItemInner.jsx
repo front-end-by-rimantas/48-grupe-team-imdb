@@ -5,71 +5,22 @@ import axios from "axios";
 import { GoStarFill } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 import style from "./MovieItemInner.module.css";
-import { MdFavorite } from "react-icons/md";
+import fBtnStyle from "../../favorite-movie-btn/FavoriteMovieBtn.module.css"
 import { GlobalContext } from "../../../context/GlobalContext";
 import movieDefaultImg from '../../../../../server/assets/imdb.png';
+import { FavoriteMovieBtn } from "../../favorite-movie-btn/FavoriteMovieBtn";
+
 
 export function MovieItemInner() {
   const { href } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const {
-    userId,
-    favoriteData,
-    loginStatus,
-    updateFavoriteData,
-    deleteFavoriteData,
-  } = useContext(GlobalContext);
-  const [favoriteBtn, setFavoriteBtn] = useState(false);
+  const { userId, loginStatus } = useContext(GlobalContext);
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [totalStars, setTotalStars] = useState(10);
   const [userRate, setUserRate] = useState(null);
-
-  const favoriteMoviesHrefArr = [];
-  let favoriteId = "favoriteId";
-  let isInArr = false;
-
-  for (const data of favoriteData) {
-    if (data.userId === userId) {
-      favoriteMoviesHrefArr.push(data.href);
-      if (data.href === href) {
-        favoriteId = data.id;
-        isInArr = true;
-      }
-    }
-  }
-  const addedFavoriteMsg = (
-    <p className={isInArr ? style.favoriteMessage : style.off}>
-      Added to favorite
-    </p>
-  );
-  const removedFavoritesMsg = (
-    <p className={!isInArr ? style.favoriteMessageRemove : style.off}>
-      Removed from favorites
-    </p>
-  );
-  const activeFavoriteBtn = (
-    <span className={style.favoriteIconActive}>
-      <MdFavorite />
-    </span>
-  );
-  const inactiveFavoriteBtn = (
-    <span className={style.favoriteIconInactive}>
-      <MdFavorite />
-    </span>
-  );
-  const favoriteHtmlBtn = (
-    <button
-      className={style.favoriteBtn}
-      onClick={() => handleFavorite(favoriteBtn)}
-    >
-      {favoriteMoviesHrefArr.includes(href)
-        ? activeFavoriteBtn
-        : inactiveFavoriteBtn}
-    </button>
-  );
 
   useEffect(() => {
     axios
@@ -90,7 +41,7 @@ export function MovieItemInner() {
           });
 
         setMovie(response.data);
-        console.log(response);
+        // console.log(response);
         setLoading(false);
       })
       .catch((error) => {
@@ -106,42 +57,6 @@ export function MovieItemInner() {
 
   if (error) {
     return <div>{error}</div>;
-  }
-
-  function handleFavorite(favoriteBtn) {
-    setFavoriteBtn(!favoriteBtn);
-
-    if (isInArr === false) {
-      fetch("http://localhost:4840/user/favorite", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          href,
-          userId,
-          imgPath: movie.path,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          updateFavoriteData(data.favoriteArr);
-        })
-        .catch((e) => console.error(e));
-    } else {
-      fetch("http://localhost:4840/user/favorite/" + favoriteId, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.message === "favorite deleted") {
-            deleteFavoriteData(favoriteId);
-          }
-        })
-        .catch(console.error);
-    }
   }
 
   function onMovieRate(rating) {
@@ -162,6 +77,7 @@ export function MovieItemInner() {
     })
       .then((res) => res.json())
       .then((data) => {
+//  console.log({ data });
         setUserRate(data.userRating.rate);
         setMovie(data.movie);
       })
@@ -186,8 +102,15 @@ export function MovieItemInner() {
             <svg width="20" height="20">
               <circle cx="10" cy="10" r="3" fill="white" />
             </svg>
-            {loginStatus ? favoriteHtmlBtn : null}
-            {isInArr ? addedFavoriteMsg : removedFavoritesMsg}
+            {loginStatus ? 
+              <FavoriteMovieBtn 
+                href={href} 
+                path={movie.path} 
+                onMsgStyle={fBtnStyle.favoriteMessage} 
+                offMsgStyle={fBtnStyle.favoriteMessageRemove} 
+                removeMsgStyle={fBtnStyle.off} 
+              />
+            : null}
           </div>
         </div>
         <div className={style.rating}>
@@ -197,7 +120,7 @@ export function MovieItemInner() {
               <i className={style.yellowStar}>
                 <GoStarFill size="1.5rem" />
               </i>
-              <p>{movie?.average_rating ?? movie.rating}/10</p>
+              <p>{Number.isInteger(parseFloat(movie?.average_rating ?? movie.rating)) ? parseFloat(movie?.average_rating ?? movie.rating).toFixed(0) : parseFloat(movie?.average_rating ?? movie.rating).toFixed(1)}/10</p>
             </div>
           </div>
           <div>

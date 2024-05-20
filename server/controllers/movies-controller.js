@@ -28,7 +28,7 @@ export async function getMostProfitable(req, res) {
 export async function getMovie(req, res) {
   try {
     const { href } = req.params;
-    const sql = `SELECT m.*, CAST(COALESCE(AVG(r.rate), null) AS DECIMAL(10,1)) as average_rating FROM movies m LEFT JOIN rating r ON m.id = r.movieId WHERE href = ? GROUP BY m.id;`;
+    const sql = `SELECT m.*, CAST(COALESCE((AVG(r.rate) + m.rating) / 2, null) AS DECIMAL(10,1)) as average_rating FROM movies m LEFT JOIN rating r ON m.id = r.movieId WHERE href = ? GROUP BY m.id;`;
     const connection = await sqlPool();
     const [rows] = await connection.query(sql, [href]);
     await connection.end();
@@ -80,7 +80,7 @@ export async function addMovie(req, res) {
     const values = [
       name,
       year,
-      rating,
+      parseFloat(rating),
       category,
       ageCenzor,
       awards,
@@ -109,7 +109,7 @@ export async function setRate(req, res) {
     const values = [userId, movieId, rate];
     const connection = await sqlPool();
     await connection.query(sql, values);
-    const sqlGetMovie = `SELECT m.*, CAST(COALESCE(AVG(r.rate), null) AS DECIMAL(10,1)) as average_rating FROM movies m LEFT JOIN rating r ON m.id = r.movieId WHERE href = ? GROUP BY m.id;`;
+    const sqlGetMovie = `SELECT m.*, CAST(COALESCE((AVG(r.rate) + m.rating) / 2, null) AS DECIMAL(10,1)) as average_rating FROM movies m LEFT JOIN rating r ON m.id = r.movieId WHERE href = ? GROUP BY m.id;`;
     const [[movie]] = await connection.query(sqlGetMovie, [href]);
     const sqlUserRate = `SELECT rate FROM rating WHERE userId = ? AND movieId = ?`; 
     const [[userRating]] = await connection.query(sqlUserRate, [userId, movieId]);

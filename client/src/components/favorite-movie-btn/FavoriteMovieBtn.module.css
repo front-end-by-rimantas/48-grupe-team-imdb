@@ -1,0 +1,58 @@
+.favoriteBox {
+    display: flex;
+    align-items: center;
+    gap: 0 0.5rem;
+  }
+  
+  .favoriteBtn {
+    background-color: transparent;
+    border: transparent;
+  }
+
+  .favoriteIconList {
+    cursor: pointer;
+    color: #aaa5a5;
+  }
+  
+  .favoriteIconActive,
+  .favoriteIconInactive {
+    cursor: pointer;
+    color: #b3aeae;
+    font-size: 1.5rem;
+    transition: 0.3s;
+  }
+  
+  .favoriteIconActive {
+    color: #debf0f;
+    transition: 0.3s;
+  }
+  
+  .favoriteMessageDark,
+  .favoriteMessage {
+    opacity: 1;
+  }
+  
+  .favoriteMessageRemoveDark,
+  .favoriteMessageRemove {
+    opacity: 0;
+  }
+  
+  .favoriteMessage,
+  .favoriteMessageRemove {
+    color: #fff;
+    font-size: 0.8rem;
+    transition: 2s;
+  }
+
+  .favoriteMessageDark,
+  .favoriteMessageRemoveDark {
+    color: #626261;
+    font-size: 0.8rem;
+    transition: 2s;
+  }
+
+  .off {
+    opacity: 0;
+    transition: 3s;
+  }
+  

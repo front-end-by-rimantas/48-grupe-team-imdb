@@ -40,9 +40,9 @@ export function MovieList() {
     }
 
     return (
-        <div className={style.boss}>
+        <div className={style.listContainer}>
                 <div className={style.titleList}>
-                    <h3>IMDb Charts</h3>
+                    <h3 className={style.movieTitle}>IMDb Charts</h3>
                     <h1>List movies</h1>
                 </div>
                 <div className={style.containerList}>
