@@ -37,7 +37,7 @@ export function MovieEditCard() {
         const response = await fetch(`http://localhost:4840/movies/get/` + href);
         if (response.ok) {
           const movieData = await response.json();
-          console.log("Movie Data:", movieData);
+          // console.log("Movie Data:", movieData);
           const formattedRating = Number.isInteger(parseFloat(movieData.rating)) ? parseFloat(movieData.rating).toFixed(0) : parseFloat(movieData.rating).toFixed(1);
           const categories = movieData.category.split(',').map(category => category.trim());
           setFormData({
@@ -61,9 +61,9 @@ export function MovieEditCard() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("Category 1:", formData.category1);
-    console.log("Category 2:", formData.category2);
-    console.log("Category 3:", formData.category3);
+    // console.log("Category 1:", formData.category1);
+    // console.log("Category 2:", formData.category2);
+    // console.log("Category 3:", formData.category3);
 
     if (name === "rating") {
       const rating = parseFloat(value);
@@ -191,11 +191,11 @@ export function MovieEditCard() {
         [name]: value,
       });
   
-      const category1 = formData.category1 || "";
-      const category2 = formData.category2 || "";
-      const category3 = formData.category3 || "";
-      const category = [category1, category2, category3].filter(Boolean).join(', ');
-      console.log("Combined categories:", category); 
+      // const category1 = formData.category1 || "";
+      // const category2 = formData.category2 || "";
+      // const category3 = formData.category3 || "";
+      // const category = [category1, category2, category3].filter(Boolean).join(', ');
+      // console.log("Combined categories:", category); 
     }
     else {
       setFormData({

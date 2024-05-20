@@ -250,11 +250,11 @@ export function MovieCreateCard() {
         [name]: value,
     });
 
-    const category1 = formData.category1 || "";
-    const category2 = formData.category2 || "";
-    const category3 = formData.category3 || "";
-    const category = [category1, category2, category3].filter(Boolean).join(', ');
-    console.log("Combined categories:", category); 
+    // const category1 = formData.category1 || "";
+    // const category2 = formData.category2 || "";
+    // const category3 = formData.category3 || "";
+    // const category = [category1, category2, category3].filter(Boolean).join(', ');
+    // console.log("Combined categories:", category); 
 }
      else {
       setFormData({
